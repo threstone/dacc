@@ -5,6 +5,6 @@
 		"no-convert": true,
 		"no-delimited": false
 	},
-	"sourceRoot": "protofile",
+	"sourceRoot": "../../../proto",
 	"outputFile": "bundles/protobuf-bundles.js"
 }

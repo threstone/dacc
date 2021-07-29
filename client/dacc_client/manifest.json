@@ -21,17 +21,22 @@
 		"protobuf/bundles/protobuf-bundles.js"
 	],
 	"game": [
-		"bin-debug/fui/hall/hallBinder.js",
-		"bin-debug/LoadingUI.js",
-		"bin-debug/MessageManager.js",
+		"bin-debug/Controller/BaseController.js",
+		"bin-debug/Model/BaseModel.js",
+		"bin-debug/View/BaseView.js",
+		"bin-debug/Controller/HallController.js",
 		"bin-debug/ProtoClass.js",
 		"bin-debug/Socket.js",
+		"bin-debug/GameDispatcher.js",
 		"bin-debug/Controller/GlobalController.js",
-		"bin-debug/Main.js",
+		"bin-debug/LoadingUI.js",
+		"bin-debug/fui/hall/hallBinder.js",
 		"bin-debug/fui/hall/UI_Click.js",
 		"bin-debug/fui/hall/UI_Hall.js",
 		"bin-debug/fui/hall/UI_Login.js",
+		"bin-debug/Main.js",
 		"bin-debug/Model/HallModel.js",
+		"bin-debug/MessageManager.js",
 		"bin-debug/View/HallView.js"
 	]
 }

@@ -1,9 +1,17 @@
 import { getLogger } from "log4js"
 import * as WS from "ws"
+import { HallPto } from "./common_proto"
+import { ProtoBufEncoder } from "./protobuf_encoder"
+import { HallHandle } from "./handle/hall_handle"
 const logger = getLogger()
 export class SocketServer {
     private _defaultListenPort = 9595
     private _socketArr = []
+
+    constructor() {
+        ProtoBufEncoder.init()
+        ProtoBufEncoder.addProtoModule(HallPto, HallHandle)
+    }
 
     getEmptyClientId() {
         const temp = this._socketArr.indexOf(null)
@@ -35,8 +43,23 @@ export class SocketServer {
         })
     }
 
-    onMessage(clientId: number, msg: Buffer, ws) {
-
+    onMessage(clientId: number, buf: Buffer, ws) {
+        if (buf.length < 2) {
+            logger.error(`消息长度不足,未知消息! clientId:${clientId}  buf:${buf}`)
+            return
+        }
+        let msg = ProtoBufEncoder.decode(buf, 0)
+        let fun = ProtoBufEncoder.getHandleFunction(msg.cmd, msg.scmd)
+        if (!fun) {
+            logger.error(`未知的协议 cmd:${msg.cmd} scmd:${msg.scmd}`)
+            return
+        }
+        try {
+            fun(clientId, msg)
+        } catch (error) {
+            logger.error(`执行协议函数出错 cmd:${msg.cmd} scmd:${msg.scmd}`)
+            logger.error(error)
+        }
     }
 
     onClose(clientId: number) {

@@ -31,7 +31,7 @@ class MessageManager {
                 }
 
                 let protoIndex: number = protoClass.prototype.cmd * 255 + protoClass.prototype.scmd
-                MessageManager.recMsgHandlerArr[protoIndex] = protoClass
+                MessageManager.protoObj[protoIndex] = protoClass
 
                 //服务器的代码需要注册一下
                 if (key.startsWith("S_")) {

@@ -56,6 +56,6 @@ class Main extends egret.DisplayObjectContainer {
     }
 
     private initSocket() {
-        let socket = new Socket()
+        Socket.getInstance()
     }
 }

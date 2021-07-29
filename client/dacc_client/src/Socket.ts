@@ -1,6 +1,9 @@
 const SERVER_DRESS = 'ws://192.168.0.36:9595';
 
-
+interface GameProtoClass {
+    cmd: CmdProto.SYS_CMD
+    scmd: number
+}
 class Socket {
 
     private static socket: Socket;
@@ -58,11 +61,11 @@ class Socket {
     /**
      * 发送proto给服务器
     */
-    public sendProtoMsg(msg: ProtoClass): void {
+    public sendProtoMsg(msg: GameProtoClass): void {
 
         let msgAny: any = msg;
 
-        let buffer = MessageManager.getProtoCls(msgAny.__proto__.sysid, msgAny.__proto__.cmdid).encode(msg).finish();
+        let buffer = MessageManager.getProtoCls(msgAny.__proto__.cmd, msgAny.__proto__.scmd).encode(msg).finish();
 
         let byteArray = new egret.ByteArray(buffer);
         byteArray.endian = egret.Endian.LITTLE_ENDIAN;

@@ -1,4 +1,4 @@
-import * as $protobuf from "protobufjs";
+import * as $protobuf from "protobufjs"
 /** Namespace HallPto. */
 export namespace HallPto {
 

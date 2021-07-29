@@ -3,7 +3,7 @@ let config = {
 
     //-----------以下为服务端共有proto文件的配置
 
-    protoFilesRoot: '../proto/',                    //proto文件所在目录
+    protoFilesRoot: '../../../proto/',                    //proto文件所在目录
 
     noCreate: false,
     noConvert:false,
