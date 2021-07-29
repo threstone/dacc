@@ -1,0 +1,6 @@
+/client/dacc_client/scripts/plugins/package-lock.json
+/client/dacc_client/scripts/plugins/node_modules
+/client/dacc_client/bin-debug
+/server/node_modules
+/server/dist
+/server/logs

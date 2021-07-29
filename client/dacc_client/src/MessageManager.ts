@@ -27,10 +27,10 @@ class MessageManager {
                 }
 
                 if (protoClass.prototype.scmd < 0 || protoClass.prototype.scmd > 255) {
-                    throw new Error("协议头cmdid ,范围错误," + key + "," + protoClass.prototype.scmd)
+                    throw new Error("协议头scmd ,范围错误," + key + "," + protoClass.prototype.scmd)
                 }
 
-                let protoIndex: number = (protoClass.prototype.cmd - 1) * 255 + protoClass.prototype.scmd
+                let protoIndex: number = protoClass.prototype.cmd * 255 + protoClass.prototype.scmd
                 MessageManager.recMsgHandlerArr[protoIndex] = protoClass
 
                 //服务器的代码需要注册一下
@@ -51,35 +51,35 @@ class MessageManager {
     /**
      * 注册处理接收信息函数
      */
-    public static regRcvMsgHandler(sisId: number, cmdId: number, fun: Function): void {
+    public static regRcvMsgHandler(cmd: number, scmd: number, fun: Function): void {
 
-        if (MessageManager.recMsgHandlerArr[(sisId - 1) * 255 + cmdId] != null) {
+        if (MessageManager.recMsgHandlerArr[cmd * 255 + scmd] != null) {
 
-            throw new Error("该sisid,cmdid下标处已注册过\r\nsisid:" + sisId + "\tcmdid:" + cmdId);
+            throw new Error("该cmd,scmd下标处已注册过\r\ncmd:" + cmd + "\tscmd:" + scmd);
 
         }
 
-        MessageManager.recMsgHandlerArr[(sisId - 1) * 255 + cmdId] = fun;
+        MessageManager.recMsgHandlerArr[cmd * 255 + scmd] = fun;
 
     }
 
     /**
      * 处理接收的信息
      */
-    public static rcvMsgHandler(sisId: number, cmdId: number, msg: egret.ByteArray): void {
+    public static rcvMsgHandler(cmd: number, scmd: number, msg: egret.ByteArray): void {
 
-        if (MessageManager.recMsgHandlerArr[(sisId - 1) * 255 + cmdId] == null) {
+        if (MessageManager.recMsgHandlerArr[cmd * 255 + scmd] == null) {
 
-            console.log("该sisid,cmdid下标处没有信息处理函数\r\nsisid:" + sisId + "\tcmdid:" + cmdId);
+            console.log("该cmd,scmd下标处没有信息处理函数\r\ncmd:" + cmd + "\tscmd:" + scmd);
 
-            // throw new Error("该sisid,cmdid下标处没有信息处理函数\r\nsisid:" + sisId + "\tcmdid:" + cmdId);
+            // throw new Error("该cmd,scmd下标处没有信息处理函数\r\nsisid:" + sisId + "\tscmd:" + scmd);
 
         }
 
         try {
 
-            let data = MessageManager.getProtoCls(sisId, cmdId).decode(msg.bytes);
-            MessageManager.recMsgHandlerArr[(sisId - 1) * 255 + cmdId](data);
+            let data = MessageManager.getProtoCls(cmd, scmd).decode(msg.bytes);
+            MessageManager.recMsgHandlerArr[cmd * 255 + scmd](data);
 
         } catch (error) {
 
@@ -92,15 +92,15 @@ class MessageManager {
     /**
      * 获取proto类
      */
-    public static getProtoCls(sisId: number, cmdId: number): ProtoClass {
+    public static getProtoCls(cmd: number, scmd: number): ProtoClass {
 
-        if (MessageManager.protoObj[(sisId - 1) * 255 + cmdId] == null) {
+        if (MessageManager.protoObj[cmd * 255 + scmd] == null) {
 
-            throw new Error("该sisid,cmdid下标处没有proto类\r\nsisid:" + sisId + "\tcmdid:" + cmdId);
+            throw new Error("cmd,scmd下标处没有proto类\r\ncmd:" + cmd + "\tscmd:" + scmd);
 
         }
 
-        return MessageManager.protoObj[(sisId - 1) * 255 + cmdId];
+        return MessageManager.protoObj[cmd * 255 + scmd];
 
     }
 
@@ -111,9 +111,9 @@ class MessageManager {
 
         if (MessageManager.protoObj[index] != null) {
 
-            let sisid = Math.floor(index / 255) + 1;
-            let cmdid = index % 255;
-            throw new Error("该index下标处已有proto类\sisid:" + sisid + "||cmdid:" + cmdid);
+            let cmd = Math.floor(index / 255);
+            let scmd = index % 255;
+            throw new Error("该index下标处已有proto类\cmd:" + cmd + "||scmd:" + scmd);
 
         }
 
