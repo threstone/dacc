@@ -1,0 +1,30 @@
+{
+	"groups": [
+		{
+			"keys": "hall,hall_atlas0",
+			"name": "preload"
+		}
+	],
+	"resources": [
+		{
+			"url": "fui/hall.fui",
+			"type": "bin",
+			"name": "hall"
+		},
+		{
+			"url": "fui/hall_atlas0.jpg",
+			"type": "image",
+			"name": "hall_atlas0"
+		},
+		{
+			"url": "fui/game_atlas0.png",
+			"type": "image",
+			"name": "game_atlas0"
+		},
+		{
+			"url": "fui/game.fui",
+			"type": "bin",
+			"name": "game"
+		}
+	]
+}

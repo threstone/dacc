@@ -1,0 +1,24 @@
+{
+    "appenders": {
+        "console": {
+            "type": "console",
+            "category": "console"
+        },
+        "debug": {
+            "type": "dateFile",
+            "filename": "./logs/hallServer",
+            "alwaysIncludePattern": true,
+            "pattern": "yyyy-MM-dd.log"
+        }
+    },
+    "replaceConsole": true,
+    "categories": {
+        "default": {
+            "appenders": [
+                "console",
+                "debug"
+            ],
+            "level": "ALL"
+        }
+    }
+}

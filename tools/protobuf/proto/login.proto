@@ -1,0 +1,11 @@
+syntax = "proto3";
+package HallPto;
+import "sys_cmd.proto";
+enum LOGIN{
+	CS_LOGIN = 1;//客户端登录
+}
+message C_Login{
+	CmdProto.SYS_CMD cmd = 1[default = SYS_LOGIN]; 
+	LOGIN scmd = 2[default = CS_LOGIN];
+	string userName = 3;
+}

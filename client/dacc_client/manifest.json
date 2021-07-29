@@ -1,0 +1,37 @@
+{
+	"initial": [
+		"libs/modules/egret/egret.js",
+		"libs/modules/egret/egret.web.js",
+		"libs/modules/assetsmanager/assetsmanager.js",
+		"libs/modules/game/game.js",
+		"libs/modules/tween/tween.js",
+		"libs/modules/socket/socket.js",
+		"libs/modules/promise/promise.js",
+		"protobuf/library/protobuf-library.js",
+		"protobuf/bundles/protobuf-bundles.js",
+		"protobuf/library/protobuf-library.js",
+		"protobuf/bundles/protobuf-bundles.js",
+		"libs/rawinflate/rawinflate.js",
+		"libs/fairygui/fairygui.js",
+		"protobuf/library/protobuf-library.js",
+		"protobuf/bundles/protobuf-bundles.js",
+		"protobuf/library/protobuf-library.js",
+		"protobuf/bundles/protobuf-bundles.js",
+		"protobuf/library/protobuf-library.js",
+		"protobuf/bundles/protobuf-bundles.js"
+	],
+	"game": [
+		"bin-debug/fui/hall/hallBinder.js",
+		"bin-debug/LoadingUI.js",
+		"bin-debug/MessageManager.js",
+		"bin-debug/ProtoClass.js",
+		"bin-debug/Socket.js",
+		"bin-debug/Controller/GlobalController.js",
+		"bin-debug/Main.js",
+		"bin-debug/fui/hall/UI_Click.js",
+		"bin-debug/fui/hall/UI_Hall.js",
+		"bin-debug/fui/hall/UI_Login.js",
+		"bin-debug/Model/HallModel.js",
+		"bin-debug/View/HallView.js"
+	]
+}

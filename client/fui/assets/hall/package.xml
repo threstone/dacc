@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="sly852qp" jpegQuality="80" compressPNG="true">
+  <resources>
+    <component id="i7mx0" name="Hall.xml" path="/" exported="true"/>
+    <image id="i7mx2" name="test.jpg" path="/picture/"/>
+    <component id="inlo3" name="Login.xml" path="/"/>
+    <component id="inlo4" name="Click.xml" path="/componet/"/>
+  </resources>
+  <publish name="hall" genCode="true" npot="true"/>
+</packageDescription>

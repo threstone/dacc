@@ -1,0 +1,16 @@
+{
+	"binaryFormat":true,
+	"codeGeneration":{
+		"classNamePrefix":"UI_",
+		"codePath":"E:\\dacc\\client\\dacc_client\\src\\fui",
+		"codeType":"",
+		"getMemberByName":true,
+		"ignoreNoname":false,
+		"memberNamePrefix":"m_",
+		"packageName":""
+	},
+	"compressDesc":true,
+	"fileExtension":"",
+	"packageCount":2,
+	"path":"E:\\dacc\\client\\dacc_client\\resource\\fui"
+}

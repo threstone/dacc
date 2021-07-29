@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="200,60" pivot="0.5,0.5" extention="Button">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
+  <displayList>
+    <graph id="n0_inlo" name="n0" xy="0,0" size="200,60" touchable="false" type="rect" lineSize="0" fillColor="#ffffff00">
+      <gearDisplay controller="button" pages="0"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <graph id="n1_inlo" name="n1" xy="0,0" size="200,60" touchable="false" type="rect" lineSize="0" fillColor="#ffffff33">
+      <gearDisplay controller="button" pages="2"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <graph id="n2_inlo" name="n2" xy="0,0" size="200,60" touchable="false" type="rect" lineSize="0" fillColor="#ffffff66">
+      <gearDisplay controller="button" pages="1,3"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <text id="n3_inlo" name="n3" xy="48,0" size="116,67" fontSize="55" text="登录"/>
+  </displayList>
+  <Button downEffect="scale" downEffectValue="0.80"/>
+</component>

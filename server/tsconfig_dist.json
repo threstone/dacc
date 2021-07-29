@@ -1,0 +1,21 @@
+{
+   "compilerOptions": {
+       "target":"es2017",
+       "noImplicitAny": false,
+       "module": "commonjs",
+       "removeComments": false,
+	   "experimentalDecorators": true,
+	   "emitDecoratorMetadata": true,
+       "sourceMap": true,
+	   "types": [ "node"],
+       "outDir": "../publish/demo",
+       "resolveJsonModule": true
+	},
+   "include":[
+      "*.ts"
+	],
+   "exclude": [
+		"./node_modules/",
+		"./dist/"
+	]
+}

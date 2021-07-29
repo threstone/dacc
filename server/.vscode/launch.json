@@ -1,0 +1,30 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "启动程序普通模式",
+            "program": "${workspaceFolder}\\dist\\main.js",
+            // "preLaunchTask": "tsc: build - tsconfig.json",
+            "args": [],
+            "preLaunchTask": "buildjs",
+            "outFiles": [
+                "${workspaceFolder}/dist/*.js"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "光启动不编译",
+            "program": "${workspaceFolder}\\dist\\main.js",
+            "outFiles": [
+                "${workspaceFolder}/dist/*.js"
+            ],
+            "args": []
+        }
+    ]
+}
