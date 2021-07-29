@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1280,720" overflow="hidden">
+  <displayList>
+    <loader id="n6_k72m" name="bg" xy="0,0" size="1280,720" alpha="0.5" url="ui://sly852qpk72m5" fill="scaleFree"/>
+    <component id="n11_k72m" name="mini_chat" src="k72m7" fileName="componet/chat/MiniChat.xml" xy="0,500"/>
+  </displayList>
+</component>

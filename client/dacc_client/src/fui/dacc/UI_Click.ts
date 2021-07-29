@@ -1,6 +1,6 @@
 /** This is an automatically generated class by FairyGUI. Please do not modify it. **/
 
-module hall {
+module dacc {
 
 	export class UI_Click extends fairygui.GButton {
 
@@ -13,7 +13,7 @@ module hall {
 		public static URL:string = "ui://sly852qpinlo4";
 
 		public static createInstance():UI_Click {
-			return <UI_Click><any>(fairygui.UIPackage.createObject("hall","Click"));
+			return <UI_Click><any>(fairygui.UIPackage.createObject("dacc","Click"));
 		}
 
 		public constructor() {

@@ -3,8 +3,12 @@
   <resources>
     <component id="i7mx0" name="Hall.xml" path="/" exported="true"/>
     <image id="i7mx2" name="test.jpg" path="/picture/"/>
-    <component id="inlo3" name="Login.xml" path="/"/>
+    <component id="inlo3" name="Login.xml" path="/" exported="true"/>
     <component id="inlo4" name="Click.xml" path="/componet/"/>
+    <image id="k72m5" name="hall_bg.jpg" path="/picture/"/>
+    <image id="k72m6" name="ditu_bj.jpg" path="/picture/"/>
+    <component id="k72m7" name="MiniChat.xml" path="/componet/chat/"/>
+    <component id="k72m9" name="ChatLabel.xml" path="/componet/chat/"/>
   </resources>
   <publish name="hall" genCode="true" npot="true"/>
 </packageDescription>

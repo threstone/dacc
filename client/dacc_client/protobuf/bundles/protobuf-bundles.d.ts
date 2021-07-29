@@ -1,89 +1,171 @@
 type Long = protobuf.Long;
 // DO NOT EDIT! This is a generated file. Edit the JSDoc in src/*.js instead and run 'npm run types'.
 
-/** Namespace HallPto. */
-declare namespace HallPto {
+/** Namespace LoginPto. */
+declare namespace LoginPto {
 
     /** LOGIN enum. */
     enum LOGIN {
-        CS_LOGIN = 1
+        CS_LOGIN = 1,
+        SC_LOGIN = 2
     }
 
-    /** Properties of a C_Login. */
-    interface IC_Login {
+    /** Properties of a C_LOGIN. */
+    interface IC_LOGIN {
 
-        /** C_Login cmd */
+        /** C_LOGIN cmd */
         cmd?: (CmdProto.SYS_CMD|null);
 
-        /** C_Login scmd */
-        scmd?: (HallPto.LOGIN|null);
+        /** C_LOGIN scmd */
+        scmd?: (LoginPto.LOGIN|null);
 
-        /** C_Login userName */
+        /** C_LOGIN userName */
         userName?: (string|null);
     }
 
-    /** Represents a C_Login. */
-    class C_Login implements IC_Login {
+    /** Represents a C_LOGIN. */
+    class C_LOGIN implements IC_LOGIN {
 
         /**
-         * Constructs a new C_Login.
+         * Constructs a new C_LOGIN.
          * @param [properties] Properties to set
          */
-        constructor(properties?: HallPto.IC_Login);
+        constructor(properties?: LoginPto.IC_LOGIN);
 
-        /** C_Login cmd. */
+        /** C_LOGIN cmd. */
         public cmd: CmdProto.SYS_CMD;
 
-        /** C_Login scmd. */
-        public scmd: HallPto.LOGIN;
+        /** C_LOGIN scmd. */
+        public scmd: LoginPto.LOGIN;
 
-        /** C_Login userName. */
+        /** C_LOGIN userName. */
         public userName: string;
 
         /**
-         * Creates a new C_Login instance using the specified properties.
+         * Creates a new C_LOGIN instance using the specified properties.
          * @param [properties] Properties to set
-         * @returns C_Login instance
+         * @returns C_LOGIN instance
          */
-        public static create(properties?: HallPto.IC_Login): HallPto.C_Login;
+        public static create(properties?: LoginPto.IC_LOGIN): LoginPto.C_LOGIN;
 
         /**
-         * Encodes the specified C_Login message. Does not implicitly {@link HallPto.C_Login.verify|verify} messages.
-         * @param message C_Login message or plain object to encode
+         * Encodes the specified C_LOGIN message. Does not implicitly {@link LoginPto.C_LOGIN.verify|verify} messages.
+         * @param message C_LOGIN message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: HallPto.IC_Login, writer?: protobuf.Writer): protobuf.Writer;
+        public static encode(message: LoginPto.IC_LOGIN, writer?: protobuf.Writer): protobuf.Writer;
 
         /**
-         * Encodes the specified C_Login message, length delimited. Does not implicitly {@link HallPto.C_Login.verify|verify} messages.
-         * @param message C_Login message or plain object to encode
+         * Encodes the specified C_LOGIN message, length delimited. Does not implicitly {@link LoginPto.C_LOGIN.verify|verify} messages.
+         * @param message C_LOGIN message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: HallPto.IC_Login, writer?: protobuf.Writer): protobuf.Writer;
+        public static encodeDelimited(message: LoginPto.IC_LOGIN, writer?: protobuf.Writer): protobuf.Writer;
 
         /**
-         * Decodes a C_Login message from the specified reader or buffer.
+         * Decodes a C_LOGIN message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns C_Login
+         * @returns C_LOGIN
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): HallPto.C_Login;
+        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): LoginPto.C_LOGIN;
 
         /**
-         * Decodes a C_Login message from the specified reader or buffer, length delimited.
+         * Decodes a C_LOGIN message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns C_Login
+         * @returns C_LOGIN
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: (protobuf.Reader|Uint8Array)): HallPto.C_Login;
+        public static decodeDelimited(reader: (protobuf.Reader|Uint8Array)): LoginPto.C_LOGIN;
 
         /**
-         * Verifies a C_Login message.
+         * Verifies a C_LOGIN message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+    }
+
+    /** Properties of a S_LOGIN. */
+    interface IS_LOGIN {
+
+        /** S_LOGIN cmd */
+        cmd?: (CmdProto.SYS_CMD|null);
+
+        /** S_LOGIN scmd */
+        scmd?: (LoginPto.LOGIN|null);
+
+        /** S_LOGIN isSuccess */
+        isSuccess?: (boolean|null);
+    }
+
+    /** Represents a S_LOGIN. */
+    class S_LOGIN implements IS_LOGIN {
+
+        /**
+         * Constructs a new S_LOGIN.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: LoginPto.IS_LOGIN);
+
+        /** S_LOGIN cmd. */
+        public cmd: CmdProto.SYS_CMD;
+
+        /** S_LOGIN scmd. */
+        public scmd: LoginPto.LOGIN;
+
+        /** S_LOGIN isSuccess. */
+        public isSuccess: boolean;
+
+        /**
+         * Creates a new S_LOGIN instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns S_LOGIN instance
+         */
+        public static create(properties?: LoginPto.IS_LOGIN): LoginPto.S_LOGIN;
+
+        /**
+         * Encodes the specified S_LOGIN message. Does not implicitly {@link LoginPto.S_LOGIN.verify|verify} messages.
+         * @param message S_LOGIN message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: LoginPto.IS_LOGIN, writer?: protobuf.Writer): protobuf.Writer;
+
+        /**
+         * Encodes the specified S_LOGIN message, length delimited. Does not implicitly {@link LoginPto.S_LOGIN.verify|verify} messages.
+         * @param message S_LOGIN message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: LoginPto.IS_LOGIN, writer?: protobuf.Writer): protobuf.Writer;
+
+        /**
+         * Decodes a S_LOGIN message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns S_LOGIN
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): LoginPto.S_LOGIN;
+
+        /**
+         * Decodes a S_LOGIN message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns S_LOGIN
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: (protobuf.Reader|Uint8Array)): LoginPto.S_LOGIN;
+
+        /**
+         * Verifies a S_LOGIN message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */

@@ -1,6 +1,6 @@
 /** This is an automatically generated class by FairyGUI. Please do not modify it. **/
 
-module hall {
+module dacc {
 
 	export class UI_Login extends fairygui.GComponent {
 
@@ -13,7 +13,7 @@ module hall {
 		public static URL:string = "ui://sly852qpinlo3";
 
 		public static createInstance():UI_Login {
-			return <UI_Login><any>(fairygui.UIPackage.createObject("hall","Login"));
+			return <UI_Login><any>(fairygui.UIPackage.createObject("dacc","Login"));
 		}
 
 		public constructor() {

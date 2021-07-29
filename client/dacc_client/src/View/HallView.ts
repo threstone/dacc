@@ -1,19 +1,22 @@
 class HallView extends BaseView {
-    hallCom: hall.UI_Hall
+    hallCom: dacc.UI_Hall
     init() {
-        this.hallCom = hall.UI_Hall.createInstance()
-        this.hallCom.m_login.m_login_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onLoginBtnClick, this)
-    }
+        this.hallCom = dacc.UI_Hall.createInstance()
 
-    onLoginBtnClick() {
-        let input = this.hallCom.m_login.m_input_text.text
-        if (input.length <= 0) {
-            this.hallCom.m_login.m_tips.text = "请输入用户名"
-            return
-        }
+        // let lable = new fairygui.GLabel()
+        // lable.text = "wofasdfskjh"
+        // lable.titleFontSize = 10
+        // lable.visible = true
+        // lable.setXY(0, 0)
+        // // this.hallCom.m_mini_chat.m_list.addChild(lable)
+        // this.hallCom.addChild(lable)
+        // let lable1 = new fairygui.GLabel()
+        // lable1.text = "wofasdfskjh"
+        // lable1.titleFontSize = 20
+        // this.hallCom.m_mini_chat.m_list.addChild(lable1)
 
-        //派发消息后不允许点击了
-        this.emit('LoginBtnClick', input)
-        this.hallCom.m_login.touchable = false
+        let label = dacc.UI_ChatLabel.createInstance()
+        label.m_title.text = "aasdjasdjalsdajssjsjsj"
+        this.hallCom.m_mini_chat.m_list.addChild(label)
     }
 }

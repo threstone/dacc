@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="550,220">
+  <displayList>
+    <graph id="n2_k72m" name="bg" xy="0,0" size="550,220" type="rect"/>
+    <list id="n3_k72m" name="list" xy="-1,-1" size="550,220" overflow="scroll">
+      <item url="ui://sly852qpk72m9"/>
+      <item url="ui://sly852qpk72m9"/>
+    </list>
+  </displayList>
+</component>

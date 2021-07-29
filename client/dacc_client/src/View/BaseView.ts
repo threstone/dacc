@@ -8,4 +8,8 @@ abstract class BaseView {
     protected emit(eventName: string, data: any) {
         GameDispatcher.getInstance().emit(eventName, data)
     }
+
+    protected addEventListener(evemtName: string, func: Function, thisObj: any = this) {
+        GameDispatcher.getInstance().addEventListener(evemtName, func, thisObj)
+    }
 }

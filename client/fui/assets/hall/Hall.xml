@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<component size="1280,720" overflow="hidden">
-  <displayList>
-    <loader id="n3_i7mx" name="left_bg" xy="1,0" size="657,1263" url="ui://sly852qpi7mx2" fill="scaleFree" autoSize="true"/>
-    <loader id="n4_i7mx" name="right_bg" xy="657,-540" size="657,1263" url="ui://sly852qpi7mx2" fill="scaleFree" autoSize="true"/>
-    <component id="n5_inlo" name="login" src="inlo3" fileName="Login.xml" xy="0,0"/>
-  </displayList>
-</component>

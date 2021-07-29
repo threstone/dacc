@@ -37,7 +37,7 @@ class MessageManager {
                 if (key.startsWith("S_")) {
                     console.log("添加协议:", protoClass.name, protoClass.prototype.cmd, protoClass.prototype.scmd)
                     if (handle && handle[protoClass.name]) {
-                        this.recMsgHandlerArr[protoIndex] = handle[protoClass.name]
+                        this.recMsgHandlerArr[protoIndex] = handle[protoClass.name].bind(handle)
                     } else {
                         console.error("服务端协议:", protoIndex, "  ", protoClass.name, "未找到处理函数")
                     }
