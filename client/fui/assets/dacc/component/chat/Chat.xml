@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="400,208">
+  <displayList>
+    <image id="n16_ikts" name="bg" src="ikts1c" fileName="picture/chat/chatBg.png" xy="0,182" pivot="0,1" anchor="true" size="400,160"/>
+    <loader id="n17_ikts" name="clickLoader" xy="0,22" size="400,186" fill="scaleFree"/>
+    <list id="n18_ikts" name="list" xy="5,156" pivot="0,1" anchor="true" size="390,130" overflow="scroll" lineGap="4"/>
+    <image id="n19_ikts" name="inputBg" src="ikts1d" fileName="picture/chat/聊天输入.png" xy="41,184" size="358,23"/>
+    <loader id="n22_ikts" name="selectArea" xy="1,184" size="39,23" url="ui://sly852qpikts1m" autoSize="true"/>
+    <component id="n24_ikts" name="areaSelectBar" src="ikts1r" fileName="component/chat/AreaSelect.xml" xy="1,47" visible="false"/>
+    <text id="n27_ikts" name="inputText" xy="46,186" size="264,18" input="true" fontSize="14" color="#ffffff" autoSize="none" autoClearText="true" text="123123123123"/>
+    <component id="n29_ikts" name="send" src="ikts1x" fileName="component/common/Btn2.xml" xy="357,185"/>
+    <component id="n31_ikts" name="suodingdibu" src="ikts1n" fileName="component/common/BtnLong.xml" xy="3,156"/>
+    <component id="n32_ikts" name="tuodong" src="ikts1n" fileName="component/common/BtnLong.xml" xy="3,0"/>
+    <loader id="n33_ikts" name="dragForSize" xy="3,0" size="72,22"/>
+  </displayList>
+</component>

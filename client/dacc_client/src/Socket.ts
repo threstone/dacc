@@ -6,37 +6,37 @@ interface GameProtoClass {
 }
 class Socket {
 
-    private static socket: Socket;
+    private static _socket: Socket;
 
     public static getInstance(): Socket {
 
-        if (Socket.socket == null) {
+        if (Socket._socket == null) {
 
-            Socket.socket = new Socket();
-            Socket.socket.webSocket.type = egret.WebSocket.TYPE_BINARY;
+            Socket._socket = new Socket();
+            Socket._socket._webSocket.type = egret.WebSocket.TYPE_BINARY;
 
         }
 
-        return Socket.socket;
+        return Socket._socket;
 
     }
 
-    private webSocket: egret.WebSocket;
+    private _webSocket: egret.WebSocket;
 
     public constructor() {
-        this.webSocket = new egret.WebSocket();
-        this.webSocket.connectByUrl(SERVER_DRESS);
+        this._webSocket = new egret.WebSocket();
+        this._webSocket.connectByUrl(SERVER_DRESS);
         console.log("开始连接服务器1:", SERVER_DRESS)
-        this.webSocket.addEventListener(egret.ProgressEvent.CONNECT, this.onConnection, this);
-        this.webSocket.addEventListener(egret.Event.CLOSE, this.onClose, this);
-        this.webSocket.addEventListener(egret.IOErrorEvent.IO_ERROR, this.onError, this);
+        this._webSocket.addEventListener(egret.ProgressEvent.CONNECT, this.onConnection, this);
+        this._webSocket.addEventListener(egret.Event.CLOSE, this.onClose, this);
+        this._webSocket.addEventListener(egret.IOErrorEvent.IO_ERROR, this.onError, this);
     }
 
     private onConnection() {
 
         console.log("服务器连接成功");
-        this.webSocket.removeEventListener(egret.ProgressEvent.CONNECT, this.onConnection, this);
-        this.webSocket.addEventListener(egret.ProgressEvent.SOCKET_DATA, this.onRcvMsg, this);
+        this._webSocket.removeEventListener(egret.ProgressEvent.CONNECT, this.onConnection, this);
+        this._webSocket.addEventListener(egret.ProgressEvent.SOCKET_DATA, this.onRcvMsg, this);
 
     }
 
@@ -45,9 +45,9 @@ class Socket {
      */
     public sendMsg(byteArray: egret.ByteArray): void {
 
-        if (this.webSocket.connected) {
+        if (this._webSocket.connected) {
 
-            this.webSocket.writeBytes(byteArray);
+            this._webSocket.writeBytes(byteArray);
 
         } else {
 
@@ -82,7 +82,7 @@ class Socket {
     private onRcvMsg() {
 
         let byteArray = new egret.ByteArray();
-        this.webSocket.readBytes(byteArray);
+        this._webSocket.readBytes(byteArray);
 
         let sysId = byteArray.readUnsignedByte();
         let cmdId = byteArray.readUnsignedByte();

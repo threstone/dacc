@@ -4,12 +4,12 @@ class MessageManager {
     /**
      * proto类
      */
-    private static protoObj = new Array<ProtoClass>();
+    private static _protoObj = new Array<ProtoClass>();
 
     /**
      * 收到信息的处理函数
      */
-    private static recMsgHandlerArr = new Array<Function>();
+    private static _recMsgHandlerArr = new Array<Function>();
 
     public static addProtoModule(protoModule: any, handle: any) {
         for (let k in protoModule) {
@@ -31,13 +31,13 @@ class MessageManager {
                 }
 
                 let protoIndex: number = protoClass.prototype.cmd * 255 + protoClass.prototype.scmd
-                MessageManager.protoObj[protoIndex] = protoClass
+                MessageManager._protoObj[protoIndex] = protoClass
 
                 //服务器的代码需要注册一下
                 if (key.startsWith("S_")) {
                     console.log("添加协议:", protoClass.name, protoClass.prototype.cmd, protoClass.prototype.scmd)
                     if (handle && handle[protoClass.name]) {
-                        this.recMsgHandlerArr[protoIndex] = handle[protoClass.name].bind(handle)
+                        this._recMsgHandlerArr[protoIndex] = handle[protoClass.name]
                     } else {
                         console.error("服务端协议:", protoIndex, "  ", protoClass.name, "未找到处理函数")
                     }
@@ -53,13 +53,13 @@ class MessageManager {
      */
     public static regRcvMsgHandler(cmd: number, scmd: number, fun: Function): void {
 
-        if (MessageManager.recMsgHandlerArr[cmd * 255 + scmd] != null) {
+        if (MessageManager._recMsgHandlerArr[cmd * 255 + scmd] != null) {
 
             throw new Error("该cmd,scmd下标处已注册过\r\ncmd:" + cmd + "\tscmd:" + scmd);
 
         }
 
-        MessageManager.recMsgHandlerArr[cmd * 255 + scmd] = fun;
+        MessageManager._recMsgHandlerArr[cmd * 255 + scmd] = fun;
 
     }
 
@@ -68,7 +68,7 @@ class MessageManager {
      */
     public static rcvMsgHandler(cmd: number, scmd: number, msg: egret.ByteArray): void {
 
-        if (MessageManager.recMsgHandlerArr[cmd * 255 + scmd] == null) {
+        if (MessageManager._recMsgHandlerArr[cmd * 255 + scmd] == null) {
 
             console.log("该cmd,scmd下标处没有信息处理函数\r\ncmd:" + cmd + "\tscmd:" + scmd);
 
@@ -79,7 +79,7 @@ class MessageManager {
         try {
 
             let data = MessageManager.getProtoCls(cmd, scmd).decode(msg.bytes);
-            MessageManager.recMsgHandlerArr[cmd * 255 + scmd](data);
+            MessageManager._recMsgHandlerArr[cmd * 255 + scmd](data);
 
         } catch (error) {
 
@@ -94,13 +94,13 @@ class MessageManager {
      */
     public static getProtoCls(cmd: number, scmd: number): ProtoClass {
 
-        if (MessageManager.protoObj[cmd * 255 + scmd] == null) {
+        if (MessageManager._protoObj[cmd * 255 + scmd] == null) {
 
             throw new Error("cmd,scmd下标处没有proto类\r\ncmd:" + cmd + "\tscmd:" + scmd);
 
         }
 
-        return MessageManager.protoObj[cmd * 255 + scmd];
+        return MessageManager._protoObj[cmd * 255 + scmd];
 
     }
 
@@ -109,7 +109,7 @@ class MessageManager {
      */
     public static setProtoCls(index: number, pClass: ProtoClass): void {
 
-        if (MessageManager.protoObj[index] != null) {
+        if (MessageManager._protoObj[index] != null) {
 
             let cmd = Math.floor(index / 255);
             let scmd = index % 255;
@@ -117,7 +117,7 @@ class MessageManager {
 
         }
 
-        MessageManager.protoObj[index] = pClass;
+        MessageManager._protoObj[index] = pClass;
 
     }
 

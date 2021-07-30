@@ -1,11 +1,11 @@
 import { HallPto } from "../common_proto"
-import { DaccSession } from "../session"
+import { DaccUser } from "../dacc_user"
 
 export class HallHandle {
-    static C_LOGIN(session: DaccSession, msg: HallPto.C_LOGIN) {
-        console.log(msg.userName, "请求登录")
-        let replyMsg = new HallPto.S_LOGIN()
-        replyMsg.isSuccess = true
-        session.sendMsg(replyMsg)
+    static C_SEND_CHAT_MSG(user: DaccUser, msg: HallPto.C_SEND_CHAT_MSG) {
+        let broadcastMsg = new HallPto.S_CHAT_MSG()
+        broadcastMsg.userName = user.userName
+        broadcastMsg.msg = msg.msg
+        user.broadcast(broadcastMsg)
     }
 }

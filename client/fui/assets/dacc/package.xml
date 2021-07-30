@@ -4,11 +4,34 @@
     <component id="i7mx0" name="Hall.xml" path="/" exported="true"/>
     <image id="i7mx2" name="test.jpg" path="/picture/"/>
     <component id="inlo3" name="Login.xml" path="/" exported="true"/>
-    <component id="inlo4" name="Click.xml" path="/componet/"/>
+    <component id="inlo4" name="Click.xml" path="/component/"/>
     <image id="k72m5" name="hall_bg.jpg" path="/picture/"/>
-    <image id="k72m6" name="ditu_bj.jpg" path="/picture/"/>
-    <component id="k72m7" name="MiniChat.xml" path="/componet/chat/"/>
-    <component id="k72m9" name="ChatLabel.xml" path="/componet/chat/"/>
+    <component id="iktsa" name="Chat.xml" path="/component/chat/"/>
+    <image id="ikts1c" name="chatBg.png" path="/picture/chat/" scale="9grid" scale9grid="13,13,153,133"/>
+    <image id="ikts1d" name="聊天输入.png" path="/picture/chat/" scale="9grid" scale9grid="10,6,236,12"/>
+    <component id="ikts1e" name="BtnTopArrow1.xml" path="/component/common/"/>
+    <image id="ikts1f" name="topArrowUnselect1.png" path="/picture/common/btn/arrow/"/>
+    <image id="ikts1g" name="topArrowSelect1.png" path="/picture/common/btn/arrow/"/>
+    <image id="ikts1h" name="topArrowOver1.png" path="/picture/common/btn/arrow/"/>
+    <component id="ikts1i" name="BtnDownArrow1.xml" path="/component/common/"/>
+    <image id="ikts1j" name="downArrowUnselect1.png" path="/picture/common/btn/arrow/"/>
+    <image id="ikts1k" name="downArrowSelect1.png" path="/picture/common/btn/arrow/"/>
+    <image id="ikts1l" name="downArrowOver1.png" path="/picture/common/btn/arrow/"/>
+    <image id="ikts1m" name="chatArea1.png" path="/picture/chat/mark/" exported="true"/>
+    <component id="ikts1n" name="BtnLong.xml" path="/component/common/"/>
+    <image id="ikts1o" name="longBtnUnselect.png" path="/picture/common/btn/"/>
+    <image id="ikts1p" name="longBtnSelect.png" path="/picture/common/btn/"/>
+    <image id="ikts1q" name="longBtnOver.png" path="/picture/common/btn/"/>
+    <component id="ikts1r" name="AreaSelect.xml" path="/component/chat/"/>
+    <image id="ikts1s" name="chatArea6.png" path="/picture/chat/mark/" exported="true"/>
+    <image id="ikts1t" name="chatArea5.png" path="/picture/chat/mark/" exported="true"/>
+    <image id="ikts1u" name="chatArea4.png" path="/picture/chat/mark/" exported="true"/>
+    <image id="ikts1v" name="chatArea3.png" path="/picture/chat/mark/" exported="true"/>
+    <image id="ikts1w" name="chatArea2.png" path="/picture/chat/mark/" exported="true"/>
+    <component id="ikts1x" name="Btn2.xml" path="/component/common/"/>
+    <image id="ikts1y" name="btnBgUnselect2.png" path="/picture/common/btn/"/>
+    <image id="ikts1z" name="btnBgSelect2.png" path="/picture/common/btn/"/>
+    <image id="ikts20" name="btnBgOver2.png" path="/picture/common/btn/"/>
   </resources>
   <publish name="hall" genCode="true" npot="true"/>
 </packageDescription>

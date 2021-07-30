@@ -1,4 +1,5 @@
 //@ts-ignore
+import { getLogger } from "log4js"
 import * as protobuf from "protobufjs"
 //游戏封包的结构
 export interface IGameMessage {
@@ -8,7 +9,7 @@ export interface IGameMessage {
 }
 
 
-let logger = console
+let logger = getLogger()
 export class ProtoBufEncoder {
 
   // private static messageClasses_C: Map<string, any> = new Map<string, any>()

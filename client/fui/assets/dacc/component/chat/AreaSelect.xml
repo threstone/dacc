@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="39,138">
+  <displayList>
+    <loader id="n0_vu9k" name="area5" xy="0,0" size="39,23" url="ui://sly852qpikts1s" autoSize="true"/>
+    <loader id="n1_vu9k" name="area4" xy="0,23" size="39,23" url="ui://sly852qpikts1t" autoSize="true"/>
+    <loader id="n2_vu9k" name="area3" xy="0,46" size="39,23" url="ui://sly852qpikts1u" autoSize="true"/>
+    <loader id="n3_vu9k" name="area2" xy="0,69" size="39,23" url="ui://sly852qpikts1v" autoSize="true"/>
+    <loader id="n4_vu9k" name="area1" xy="0,92" size="39,23" url="ui://sly852qpikts1w" autoSize="true"/>
+    <loader id="n5_vu9k" name="area0" xy="0,115" size="39,23" url="ui://sly852qpikts1m" autoSize="true"/>
+  </displayList>
+</component>

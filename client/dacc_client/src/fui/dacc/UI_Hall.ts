@@ -5,7 +5,8 @@ module dacc {
 	export class UI_Hall extends fairygui.GComponent {
 
 		public m_bg:fairygui.GLoader;
-		public m_mini_chat:UI_MiniChat;
+		public m_chat_com:UI_Chat;
+		public m_user_name:fairygui.GTextField;
 
 		public static URL:string = "ui://sly852qpi7mx0";
 
@@ -21,7 +22,8 @@ module dacc {
 			super.constructFromXML(xml);
 
 			this.m_bg = <fairygui.GLoader><any>(this.getChild("bg"));
-			this.m_mini_chat = <UI_MiniChat><any>(this.getChild("mini_chat"));
+			this.m_chat_com = <UI_Chat><any>(this.getChild("chat_com"));
+			this.m_user_name = <fairygui.GTextField><any>(this.getChild("user_name"));
 		}
 	}
 }

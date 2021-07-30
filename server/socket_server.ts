@@ -1,24 +1,21 @@
 import { getLogger } from "log4js"
 import * as WS from "ws"
-import { HallPto } from "./common_proto"
 import { IGameMessage, ProtoBufEncoder } from "./protobuf_encoder"
-import { HallHandle } from "./handle/hall_handle"
-import { DaccSession } from "./session"
+import { DaccUser } from "./dacc_user"
 const logger = getLogger()
 export class SocketServer {
     private _defaultListenPort = 9595
-    private _emptySessionPool: DaccSession[]
-    private _socketArr: DaccSession[]
+    private _emptySessionPool: DaccUser[]
+    private _socketArr: any[]
 
     constructor() {
         this._emptySessionPool = []
         this._socketArr = []
         for (let i = 0; i < 1024; i++) {
-            let session = new DaccSession()
+            let session = new DaccUser()
             this._emptySessionPool.push(session)
+            this._socketArr.push(null)
         }
-        ProtoBufEncoder.init()
-        ProtoBufEncoder.addProtoModule(HallPto, HallHandle)
     }
 
     startWsServer(listenPort: number = this._defaultListenPort) {
@@ -28,7 +25,8 @@ export class SocketServer {
             logger.info("新的连接")
             let session = this.getEmptySession()
             let clientId = this.getEmptyClientId()
-            session.init(ws, clientId)
+            session.init(clientId)
+            this._socketArr[clientId] = ws
             ws.on("message", (msg: Buffer) => {
                 this.onMessage(session, msg)
             })
@@ -47,7 +45,8 @@ export class SocketServer {
     getEmptyClientId() {
         const temp = this._socketArr.indexOf(null)
         if (temp == -1) {
-            return this._socketArr.length
+            this._socketArr.push(null)
+            return this._socketArr.length - 1
         }
         return temp
     }
@@ -55,20 +54,20 @@ export class SocketServer {
     getEmptySession() {
         if (this._emptySessionPool.length == 0) {
             for (let i = 0; i < 64; i++) {
-                let session = new DaccSession()
+                let session = new DaccUser()
                 this._emptySessionPool.push(session)
             }
         }
         return this._emptySessionPool.pop()
     }
 
-    resetSession(session: DaccSession) {
+    resetSession(session: DaccUser) {
         this._socketArr[session.clientId] = null
         session.reset()
         this._emptySessionPool.push(session)
     }
 
-    onMessage(session: DaccSession, buf: Buffer) {
+    onMessage(session: DaccUser, buf: Buffer) {
         if (buf.length < 2) {
             logger.error(`消息长度不足,未知消息!   buf:${buf}`)
             return
@@ -90,15 +89,31 @@ export class SocketServer {
     broadcast(msg: IGameMessage) {
         let buf = ProtoBufEncoder.encode(msg)
         for (let index = 0; index < this._socketArr.length; index++) {
-            const element = this._socketArr[index]
-            if (element) {
-                element.sendBuf(buf)
+            const ws = this._socketArr[index]
+            if (ws) {
+                ws.send(buf)
             }
 
         }
     }
 
-    onClose(session: DaccSession) {
+    sendMsg(clientId: number, msg: IGameMessage) {
+        if (!this._socketArr[clientId]) {
+            logger.error("error socket 不存在")
+            return
+        }
+        this._socketArr[clientId].send(ProtoBufEncoder.encode(msg))
+    }
+
+    sendBuf(clientId: number, buf: Buffer) {
+        if (!this._socketArr[clientId]) {
+            logger.error("error socket 不存在")
+            return
+        }
+        this._socketArr[clientId].send(buf)
+    }
+
+    onClose(session: DaccUser) {
 
     }
 

@@ -17,6 +17,7 @@ let config = {
 
     commonFiles: [
         'login.proto',
+		'hall.proto',
 		'sys_cmd.proto',
     ],
 

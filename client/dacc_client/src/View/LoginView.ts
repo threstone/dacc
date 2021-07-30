@@ -19,8 +19,8 @@ class LoginView extends BaseView {
     }
 
     onLoginResult(evt) {
-        let result: boolean = evt.data
-        if (result) {
+        let result: LoginPto.S_LOGIN = evt.data
+        if (result.isSuccess) {
             this.loginCom.visible = false
         } else {
             this.loginCom.m_tips.text = "登录失败了"

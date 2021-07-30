@@ -5,7 +5,6 @@ class Main extends egret.DisplayObjectContainer {
     }
 
     private onAddToStage(event: egret.Event) {
-
         egret.lifecycle.addLifecycleListener((context) => {
             // custom lifecycle plugin
 
@@ -25,15 +24,14 @@ class Main extends egret.DisplayObjectContainer {
         this.runGame().catch(e => {
             console.log(e);
         })
-
-
-
     }
 
     private async runGame() {
         await this.loadResource()
-        this.initSocket()
+        Socket.getInstance()
         this.initFuiHall()
+        this.initHandle()
+        DocumentHelper.init()
     }
 
     private async loadResource() {
@@ -55,7 +53,37 @@ class Main extends egret.DisplayObjectContainer {
         GlobalController.init()
     }
 
-    private initSocket() {
-        Socket.getInstance()
+    /**
+     * 自动映射
+     */
+    private initHandle() {
+        let funObj: any = {}
+        for (let n in GlobalController) {
+            let name: any = n
+            //如果是Controller  拿出model寻找映射函数
+            if (name.endsWith('Controller')) {
+                let model: any = GlobalController[name].model
+                for (let funName in model) {
+                    let funNameAny: any = funName
+                    if (funNameAny.startsWith('S_')) {
+                        //记录函数
+                        if (funObj[funName]) {
+                            console.error(`${funName}已有函数记录!`)
+                        }
+                        funObj[funName] = model[funName].bind(model)
+                    }
+                }
+            }
+        }
+
+        for (let n in window) {
+            let name: any = n
+            if (name.endsWith('Pto')) {
+                let proto = window[name]
+                MessageManager.addProtoModule(proto, funObj)
+            }
+        }
     }
+
+
 }

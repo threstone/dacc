@@ -3,4 +3,5 @@ package CmdProto;
 
 enum SYS_CMD {
     SYS_LOGIN = 0 ; //登录指令
+    SYS_HALL = 1;   //大厅指令
 }

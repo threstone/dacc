@@ -12,19 +12,9 @@
 			"name": "hall"
 		},
 		{
-			"url": "fui/hall_atlas0.jpg",
+			"url": "fui/hall_atlas0.png",
 			"type": "image",
 			"name": "hall_atlas0"
-		},
-		{
-			"url": "fui/game_atlas0.png",
-			"type": "image",
-			"name": "game_atlas0"
-		},
-		{
-			"url": "fui/game.fui",
-			"type": "bin",
-			"name": "game"
 		}
 	]
 }

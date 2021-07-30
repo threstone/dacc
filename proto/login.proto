@@ -17,5 +17,6 @@ message S_LOGIN{
 	CmdProto.SYS_CMD cmd = 1[default = SYS_LOGIN]; 
 	LOGIN scmd = 2[default = SC_LOGIN];
 	bool isSuccess = 3;
+	string userName = 4;
 }
 

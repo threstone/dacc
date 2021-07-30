@@ -2,6 +2,7 @@
 <component size="1280,720" overflow="hidden">
   <displayList>
     <loader id="n6_k72m" name="bg" xy="0,0" size="1280,720" alpha="0.5" url="ui://sly852qpk72m5" fill="scaleFree"/>
-    <component id="n11_k72m" name="mini_chat" src="k72m7" fileName="componet/chat/MiniChat.xml" xy="0,500"/>
+    <component id="n12_ikts" name="chat_com" src="iktsa" fileName="component/chat/Chat.xml" xy="0,512"/>
+    <text id="n15_d77m" name="user_name" xy="17,16" size="81,30" fontSize="22" color="#006699" bold="true" autoClearText="true" text="用户名:"/>
   </displayList>
 </component>

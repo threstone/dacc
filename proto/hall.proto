@@ -1,0 +1,22 @@
+syntax = "proto3";
+package HallPto;
+import "sys_cmd.proto";
+
+enum HALL{
+	CS_SEND_CHAT_MSG = 1;//客户端发送
+	SC_CHAT_MSG = 2;//服务端用户广播聊天
+}
+
+message C_SEND_CHAT_MSG{
+	CmdProto.SYS_CMD cmd = 1[default = SYS_HALL]; 
+	HALL scmd = 2[default = CS_SEND_CHAT_MSG];
+	string msg = 3;
+}
+
+message S_CHAT_MSG{
+	CmdProto.SYS_CMD cmd = 1[default = SYS_HALL]; 
+	HALL scmd = 2[default = SC_CHAT_MSG];
+	string userName = 3;
+	string msg = 4;
+}
+
