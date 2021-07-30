@@ -15,7 +15,6 @@ class HallModel extends BaseModel {
 
     onSendChatMsg(evt) {
         let strMsg: string = evt.data
-        console.log('想要发送的信息:', strMsg);
         let msg = new HallPto.C_SEND_CHAT_MSG()
         msg.msg = strMsg
         this.sendMsg(msg)

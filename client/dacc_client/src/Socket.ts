@@ -1,5 +1,3 @@
-const SERVER_DRESS = 'ws://192.168.0.36:9595';
-
 interface GameProtoClass {
     cmd: CmdProto.SYS_CMD
     scmd: number
@@ -24,9 +22,10 @@ class Socket {
     private _webSocket: egret.WebSocket;
 
     public constructor() {
+        let serverConfig = RES.getRes('server_json')
         this._webSocket = new egret.WebSocket();
-        this._webSocket.connectByUrl(SERVER_DRESS);
-        console.log("开始连接服务器1:", SERVER_DRESS)
+        this._webSocket.connectByUrl(serverConfig.address);
+        console.log("开始连接服务器:", serverConfig.address)
         this._webSocket.addEventListener(egret.ProgressEvent.CONNECT, this.onConnection, this);
         this._webSocket.addEventListener(egret.Event.CLOSE, this.onClose, this);
         this._webSocket.addEventListener(egret.IOErrorEvent.IO_ERROR, this.onError, this);

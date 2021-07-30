@@ -4,3 +4,4 @@
 /server/node_modules
 /server/dist
 /server/logs
+/client/dacc_client/bin-release

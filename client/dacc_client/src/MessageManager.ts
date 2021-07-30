@@ -35,11 +35,10 @@ class MessageManager {
 
                 //服务器的代码需要注册一下
                 if (key.startsWith("S_")) {
-                    console.log("添加协议:", protoClass.name, protoClass.prototype.cmd, protoClass.prototype.scmd)
-                    if (handle && handle[protoClass.name]) {
-                        this._recMsgHandlerArr[protoIndex] = handle[protoClass.name]
+                    if (handle && handle[key]) {
+                        this._recMsgHandlerArr[protoIndex] = handle[key]
                     } else {
-                        console.error("服务端协议:", protoIndex, "  ", protoClass.name, "未找到处理函数")
+                        console.error("服务端协议:", `cmd:${protoClass.prototype.cmd}    scmd:${protoClass.prototype.scmd}`, "  ", key, "未找到处理函数")
                     }
                 }
 

@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "hall,hall_atlas0",
+			"keys": "hall,hall_atlas0,server_json",
 			"name": "preload"
 		}
 	],
@@ -15,6 +15,11 @@
 			"url": "fui/hall_atlas0.png",
 			"type": "image",
 			"name": "hall_atlas0"
+		},
+		{
+			"url": "server.json",
+			"type": "json",
+			"name": "server_json"
 		}
 	]
 }

@@ -1,21 +1,25 @@
 {
    "compilerOptions": {
-       "target":"es2017",
-       "noImplicitAny": false,
-       "module": "commonjs",
-       "removeComments": false,
-	   "experimentalDecorators": true,
-	   "emitDecoratorMetadata": true,
-       "sourceMap": true,
-	   "types": [ "node"],
-       "outDir": "../publish/demo",
-       "resolveJsonModule": true
-	},
-   "include":[
-      "*.ts"
-	],
+      "target": "es2017",
+      "noImplicitAny": false,
+      "module": "commonjs",
+      "removeComments": false,
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+      "sourceMap": false,
+      "allowJs": true,
+      "types": [
+         "node"
+      ],
+      "outDir": "publish/",
+      "resolveJsonModule": true
+   },
+   "include": [
+      "*.ts",
+      "*.js"
+   ],
    "exclude": [
-		"./node_modules/",
-		"./dist/"
-	]
+      "./node_modules/",
+      "./dist/"
+   ]
 }
