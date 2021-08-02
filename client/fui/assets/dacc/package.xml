@@ -4,7 +4,7 @@
     <component id="i7mx0" name="Hall.xml" path="/" exported="true"/>
     <image id="i7mx2" name="test.jpg" path="/picture/"/>
     <component id="inlo3" name="Login.xml" path="/" exported="true"/>
-    <component id="inlo4" name="Click.xml" path="/component/"/>
+    <component id="inlo4" name="BtnClick.xml" path="/component/"/>
     <image id="k72m5" name="hall_bg.jpg" path="/picture/"/>
     <component id="iktsa" name="Chat.xml" path="/component/chat/"/>
     <image id="ikts1c" name="chatBg.png" path="/picture/chat/" scale="9grid" scale9grid="13,13,153,133"/>
@@ -32,6 +32,16 @@
     <image id="ikts1y" name="btnBgUnselect2.png" path="/picture/common/btn/"/>
     <image id="ikts1z" name="btnBgSelect2.png" path="/picture/common/btn/"/>
     <image id="ikts20" name="btnBgOver2.png" path="/picture/common/btn/"/>
+    <image id="lzpa23" name="btn_bg.png" path="/picture/" exported="true"/>
+    <component id="lzpa25" name="GameList.xml" path="/component/gameList/"/>
+    <component id="lzpa27" name="CreateRoom.xml" path="/component/createRoom/"/>
+    <component id="lzpa2b" name="GameChooseItem.xml" path="/component/createRoom/"/>
+    <component id="lzpa2c" name="GameChoosePopup.xml" path="/component/createRoom/"/>
+    <component id="lzpa2d" name="GameChoose.xml" path="/component/createRoom/" exported="true"/>
+    <component id="b78j2f" name="CreateBtn.xml" path="/component/createRoom/"/>
+    <component id="b78j2g" name="RoomList.xml" path="/component/roomList/"/>
+    <component id="b78j2h" name="RoomItem.xml" path="/component/roomList/"/>
+    <component id="b78j2k" name="GameItem.xml" path="/component/gameList/"/>
   </resources>
   <publish name="hall" genCode="true" npot="true"/>
 </packageDescription>

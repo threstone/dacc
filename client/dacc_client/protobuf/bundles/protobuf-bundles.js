@@ -21,12 +21,170 @@ $root.HallPto = (function() {
      * @enum {number}
      * @property {number} CS_SEND_CHAT_MSG=1 CS_SEND_CHAT_MSG value
      * @property {number} SC_CHAT_MSG=2 SC_CHAT_MSG value
+     * @property {number} SC_GAME_LIST=3 SC_GAME_LIST value
      */
     HallPto.HALL = (function() {
         var valuesById = {}, values = Object.create(valuesById);
         values[valuesById[1] = "CS_SEND_CHAT_MSG"] = 1;
         values[valuesById[2] = "SC_CHAT_MSG"] = 2;
+        values[valuesById[3] = "SC_GAME_LIST"] = 3;
         return values;
+    })();
+
+    HallPto.GameInfo = (function() {
+
+        /**
+         * Properties of a GameInfo.
+         * @memberof HallPto
+         * @interface IGameInfo
+         * @property {number|null} [gameId] GameInfo gameId
+         * @property {string|null} [gameName] GameInfo gameName
+         */
+
+        /**
+         * Constructs a new GameInfo.
+         * @memberof HallPto
+         * @classdesc Represents a GameInfo.
+         * @implements IGameInfo
+         * @constructor
+         * @param {HallPto.IGameInfo=} [properties] Properties to set
+         */
+        function GameInfo(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GameInfo gameId.
+         * @member {number} gameId
+         * @memberof HallPto.GameInfo
+         * @instance
+         */
+        GameInfo.prototype.gameId = 0;
+
+        /**
+         * GameInfo gameName.
+         * @member {string} gameName
+         * @memberof HallPto.GameInfo
+         * @instance
+         */
+        GameInfo.prototype.gameName = "";
+
+        /**
+         * Creates a new GameInfo instance using the specified properties.
+         * @function create
+         * @memberof HallPto.GameInfo
+         * @static
+         * @param {HallPto.IGameInfo=} [properties] Properties to set
+         * @returns {HallPto.GameInfo} GameInfo instance
+         */
+        GameInfo.create = function create(properties) {
+            return new GameInfo(properties);
+        };
+
+        /**
+         * Encodes the specified GameInfo message. Does not implicitly {@link HallPto.GameInfo.verify|verify} messages.
+         * @function encode
+         * @memberof HallPto.GameInfo
+         * @static
+         * @param {HallPto.IGameInfo} message GameInfo message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GameInfo.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.gameId != null && Object.hasOwnProperty.call(message, "gameId"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.gameId);
+            if (message.gameName != null && Object.hasOwnProperty.call(message, "gameName"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.gameName);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GameInfo message, length delimited. Does not implicitly {@link HallPto.GameInfo.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof HallPto.GameInfo
+         * @static
+         * @param {HallPto.IGameInfo} message GameInfo message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GameInfo.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GameInfo message from the specified reader or buffer.
+         * @function decode
+         * @memberof HallPto.GameInfo
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {HallPto.GameInfo} GameInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GameInfo.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.HallPto.GameInfo();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.gameId = reader.int32();
+                    break;
+                case 2:
+                    message.gameName = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GameInfo message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof HallPto.GameInfo
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {HallPto.GameInfo} GameInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GameInfo.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GameInfo message.
+         * @function verify
+         * @memberof HallPto.GameInfo
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GameInfo.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.gameId != null && message.hasOwnProperty("gameId"))
+                if (!$util.isInteger(message.gameId))
+                    return "gameId: integer expected";
+            if (message.gameName != null && message.hasOwnProperty("gameName"))
+                if (!$util.isString(message.gameName))
+                    return "gameName: string expected";
+            return null;
+        };
+
+        return GameInfo;
     })();
 
     HallPto.C_SEND_CHAT_MSG = (function() {
@@ -201,6 +359,7 @@ $root.HallPto = (function() {
                     return "scmd: enum value expected";
                 case 1:
                 case 2:
+                case 3:
                     break;
                 }
             if (message.msg != null && message.hasOwnProperty("msg"))
@@ -398,6 +557,7 @@ $root.HallPto = (function() {
                     return "scmd: enum value expected";
                 case 1:
                 case 2:
+                case 3:
                     break;
                 }
             if (message.userName != null && message.hasOwnProperty("userName"))
@@ -410,6 +570,200 @@ $root.HallPto = (function() {
         };
 
         return S_CHAT_MSG;
+    })();
+
+    HallPto.S_GAME_LIST = (function() {
+
+        /**
+         * Properties of a S_GAME_LIST.
+         * @memberof HallPto
+         * @interface IS_GAME_LIST
+         * @property {CmdProto.SYS_CMD|null} [cmd] S_GAME_LIST cmd
+         * @property {HallPto.HALL|null} [scmd] S_GAME_LIST scmd
+         * @property {Array.<HallPto.IGameInfo>|null} [list] S_GAME_LIST list
+         */
+
+        /**
+         * Constructs a new S_GAME_LIST.
+         * @memberof HallPto
+         * @classdesc Represents a S_GAME_LIST.
+         * @implements IS_GAME_LIST
+         * @constructor
+         * @param {HallPto.IS_GAME_LIST=} [properties] Properties to set
+         */
+        function S_GAME_LIST(properties) {
+            this.list = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * S_GAME_LIST cmd.
+         * @member {CmdProto.SYS_CMD} cmd
+         * @memberof HallPto.S_GAME_LIST
+         * @instance
+         */
+        S_GAME_LIST.prototype.cmd = 1;
+
+        /**
+         * S_GAME_LIST scmd.
+         * @member {HallPto.HALL} scmd
+         * @memberof HallPto.S_GAME_LIST
+         * @instance
+         */
+        S_GAME_LIST.prototype.scmd = 3;
+
+        /**
+         * S_GAME_LIST list.
+         * @member {Array.<HallPto.IGameInfo>} list
+         * @memberof HallPto.S_GAME_LIST
+         * @instance
+         */
+        S_GAME_LIST.prototype.list = $util.emptyArray;
+
+        /**
+         * Creates a new S_GAME_LIST instance using the specified properties.
+         * @function create
+         * @memberof HallPto.S_GAME_LIST
+         * @static
+         * @param {HallPto.IS_GAME_LIST=} [properties] Properties to set
+         * @returns {HallPto.S_GAME_LIST} S_GAME_LIST instance
+         */
+        S_GAME_LIST.create = function create(properties) {
+            return new S_GAME_LIST(properties);
+        };
+
+        /**
+         * Encodes the specified S_GAME_LIST message. Does not implicitly {@link HallPto.S_GAME_LIST.verify|verify} messages.
+         * @function encode
+         * @memberof HallPto.S_GAME_LIST
+         * @static
+         * @param {HallPto.IS_GAME_LIST} message S_GAME_LIST message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        S_GAME_LIST.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.cmd != null && Object.hasOwnProperty.call(message, "cmd"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.cmd);
+            if (message.scmd != null && Object.hasOwnProperty.call(message, "scmd"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.scmd);
+            if (message.list != null && message.list.length)
+                for (var i = 0; i < message.list.length; ++i)
+                    $root.HallPto.GameInfo.encode(message.list[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified S_GAME_LIST message, length delimited. Does not implicitly {@link HallPto.S_GAME_LIST.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof HallPto.S_GAME_LIST
+         * @static
+         * @param {HallPto.IS_GAME_LIST} message S_GAME_LIST message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        S_GAME_LIST.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a S_GAME_LIST message from the specified reader or buffer.
+         * @function decode
+         * @memberof HallPto.S_GAME_LIST
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {HallPto.S_GAME_LIST} S_GAME_LIST
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        S_GAME_LIST.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.HallPto.S_GAME_LIST();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.cmd = reader.int32();
+                    break;
+                case 2:
+                    message.scmd = reader.int32();
+                    break;
+                case 3:
+                    if (!(message.list && message.list.length))
+                        message.list = [];
+                    message.list.push($root.HallPto.GameInfo.decode(reader, reader.uint32()));
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a S_GAME_LIST message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof HallPto.S_GAME_LIST
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {HallPto.S_GAME_LIST} S_GAME_LIST
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        S_GAME_LIST.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a S_GAME_LIST message.
+         * @function verify
+         * @memberof HallPto.S_GAME_LIST
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        S_GAME_LIST.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.cmd != null && message.hasOwnProperty("cmd"))
+                switch (message.cmd) {
+                default:
+                    return "cmd: enum value expected";
+                case 0:
+                case 1:
+                    break;
+                }
+            if (message.scmd != null && message.hasOwnProperty("scmd"))
+                switch (message.scmd) {
+                default:
+                    return "scmd: enum value expected";
+                case 1:
+                case 2:
+                case 3:
+                    break;
+                }
+            if (message.list != null && message.hasOwnProperty("list")) {
+                if (!Array.isArray(message.list))
+                    return "list: array expected";
+                for (var i = 0; i < message.list.length; ++i) {
+                    var error = $root.HallPto.GameInfo.verify(message.list[i]);
+                    if (error)
+                        return "list." + error;
+                }
+            }
+            return null;
+        };
+
+        return S_GAME_LIST;
     })();
 
     return HallPto;

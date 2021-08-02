@@ -4,7 +4,7 @@ class LoginModel extends BaseModel {
         this.addEventListener('LoginBtnClick', this.onLoginBtnClick)
     }
 
-    onLoginBtnClick(evt) {
+    onLoginBtnClick(evt:EventData) {
         let inputName: string = evt.data
         let msg = new LoginPto.C_LOGIN()
         msg.userName = inputName

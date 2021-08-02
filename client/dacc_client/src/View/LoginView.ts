@@ -18,7 +18,7 @@ class LoginView extends BaseView {
         this.loginCom.touchable = false
     }
 
-    onLoginResult(evt) {
+    onLoginResult(evt: EventData) {
         let result: LoginPto.S_LOGIN = evt.data
         if (result.isSuccess) {
             this.loginCom.visible = false

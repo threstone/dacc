@@ -4,10 +4,9 @@ module dacc {
 
 	export class UI_Login extends fairygui.GComponent {
 
-		public m_bg:fairygui.GGraph;
 		public m_input_bg:fairygui.GGraph;
 		public m_input_text:fairygui.GTextInput;
-		public m_login_btn:UI_Click;
+		public m_login_btn:UI_BtnClick;
 		public m_tips:fairygui.GTextField;
 
 		public static URL:string = "ui://sly852qpinlo3";
@@ -23,10 +22,9 @@ module dacc {
 		protected constructFromXML(xml: any): void {
 			super.constructFromXML(xml);
 
-			this.m_bg = <fairygui.GGraph><any>(this.getChild("bg"));
 			this.m_input_bg = <fairygui.GGraph><any>(this.getChild("input_bg"));
 			this.m_input_text = <fairygui.GTextInput><any>(this.getChild("input_text"));
-			this.m_login_btn = <UI_Click><any>(this.getChild("login_btn"));
+			this.m_login_btn = <UI_BtnClick><any>(this.getChild("login_btn"));
 			this.m_tips = <fairygui.GTextField><any>(this.getChild("tips"));
 		}
 	}

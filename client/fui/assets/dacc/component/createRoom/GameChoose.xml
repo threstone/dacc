@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="200,40" extention="ComboBox">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
+  <displayList>
+    <graph id="n0_lzpa" name="n0" xy="1,0" size="200,40" touchable="false" type="rect" lineSize="0" fillColor="#ff66ffff">
+      <gearDisplay controller="button" pages="0"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <graph id="n1_lzpa" name="n1" xy="0,0" size="200,40" touchable="false" type="rect" lineSize="0" fillColor="#ff66ccff">
+      <gearDisplay controller="button" pages="2"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <graph id="n2_lzpa" name="n2" xy="0,0" size="200,40" touchable="false" type="rect" lineSize="0" fillColor="#ff6699ff">
+      <gearDisplay controller="button" pages="1,3"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <text id="n3_lzpa" name="title" xy="9,0" size="180,40" fontSize="22" color="#006699" vAlign="middle" autoSize="none" bold="true" singleLine="true" text="点此选择游戏">
+      <relation target="" sidePair="width-width,height-height"/>
+    </text>
+  </displayList>
+  <ComboBox dropdown="ui://sly852qplzpa2c"/>
+</component>

@@ -4,5 +4,12 @@
     <loader id="n6_k72m" name="bg" xy="0,0" size="1280,720" alpha="0.5" url="ui://sly852qpk72m5" fill="scaleFree"/>
     <component id="n12_ikts" name="chat_com" src="iktsa" fileName="component/chat/Chat.xml" xy="0,512"/>
     <text id="n15_d77m" name="user_name" xy="17,16" size="81,30" fontSize="22" color="#006699" bold="true" autoClearText="true" text="用户名:"/>
+    <component id="n16_lzpa" name="game_btn" src="inlo4" fileName="component/BtnClick.xml" xy="476,644"/>
+    <component id="n22_lzpa" name="create_room_btn" src="inlo4" fileName="component/BtnClick.xml" xy="750,644"/>
+    <component id="n17_lzpa" name="room_btn" src="inlo4" fileName="component/BtnClick.xml" xy="1029,644"/>
+    <component id="n21_lzpa" name="game_list" src="lzpa25" fileName="component/gameList/GameList.xml" xy="448,38" group="n25_b78j" visible="false"/>
+    <component id="n23_b78j" name="create_room" src="lzpa27" fileName="component/createRoom/CreateRoom.xml" xy="448,38" group="n25_b78j" visible="false"/>
+    <component id="n24_b78j" name="room_list" src="b78j2g" fileName="component/roomList/RoomList.xml" xy="448,38" group="n25_b78j" visible="false"/>
+    <group id="n25_b78j" name="game_group" xy="448,38" size="780,570"/>
   </displayList>
 </component>

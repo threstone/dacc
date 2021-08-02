@@ -50,3 +50,7 @@ class GameDispatcher extends egret.EventDispatcher {
         return super.willTrigger(eventName);
     }
 }
+
+interface EventData {
+    data: any
+}

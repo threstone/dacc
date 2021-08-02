@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="780,570">
+  <displayList>
+    <graph id="n1_lzpa" name="bg" xy="0,0" size="780,570" type="rect" fillColor="#ffffffcc"/>
+    <list id="n3_b78j" name="list" xy="0,116" size="780,453" overflow="scroll" lineGap="3" autoClearItems="true">
+      <item url="ui://sly852qpb78j2h"/>
+      <item url="ui://sly852qpb78j2h"/>
+      <item url="ui://sly852qpb78j2h"/>
+    </list>
+    <text id="n6_b78j" name="title" xy="42,86" size="51,30" fontSize="22" color="#663333" vAlign="middle" bold="true" singleLine="true" text="游戏">
+      <relation target="" sidePair="width-width,height-height"/>
+    </text>
+    <text id="n7_b78j" name="title" xy="201,86" size="51,30" fontSize="22" color="#663333" vAlign="middle" bold="true" singleLine="true" text="状态">
+      <relation target="" sidePair="width-width,height-height"/>
+    </text>
+    <component id="n9_b78j" name="game_choose" src="lzpa2d" fileName="component/createRoom/GameChoose.xml" xy="42,19">
+      <ComboBox visibleItemCount="10"/>
+    </component>
+    <component id="n10_b78j" name="status_choose" src="lzpa2d" fileName="component/createRoom/GameChoose.xml" xy="282,19">
+      <ComboBox visibleItemCount="10"/>
+    </component>
+  </displayList>
+</component>

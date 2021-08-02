@@ -2,18 +2,18 @@
 
 module dacc {
 
-	export class UI_Click extends fairygui.GButton {
+	export class UI_GameChoose extends fairygui.GComboBox {
 
 		public m_button:fairygui.Controller;
 		public m_n0:fairygui.GGraph;
 		public m_n1:fairygui.GGraph;
 		public m_n2:fairygui.GGraph;
-		public m_n3:fairygui.GTextField;
+		public m_title:fairygui.GTextField;
 
-		public static URL:string = "ui://sly852qpinlo4";
+		public static URL:string = "ui://sly852qplzpa2d";
 
-		public static createInstance():UI_Click {
-			return <UI_Click><any>(fairygui.UIPackage.createObject("dacc","Click"));
+		public static createInstance():UI_GameChoose {
+			return <UI_GameChoose><any>(fairygui.UIPackage.createObject("dacc","GameChoose"));
 		}
 
 		public constructor() {
@@ -27,7 +27,7 @@ module dacc {
 			this.m_n0 = <fairygui.GGraph><any>(this.getChild("n0"));
 			this.m_n1 = <fairygui.GGraph><any>(this.getChild("n1"));
 			this.m_n2 = <fairygui.GGraph><any>(this.getChild("n2"));
-			this.m_n3 = <fairygui.GTextField><any>(this.getChild("n3"));
+			this.m_title = <fairygui.GTextField><any>(this.getChild("title"));
 		}
 	}
 }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="150,80" pivot="0.5,0.5" extention="Button">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
+  <displayList>
+    <graph id="n0_b78j" name="n0" xy="0,0" size="150,80" touchable="false" type="rect" lineSize="0" fillColor="#ff996600">
+      <gearDisplay controller="button" pages="0"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <graph id="n1_b78j" name="n1" xy="0,0" size="150,80" touchable="false" type="rect" lineSize="0" fillColor="#ff996600">
+      <gearDisplay controller="button" pages="2"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <graph id="n2_b78j" name="n2" xy="0,0" size="150,80" touchable="false" type="rect" lineSize="0" fillColor="#ff996600">
+      <gearDisplay controller="button" pages="1,3"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <text id="n3_b78j" name="title" xy="0,0" size="150,80" fontSize="12" align="center" vAlign="middle" autoSize="none" singleLine="true" text="">
+      <relation target="" sidePair="width-width,height-height"/>
+    </text>
+    <text id="n4_b78j" name="game_name" xy="74,39" pivot="0.5,0.5" anchor="true" size="130,33" fontSize="24" color="#ffffff" bold="true" text="石头剪刀布"/>
+  </displayList>
+  <Button downEffect="scale" downEffectValue="0.90"/>
+</component>

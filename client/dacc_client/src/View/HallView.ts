@@ -10,14 +10,25 @@ class HallView extends BaseView {
         this.addEventListener('LoginResult', this.onLoginResult)
         //初始化聊天窗口，以后有时间再写图文混排
         this.initChatCom()
+        //初始化底部按钮
+        this.initUnderButton()
+        this.initGameListCom()
+        this.initCreateRoomCom()
+        this.initRoomListCom()
     }
 
-    onLoginResult(evt) {
+    /**
+     * 登录结果触发函数
+     */
+    onLoginResult(evt: EventData) {
         let data: LoginPto.S_LOGIN = evt.data
         this.hallCom.m_user_name.text = data.userName
     }
 
-    onServerChatMsg(evt) {
+    /**
+     * 大厅聊天时间触发函数
+     */
+    onServerChatMsg(evt: EventData) {
         let data: HallPto.S_CHAT_MSG = evt.data
         let list = this.hallCom.m_chat_com.m_list
         let textField = new fairygui.GTextField()
@@ -34,6 +45,102 @@ class HallView extends BaseView {
         }
     }
 
+    /**
+     * 初始化大厅游戏列表控件
+     */
+    initGameListCom() {
+        let gameListCom = this.hallCom.m_game_list
+        this.addEventListener('GameListInfo', (evt: EventData) => {
+            let data: HallPto.S_GAME_LIST = evt.data
+            for (let i = 0; i < data.list.length; i++) {
+                let item = data.list[i]
+                let com = dacc.UI_GameItem.createInstance()
+                com.m_game_name.text = item.gameName
+                let gameId = item.gameId
+                com.addEventListener(egret.TouchEvent.TOUCH_TAP, () => {
+                    console.log(`gameId`, gameId);
+                }, this)
+                gameListCom.m_list.addChild(com)
+            }
+        })
+    }
+
+    /**
+     * 初始化大厅创建房间控件
+     */
+    initCreateRoomCom() {
+        let createRoomCom = this.hallCom.m_create_room
+        let gameChoose = createRoomCom.m_game_choose
+        this.addEventListener('GameListInfo', (evt: EventData) => {
+            let data: HallPto.S_GAME_LIST = evt.data
+            for (let i = 0; i < data.list.length; i++) {
+                let item = data.list[i]
+                gameChoose.items.push(item.gameName)
+                gameChoose.values.push(item.gameId + "")
+            }
+        })
+    }
+    /**
+     * 初始化大厅房间列表控件
+     */
+    initRoomListCom() {
+        let roomListCom = this.hallCom.m_room_list
+        let statusChoose = roomListCom.m_status_choose
+        statusChoose.m_title.text = "所有"
+        statusChoose.items.push('所有')
+        statusChoose.items.push('游戏中')
+        statusChoose.items.push('未开启')
+        statusChoose.addEventListener(fairygui.StateChangeEvent.CHANGED, () => {
+            console.log(statusChoose.selectedIndex);
+        }, this);
+
+        let gameChoose = roomListCom.m_game_choose
+        this.addEventListener('GameListInfo', (evt: EventData) => {
+            let data: HallPto.S_GAME_LIST = evt.data
+            for (let i = 0; i < data.list.length; i++) {
+                let item = data.list[i]
+                gameChoose.items.push(item.gameName)
+                gameChoose.values.push(item.gameId + "")
+            }
+        })
+    }
+
+    /**
+     * 初始化底部按钮
+     */
+    initUnderButton() {
+        let gameListCom = this.hallCom.m_game_list
+        let createRoomCom = this.hallCom.m_create_room
+        let roomListCom = this.hallCom.m_room_list
+
+        let gameBtn = this.hallCom.m_game_btn
+        gameBtn.m_describe.text = '游戏列表'
+        gameBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, () => {
+            gameListCom.visible = true
+            createRoomCom.visible = false
+            roomListCom.visible = false
+        }, this)
+
+        let createRoomBtn = this.hallCom.m_create_room_btn
+        createRoomBtn.m_describe.text = '创建房间'
+        createRoomBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, () => {
+            gameListCom.visible = false
+            createRoomCom.visible = true
+            roomListCom.visible = false
+        }, this)
+
+        let roonBtn = this.hallCom.m_room_btn
+        roonBtn.m_describe.text = '房间列表'
+        roonBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, () => {
+            gameListCom.visible = false
+            createRoomCom.visible = false
+            roomListCom.visible = true
+        }, this)
+    }
+
+    /**
+     * 初始化聊天窗口
+     */
     initChatCom() {
         this.addEventListener('ServerChatMsg', this.onServerChatMsg)
         let chatCom = this.hallCom.m_chat_com
@@ -110,7 +217,7 @@ class HallView extends BaseView {
             sendMsg()
         }, this)
 
-        let keyInputFun = (evt) => {
+        let keyInputFun = (evt: EventData) => {
             let keyInput: string = evt.data
             if (keyInput == 'Enter') {
                 sendMsg()

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="300,400">
+  <displayList>
+    <graph id="n0_lzpa" name="n0" xy="0,0" size="300,400" touchable="false" type="rect" lineColor="#ffa0a0a0" fillColor="#ff66ffff">
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <list id="n1_lzpa" name="list" xy="0,0" size="300,400" overflow="scroll" defaultItem="ui://sly852qplzpa2b">
+      <relation target="" sidePair="width-width"/>
+    </list>
+  </displayList>
+  <relation target="n1_lzpa" sidePair="height-height"/>
+</component>

@@ -11,14 +11,28 @@ export interface IGameMessage {
 
 let logger = getLogger()
 export class ProtoBufEncoder {
-
-  // private static messageClasses_C: Map<string, any> = new Map<string, any>()
-  // private static messageClasses_S: Map<string, any> = new Map<string, any>()
   private static messagehandles_: Map<number, Function> = new Map<number, Function>()
   private static protoBufWriter: protobuf.Writer = protobuf.Writer.create()
   private static protoBufReader: protobuf.Reader = protobuf.Reader.create(Buffer.alloc(1))
-
   private static protoBufClass: Map<number, any> = new Map<number, any>()
+
+  public static setHandle(cmd: number, scmd: number, fun: Function) {
+    let protoIndex: number = cmd * 255 + scmd
+    if (this.messagehandles_[protoIndex]) {
+      logger.error(`该位置已有注册函数 cmd:${cmd} scmd:${scmd}`)
+      return
+    }
+    this.messagehandles_.set(protoIndex, fun)
+  }
+
+  public static setProtoClass(cmd: number, scmd: number, protoClass: any) {
+    let protoIndex: number = cmd * 255 + scmd
+    if (this.messagehandles_[protoIndex]) {
+      logger.error(`该位置已有protoClass cmd:${cmd} scmd:${scmd}`)
+      return
+    }
+    ProtoBufEncoder.protoBufClass.set(protoIndex, protoClass)
+  }
 
   //添加一个协议模块 prefix 为匹配消息前缀
   public static addProtoModule(protoModule: any, handle: any) {

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="780,570">
+  <displayList>
+    <graph id="n1_lzpa" name="bg" xy="0,0" size="780,570" type="rect" fillColor="#ffffffcc"/>
+    <component id="n4_lzpa" name="game_choose" src="lzpa2d" fileName="component/createRoom/GameChoose.xml" xy="47,49">
+      <ComboBox visibleItemCount="10"/>
+    </component>
+    <component id="n7_b78j" name="create" src="b78j2f" fileName="component/createRoom/CreateBtn.xml" xy="281,495"/>
+  </displayList>
+</component>

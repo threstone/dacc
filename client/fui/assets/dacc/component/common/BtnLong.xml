@@ -14,7 +14,9 @@
       <gearDisplay controller="button" pages="2"/>
       <relation target="" sidePair="width-width,height-height"/>
     </image>
-    <text id="n3_h649" name="describe" xy="7,2" size="57,17" fontSize="13" color="#ffffff" align="center" vAlign="middle" text="长长按钮"/>
+    <text id="n3_h649" name="describe" xy="7,2" size="57,20" fontSize="13" color="#ffffff" align="center" vAlign="middle" text="长长按钮">
+      <relation target="n0_h649" sidePair="center-center,middle-middle"/>
+    </text>
   </displayList>
   <Button/>
 </component>

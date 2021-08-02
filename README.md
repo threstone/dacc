@@ -17,6 +17,7 @@ egret版本:5.4.1
 ```
 #####2.3.服务器发布
 启动publish.bat发布服务器代码，发布完成后发布的代码在dacc/server/publish中
+
 ####3.客户端
 #####3.1调试
 使用EgretWing打开dacc/client/dacc_client后直接F5启动即可.

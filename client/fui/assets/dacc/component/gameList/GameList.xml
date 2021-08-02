@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="780,570">
+  <displayList>
+    <graph id="n1_lzpa" name="bg" xy="0,0" size="780,570" type="rect" fillColor="#ffffffcc"/>
+    <list id="n2_lzpa" name="list" xy="0,0" size="780,570" layout="flow_hz" overflow="scroll" scroll="both" margin="10,10,10,10" lineGap="37" colGap="52" autoClearItems="true">
+      <item url="ui://sly852qpb78j2k"/>
+      <item url="ui://sly852qpb78j2k"/>
+      <item url="ui://sly852qpb78j2k"/>
+      <item url="ui://sly852qpb78j2k"/>
+      <item url="ui://sly852qpb78j2k"/>
+      <item url="ui://sly852qpb78j2k"/>
+      <item url="ui://sly852qpb78j2k"/>
+    </list>
+  </displayList>
+</component>

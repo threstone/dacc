@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="179,62" pivot="0.5,0.5" extention="Button">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
+  <displayList>
+    <loader id="n7_lzpa" name="bg" xy="0,0" size="179,62" url="ui://sly852qplzpa23" fill="scaleFree"/>
+    <text id="n5_lzpa" name="describe" xy="90,30" pivot="0.5,0.5" anchor="true" size="63,37" fontSize="28" color="#7b2b03" align="center" vAlign="middle" bold="true" text="登录"/>
+  </displayList>
+  <Button downEffect="scale" downEffectValue="1.10"/>
+</component>

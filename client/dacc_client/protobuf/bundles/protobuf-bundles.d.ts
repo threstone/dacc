@@ -7,7 +7,83 @@ declare namespace HallPto {
     /** HALL enum. */
     enum HALL {
         CS_SEND_CHAT_MSG = 1,
-        SC_CHAT_MSG = 2
+        SC_CHAT_MSG = 2,
+        SC_GAME_LIST = 3
+    }
+
+    /** Properties of a GameInfo. */
+    interface IGameInfo {
+
+        /** GameInfo gameId */
+        gameId?: (number|null);
+
+        /** GameInfo gameName */
+        gameName?: (string|null);
+    }
+
+    /** Represents a GameInfo. */
+    class GameInfo implements IGameInfo {
+
+        /**
+         * Constructs a new GameInfo.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: HallPto.IGameInfo);
+
+        /** GameInfo gameId. */
+        public gameId: number;
+
+        /** GameInfo gameName. */
+        public gameName: string;
+
+        /**
+         * Creates a new GameInfo instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns GameInfo instance
+         */
+        public static create(properties?: HallPto.IGameInfo): HallPto.GameInfo;
+
+        /**
+         * Encodes the specified GameInfo message. Does not implicitly {@link HallPto.GameInfo.verify|verify} messages.
+         * @param message GameInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: HallPto.IGameInfo, writer?: protobuf.Writer): protobuf.Writer;
+
+        /**
+         * Encodes the specified GameInfo message, length delimited. Does not implicitly {@link HallPto.GameInfo.verify|verify} messages.
+         * @param message GameInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: HallPto.IGameInfo, writer?: protobuf.Writer): protobuf.Writer;
+
+        /**
+         * Decodes a GameInfo message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns GameInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): HallPto.GameInfo;
+
+        /**
+         * Decodes a GameInfo message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns GameInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: (protobuf.Reader|Uint8Array)): HallPto.GameInfo;
+
+        /**
+         * Verifies a GameInfo message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
     }
 
     /** Properties of a C_SEND_CHAT_MSG. */
@@ -172,6 +248,87 @@ declare namespace HallPto {
 
         /**
          * Verifies a S_CHAT_MSG message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+    }
+
+    /** Properties of a S_GAME_LIST. */
+    interface IS_GAME_LIST {
+
+        /** S_GAME_LIST cmd */
+        cmd?: (CmdProto.SYS_CMD|null);
+
+        /** S_GAME_LIST scmd */
+        scmd?: (HallPto.HALL|null);
+
+        /** S_GAME_LIST list */
+        list?: (HallPto.IGameInfo[]|null);
+    }
+
+    /** Represents a S_GAME_LIST. */
+    class S_GAME_LIST implements IS_GAME_LIST {
+
+        /**
+         * Constructs a new S_GAME_LIST.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: HallPto.IS_GAME_LIST);
+
+        /** S_GAME_LIST cmd. */
+        public cmd: CmdProto.SYS_CMD;
+
+        /** S_GAME_LIST scmd. */
+        public scmd: HallPto.HALL;
+
+        /** S_GAME_LIST list. */
+        public list: HallPto.IGameInfo[];
+
+        /**
+         * Creates a new S_GAME_LIST instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns S_GAME_LIST instance
+         */
+        public static create(properties?: HallPto.IS_GAME_LIST): HallPto.S_GAME_LIST;
+
+        /**
+         * Encodes the specified S_GAME_LIST message. Does not implicitly {@link HallPto.S_GAME_LIST.verify|verify} messages.
+         * @param message S_GAME_LIST message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: HallPto.IS_GAME_LIST, writer?: protobuf.Writer): protobuf.Writer;
+
+        /**
+         * Encodes the specified S_GAME_LIST message, length delimited. Does not implicitly {@link HallPto.S_GAME_LIST.verify|verify} messages.
+         * @param message S_GAME_LIST message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: HallPto.IS_GAME_LIST, writer?: protobuf.Writer): protobuf.Writer;
+
+        /**
+         * Decodes a S_GAME_LIST message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns S_GAME_LIST
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): HallPto.S_GAME_LIST;
+
+        /**
+         * Decodes a S_GAME_LIST message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns S_GAME_LIST
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: (protobuf.Reader|Uint8Array)): HallPto.S_GAME_LIST;
+
+        /**
+         * Verifies a S_GAME_LIST message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */

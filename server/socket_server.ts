@@ -22,7 +22,6 @@ export class SocketServer {
         let wss = new WS.Server({ port: listenPort })
         logger.info("服务器启动，监听端口:", listenPort)
         wss.on("connection", (ws, req) => {
-            logger.info("新的连接")
             let session = this.getEmptySession()
             let clientId = this.getEmptyClientId()
             session.init(clientId)

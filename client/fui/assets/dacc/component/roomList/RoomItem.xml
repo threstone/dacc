@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="780,57">
+  <displayList>
+    <graph id="n0_b78j" name="bg" xy="0,0" size="780,57" type="rect" fillColor="#ff666666"/>
+    <text id="n2_b78j" name="title" xy="13,13" size="120,30" fontSize="22" color="#ffffff" vAlign="middle" bold="true" singleLine="true" text="石头剪刀布">
+      <relation target="" sidePair="width-width,height-height"/>
+    </text>
+    <component id="n3_b78j" name="n3" src="ikts1n" fileName="component/common/BtnLong.xml" xy="655,13" size="89,28"/>
+    <text id="n4_b78j" name="title" xy="195,13" size="74,30" fontSize="22" color="#ffffff" vAlign="middle" bold="true" singleLine="true" text="游戏中">
+      <relation target="" sidePair="width-width,height-height"/>
+    </text>
+  </displayList>
+</component>
