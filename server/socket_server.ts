@@ -1,20 +1,24 @@
 import { getLogger } from "log4js"
 import * as WS from "ws"
 import { IGameMessage, ProtoBufEncoder } from "./protobuf_encoder"
-import { DaccUser } from "./dacc_user"
+import { DaccUser as DaccSession } from "./dacc_session"
+import { LoginPto } from "./common_proto"
 const logger = getLogger()
 export class SocketServer {
     private _defaultListenPort = 9595
-    private _emptySessionPool: DaccUser[]
+    private _emptySessionPool: DaccSession[]
     private _socketArr: any[]
+    private _sessionArr: DaccSession[]
 
     constructor() {
         this._emptySessionPool = []
         this._socketArr = []
+        this._sessionArr = []
         for (let i = 0; i < 1024; i++) {
-            let session = new DaccUser()
+            let session = new DaccSession()
             this._emptySessionPool.push(session)
             this._socketArr.push(null)
+            this._sessionArr.push(null)
         }
     }
 
@@ -26,6 +30,7 @@ export class SocketServer {
             let clientId = this.getEmptyClientId()
             session.init(clientId)
             this._socketArr[clientId] = ws
+            this._sessionArr[clientId] = session
             ws.on("message", (msg: Buffer) => {
                 this.onMessage(session, msg)
             })
@@ -41,32 +46,34 @@ export class SocketServer {
         })
     }
 
-    getEmptyClientId() {
+    private getEmptyClientId() {
         const temp = this._socketArr.indexOf(null)
         if (temp == -1) {
             this._socketArr.push(null)
+            this._sessionArr.push(null)
             return this._socketArr.length - 1
         }
         return temp
     }
 
-    getEmptySession() {
+    private getEmptySession() {
         if (this._emptySessionPool.length == 0) {
             for (let i = 0; i < 64; i++) {
-                let session = new DaccUser()
+                let session = new DaccSession()
                 this._emptySessionPool.push(session)
             }
         }
         return this._emptySessionPool.pop()
     }
 
-    resetSession(session: DaccUser) {
+    private resetSession(session: DaccSession) {
         this._socketArr[session.clientId] = null
+        this._sessionArr[session.clientId] = null
         session.reset()
         this._emptySessionPool.push(session)
     }
 
-    onMessage(session: DaccUser, buf: Buffer) {
+    private onMessage(session: DaccSession, buf: Buffer) {
         if (buf.length < 2) {
             logger.error(`消息长度不足,未知消息!   buf:${buf}`)
             return
@@ -78,6 +85,10 @@ export class SocketServer {
             return
         }
         try {
+            if (session.isLogin == false && (msg.cmd != LoginPto.C_LOGIN.prototype.cmd || msg.scmd != LoginPto.C_LOGIN.prototype.scmd)) {
+                logger.error('未登录状态下禁止请求除登录以外的协议。')
+                return
+            }
             fun(session, msg)
         } catch (error) {
             logger.error(`执行协议函数出错 cmd:${msg.cmd} scmd:${msg.scmd}`)
@@ -112,8 +123,12 @@ export class SocketServer {
         this._socketArr[clientId].send(buf)
     }
 
-    onClose(session: DaccUser) {
+    onClose(session: DaccSession) {
 
+    }
+
+    getDaccSession(clientId: number) {
+        return this._sessionArr[clientId]
     }
 
 }

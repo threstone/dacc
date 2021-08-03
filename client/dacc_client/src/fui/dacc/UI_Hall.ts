@@ -13,6 +13,8 @@ module dacc {
 		public m_game_list:UI_GameList;
 		public m_create_room:UI_CreateRoom;
 		public m_room_list:UI_RoomList;
+		public m_head_pic:fairygui.GLoader;
+		public m_head_choose_com:UI_ChangeHeadCom;
 
 		public static URL:string = "ui://sly852qpi7mx0";
 
@@ -36,6 +38,8 @@ module dacc {
 			this.m_game_list = <UI_GameList><any>(this.getChild("game_list"));
 			this.m_create_room = <UI_CreateRoom><any>(this.getChild("create_room"));
 			this.m_room_list = <UI_RoomList><any>(this.getChild("room_list"));
+			this.m_head_pic = <fairygui.GLoader><any>(this.getChild("head_pic"));
+			this.m_head_choose_com = <UI_ChangeHeadCom><any>(this.getChild("head_choose_com"));
 		}
 	}
 }

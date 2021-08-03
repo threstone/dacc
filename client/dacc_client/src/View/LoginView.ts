@@ -1,6 +1,6 @@
 class LoginView extends BaseView {
     loginCom: dacc.UI_Login
-    init() {
+    protected init() {
         this.loginCom = dacc.UI_Login.createInstance()
         this.loginCom.m_login_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onLoginBtnClick, this)
         this.addEventListener('LoginResult', this.onLoginResult)
@@ -9,10 +9,9 @@ class LoginView extends BaseView {
     onLoginBtnClick() {
         let input = this.loginCom.m_input_text.text
         if (input.length <= 0) {
-            this.loginCom.m_tips.text = "请输入用户名"
+            GlobalController.showTips('请输入用户名', 5000)
             return
         }
-
         //派发消息后不允许点击了
         this.emit('LoginBtnClick', input)
         this.loginCom.touchable = false
@@ -23,7 +22,7 @@ class LoginView extends BaseView {
         if (result.isSuccess) {
             this.loginCom.visible = false
         } else {
-            this.loginCom.m_tips.text = "登录失败了"
+            GlobalController.showTips('登录失败了', 5000)
         }
         this.loginCom.touchable = true
         GlobalController.showHall()

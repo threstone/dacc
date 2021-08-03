@@ -5,23 +5,35 @@ import { ProtoBufEncoder } from "./protobuf_encoder"
 import * as fs from "fs"
 import * as path from "path"
 import * as allProto from "./common_proto"
+import { TableMgr } from "./table_mgr"
 let logger = getLogger()
 export class GlobalVal {
 
     private static _server: SocketServer
+    private static _tableMgr: TableMgr
+
     static get server() {
         return this._server
     }
+
+    static get tableMgr() {
+        return this._tableMgr
+    }
+
     static init() {
         configure(loggerConfig)
 
-        this.initHandle()
+        this._tableMgr = new TableMgr()
 
+        this.initMsgHandle()
         this._server = new SocketServer()
         this.server.startWsServer()
     }
 
-    static initHandle() {
+    /**
+     * 初始化protobuf协议映射
+     */
+    static initMsgHandle() {
         ProtoBufEncoder.init()
         let handleObj = {}
         let handlePath = path.join(__dirname, './handle')

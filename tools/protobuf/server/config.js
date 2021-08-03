@@ -18,14 +18,13 @@ let config = {
     commonFiles: [
         'login.proto',
 		'hall.proto',
-		'sys_cmd.proto',
     ],
 
 
     //------------以下为服务端独立游戏的proto文件配置
-    gameProtoJsTarget: './',
+    gameProtoJsTarget: '../../../server/games/',
     gameProtoFiles: [
-       // { id: 5044, protoName: 'room_mahjong_5044_pto.proto' },
+        { id: 1001, protoName: 'game1001.proto' },
     ]
 
 

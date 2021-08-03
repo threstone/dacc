@@ -3,6 +3,10 @@
 		{
 			"keys": "hall,hall_atlas0,server_json",
 			"name": "preload"
+		},
+		{
+			"keys": "game1001,game1001_atlas0",
+			"name": "game1001"
 		}
 	],
 	"resources": [
@@ -20,6 +24,16 @@
 			"url": "server.json",
 			"type": "json",
 			"name": "server_json"
+		},
+		{
+			"url": "fui/game1001.fui",
+			"type": "bin",
+			"name": "game1001"
+		},
+		{
+			"url": "fui/game1001_atlas0.jpg",
+			"type": "image",
+			"name": "game1001_atlas0"
 		}
 	]
 }

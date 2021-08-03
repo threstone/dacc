@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="rbhwceqz" jpegQuality="80" compressPNG="true">
+  <resources>
+    <component id="di7i2" name="Game1001.xml" path="/" exported="true"/>
+    <image id="b78j1" name="game_bg.jpg" path="/" exported="true"/>
+  </resources>
+  <publish name="game1001" genCode="true"/>
+</packageDescription>

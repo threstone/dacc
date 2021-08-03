@@ -1,9 +1,7 @@
 class HallController extends BaseController {
-    init() {
-        let view = new HallView()
-        this.view = view
-        let model = new HallModel()
-        this.model = model
+    protected init() {
+        this.view = new HallView()
+        this.model = new HallModel()
     }
 
     showHall() {

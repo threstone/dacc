@@ -1,0 +1,10 @@
+syntax = "proto3";
+package GamePto1001;
+
+message S_INIT_SCENE{
+	int32 cmd = 1[default = 1001]; 
+	int32 scmd = 2[default = 1]; 
+	string tableSeq = 3;
+
+}
+

@@ -1,34 +1,91 @@
 syntax = "proto3";
 package HallPto;
-import "sys_cmd.proto";
-
-enum HALL{
-	CS_SEND_CHAT_MSG = 1;//客户端发送
-	SC_CHAT_MSG = 2;//服务端用户广播聊天
-	SC_GAME_LIST = 3;//下发游戏列表
-}
 
 message GameInfo{
 	int32 gameId = 1;
 	string gameName = 2;
 }
 
+message Player{
+	int32 index = 1;
+	int32 headIndex = 2;
+	string userName = 3;
+	bool isReady = 4;
+}
+
+//客户端发送
 message C_SEND_CHAT_MSG{
-	CmdProto.SYS_CMD cmd = 1[default = SYS_HALL]; 
-	HALL scmd = 2[default = CS_SEND_CHAT_MSG];
+	int32 cmd = 1[default = 1]; 
+	int32 scmd = 2[default = 1];
 	string msg = 3;
 }
 
+//服务端用户广播聊天
 message S_CHAT_MSG{
-	CmdProto.SYS_CMD cmd = 1[default = SYS_HALL]; 
-	HALL scmd = 2[default = SC_CHAT_MSG];
+	int32 cmd = 1[default = 1]; 
+	int32 scmd = 2[default = 2];
 	string userName = 3;
 	string msg = 4;
 }
 
+//下发游戏列表
 message S_GAME_LIST{
-	CmdProto.SYS_CMD cmd = 1[default = SYS_HALL]; 
-	HALL scmd = 2[default = SC_GAME_LIST];
+	int32 cmd = 1[default = 1]; 
+	int32 scmd = 2[default = 3];
 	repeated GameInfo list = 3;
 }
+
+//更换头像
+message C_CHANGE_HEAD{
+	int32 cmd = 1[default = 1]; 
+	int32 scmd = 2[default = 4];
+	int32 headIndex = 3;
+}
+
+//客户端请求创建房间
+message C_CREATE_ROOM{
+	int32 cmd = 1[default = 1]; 
+	int32 scmd = 2[default = 5];
+	int32 gameId = 3;
+}
+
+//请求创建房间返回
+message S_CREATE_ROOM{
+	int32 cmd = 1[default = 1]; 
+	int32 scmd = 2[default = 6];
+	bool isSuccess = 3;
+	string tableSeq = 4;
+}
+
+//客户端请求加入房间
+message C_JOIN_ROOM{
+	int32 cmd = 1[default = 1]; 
+	int32 scmd = 2[default = 7];
+	string tableSeq = 3;
+}
+
+//客户端请求加入房间返回
+message S_JOIN_ROOM{
+	int32 cmd = 1[default = 1]; 
+	int32 scmd = 2[default = 8];
+	bool isSuccess = 3;
+	string tableSeq = 4;
+	repeated Player players = 5;
+	int32 gameId = 6;
+}
+
+//客户端请求准备
+message C_READY{
+	int32 cmd = 1[default = 1]; 
+	int32 scmd = 2[default = 9];
+}
+
+//服务端广播玩家准备状态改变
+message S_PLAYER_READY{
+	int32 cmd = 1[default = 1]; 
+	int32 scmd = 2[default = 9];
+	int32 index = 3;
+	bool isReady = 4;
+}
+
 

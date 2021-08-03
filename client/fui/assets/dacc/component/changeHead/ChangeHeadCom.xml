@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="780,570">
+  <displayList>
+    <graph id="n1_b78j" name="bg" xy="0,0" size="780,570" type="rect" fillColor="#ff669933"/>
+    <list id="n0_b78j" name="list" xy="0,60" size="780,509" layout="flow_hz" overflow="hidden" margin="10,0,20,10" lineGap="5" colGap="35" autoClearItems="true">
+      <item url="ui://sly852qpb78j2l"/>
+      <item url="ui://sly852qpb78j2l"/>
+      <item url="ui://sly852qpb78j2l"/>
+      <item url="ui://sly852qpb78j2l"/>
+      <item url="ui://sly852qpb78j2l"/>
+      <item url="ui://sly852qpb78j2l"/>
+    </list>
+    <component id="n3_di7i" name="close_btn" src="ikts1n" fileName="component/common/BtnLong.xml" xy="680,8" size="89,40"/>
+    <text id="n4_di7i" name="n4" xy="283,9" size="203,38" font="STHupo" fontSize="33" color="#ffff00" text="点击更换头像"/>
+  </displayList>
+</component>

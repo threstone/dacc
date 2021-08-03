@@ -1,10 +1,11 @@
 interface GameProtoClass {
-    cmd: CmdProto.SYS_CMD
+    cmd: number
     scmd: number
 }
 class Socket {
 
     private static _socket: Socket;
+    private _webSocket: egret.WebSocket;
 
     public static getInstance(): Socket {
 
@@ -18,8 +19,6 @@ class Socket {
         return Socket._socket;
 
     }
-
-    private _webSocket: egret.WebSocket;
 
     public constructor() {
         let serverConfig = RES.getRes('server_json')

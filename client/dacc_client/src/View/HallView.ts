@@ -5,16 +5,16 @@ class HallView extends BaseView {
     //因为添加聊天信息到窗口的时候会自动滚动到底部，会触发滚动回调，所以添加一个参数判断这个滚动是否需要取消锁定底部
     private _isAddChange = false
 
-    init() {
+    protected init() {
         this.hallCom = dacc.UI_Hall.createInstance()
-        this.addEventListener('LoginResult', this.onLoginResult)
-        //初始化聊天窗口，以后有时间再写图文混排
+        //初始化聊天窗口，todo 以后有时间再写图文混排
         this.initChatCom()
         //初始化底部按钮
         this.initUnderButton()
         this.initGameListCom()
         this.initCreateRoomCom()
         this.initRoomListCom()
+        this.initUserBox()
     }
 
     /**
@@ -31,6 +31,10 @@ class HallView extends BaseView {
     onServerChatMsg(evt: EventData) {
         let data: HallPto.S_CHAT_MSG = evt.data
         let list = this.hallCom.m_chat_com.m_list
+        //todo 聊天窗口只允许存在的记录数,将来应该由玩家自己设置
+        if (list.numChildren >= 30) {
+            list.removeChildAt(0)
+        }
         let textField = new fairygui.GTextField()
         textField.width = 390
         textField.fontSize = 14
@@ -46,6 +50,51 @@ class HallView extends BaseView {
     }
 
     /**
+     * 初始化用户信息组件相关
+     */
+    initUserBox() {
+        this.addEventListener('LoginResult', this.onLoginResult)
+        this.addEventListener('CloseAllHallCom', () => {
+            this.hallCom.m_head_choose_com.visible = false
+        })
+        this.hallCom.m_head_pic.addEventListener(egret.TouchEvent.TOUCH_TAP, () => {
+            let isShow = !this.hallCom.m_head_choose_com.visible
+            this.emit('CloseAllHallCom', null)
+            this.hallCom.m_head_choose_com.visible = isShow
+        }, this)
+
+        let headChooseCom = this.hallCom.m_head_choose_com
+        headChooseCom.m_close_btn.m_describe.fontSize = 18
+        headChooseCom.m_close_btn.m_describe.text = "关闭窗口"
+        headChooseCom.m_close_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, () => {
+            let isShow = !this.hallCom.m_head_choose_com.visible
+            this.emit('CloseAllHallCom', null)
+            this.hallCom.m_head_choose_com.visible = isShow
+        }, this)
+
+        let list = headChooseCom.m_list
+        RES.getResByUrl('./resource/head/head_info.json', (data) => {
+            let headNum = data.headNum
+            for (let i = 0; i < headNum; i++) {
+                let index = i
+                RES.getResByUrl(`./resource/head/tx_${index}.png`, (data) => {
+                    if (!data) {
+                        return
+                    }
+                    let loader = new fairygui.GLoader()
+                    loader.autoSize = true
+                    loader.texture = data
+                    loader.addEventListener(egret.TouchEvent.TOUCH_TAP, () => {
+                        this.emit('ChangeHeadPic', index)
+                        this.hallCom.m_head_pic.texture = loader.texture
+                    }, this)
+                    list.addChild(loader)
+                })
+            }
+        })
+    }
+
+    /**
      * 初始化大厅游戏列表控件
      */
     initGameListCom() {
@@ -58,7 +107,7 @@ class HallView extends BaseView {
                 com.m_game_name.text = item.gameName
                 let gameId = item.gameId
                 com.addEventListener(egret.TouchEvent.TOUCH_TAP, () => {
-                    console.log(`gameId`, gameId);
+                    this.emit('GameListBtnClick', gameId)
                 }, this)
                 gameListCom.m_list.addChild(com)
             }
@@ -76,9 +125,16 @@ class HallView extends BaseView {
             for (let i = 0; i < data.list.length; i++) {
                 let item = data.list[i]
                 gameChoose.items.push(item.gameName)
-                gameChoose.values.push(item.gameId + "")
+                gameChoose.values.push(item.gameId as any)
             }
         })
+        createRoomCom.m_create.addEventListener(egret.TouchEvent.TOUCH_TAP, () => {
+            if (gameChoose.selectedIndex == -1) {
+                GlobalController.showTips('请先选择创建的游戏', 5000)
+                return
+            }
+            this.emit('CreateRoomClick', gameChoose.values[gameChoose.selectedIndex])
+        }, this)
     }
     /**
      * 初始化大厅房间列表控件
@@ -97,12 +153,30 @@ class HallView extends BaseView {
         let gameChoose = roomListCom.m_game_choose
         this.addEventListener('GameListInfo', (evt: EventData) => {
             let data: HallPto.S_GAME_LIST = evt.data
+            gameChoose.items.push('所有游戏')
+            gameChoose.values.push(0 + "")
             for (let i = 0; i < data.list.length; i++) {
                 let item = data.list[i]
                 gameChoose.items.push(item.gameName)
-                gameChoose.values.push(item.gameId + "")
+                gameChoose.values.push(item.gameId as any)
             }
         })
+        gameChoose.addEventListener(fairygui.StateChangeEvent.CHANGED, () => {
+            this.emit('RoomListGameChooseChange', gameChoose.values[gameChoose.selectedIndex])
+        }, this);
+
+        this.addEventListener('GameListBtnClick', (evt: EventData) => {
+            this.emit('CloseAllHallCom', null)
+            roomListCom.visible = true
+            let gameId: number = evt.data
+            for (let i = 0; i < gameChoose.values.length; i++) {
+                if (gameChoose.values[i] == gameId as any) {
+                    gameChoose.selectedIndex = i;
+                    break
+                }
+            }
+            this.emit('RoomListGameChooseChange', gameChoose.values[gameChoose.selectedIndex])
+        }, this)
     }
 
     /**
@@ -113,28 +187,34 @@ class HallView extends BaseView {
         let createRoomCom = this.hallCom.m_create_room
         let roomListCom = this.hallCom.m_room_list
 
+        this.addEventListener('CloseAllHallCom', () => {
+            gameListCom.visible = false
+            createRoomCom.visible = false
+            roomListCom.visible = false
+        })
+
         let gameBtn = this.hallCom.m_game_btn
         gameBtn.m_describe.text = '游戏列表'
         gameBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, () => {
-            gameListCom.visible = true
-            createRoomCom.visible = false
-            roomListCom.visible = false
+            let isShow = !gameListCom.visible
+            this.emit('CloseAllHallCom', null)
+            gameListCom.visible = isShow
         }, this)
 
         let createRoomBtn = this.hallCom.m_create_room_btn
         createRoomBtn.m_describe.text = '创建房间'
         createRoomBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, () => {
-            gameListCom.visible = false
-            createRoomCom.visible = true
-            roomListCom.visible = false
+            let isShow = !createRoomCom.visible
+            this.emit('CloseAllHallCom', null)
+            createRoomCom.visible = isShow
         }, this)
 
         let roonBtn = this.hallCom.m_room_btn
         roonBtn.m_describe.text = '房间列表'
         roonBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, () => {
-            gameListCom.visible = false
-            createRoomCom.visible = false
-            roomListCom.visible = true
+            let isShow = !roomListCom.visible
+            this.emit('CloseAllHallCom', null)
+            roomListCom.visible = isShow
         }, this)
     }
 

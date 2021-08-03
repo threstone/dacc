@@ -11,13 +11,6 @@ $root.LoginPto = (function() {
 
     var LoginPto = {};
 
-    LoginPto.LOGIN = (function() {
-        var valuesById = {}, values = Object.create(valuesById);
-        values[valuesById[1] = "CS_LOGIN"] = 1;
-        values[valuesById[2] = "SC_LOGIN"] = 2;
-        return values;
-    })();
-
     LoginPto.C_LOGIN = (function() {
 
         function C_LOGIN(p) {
@@ -75,25 +68,11 @@ $root.LoginPto = (function() {
             if (d instanceof $root.LoginPto.C_LOGIN)
                 return d;
             var m = new $root.LoginPto.C_LOGIN();
-            switch (d.cmd) {
-            case "SYS_LOGIN":
-            case 0:
-                m.cmd = 0;
-                break;
-            case "SYS_HALL":
-            case 1:
-                m.cmd = 1;
-                break;
+            if (d.cmd != null) {
+                m.cmd = d.cmd | 0;
             }
-            switch (d.scmd) {
-            case "CS_LOGIN":
-            case 1:
-                m.scmd = 1;
-                break;
-            case "SC_LOGIN":
-            case 2:
-                m.scmd = 2;
-                break;
+            if (d.scmd != null) {
+                m.scmd = d.scmd | 0;
             }
             if (d.userName != null) {
                 m.userName = String(d.userName);
@@ -106,15 +85,15 @@ $root.LoginPto = (function() {
                 o = {};
             var d = {};
             if (o.defaults) {
-                d.cmd = o.enums === String ? "SYS_LOGIN" : 0;
-                d.scmd = o.enums === String ? "CS_LOGIN" : 1;
+                d.cmd = 0;
+                d.scmd = 1;
                 d.userName = "";
             }
             if (m.cmd != null && m.hasOwnProperty("cmd")) {
-                d.cmd = o.enums === String ? $root.CmdProto.SYS_CMD[m.cmd] : m.cmd;
+                d.cmd = m.cmd;
             }
             if (m.scmd != null && m.hasOwnProperty("scmd")) {
-                d.scmd = o.enums === String ? $root.LoginPto.LOGIN[m.scmd] : m.scmd;
+                d.scmd = m.scmd;
             }
             if (m.userName != null && m.hasOwnProperty("userName")) {
                 d.userName = m.userName;
@@ -192,25 +171,11 @@ $root.LoginPto = (function() {
             if (d instanceof $root.LoginPto.S_LOGIN)
                 return d;
             var m = new $root.LoginPto.S_LOGIN();
-            switch (d.cmd) {
-            case "SYS_LOGIN":
-            case 0:
-                m.cmd = 0;
-                break;
-            case "SYS_HALL":
-            case 1:
-                m.cmd = 1;
-                break;
+            if (d.cmd != null) {
+                m.cmd = d.cmd | 0;
             }
-            switch (d.scmd) {
-            case "CS_LOGIN":
-            case 1:
-                m.scmd = 1;
-                break;
-            case "SC_LOGIN":
-            case 2:
-                m.scmd = 2;
-                break;
+            if (d.scmd != null) {
+                m.scmd = d.scmd | 0;
             }
             if (d.isSuccess != null) {
                 m.isSuccess = Boolean(d.isSuccess);
@@ -226,16 +191,16 @@ $root.LoginPto = (function() {
                 o = {};
             var d = {};
             if (o.defaults) {
-                d.cmd = o.enums === String ? "SYS_LOGIN" : 0;
-                d.scmd = o.enums === String ? "SC_LOGIN" : 2;
+                d.cmd = 0;
+                d.scmd = 2;
                 d.isSuccess = false;
                 d.userName = "";
             }
             if (m.cmd != null && m.hasOwnProperty("cmd")) {
-                d.cmd = o.enums === String ? $root.CmdProto.SYS_CMD[m.cmd] : m.cmd;
+                d.cmd = m.cmd;
             }
             if (m.scmd != null && m.hasOwnProperty("scmd")) {
-                d.scmd = o.enums === String ? $root.LoginPto.LOGIN[m.scmd] : m.scmd;
+                d.scmd = m.scmd;
             }
             if (m.isSuccess != null && m.hasOwnProperty("isSuccess")) {
                 d.isSuccess = m.isSuccess;
@@ -256,31 +221,9 @@ $root.LoginPto = (function() {
     return LoginPto;
 })();
 
-$root.CmdProto = (function() {
-
-    var CmdProto = {};
-
-    CmdProto.SYS_CMD = (function() {
-        var valuesById = {}, values = Object.create(valuesById);
-        values[valuesById[0] = "SYS_LOGIN"] = 0;
-        values[valuesById[1] = "SYS_HALL"] = 1;
-        return values;
-    })();
-
-    return CmdProto;
-})();
-
 $root.HallPto = (function() {
 
     var HallPto = {};
-
-    HallPto.HALL = (function() {
-        var valuesById = {}, values = Object.create(valuesById);
-        values[valuesById[1] = "CS_SEND_CHAT_MSG"] = 1;
-        values[valuesById[2] = "SC_CHAT_MSG"] = 2;
-        values[valuesById[3] = "SC_GAME_LIST"] = 3;
-        return values;
-    })();
 
     HallPto.GameInfo = (function() {
 
@@ -366,6 +309,116 @@ $root.HallPto = (function() {
         return GameInfo;
     })();
 
+    HallPto.Player = (function() {
+
+        function Player(p) {
+            if (p)
+                for (var ks = Object.keys(p), i = 0; i < ks.length; ++i)
+                    if (p[ks[i]] != null)
+                        this[ks[i]] = p[ks[i]];
+        }
+
+        Player.prototype.index = 0;
+        Player.prototype.headIndex = 0;
+        Player.prototype.userName = "";
+        Player.prototype.isReady = false;
+
+        Player.create = function create(properties) {
+            return new Player(properties);
+        };
+
+        Player.encode = function encode(m, w) {
+            if (!w)
+                w = $Writer.create();
+            if (m.index != null && Object.hasOwnProperty.call(m, "index"))
+                w.uint32(8).int32(m.index);
+            if (m.headIndex != null && Object.hasOwnProperty.call(m, "headIndex"))
+                w.uint32(16).int32(m.headIndex);
+            if (m.userName != null && Object.hasOwnProperty.call(m, "userName"))
+                w.uint32(26).string(m.userName);
+            if (m.isReady != null && Object.hasOwnProperty.call(m, "isReady"))
+                w.uint32(32).bool(m.isReady);
+            return w;
+        };
+
+        Player.decode = function decode(r, l) {
+            if (!(r instanceof $Reader))
+                r = $Reader.create(r);
+            var c = l === undefined ? r.len : r.pos + l, m = new $root.HallPto.Player();
+            while (r.pos < c) {
+                var t = r.uint32();
+                switch (t >>> 3) {
+                case 1:
+                    m.index = r.int32();
+                    break;
+                case 2:
+                    m.headIndex = r.int32();
+                    break;
+                case 3:
+                    m.userName = r.string();
+                    break;
+                case 4:
+                    m.isReady = r.bool();
+                    break;
+                default:
+                    r.skipType(t & 7);
+                    break;
+                }
+            }
+            return m;
+        };
+
+        Player.fromObject = function fromObject(d) {
+            if (d instanceof $root.HallPto.Player)
+                return d;
+            var m = new $root.HallPto.Player();
+            if (d.index != null) {
+                m.index = d.index | 0;
+            }
+            if (d.headIndex != null) {
+                m.headIndex = d.headIndex | 0;
+            }
+            if (d.userName != null) {
+                m.userName = String(d.userName);
+            }
+            if (d.isReady != null) {
+                m.isReady = Boolean(d.isReady);
+            }
+            return m;
+        };
+
+        Player.toObject = function toObject(m, o) {
+            if (!o)
+                o = {};
+            var d = {};
+            if (o.defaults) {
+                d.index = 0;
+                d.headIndex = 0;
+                d.userName = "";
+                d.isReady = false;
+            }
+            if (m.index != null && m.hasOwnProperty("index")) {
+                d.index = m.index;
+            }
+            if (m.headIndex != null && m.hasOwnProperty("headIndex")) {
+                d.headIndex = m.headIndex;
+            }
+            if (m.userName != null && m.hasOwnProperty("userName")) {
+                d.userName = m.userName;
+            }
+            if (m.isReady != null && m.hasOwnProperty("isReady")) {
+                d.isReady = m.isReady;
+            }
+            return d;
+        };
+
+        Player.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return Player;
+    })();
+
     HallPto.C_SEND_CHAT_MSG = (function() {
 
         function C_SEND_CHAT_MSG(p) {
@@ -423,29 +476,11 @@ $root.HallPto = (function() {
             if (d instanceof $root.HallPto.C_SEND_CHAT_MSG)
                 return d;
             var m = new $root.HallPto.C_SEND_CHAT_MSG();
-            switch (d.cmd) {
-            case "SYS_LOGIN":
-            case 0:
-                m.cmd = 0;
-                break;
-            case "SYS_HALL":
-            case 1:
-                m.cmd = 1;
-                break;
+            if (d.cmd != null) {
+                m.cmd = d.cmd | 0;
             }
-            switch (d.scmd) {
-            case "CS_SEND_CHAT_MSG":
-            case 1:
-                m.scmd = 1;
-                break;
-            case "SC_CHAT_MSG":
-            case 2:
-                m.scmd = 2;
-                break;
-            case "SC_GAME_LIST":
-            case 3:
-                m.scmd = 3;
-                break;
+            if (d.scmd != null) {
+                m.scmd = d.scmd | 0;
             }
             if (d.msg != null) {
                 m.msg = String(d.msg);
@@ -458,15 +493,15 @@ $root.HallPto = (function() {
                 o = {};
             var d = {};
             if (o.defaults) {
-                d.cmd = o.enums === String ? "SYS_HALL" : 1;
-                d.scmd = o.enums === String ? "CS_SEND_CHAT_MSG" : 1;
+                d.cmd = 1;
+                d.scmd = 1;
                 d.msg = "";
             }
             if (m.cmd != null && m.hasOwnProperty("cmd")) {
-                d.cmd = o.enums === String ? $root.CmdProto.SYS_CMD[m.cmd] : m.cmd;
+                d.cmd = m.cmd;
             }
             if (m.scmd != null && m.hasOwnProperty("scmd")) {
-                d.scmd = o.enums === String ? $root.HallPto.HALL[m.scmd] : m.scmd;
+                d.scmd = m.scmd;
             }
             if (m.msg != null && m.hasOwnProperty("msg")) {
                 d.msg = m.msg;
@@ -544,29 +579,11 @@ $root.HallPto = (function() {
             if (d instanceof $root.HallPto.S_CHAT_MSG)
                 return d;
             var m = new $root.HallPto.S_CHAT_MSG();
-            switch (d.cmd) {
-            case "SYS_LOGIN":
-            case 0:
-                m.cmd = 0;
-                break;
-            case "SYS_HALL":
-            case 1:
-                m.cmd = 1;
-                break;
+            if (d.cmd != null) {
+                m.cmd = d.cmd | 0;
             }
-            switch (d.scmd) {
-            case "CS_SEND_CHAT_MSG":
-            case 1:
-                m.scmd = 1;
-                break;
-            case "SC_CHAT_MSG":
-            case 2:
-                m.scmd = 2;
-                break;
-            case "SC_GAME_LIST":
-            case 3:
-                m.scmd = 3;
-                break;
+            if (d.scmd != null) {
+                m.scmd = d.scmd | 0;
             }
             if (d.userName != null) {
                 m.userName = String(d.userName);
@@ -582,16 +599,16 @@ $root.HallPto = (function() {
                 o = {};
             var d = {};
             if (o.defaults) {
-                d.cmd = o.enums === String ? "SYS_HALL" : 1;
-                d.scmd = o.enums === String ? "SC_CHAT_MSG" : 2;
+                d.cmd = 1;
+                d.scmd = 2;
                 d.userName = "";
                 d.msg = "";
             }
             if (m.cmd != null && m.hasOwnProperty("cmd")) {
-                d.cmd = o.enums === String ? $root.CmdProto.SYS_CMD[m.cmd] : m.cmd;
+                d.cmd = m.cmd;
             }
             if (m.scmd != null && m.hasOwnProperty("scmd")) {
-                d.scmd = o.enums === String ? $root.HallPto.HALL[m.scmd] : m.scmd;
+                d.scmd = m.scmd;
             }
             if (m.userName != null && m.hasOwnProperty("userName")) {
                 d.userName = m.userName;
@@ -671,29 +688,11 @@ $root.HallPto = (function() {
             if (d instanceof $root.HallPto.S_GAME_LIST)
                 return d;
             var m = new $root.HallPto.S_GAME_LIST();
-            switch (d.cmd) {
-            case "SYS_LOGIN":
-            case 0:
-                m.cmd = 0;
-                break;
-            case "SYS_HALL":
-            case 1:
-                m.cmd = 1;
-                break;
+            if (d.cmd != null) {
+                m.cmd = d.cmd | 0;
             }
-            switch (d.scmd) {
-            case "CS_SEND_CHAT_MSG":
-            case 1:
-                m.scmd = 1;
-                break;
-            case "SC_CHAT_MSG":
-            case 2:
-                m.scmd = 2;
-                break;
-            case "SC_GAME_LIST":
-            case 3:
-                m.scmd = 3;
-                break;
+            if (d.scmd != null) {
+                m.scmd = d.scmd | 0;
             }
             if (d.list) {
                 if (!Array.isArray(d.list))
@@ -716,14 +715,14 @@ $root.HallPto = (function() {
                 d.list = [];
             }
             if (o.defaults) {
-                d.cmd = o.enums === String ? "SYS_HALL" : 1;
-                d.scmd = o.enums === String ? "SC_GAME_LIST" : 3;
+                d.cmd = 1;
+                d.scmd = 3;
             }
             if (m.cmd != null && m.hasOwnProperty("cmd")) {
-                d.cmd = o.enums === String ? $root.CmdProto.SYS_CMD[m.cmd] : m.cmd;
+                d.cmd = m.cmd;
             }
             if (m.scmd != null && m.hasOwnProperty("scmd")) {
-                d.scmd = o.enums === String ? $root.HallPto.HALL[m.scmd] : m.scmd;
+                d.scmd = m.scmd;
             }
             if (m.list && m.list.length) {
                 d.list = [];
@@ -739,6 +738,754 @@ $root.HallPto = (function() {
         };
 
         return S_GAME_LIST;
+    })();
+
+    HallPto.C_CHANGE_HEAD = (function() {
+
+        function C_CHANGE_HEAD(p) {
+            if (p)
+                for (var ks = Object.keys(p), i = 0; i < ks.length; ++i)
+                    if (p[ks[i]] != null)
+                        this[ks[i]] = p[ks[i]];
+        }
+
+        C_CHANGE_HEAD.prototype.cmd = 1;
+        C_CHANGE_HEAD.prototype.scmd = 4;
+        C_CHANGE_HEAD.prototype.headIndex = 0;
+
+        C_CHANGE_HEAD.create = function create(properties) {
+            return new C_CHANGE_HEAD(properties);
+        };
+
+        C_CHANGE_HEAD.encode = function encode(m, w) {
+            if (!w)
+                w = $Writer.create();
+            if (m.cmd != null && Object.hasOwnProperty.call(m, "cmd"))
+                w.uint32(8).int32(m.cmd);
+            if (m.scmd != null && Object.hasOwnProperty.call(m, "scmd"))
+                w.uint32(16).int32(m.scmd);
+            if (m.headIndex != null && Object.hasOwnProperty.call(m, "headIndex"))
+                w.uint32(24).int32(m.headIndex);
+            return w;
+        };
+
+        C_CHANGE_HEAD.decode = function decode(r, l) {
+            if (!(r instanceof $Reader))
+                r = $Reader.create(r);
+            var c = l === undefined ? r.len : r.pos + l, m = new $root.HallPto.C_CHANGE_HEAD();
+            while (r.pos < c) {
+                var t = r.uint32();
+                switch (t >>> 3) {
+                case 1:
+                    m.cmd = r.int32();
+                    break;
+                case 2:
+                    m.scmd = r.int32();
+                    break;
+                case 3:
+                    m.headIndex = r.int32();
+                    break;
+                default:
+                    r.skipType(t & 7);
+                    break;
+                }
+            }
+            return m;
+        };
+
+        C_CHANGE_HEAD.fromObject = function fromObject(d) {
+            if (d instanceof $root.HallPto.C_CHANGE_HEAD)
+                return d;
+            var m = new $root.HallPto.C_CHANGE_HEAD();
+            if (d.cmd != null) {
+                m.cmd = d.cmd | 0;
+            }
+            if (d.scmd != null) {
+                m.scmd = d.scmd | 0;
+            }
+            if (d.headIndex != null) {
+                m.headIndex = d.headIndex | 0;
+            }
+            return m;
+        };
+
+        C_CHANGE_HEAD.toObject = function toObject(m, o) {
+            if (!o)
+                o = {};
+            var d = {};
+            if (o.defaults) {
+                d.cmd = 1;
+                d.scmd = 4;
+                d.headIndex = 0;
+            }
+            if (m.cmd != null && m.hasOwnProperty("cmd")) {
+                d.cmd = m.cmd;
+            }
+            if (m.scmd != null && m.hasOwnProperty("scmd")) {
+                d.scmd = m.scmd;
+            }
+            if (m.headIndex != null && m.hasOwnProperty("headIndex")) {
+                d.headIndex = m.headIndex;
+            }
+            return d;
+        };
+
+        C_CHANGE_HEAD.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return C_CHANGE_HEAD;
+    })();
+
+    HallPto.C_CREATE_ROOM = (function() {
+
+        function C_CREATE_ROOM(p) {
+            if (p)
+                for (var ks = Object.keys(p), i = 0; i < ks.length; ++i)
+                    if (p[ks[i]] != null)
+                        this[ks[i]] = p[ks[i]];
+        }
+
+        C_CREATE_ROOM.prototype.cmd = 1;
+        C_CREATE_ROOM.prototype.scmd = 5;
+        C_CREATE_ROOM.prototype.gameId = 0;
+
+        C_CREATE_ROOM.create = function create(properties) {
+            return new C_CREATE_ROOM(properties);
+        };
+
+        C_CREATE_ROOM.encode = function encode(m, w) {
+            if (!w)
+                w = $Writer.create();
+            if (m.cmd != null && Object.hasOwnProperty.call(m, "cmd"))
+                w.uint32(8).int32(m.cmd);
+            if (m.scmd != null && Object.hasOwnProperty.call(m, "scmd"))
+                w.uint32(16).int32(m.scmd);
+            if (m.gameId != null && Object.hasOwnProperty.call(m, "gameId"))
+                w.uint32(24).int32(m.gameId);
+            return w;
+        };
+
+        C_CREATE_ROOM.decode = function decode(r, l) {
+            if (!(r instanceof $Reader))
+                r = $Reader.create(r);
+            var c = l === undefined ? r.len : r.pos + l, m = new $root.HallPto.C_CREATE_ROOM();
+            while (r.pos < c) {
+                var t = r.uint32();
+                switch (t >>> 3) {
+                case 1:
+                    m.cmd = r.int32();
+                    break;
+                case 2:
+                    m.scmd = r.int32();
+                    break;
+                case 3:
+                    m.gameId = r.int32();
+                    break;
+                default:
+                    r.skipType(t & 7);
+                    break;
+                }
+            }
+            return m;
+        };
+
+        C_CREATE_ROOM.fromObject = function fromObject(d) {
+            if (d instanceof $root.HallPto.C_CREATE_ROOM)
+                return d;
+            var m = new $root.HallPto.C_CREATE_ROOM();
+            if (d.cmd != null) {
+                m.cmd = d.cmd | 0;
+            }
+            if (d.scmd != null) {
+                m.scmd = d.scmd | 0;
+            }
+            if (d.gameId != null) {
+                m.gameId = d.gameId | 0;
+            }
+            return m;
+        };
+
+        C_CREATE_ROOM.toObject = function toObject(m, o) {
+            if (!o)
+                o = {};
+            var d = {};
+            if (o.defaults) {
+                d.cmd = 1;
+                d.scmd = 5;
+                d.gameId = 0;
+            }
+            if (m.cmd != null && m.hasOwnProperty("cmd")) {
+                d.cmd = m.cmd;
+            }
+            if (m.scmd != null && m.hasOwnProperty("scmd")) {
+                d.scmd = m.scmd;
+            }
+            if (m.gameId != null && m.hasOwnProperty("gameId")) {
+                d.gameId = m.gameId;
+            }
+            return d;
+        };
+
+        C_CREATE_ROOM.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return C_CREATE_ROOM;
+    })();
+
+    HallPto.S_CREATE_ROOM = (function() {
+
+        function S_CREATE_ROOM(p) {
+            if (p)
+                for (var ks = Object.keys(p), i = 0; i < ks.length; ++i)
+                    if (p[ks[i]] != null)
+                        this[ks[i]] = p[ks[i]];
+        }
+
+        S_CREATE_ROOM.prototype.cmd = 1;
+        S_CREATE_ROOM.prototype.scmd = 6;
+        S_CREATE_ROOM.prototype.isSuccess = false;
+        S_CREATE_ROOM.prototype.tableSeq = "";
+
+        S_CREATE_ROOM.create = function create(properties) {
+            return new S_CREATE_ROOM(properties);
+        };
+
+        S_CREATE_ROOM.encode = function encode(m, w) {
+            if (!w)
+                w = $Writer.create();
+            if (m.cmd != null && Object.hasOwnProperty.call(m, "cmd"))
+                w.uint32(8).int32(m.cmd);
+            if (m.scmd != null && Object.hasOwnProperty.call(m, "scmd"))
+                w.uint32(16).int32(m.scmd);
+            if (m.isSuccess != null && Object.hasOwnProperty.call(m, "isSuccess"))
+                w.uint32(24).bool(m.isSuccess);
+            if (m.tableSeq != null && Object.hasOwnProperty.call(m, "tableSeq"))
+                w.uint32(34).string(m.tableSeq);
+            return w;
+        };
+
+        S_CREATE_ROOM.decode = function decode(r, l) {
+            if (!(r instanceof $Reader))
+                r = $Reader.create(r);
+            var c = l === undefined ? r.len : r.pos + l, m = new $root.HallPto.S_CREATE_ROOM();
+            while (r.pos < c) {
+                var t = r.uint32();
+                switch (t >>> 3) {
+                case 1:
+                    m.cmd = r.int32();
+                    break;
+                case 2:
+                    m.scmd = r.int32();
+                    break;
+                case 3:
+                    m.isSuccess = r.bool();
+                    break;
+                case 4:
+                    m.tableSeq = r.string();
+                    break;
+                default:
+                    r.skipType(t & 7);
+                    break;
+                }
+            }
+            return m;
+        };
+
+        S_CREATE_ROOM.fromObject = function fromObject(d) {
+            if (d instanceof $root.HallPto.S_CREATE_ROOM)
+                return d;
+            var m = new $root.HallPto.S_CREATE_ROOM();
+            if (d.cmd != null) {
+                m.cmd = d.cmd | 0;
+            }
+            if (d.scmd != null) {
+                m.scmd = d.scmd | 0;
+            }
+            if (d.isSuccess != null) {
+                m.isSuccess = Boolean(d.isSuccess);
+            }
+            if (d.tableSeq != null) {
+                m.tableSeq = String(d.tableSeq);
+            }
+            return m;
+        };
+
+        S_CREATE_ROOM.toObject = function toObject(m, o) {
+            if (!o)
+                o = {};
+            var d = {};
+            if (o.defaults) {
+                d.cmd = 1;
+                d.scmd = 6;
+                d.isSuccess = false;
+                d.tableSeq = "";
+            }
+            if (m.cmd != null && m.hasOwnProperty("cmd")) {
+                d.cmd = m.cmd;
+            }
+            if (m.scmd != null && m.hasOwnProperty("scmd")) {
+                d.scmd = m.scmd;
+            }
+            if (m.isSuccess != null && m.hasOwnProperty("isSuccess")) {
+                d.isSuccess = m.isSuccess;
+            }
+            if (m.tableSeq != null && m.hasOwnProperty("tableSeq")) {
+                d.tableSeq = m.tableSeq;
+            }
+            return d;
+        };
+
+        S_CREATE_ROOM.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return S_CREATE_ROOM;
+    })();
+
+    HallPto.C_JOIN_ROOM = (function() {
+
+        function C_JOIN_ROOM(p) {
+            if (p)
+                for (var ks = Object.keys(p), i = 0; i < ks.length; ++i)
+                    if (p[ks[i]] != null)
+                        this[ks[i]] = p[ks[i]];
+        }
+
+        C_JOIN_ROOM.prototype.cmd = 1;
+        C_JOIN_ROOM.prototype.scmd = 7;
+        C_JOIN_ROOM.prototype.tableSeq = "";
+
+        C_JOIN_ROOM.create = function create(properties) {
+            return new C_JOIN_ROOM(properties);
+        };
+
+        C_JOIN_ROOM.encode = function encode(m, w) {
+            if (!w)
+                w = $Writer.create();
+            if (m.cmd != null && Object.hasOwnProperty.call(m, "cmd"))
+                w.uint32(8).int32(m.cmd);
+            if (m.scmd != null && Object.hasOwnProperty.call(m, "scmd"))
+                w.uint32(16).int32(m.scmd);
+            if (m.tableSeq != null && Object.hasOwnProperty.call(m, "tableSeq"))
+                w.uint32(26).string(m.tableSeq);
+            return w;
+        };
+
+        C_JOIN_ROOM.decode = function decode(r, l) {
+            if (!(r instanceof $Reader))
+                r = $Reader.create(r);
+            var c = l === undefined ? r.len : r.pos + l, m = new $root.HallPto.C_JOIN_ROOM();
+            while (r.pos < c) {
+                var t = r.uint32();
+                switch (t >>> 3) {
+                case 1:
+                    m.cmd = r.int32();
+                    break;
+                case 2:
+                    m.scmd = r.int32();
+                    break;
+                case 3:
+                    m.tableSeq = r.string();
+                    break;
+                default:
+                    r.skipType(t & 7);
+                    break;
+                }
+            }
+            return m;
+        };
+
+        C_JOIN_ROOM.fromObject = function fromObject(d) {
+            if (d instanceof $root.HallPto.C_JOIN_ROOM)
+                return d;
+            var m = new $root.HallPto.C_JOIN_ROOM();
+            if (d.cmd != null) {
+                m.cmd = d.cmd | 0;
+            }
+            if (d.scmd != null) {
+                m.scmd = d.scmd | 0;
+            }
+            if (d.tableSeq != null) {
+                m.tableSeq = String(d.tableSeq);
+            }
+            return m;
+        };
+
+        C_JOIN_ROOM.toObject = function toObject(m, o) {
+            if (!o)
+                o = {};
+            var d = {};
+            if (o.defaults) {
+                d.cmd = 1;
+                d.scmd = 7;
+                d.tableSeq = "";
+            }
+            if (m.cmd != null && m.hasOwnProperty("cmd")) {
+                d.cmd = m.cmd;
+            }
+            if (m.scmd != null && m.hasOwnProperty("scmd")) {
+                d.scmd = m.scmd;
+            }
+            if (m.tableSeq != null && m.hasOwnProperty("tableSeq")) {
+                d.tableSeq = m.tableSeq;
+            }
+            return d;
+        };
+
+        C_JOIN_ROOM.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return C_JOIN_ROOM;
+    })();
+
+    HallPto.S_JOIN_ROOM = (function() {
+
+        function S_JOIN_ROOM(p) {
+            this.players = [];
+            if (p)
+                for (var ks = Object.keys(p), i = 0; i < ks.length; ++i)
+                    if (p[ks[i]] != null)
+                        this[ks[i]] = p[ks[i]];
+        }
+
+        S_JOIN_ROOM.prototype.cmd = 1;
+        S_JOIN_ROOM.prototype.scmd = 8;
+        S_JOIN_ROOM.prototype.isSuccess = false;
+        S_JOIN_ROOM.prototype.tableSeq = "";
+        S_JOIN_ROOM.prototype.players = $util.emptyArray;
+        S_JOIN_ROOM.prototype.gameId = 0;
+
+        S_JOIN_ROOM.create = function create(properties) {
+            return new S_JOIN_ROOM(properties);
+        };
+
+        S_JOIN_ROOM.encode = function encode(m, w) {
+            if (!w)
+                w = $Writer.create();
+            if (m.cmd != null && Object.hasOwnProperty.call(m, "cmd"))
+                w.uint32(8).int32(m.cmd);
+            if (m.scmd != null && Object.hasOwnProperty.call(m, "scmd"))
+                w.uint32(16).int32(m.scmd);
+            if (m.isSuccess != null && Object.hasOwnProperty.call(m, "isSuccess"))
+                w.uint32(24).bool(m.isSuccess);
+            if (m.tableSeq != null && Object.hasOwnProperty.call(m, "tableSeq"))
+                w.uint32(34).string(m.tableSeq);
+            if (m.players != null && m.players.length) {
+                for (var i = 0; i < m.players.length; ++i)
+                    $root.HallPto.Player.encode(m.players[i], w.uint32(42).fork()).ldelim();
+            }
+            if (m.gameId != null && Object.hasOwnProperty.call(m, "gameId"))
+                w.uint32(48).int32(m.gameId);
+            return w;
+        };
+
+        S_JOIN_ROOM.decode = function decode(r, l) {
+            if (!(r instanceof $Reader))
+                r = $Reader.create(r);
+            var c = l === undefined ? r.len : r.pos + l, m = new $root.HallPto.S_JOIN_ROOM();
+            while (r.pos < c) {
+                var t = r.uint32();
+                switch (t >>> 3) {
+                case 1:
+                    m.cmd = r.int32();
+                    break;
+                case 2:
+                    m.scmd = r.int32();
+                    break;
+                case 3:
+                    m.isSuccess = r.bool();
+                    break;
+                case 4:
+                    m.tableSeq = r.string();
+                    break;
+                case 5:
+                    if (!(m.players && m.players.length))
+                        m.players = [];
+                    m.players.push($root.HallPto.Player.decode(r, r.uint32()));
+                    break;
+                case 6:
+                    m.gameId = r.int32();
+                    break;
+                default:
+                    r.skipType(t & 7);
+                    break;
+                }
+            }
+            return m;
+        };
+
+        S_JOIN_ROOM.fromObject = function fromObject(d) {
+            if (d instanceof $root.HallPto.S_JOIN_ROOM)
+                return d;
+            var m = new $root.HallPto.S_JOIN_ROOM();
+            if (d.cmd != null) {
+                m.cmd = d.cmd | 0;
+            }
+            if (d.scmd != null) {
+                m.scmd = d.scmd | 0;
+            }
+            if (d.isSuccess != null) {
+                m.isSuccess = Boolean(d.isSuccess);
+            }
+            if (d.tableSeq != null) {
+                m.tableSeq = String(d.tableSeq);
+            }
+            if (d.players) {
+                if (!Array.isArray(d.players))
+                    throw TypeError(".HallPto.S_JOIN_ROOM.players: array expected");
+                m.players = [];
+                for (var i = 0; i < d.players.length; ++i) {
+                    if (typeof d.players[i] !== "object")
+                        throw TypeError(".HallPto.S_JOIN_ROOM.players: object expected");
+                    m.players[i] = $root.HallPto.Player.fromObject(d.players[i]);
+                }
+            }
+            if (d.gameId != null) {
+                m.gameId = d.gameId | 0;
+            }
+            return m;
+        };
+
+        S_JOIN_ROOM.toObject = function toObject(m, o) {
+            if (!o)
+                o = {};
+            var d = {};
+            if (o.arrays || o.defaults) {
+                d.players = [];
+            }
+            if (o.defaults) {
+                d.cmd = 1;
+                d.scmd = 8;
+                d.isSuccess = false;
+                d.tableSeq = "";
+                d.gameId = 0;
+            }
+            if (m.cmd != null && m.hasOwnProperty("cmd")) {
+                d.cmd = m.cmd;
+            }
+            if (m.scmd != null && m.hasOwnProperty("scmd")) {
+                d.scmd = m.scmd;
+            }
+            if (m.isSuccess != null && m.hasOwnProperty("isSuccess")) {
+                d.isSuccess = m.isSuccess;
+            }
+            if (m.tableSeq != null && m.hasOwnProperty("tableSeq")) {
+                d.tableSeq = m.tableSeq;
+            }
+            if (m.players && m.players.length) {
+                d.players = [];
+                for (var j = 0; j < m.players.length; ++j) {
+                    d.players[j] = $root.HallPto.Player.toObject(m.players[j], o);
+                }
+            }
+            if (m.gameId != null && m.hasOwnProperty("gameId")) {
+                d.gameId = m.gameId;
+            }
+            return d;
+        };
+
+        S_JOIN_ROOM.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return S_JOIN_ROOM;
+    })();
+
+    HallPto.C_READY = (function() {
+
+        function C_READY(p) {
+            if (p)
+                for (var ks = Object.keys(p), i = 0; i < ks.length; ++i)
+                    if (p[ks[i]] != null)
+                        this[ks[i]] = p[ks[i]];
+        }
+
+        C_READY.prototype.cmd = 1;
+        C_READY.prototype.scmd = 9;
+
+        C_READY.create = function create(properties) {
+            return new C_READY(properties);
+        };
+
+        C_READY.encode = function encode(m, w) {
+            if (!w)
+                w = $Writer.create();
+            if (m.cmd != null && Object.hasOwnProperty.call(m, "cmd"))
+                w.uint32(8).int32(m.cmd);
+            if (m.scmd != null && Object.hasOwnProperty.call(m, "scmd"))
+                w.uint32(16).int32(m.scmd);
+            return w;
+        };
+
+        C_READY.decode = function decode(r, l) {
+            if (!(r instanceof $Reader))
+                r = $Reader.create(r);
+            var c = l === undefined ? r.len : r.pos + l, m = new $root.HallPto.C_READY();
+            while (r.pos < c) {
+                var t = r.uint32();
+                switch (t >>> 3) {
+                case 1:
+                    m.cmd = r.int32();
+                    break;
+                case 2:
+                    m.scmd = r.int32();
+                    break;
+                default:
+                    r.skipType(t & 7);
+                    break;
+                }
+            }
+            return m;
+        };
+
+        C_READY.fromObject = function fromObject(d) {
+            if (d instanceof $root.HallPto.C_READY)
+                return d;
+            var m = new $root.HallPto.C_READY();
+            if (d.cmd != null) {
+                m.cmd = d.cmd | 0;
+            }
+            if (d.scmd != null) {
+                m.scmd = d.scmd | 0;
+            }
+            return m;
+        };
+
+        C_READY.toObject = function toObject(m, o) {
+            if (!o)
+                o = {};
+            var d = {};
+            if (o.defaults) {
+                d.cmd = 1;
+                d.scmd = 9;
+            }
+            if (m.cmd != null && m.hasOwnProperty("cmd")) {
+                d.cmd = m.cmd;
+            }
+            if (m.scmd != null && m.hasOwnProperty("scmd")) {
+                d.scmd = m.scmd;
+            }
+            return d;
+        };
+
+        C_READY.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return C_READY;
+    })();
+
+    HallPto.S_PLAYER_READY = (function() {
+
+        function S_PLAYER_READY(p) {
+            if (p)
+                for (var ks = Object.keys(p), i = 0; i < ks.length; ++i)
+                    if (p[ks[i]] != null)
+                        this[ks[i]] = p[ks[i]];
+        }
+
+        S_PLAYER_READY.prototype.cmd = 1;
+        S_PLAYER_READY.prototype.scmd = 9;
+        S_PLAYER_READY.prototype.index = 0;
+        S_PLAYER_READY.prototype.isReady = false;
+
+        S_PLAYER_READY.create = function create(properties) {
+            return new S_PLAYER_READY(properties);
+        };
+
+        S_PLAYER_READY.encode = function encode(m, w) {
+            if (!w)
+                w = $Writer.create();
+            if (m.cmd != null && Object.hasOwnProperty.call(m, "cmd"))
+                w.uint32(8).int32(m.cmd);
+            if (m.scmd != null && Object.hasOwnProperty.call(m, "scmd"))
+                w.uint32(16).int32(m.scmd);
+            if (m.index != null && Object.hasOwnProperty.call(m, "index"))
+                w.uint32(24).int32(m.index);
+            if (m.isReady != null && Object.hasOwnProperty.call(m, "isReady"))
+                w.uint32(32).bool(m.isReady);
+            return w;
+        };
+
+        S_PLAYER_READY.decode = function decode(r, l) {
+            if (!(r instanceof $Reader))
+                r = $Reader.create(r);
+            var c = l === undefined ? r.len : r.pos + l, m = new $root.HallPto.S_PLAYER_READY();
+            while (r.pos < c) {
+                var t = r.uint32();
+                switch (t >>> 3) {
+                case 1:
+                    m.cmd = r.int32();
+                    break;
+                case 2:
+                    m.scmd = r.int32();
+                    break;
+                case 3:
+                    m.index = r.int32();
+                    break;
+                case 4:
+                    m.isReady = r.bool();
+                    break;
+                default:
+                    r.skipType(t & 7);
+                    break;
+                }
+            }
+            return m;
+        };
+
+        S_PLAYER_READY.fromObject = function fromObject(d) {
+            if (d instanceof $root.HallPto.S_PLAYER_READY)
+                return d;
+            var m = new $root.HallPto.S_PLAYER_READY();
+            if (d.cmd != null) {
+                m.cmd = d.cmd | 0;
+            }
+            if (d.scmd != null) {
+                m.scmd = d.scmd | 0;
+            }
+            if (d.index != null) {
+                m.index = d.index | 0;
+            }
+            if (d.isReady != null) {
+                m.isReady = Boolean(d.isReady);
+            }
+            return m;
+        };
+
+        S_PLAYER_READY.toObject = function toObject(m, o) {
+            if (!o)
+                o = {};
+            var d = {};
+            if (o.defaults) {
+                d.cmd = 1;
+                d.scmd = 9;
+                d.index = 0;
+                d.isReady = false;
+            }
+            if (m.cmd != null && m.hasOwnProperty("cmd")) {
+                d.cmd = m.cmd;
+            }
+            if (m.scmd != null && m.hasOwnProperty("scmd")) {
+                d.scmd = m.scmd;
+            }
+            if (m.index != null && m.hasOwnProperty("index")) {
+                d.index = m.index;
+            }
+            if (m.isReady != null && m.hasOwnProperty("isReady")) {
+                d.isReady = m.isReady;
+            }
+            return d;
+        };
+
+        S_PLAYER_READY.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return S_PLAYER_READY;
     })();
 
     return HallPto;

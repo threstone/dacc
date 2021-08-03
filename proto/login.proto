@@ -1,21 +1,17 @@
 syntax = "proto3";
 package LoginPto;
-import "sys_cmd.proto";
 
-enum LOGIN{
-	CS_LOGIN = 1;//客户端请求登录
-	SC_LOGIN = 2;//服务端登录回应
-}
-
+//客户端请求登录
 message C_LOGIN{
-	CmdProto.SYS_CMD cmd = 1[default = SYS_LOGIN]; 
-	LOGIN scmd = 2[default = CS_LOGIN];
+	int32 cmd = 1[default = 0]; 
+	int32 scmd = 2[default = 1];
 	string userName = 3;
 }
 
+//服务端登录回应
 message S_LOGIN{
-	CmdProto.SYS_CMD cmd = 1[default = SYS_LOGIN]; 
-	LOGIN scmd = 2[default = SC_LOGIN];
+	int32 cmd = 1[default = 0]; 
+	int32 scmd = 2[default = 2];
 	bool isSuccess = 3;
 	string userName = 4;
 }

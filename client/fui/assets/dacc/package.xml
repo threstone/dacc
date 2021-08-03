@@ -42,6 +42,8 @@
     <component id="b78j2g" name="RoomList.xml" path="/component/roomList/"/>
     <component id="b78j2h" name="RoomItem.xml" path="/component/roomList/"/>
     <component id="b78j2k" name="GameItem.xml" path="/component/gameList/"/>
+    <image id="b78j2l" name="touxiang.png" path="/picture/"/>
+    <component id="b78j2m" name="ChangeHeadCom.xml" path="/component/changeHead/"/>
   </resources>
   <publish name="hall" genCode="true" npot="true"/>
 </packageDescription>

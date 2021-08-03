@@ -50,7 +50,7 @@ class Main extends egret.DisplayObjectContainer {
 
     private initFuiHall() {
         this.stage.addChild(fairygui.GRoot.inst.displayObject);
-        GlobalController.init()
+        GlobalController.init(this.stage)
     }
 
     /**

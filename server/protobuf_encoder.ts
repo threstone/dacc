@@ -11,13 +11,13 @@ export interface IGameMessage {
 
 let logger = getLogger()
 export class ProtoBufEncoder {
-  private static messagehandles_: Map<number, Function> = new Map<number, Function>()
+  private static messagehandles_: Map<string, Function> = new Map<string, Function>()
   private static protoBufWriter: protobuf.Writer = protobuf.Writer.create()
   private static protoBufReader: protobuf.Reader = protobuf.Reader.create(Buffer.alloc(1))
-  private static protoBufClass: Map<number, any> = new Map<number, any>()
+  private static protoBufClass: Map<string, any> = new Map<string, any>()
 
   public static setHandle(cmd: number, scmd: number, fun: Function) {
-    let protoIndex: number = cmd * 255 + scmd
+    let protoIndex = cmd + "_" + scmd
     if (this.messagehandles_[protoIndex]) {
       logger.error(`该位置已有注册函数 cmd:${cmd} scmd:${scmd}`)
       return
@@ -26,7 +26,7 @@ export class ProtoBufEncoder {
   }
 
   public static setProtoClass(cmd: number, scmd: number, protoClass: any) {
-    let protoIndex: number = cmd * 255 + scmd
+    let protoIndex = cmd + "_" + scmd
     if (this.messagehandles_[protoIndex]) {
       logger.error(`该位置已有protoClass cmd:${cmd} scmd:${scmd}`)
       return
@@ -44,16 +44,7 @@ export class ProtoBufEncoder {
           throw new Error("协议头cmd , scmd 值错误," + key)
         }
 
-
-        if (protoClass.prototype.cmd < 0 || protoClass.prototype.cmd > 255) {
-          throw new Error("协议头cmd ,范围错误," + key + "," + protoClass.prototype.cmd)
-        }
-
-        if (protoClass.prototype.scmd < 0 || protoClass.prototype.scmd > 255) {
-          throw new Error("协议头cmdid ,范围错误," + key + "," + protoClass.prototype.scmd)
-        }
-
-        let protoIndex: number = protoClass.prototype.cmd * 255 + protoClass.prototype.scmd
+        let protoIndex = protoClass.prototype.cmd + "_" + protoClass.prototype.scmd
         ProtoBufEncoder.protoBufClass.set(protoIndex, protoClass)
 
         //客户端的代码需要注册一下
@@ -105,7 +96,7 @@ export class ProtoBufEncoder {
     if (!message) {
       return
     }
-    let index = message.cmd * 255 + message.scmd
+    let index = message.cmd + "_" + message.scmd
     let messageClass = ProtoBufEncoder.protoBufClass.get(index)
     if (!messageClass) {
       throw new Error("未找到注册的协议编码类:" + index)
@@ -122,7 +113,7 @@ export class ProtoBufEncoder {
     }
     const cmd = buffer.readUInt8(offset)
     const scmd = buffer.readUInt8(offset + 1)
-    const messageIndex = cmd * 255 + scmd
+    const messageIndex = cmd + "_" + scmd
     const messageClass = ProtoBufEncoder.protoBufClass.get(messageIndex)
 
     if (!messageClass) {
@@ -145,7 +136,7 @@ export class ProtoBufEncoder {
 
   //获取注册执行的HandleFunction
   public static getHandleFunction(cmd: number, scmd: number): Function {
-    const messageIndex = cmd * 255 + scmd
+    const messageIndex = cmd + "_" + scmd
     return ProtoBufEncoder.messagehandles_.get(messageIndex)
   }
 
