@@ -1,9 +1,9 @@
 {
 	"options": {
-		"no-create": false,
-		"no-verify": false,
+		"no-create": true,
+		"no-verify": true,
 		"no-convert": true,
-		"no-delimited": false
+		"no-delimited": true
 	},
 	"sourceRoot": "../../../proto",
 	"outputFile": "bundles/protobuf-bundles.js"

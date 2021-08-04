@@ -1,4 +1,5 @@
 import { HallPto } from "../common_proto"
+import { DaccRoom } from "../dacc_room"
 import { DaccUser } from "../dacc_session"
 import { GlobalVal } from "../global_val"
 
@@ -15,34 +16,63 @@ export class HallHandle {
     }
 
     static C_CREATE_ROOM(user: DaccUser, msg: HallPto.C_CREATE_ROOM) {
-        let table = GlobalVal.tableMgr.createTable(msg.gameId)
+        let room = GlobalVal.roomMgr.createRoom(msg.gameId)
         let resMsg = new HallPto.S_CREATE_ROOM()
-        resMsg.isSuccess = !!table
-        if (table) {
-            resMsg.tableSeq = table.tableSeq
+        resMsg.isSuccess = (room != undefined)
+        if (room) {
+            resMsg.roomId = room.roomId
+            room.describe = msg.describe
         }
         user.sendMsg(resMsg)
     }
 
     static C_JOIN_ROOM(user: DaccUser, msg: HallPto.C_JOIN_ROOM) {
-        let table = GlobalVal.tableMgr.getTableByTableSeq(msg.tableSeq)
+        let room = GlobalVal.roomMgr.getRoomByRoomId(msg.roomId)
         let resMsg = new HallPto.S_JOIN_ROOM()
-        resMsg.isSuccess = table.onUserJoinTable(user)
+        resMsg.isSuccess = room.onUserJoinRoom(user)
         //如果加入失败
         if (!resMsg.isSuccess) {
             user.sendMsg(resMsg)
             return
         }
-        for (let index = 0; index < table.players.length; index++) {
-            const temp = table.players[index];
+        for (let index = 0; index < room.players.length; index++) {
+            if (!room.players[index]) {
+                continue
+            }
+            const temp = room.players[index];
             let player = new HallPto.Player()
             player.index = index
             player.isReady = temp.isReady
             player.headIndex = temp.getSession().headIndex
+            player.userName = temp.getSession().userName
             resMsg.players.push(player)
         }
-        resMsg.tableSeq = msg.tableSeq
-        resMsg.gameId = table.gameId
+        resMsg.roomId = msg.roomId
+        resMsg.gameId = room.gameId
         user.sendMsg(resMsg)
+    }
+
+    static C_ROOM_LIST(user: DaccUser, msg: HallPto.C_ROOM_LIST) {
+        let arr: DaccRoom[]
+        if (msg.status == 0) {
+            arr = GlobalVal.roomMgr.getRoomsByGameId(msg.gameId)
+        } else {
+            arr = GlobalVal.roomMgr.getRoomsByGameIdAndStartStatus(msg.gameId, msg.status == 1)
+        }
+        if (arr) {
+            let resMsg = new HallPto.S_ROOM_LIST()
+            for (let i = 0; i < arr.length; i++) {
+                let temp = arr[i]
+                let roomInfo = new HallPto.RoomInfo()
+                roomInfo.gameId = temp.gameId
+                roomInfo.roomId = temp.roomId
+                roomInfo.describe = temp.describe
+                roomInfo.isStart = temp.isStart
+                roomInfo.maxPlayer = temp.getMaxPlayerNum()
+                roomInfo.curPlayer = temp.players.length
+                resMsg.list.push(roomInfo)
+            }
+            user.sendMsg(resMsg)
+        }
     }
 }

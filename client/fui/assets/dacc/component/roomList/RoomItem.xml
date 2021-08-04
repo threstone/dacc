@@ -2,11 +2,14 @@
 <component size="780,57">
   <displayList>
     <graph id="n0_b78j" name="bg" xy="0,0" size="780,57" type="rect" fillColor="#ff666666"/>
-    <text id="n2_b78j" name="title" xy="13,13" size="120,30" fontSize="22" color="#ffffff" vAlign="middle" bold="true" singleLine="true" text="石头剪刀布">
+    <text id="n2_b78j" name="game_name" xy="13,13" size="121,30" fontSize="22" color="#ffffff" vAlign="middle" bold="true" singleLine="true" text="石头剪刀布">
       <relation target="" sidePair="width-width,height-height"/>
     </text>
-    <component id="n3_b78j" name="n3" src="ikts1n" fileName="component/common/BtnLong.xml" xy="655,13" size="89,28"/>
-    <text id="n4_b78j" name="title" xy="195,13" size="74,30" fontSize="22" color="#ffffff" vAlign="middle" bold="true" singleLine="true" text="游戏中">
+    <component id="n3_b78j" name="join_btn" src="ikts1n" fileName="component/common/BtnLong.xml" xy="678,13" size="89,28"/>
+    <text id="n4_b78j" name="game_status" xy="169,13" size="74,30" fontSize="22" color="#ffffff" vAlign="middle" bold="true" singleLine="true" text="游戏中">
+      <relation target="" sidePair="width-width,height-height"/>
+    </text>
+    <text id="n5_di7i" name="describe" xy="263,13" size="405,30" fontSize="22" color="#ffffff" vAlign="middle" autoSize="shrink" bold="true" singleLine="true" text="游戏中游戏游戏中游戏游戏中游戏游戏中游戏">
       <relation target="" sidePair="width-width,height-height"/>
     </text>
   </displayList>

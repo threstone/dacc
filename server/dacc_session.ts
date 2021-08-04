@@ -1,7 +1,7 @@
 import { getLogger } from "log4js"
 import { LoginPto } from "./common_proto"
 import { DaccPlayer } from "./dacc_player"
-import { DaccTable } from "./dacc_table"
+import { DaccRoom } from "./dacc_room"
 import { GlobalVal } from "./global_val"
 import { IGameMessage } from "./protobuf_encoder"
 const logger = getLogger()
@@ -11,7 +11,7 @@ export class DaccUser {
     userName: string = ""
     headIndex: number = -1
 
-    table: DaccTable
+    room: DaccRoom
     player: DaccPlayer
 
     init(clientId: number) {
@@ -21,6 +21,15 @@ export class DaccUser {
     doLogin(data: LoginPto.C_LOGIN) {
         this.userName = data.userName
         this.isLogin = true
+    }
+
+    onClose() {
+        if (this.room) {
+            this.player.clientId = -1
+            this.room.onUserSocketClose(this.player)
+            this.player = null
+            this.room = null
+        }
     }
 
     reset() {

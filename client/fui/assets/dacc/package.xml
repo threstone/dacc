@@ -44,6 +44,7 @@
     <component id="b78j2k" name="GameItem.xml" path="/component/gameList/"/>
     <image id="b78j2l" name="touxiang.png" path="/picture/"/>
     <component id="b78j2m" name="ChangeHeadCom.xml" path="/component/changeHead/"/>
+    <component id="di7i2o" name="UserBox.xml" path="/component/userBox/" exported="true"/>
   </resources>
   <publish name="hall" genCode="true" npot="true"/>
 </packageDescription>

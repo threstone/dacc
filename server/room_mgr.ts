@@ -1,52 +1,83 @@
 import { getLogger } from "log4js";
-import { DaccTable } from "./dacc_table";
+import { DaccRoom } from "./dacc_room";
 import * as fs from "fs"
 import * as path from "path"
-export declare type GameTableClasses = typeof DaccTable
+export declare type GameRoomClasses = typeof DaccRoom
 let logger = getLogger()
-export class TableMgr {
-    private _tableMap: Map<string, DaccTable>
-    private _tableIndex = 1
-    private _tableClassMap: Map<number, GameTableClasses>
+export class RoomMgr {
+    private _roomMap: Map<number, DaccRoom>
+    private _roomIndex = 1
+    private _roomClassMap: Map<number, GameRoomClasses>
     constructor() {
-        this._tableMap = new Map<string, DaccTable>()
-        this.initTableClass()
+        this._roomMap = new Map<number, DaccRoom>()
+        this.initRoomClass()
     }
 
-    initTableClass() {
-        this._tableClassMap = new Map<number, GameTableClasses>()
+    initRoomClass() {
+        this._roomClassMap = new Map<number, GameRoomClasses>()
         let basePath = path.join(__dirname, "./games")
         let files = fs.readdirSync(basePath)
         for (let i = 0; i < files.length; i++) {
             let foldName = files[i]
             if (foldName.startsWith("G")) {
                 let gameId = parseInt(foldName.substr(1))
-                if (Number.isNaN(gameId) || this._tableClassMap.has(gameId)) {
+                if (Number.isNaN(gameId) || this._roomClassMap.has(gameId)) {
                     logger.error(`${foldName} 注册游戏出现错误`)
                     continue
                 }
-                let tablePath = path.join(basePath, `${foldName}/table_${gameId}`)
-                let tableClass = require(tablePath)
-                this._tableClassMap.set(gameId, tableClass[`Table${gameId}`])
+                let roomPath = path.join(basePath, `${foldName}/room_${gameId}`)
+                let roomClass = require(roomPath)
+                this._roomClassMap.set(gameId, roomClass[`Room${gameId}`])
                 console.log(`gameId:${gameId}注册成功`)
             }
         }
     }
 
-    createTable(gameId: number) {
-        let tableClass = this._tableClassMap.get(gameId)
-        if (!tableClass) {
+    createRoom(gameId: number) {
+        let roomClass = this._roomClassMap.get(gameId)
+        if (!roomClass) {
             logger.error(`请求创建未注册的游戏房间:${gameId}`)
             return
         }
-        let table = (new (tableClass as any)(gameId)) as DaccTable
-        table.setTableSeq(`${gameId}-${Date.now()}-${this._tableIndex++}`)
-        this._tableMap.set(table.tableSeq, table)
-        return table
+        let room = (new (roomClass as any)(gameId)) as DaccRoom
+        room.roomId = this._roomIndex++
+        room.setRoomSeq(`${gameId}-${Date.now()}-${room.roomId}`)
+        this._roomMap.set(room.roomId, room)
+        return room
     }
 
-    getTableByTableSeq(seq: string) {
-        return this._tableMap.get(seq)
+    getRoomByRoomId(roomId: number) {
+        return this._roomMap.get(roomId)
+    }
+
+    /**
+     * 如果gameid==0 则获取所有房间
+     */
+    getRoomsByGameId(gameId: number) {
+        let arr: DaccRoom[] = []
+        this._roomMap.forEach((v, k) => {
+            if (gameId == 0 || v.gameId == gameId) {
+                arr.push(v)
+            }
+        })
+        return arr
+    }
+
+    /**
+    * 如果gameid==0 则获取所有房间
+    */
+    getRoomsByGameIdAndStartStatus(gameId: number, isStart: boolean) {
+        let arr: DaccRoom[] = []
+        this._roomMap.forEach((v, k) => {
+            if ((gameId == 0 || v.gameId == gameId) && v.isStart == isStart) {
+                arr.push(v)
+            }
+        })
+        return arr
+    }
+
+    destoryRoom(roomId: number) {
+        this._roomMap.delete(roomId)
     }
 
     // private logicIndex = 0

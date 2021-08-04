@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="118,148">
+  <displayList>
+    <text id="n0_di7i" name="user_name" xy="59,133" pivot="0.5,0.5" anchor="true" size="74,30" fontSize="22" color="#006699" bold="true" autoClearText="true" text="用户名"/>
+    <loader id="n1_di7i" name="head_pic" xy="0,0" size="118,118" url="ui://sly852qpb78j2l" autoSize="true"/>
+  </displayList>
+</component>

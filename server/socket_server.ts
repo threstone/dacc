@@ -41,7 +41,6 @@ export class SocketServer {
 
             ws.on("close", () => {
                 this.onClose(session)
-                this.resetSession(session)
             })
         })
     }
@@ -64,13 +63,6 @@ export class SocketServer {
             }
         }
         return this._emptySessionPool.pop()
-    }
-
-    private resetSession(session: DaccSession) {
-        this._socketArr[session.clientId] = null
-        this._sessionArr[session.clientId] = null
-        session.reset()
-        this._emptySessionPool.push(session)
     }
 
     private onMessage(session: DaccSession, buf: Buffer) {
@@ -103,7 +95,6 @@ export class SocketServer {
             if (ws) {
                 ws.send(buf)
             }
-
         }
     }
 
@@ -124,7 +115,11 @@ export class SocketServer {
     }
 
     onClose(session: DaccSession) {
-
+        session.onClose()
+        this._socketArr[session.clientId] = null
+        this._sessionArr[session.clientId] = null
+        session.reset()
+        this._emptySessionPool.push(session)
     }
 
     getDaccSession(clientId: number) {

@@ -18,6 +18,15 @@ export class DaccPlayer {
         GlobalVal.server.sendMsg(this.clientId, msg)
     }
 
+    sendBuf(buf: Buffer) {
+        if (this.clientId == -1) {
+            logger.error("error DaccPlayer clientId = -1")
+            return
+        }
+        GlobalVal.server.sendBuf(this.clientId, buf)
+    }
+
+
     /**
      * 获取DaccSession
      */

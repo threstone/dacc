@@ -25,7 +25,7 @@ class GlobalController {
         this.globalView.showTips(msg, hoverTime)
     }
 
-    static JoinGameSuccess(data: HallPto.S_JOIN_ROOM) {
+    static joinGameSuccess(data: HallPto.S_JOIN_ROOM) {
         this.gameController.onJoinRoomSuccess(data)
     }
 }

@@ -36,27 +36,12 @@ declare namespace GamePto1001 {
         public tableSeq: string;
 
         /**
-         * Creates a new S_INIT_SCENE instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns S_INIT_SCENE instance
-         */
-        public static create(properties?: GamePto1001.IS_INIT_SCENE): GamePto1001.S_INIT_SCENE;
-
-        /**
          * Encodes the specified S_INIT_SCENE message. Does not implicitly {@link GamePto1001.S_INIT_SCENE.verify|verify} messages.
          * @param message S_INIT_SCENE message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
         public static encode(message: GamePto1001.IS_INIT_SCENE, writer?: protobuf.Writer): protobuf.Writer;
-
-        /**
-         * Encodes the specified S_INIT_SCENE message, length delimited. Does not implicitly {@link GamePto1001.S_INIT_SCENE.verify|verify} messages.
-         * @param message S_INIT_SCENE message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: GamePto1001.IS_INIT_SCENE, writer?: protobuf.Writer): protobuf.Writer;
 
         /**
          * Decodes a S_INIT_SCENE message from the specified reader or buffer.
@@ -67,22 +52,6 @@ declare namespace GamePto1001 {
          * @throws {protobuf.util.ProtocolError} If required fields are missing
          */
         public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): GamePto1001.S_INIT_SCENE;
-
-        /**
-         * Decodes a S_INIT_SCENE message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns S_INIT_SCENE
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: (protobuf.Reader|Uint8Array)): GamePto1001.S_INIT_SCENE;
-
-        /**
-         * Verifies a S_INIT_SCENE message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
     }
 }
 
@@ -115,27 +84,12 @@ declare namespace HallPto {
         public gameName: string;
 
         /**
-         * Creates a new GameInfo instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns GameInfo instance
-         */
-        public static create(properties?: HallPto.IGameInfo): HallPto.GameInfo;
-
-        /**
          * Encodes the specified GameInfo message. Does not implicitly {@link HallPto.GameInfo.verify|verify} messages.
          * @param message GameInfo message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
         public static encode(message: HallPto.IGameInfo, writer?: protobuf.Writer): protobuf.Writer;
-
-        /**
-         * Encodes the specified GameInfo message, length delimited. Does not implicitly {@link HallPto.GameInfo.verify|verify} messages.
-         * @param message GameInfo message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: HallPto.IGameInfo, writer?: protobuf.Writer): protobuf.Writer;
 
         /**
          * Decodes a GameInfo message from the specified reader or buffer.
@@ -146,22 +100,6 @@ declare namespace HallPto {
          * @throws {protobuf.util.ProtocolError} If required fields are missing
          */
         public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): HallPto.GameInfo;
-
-        /**
-         * Decodes a GameInfo message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns GameInfo
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: (protobuf.Reader|Uint8Array)): HallPto.GameInfo;
-
-        /**
-         * Verifies a GameInfo message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
     }
 
     /** Properties of a Player. */
@@ -202,27 +140,12 @@ declare namespace HallPto {
         public isReady: boolean;
 
         /**
-         * Creates a new Player instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns Player instance
-         */
-        public static create(properties?: HallPto.IPlayer): HallPto.Player;
-
-        /**
          * Encodes the specified Player message. Does not implicitly {@link HallPto.Player.verify|verify} messages.
          * @param message Player message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
         public static encode(message: HallPto.IPlayer, writer?: protobuf.Writer): protobuf.Writer;
-
-        /**
-         * Encodes the specified Player message, length delimited. Does not implicitly {@link HallPto.Player.verify|verify} messages.
-         * @param message Player message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: HallPto.IPlayer, writer?: protobuf.Writer): protobuf.Writer;
 
         /**
          * Decodes a Player message from the specified reader or buffer.
@@ -233,22 +156,74 @@ declare namespace HallPto {
          * @throws {protobuf.util.ProtocolError} If required fields are missing
          */
         public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): HallPto.Player;
+    }
+
+    /** Properties of a RoomInfo. */
+    interface IRoomInfo {
+
+        /** RoomInfo gameId */
+        gameId?: (number|null);
+
+        /** RoomInfo isStart */
+        isStart?: (boolean|null);
+
+        /** RoomInfo describe */
+        describe?: (string|null);
+
+        /** RoomInfo roomId */
+        roomId?: (number|null);
+
+        /** RoomInfo curPlayer */
+        curPlayer?: (number|null);
+
+        /** RoomInfo maxPlayer */
+        maxPlayer?: (number|null);
+    }
+
+    /** Represents a RoomInfo. */
+    class RoomInfo implements IRoomInfo {
 
         /**
-         * Decodes a Player message from the specified reader or buffer, length delimited.
+         * Constructs a new RoomInfo.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: HallPto.IRoomInfo);
+
+        /** RoomInfo gameId. */
+        public gameId: number;
+
+        /** RoomInfo isStart. */
+        public isStart: boolean;
+
+        /** RoomInfo describe. */
+        public describe: string;
+
+        /** RoomInfo roomId. */
+        public roomId: number;
+
+        /** RoomInfo curPlayer. */
+        public curPlayer: number;
+
+        /** RoomInfo maxPlayer. */
+        public maxPlayer: number;
+
+        /**
+         * Encodes the specified RoomInfo message. Does not implicitly {@link HallPto.RoomInfo.verify|verify} messages.
+         * @param message RoomInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: HallPto.IRoomInfo, writer?: protobuf.Writer): protobuf.Writer;
+
+        /**
+         * Decodes a RoomInfo message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
-         * @returns Player
+         * @param [length] Message length if known beforehand
+         * @returns RoomInfo
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: (protobuf.Reader|Uint8Array)): HallPto.Player;
-
-        /**
-         * Verifies a Player message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
+        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): HallPto.RoomInfo;
     }
 
     /** Properties of a C_SEND_CHAT_MSG. */
@@ -283,27 +258,12 @@ declare namespace HallPto {
         public msg: string;
 
         /**
-         * Creates a new C_SEND_CHAT_MSG instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns C_SEND_CHAT_MSG instance
-         */
-        public static create(properties?: HallPto.IC_SEND_CHAT_MSG): HallPto.C_SEND_CHAT_MSG;
-
-        /**
          * Encodes the specified C_SEND_CHAT_MSG message. Does not implicitly {@link HallPto.C_SEND_CHAT_MSG.verify|verify} messages.
          * @param message C_SEND_CHAT_MSG message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
         public static encode(message: HallPto.IC_SEND_CHAT_MSG, writer?: protobuf.Writer): protobuf.Writer;
-
-        /**
-         * Encodes the specified C_SEND_CHAT_MSG message, length delimited. Does not implicitly {@link HallPto.C_SEND_CHAT_MSG.verify|verify} messages.
-         * @param message C_SEND_CHAT_MSG message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: HallPto.IC_SEND_CHAT_MSG, writer?: protobuf.Writer): protobuf.Writer;
 
         /**
          * Decodes a C_SEND_CHAT_MSG message from the specified reader or buffer.
@@ -314,22 +274,6 @@ declare namespace HallPto {
          * @throws {protobuf.util.ProtocolError} If required fields are missing
          */
         public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): HallPto.C_SEND_CHAT_MSG;
-
-        /**
-         * Decodes a C_SEND_CHAT_MSG message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns C_SEND_CHAT_MSG
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: (protobuf.Reader|Uint8Array)): HallPto.C_SEND_CHAT_MSG;
-
-        /**
-         * Verifies a C_SEND_CHAT_MSG message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
     }
 
     /** Properties of a S_CHAT_MSG. */
@@ -370,27 +314,12 @@ declare namespace HallPto {
         public msg: string;
 
         /**
-         * Creates a new S_CHAT_MSG instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns S_CHAT_MSG instance
-         */
-        public static create(properties?: HallPto.IS_CHAT_MSG): HallPto.S_CHAT_MSG;
-
-        /**
          * Encodes the specified S_CHAT_MSG message. Does not implicitly {@link HallPto.S_CHAT_MSG.verify|verify} messages.
          * @param message S_CHAT_MSG message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
         public static encode(message: HallPto.IS_CHAT_MSG, writer?: protobuf.Writer): protobuf.Writer;
-
-        /**
-         * Encodes the specified S_CHAT_MSG message, length delimited. Does not implicitly {@link HallPto.S_CHAT_MSG.verify|verify} messages.
-         * @param message S_CHAT_MSG message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: HallPto.IS_CHAT_MSG, writer?: protobuf.Writer): protobuf.Writer;
 
         /**
          * Decodes a S_CHAT_MSG message from the specified reader or buffer.
@@ -401,22 +330,6 @@ declare namespace HallPto {
          * @throws {protobuf.util.ProtocolError} If required fields are missing
          */
         public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): HallPto.S_CHAT_MSG;
-
-        /**
-         * Decodes a S_CHAT_MSG message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns S_CHAT_MSG
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: (protobuf.Reader|Uint8Array)): HallPto.S_CHAT_MSG;
-
-        /**
-         * Verifies a S_CHAT_MSG message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
     }
 
     /** Properties of a S_GAME_LIST. */
@@ -451,27 +364,12 @@ declare namespace HallPto {
         public list: HallPto.IGameInfo[];
 
         /**
-         * Creates a new S_GAME_LIST instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns S_GAME_LIST instance
-         */
-        public static create(properties?: HallPto.IS_GAME_LIST): HallPto.S_GAME_LIST;
-
-        /**
          * Encodes the specified S_GAME_LIST message. Does not implicitly {@link HallPto.S_GAME_LIST.verify|verify} messages.
          * @param message S_GAME_LIST message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
         public static encode(message: HallPto.IS_GAME_LIST, writer?: protobuf.Writer): protobuf.Writer;
-
-        /**
-         * Encodes the specified S_GAME_LIST message, length delimited. Does not implicitly {@link HallPto.S_GAME_LIST.verify|verify} messages.
-         * @param message S_GAME_LIST message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: HallPto.IS_GAME_LIST, writer?: protobuf.Writer): protobuf.Writer;
 
         /**
          * Decodes a S_GAME_LIST message from the specified reader or buffer.
@@ -482,22 +380,6 @@ declare namespace HallPto {
          * @throws {protobuf.util.ProtocolError} If required fields are missing
          */
         public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): HallPto.S_GAME_LIST;
-
-        /**
-         * Decodes a S_GAME_LIST message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns S_GAME_LIST
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: (protobuf.Reader|Uint8Array)): HallPto.S_GAME_LIST;
-
-        /**
-         * Verifies a S_GAME_LIST message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
     }
 
     /** Properties of a C_CHANGE_HEAD. */
@@ -532,27 +414,12 @@ declare namespace HallPto {
         public headIndex: number;
 
         /**
-         * Creates a new C_CHANGE_HEAD instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns C_CHANGE_HEAD instance
-         */
-        public static create(properties?: HallPto.IC_CHANGE_HEAD): HallPto.C_CHANGE_HEAD;
-
-        /**
          * Encodes the specified C_CHANGE_HEAD message. Does not implicitly {@link HallPto.C_CHANGE_HEAD.verify|verify} messages.
          * @param message C_CHANGE_HEAD message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
         public static encode(message: HallPto.IC_CHANGE_HEAD, writer?: protobuf.Writer): protobuf.Writer;
-
-        /**
-         * Encodes the specified C_CHANGE_HEAD message, length delimited. Does not implicitly {@link HallPto.C_CHANGE_HEAD.verify|verify} messages.
-         * @param message C_CHANGE_HEAD message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: HallPto.IC_CHANGE_HEAD, writer?: protobuf.Writer): protobuf.Writer;
 
         /**
          * Decodes a C_CHANGE_HEAD message from the specified reader or buffer.
@@ -563,22 +430,6 @@ declare namespace HallPto {
          * @throws {protobuf.util.ProtocolError} If required fields are missing
          */
         public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): HallPto.C_CHANGE_HEAD;
-
-        /**
-         * Decodes a C_CHANGE_HEAD message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns C_CHANGE_HEAD
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: (protobuf.Reader|Uint8Array)): HallPto.C_CHANGE_HEAD;
-
-        /**
-         * Verifies a C_CHANGE_HEAD message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
     }
 
     /** Properties of a C_CREATE_ROOM. */
@@ -592,6 +443,9 @@ declare namespace HallPto {
 
         /** C_CREATE_ROOM gameId */
         gameId?: (number|null);
+
+        /** C_CREATE_ROOM describe */
+        describe?: (string|null);
     }
 
     /** Represents a C_CREATE_ROOM. */
@@ -612,12 +466,8 @@ declare namespace HallPto {
         /** C_CREATE_ROOM gameId. */
         public gameId: number;
 
-        /**
-         * Creates a new C_CREATE_ROOM instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns C_CREATE_ROOM instance
-         */
-        public static create(properties?: HallPto.IC_CREATE_ROOM): HallPto.C_CREATE_ROOM;
+        /** C_CREATE_ROOM describe. */
+        public describe: string;
 
         /**
          * Encodes the specified C_CREATE_ROOM message. Does not implicitly {@link HallPto.C_CREATE_ROOM.verify|verify} messages.
@@ -628,14 +478,6 @@ declare namespace HallPto {
         public static encode(message: HallPto.IC_CREATE_ROOM, writer?: protobuf.Writer): protobuf.Writer;
 
         /**
-         * Encodes the specified C_CREATE_ROOM message, length delimited. Does not implicitly {@link HallPto.C_CREATE_ROOM.verify|verify} messages.
-         * @param message C_CREATE_ROOM message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: HallPto.IC_CREATE_ROOM, writer?: protobuf.Writer): protobuf.Writer;
-
-        /**
          * Decodes a C_CREATE_ROOM message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
@@ -644,22 +486,6 @@ declare namespace HallPto {
          * @throws {protobuf.util.ProtocolError} If required fields are missing
          */
         public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): HallPto.C_CREATE_ROOM;
-
-        /**
-         * Decodes a C_CREATE_ROOM message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns C_CREATE_ROOM
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: (protobuf.Reader|Uint8Array)): HallPto.C_CREATE_ROOM;
-
-        /**
-         * Verifies a C_CREATE_ROOM message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
     }
 
     /** Properties of a S_CREATE_ROOM. */
@@ -674,8 +500,8 @@ declare namespace HallPto {
         /** S_CREATE_ROOM isSuccess */
         isSuccess?: (boolean|null);
 
-        /** S_CREATE_ROOM tableSeq */
-        tableSeq?: (string|null);
+        /** S_CREATE_ROOM roomId */
+        roomId?: (number|null);
     }
 
     /** Represents a S_CREATE_ROOM. */
@@ -696,15 +522,8 @@ declare namespace HallPto {
         /** S_CREATE_ROOM isSuccess. */
         public isSuccess: boolean;
 
-        /** S_CREATE_ROOM tableSeq. */
-        public tableSeq: string;
-
-        /**
-         * Creates a new S_CREATE_ROOM instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns S_CREATE_ROOM instance
-         */
-        public static create(properties?: HallPto.IS_CREATE_ROOM): HallPto.S_CREATE_ROOM;
+        /** S_CREATE_ROOM roomId. */
+        public roomId: number;
 
         /**
          * Encodes the specified S_CREATE_ROOM message. Does not implicitly {@link HallPto.S_CREATE_ROOM.verify|verify} messages.
@@ -715,14 +534,6 @@ declare namespace HallPto {
         public static encode(message: HallPto.IS_CREATE_ROOM, writer?: protobuf.Writer): protobuf.Writer;
 
         /**
-         * Encodes the specified S_CREATE_ROOM message, length delimited. Does not implicitly {@link HallPto.S_CREATE_ROOM.verify|verify} messages.
-         * @param message S_CREATE_ROOM message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: HallPto.IS_CREATE_ROOM, writer?: protobuf.Writer): protobuf.Writer;
-
-        /**
          * Decodes a S_CREATE_ROOM message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
@@ -731,22 +542,6 @@ declare namespace HallPto {
          * @throws {protobuf.util.ProtocolError} If required fields are missing
          */
         public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): HallPto.S_CREATE_ROOM;
-
-        /**
-         * Decodes a S_CREATE_ROOM message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns S_CREATE_ROOM
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: (protobuf.Reader|Uint8Array)): HallPto.S_CREATE_ROOM;
-
-        /**
-         * Verifies a S_CREATE_ROOM message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
     }
 
     /** Properties of a C_JOIN_ROOM. */
@@ -758,8 +553,8 @@ declare namespace HallPto {
         /** C_JOIN_ROOM scmd */
         scmd?: (number|null);
 
-        /** C_JOIN_ROOM tableSeq */
-        tableSeq?: (string|null);
+        /** C_JOIN_ROOM roomId */
+        roomId?: (number|null);
     }
 
     /** Represents a C_JOIN_ROOM. */
@@ -777,15 +572,8 @@ declare namespace HallPto {
         /** C_JOIN_ROOM scmd. */
         public scmd: number;
 
-        /** C_JOIN_ROOM tableSeq. */
-        public tableSeq: string;
-
-        /**
-         * Creates a new C_JOIN_ROOM instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns C_JOIN_ROOM instance
-         */
-        public static create(properties?: HallPto.IC_JOIN_ROOM): HallPto.C_JOIN_ROOM;
+        /** C_JOIN_ROOM roomId. */
+        public roomId: number;
 
         /**
          * Encodes the specified C_JOIN_ROOM message. Does not implicitly {@link HallPto.C_JOIN_ROOM.verify|verify} messages.
@@ -796,14 +584,6 @@ declare namespace HallPto {
         public static encode(message: HallPto.IC_JOIN_ROOM, writer?: protobuf.Writer): protobuf.Writer;
 
         /**
-         * Encodes the specified C_JOIN_ROOM message, length delimited. Does not implicitly {@link HallPto.C_JOIN_ROOM.verify|verify} messages.
-         * @param message C_JOIN_ROOM message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: HallPto.IC_JOIN_ROOM, writer?: protobuf.Writer): protobuf.Writer;
-
-        /**
          * Decodes a C_JOIN_ROOM message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
@@ -812,22 +592,6 @@ declare namespace HallPto {
          * @throws {protobuf.util.ProtocolError} If required fields are missing
          */
         public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): HallPto.C_JOIN_ROOM;
-
-        /**
-         * Decodes a C_JOIN_ROOM message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns C_JOIN_ROOM
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: (protobuf.Reader|Uint8Array)): HallPto.C_JOIN_ROOM;
-
-        /**
-         * Verifies a C_JOIN_ROOM message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
     }
 
     /** Properties of a S_JOIN_ROOM. */
@@ -842,8 +606,8 @@ declare namespace HallPto {
         /** S_JOIN_ROOM isSuccess */
         isSuccess?: (boolean|null);
 
-        /** S_JOIN_ROOM tableSeq */
-        tableSeq?: (string|null);
+        /** S_JOIN_ROOM roomId */
+        roomId?: (number|null);
 
         /** S_JOIN_ROOM players */
         players?: (HallPto.IPlayer[]|null);
@@ -870,21 +634,14 @@ declare namespace HallPto {
         /** S_JOIN_ROOM isSuccess. */
         public isSuccess: boolean;
 
-        /** S_JOIN_ROOM tableSeq. */
-        public tableSeq: string;
+        /** S_JOIN_ROOM roomId. */
+        public roomId: number;
 
         /** S_JOIN_ROOM players. */
         public players: HallPto.IPlayer[];
 
         /** S_JOIN_ROOM gameId. */
         public gameId: number;
-
-        /**
-         * Creates a new S_JOIN_ROOM instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns S_JOIN_ROOM instance
-         */
-        public static create(properties?: HallPto.IS_JOIN_ROOM): HallPto.S_JOIN_ROOM;
 
         /**
          * Encodes the specified S_JOIN_ROOM message. Does not implicitly {@link HallPto.S_JOIN_ROOM.verify|verify} messages.
@@ -895,14 +652,6 @@ declare namespace HallPto {
         public static encode(message: HallPto.IS_JOIN_ROOM, writer?: protobuf.Writer): protobuf.Writer;
 
         /**
-         * Encodes the specified S_JOIN_ROOM message, length delimited. Does not implicitly {@link HallPto.S_JOIN_ROOM.verify|verify} messages.
-         * @param message S_JOIN_ROOM message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: HallPto.IS_JOIN_ROOM, writer?: protobuf.Writer): protobuf.Writer;
-
-        /**
          * Decodes a S_JOIN_ROOM message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
@@ -911,184 +660,212 @@ declare namespace HallPto {
          * @throws {protobuf.util.ProtocolError} If required fields are missing
          */
         public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): HallPto.S_JOIN_ROOM;
-
-        /**
-         * Decodes a S_JOIN_ROOM message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns S_JOIN_ROOM
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: (protobuf.Reader|Uint8Array)): HallPto.S_JOIN_ROOM;
-
-        /**
-         * Verifies a S_JOIN_ROOM message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
     }
 
-    /** Properties of a C_READY. */
-    interface IC_READY {
+    /** Properties of a C_ROOM_LIST. */
+    interface IC_ROOM_LIST {
 
-        /** C_READY cmd */
+        /** C_ROOM_LIST cmd */
         cmd?: (number|null);
 
-        /** C_READY scmd */
+        /** C_ROOM_LIST scmd */
         scmd?: (number|null);
+
+        /** C_ROOM_LIST gameId */
+        gameId?: (number|null);
+
+        /** C_ROOM_LIST status */
+        status?: (number|null);
     }
 
-    /** Represents a C_READY. */
-    class C_READY implements IC_READY {
+    /** Represents a C_ROOM_LIST. */
+    class C_ROOM_LIST implements IC_ROOM_LIST {
 
         /**
-         * Constructs a new C_READY.
+         * Constructs a new C_ROOM_LIST.
          * @param [properties] Properties to set
          */
-        constructor(properties?: HallPto.IC_READY);
+        constructor(properties?: HallPto.IC_ROOM_LIST);
 
-        /** C_READY cmd. */
+        /** C_ROOM_LIST cmd. */
         public cmd: number;
 
-        /** C_READY scmd. */
+        /** C_ROOM_LIST scmd. */
         public scmd: number;
 
-        /**
-         * Creates a new C_READY instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns C_READY instance
-         */
-        public static create(properties?: HallPto.IC_READY): HallPto.C_READY;
+        /** C_ROOM_LIST gameId. */
+        public gameId: number;
+
+        /** C_ROOM_LIST status. */
+        public status: number;
 
         /**
-         * Encodes the specified C_READY message. Does not implicitly {@link HallPto.C_READY.verify|verify} messages.
-         * @param message C_READY message or plain object to encode
+         * Encodes the specified C_ROOM_LIST message. Does not implicitly {@link HallPto.C_ROOM_LIST.verify|verify} messages.
+         * @param message C_ROOM_LIST message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: HallPto.IC_READY, writer?: protobuf.Writer): protobuf.Writer;
+        public static encode(message: HallPto.IC_ROOM_LIST, writer?: protobuf.Writer): protobuf.Writer;
 
         /**
-         * Encodes the specified C_READY message, length delimited. Does not implicitly {@link HallPto.C_READY.verify|verify} messages.
-         * @param message C_READY message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: HallPto.IC_READY, writer?: protobuf.Writer): protobuf.Writer;
-
-        /**
-         * Decodes a C_READY message from the specified reader or buffer.
+         * Decodes a C_ROOM_LIST message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns C_READY
+         * @returns C_ROOM_LIST
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): HallPto.C_READY;
-
-        /**
-         * Decodes a C_READY message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns C_READY
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: (protobuf.Reader|Uint8Array)): HallPto.C_READY;
-
-        /**
-         * Verifies a C_READY message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
+        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): HallPto.C_ROOM_LIST;
     }
 
-    /** Properties of a S_PLAYER_READY. */
-    interface IS_PLAYER_READY {
+    /** Properties of a S_ROOM_LIST. */
+    interface IS_ROOM_LIST {
 
-        /** S_PLAYER_READY cmd */
+        /** S_ROOM_LIST cmd */
         cmd?: (number|null);
 
-        /** S_PLAYER_READY scmd */
+        /** S_ROOM_LIST scmd */
         scmd?: (number|null);
 
-        /** S_PLAYER_READY index */
-        index?: (number|null);
-
-        /** S_PLAYER_READY isReady */
-        isReady?: (boolean|null);
+        /** S_ROOM_LIST list */
+        list?: (HallPto.IRoomInfo[]|null);
     }
 
-    /** Represents a S_PLAYER_READY. */
-    class S_PLAYER_READY implements IS_PLAYER_READY {
+    /** Represents a S_ROOM_LIST. */
+    class S_ROOM_LIST implements IS_ROOM_LIST {
 
         /**
-         * Constructs a new S_PLAYER_READY.
+         * Constructs a new S_ROOM_LIST.
          * @param [properties] Properties to set
          */
-        constructor(properties?: HallPto.IS_PLAYER_READY);
+        constructor(properties?: HallPto.IS_ROOM_LIST);
 
-        /** S_PLAYER_READY cmd. */
+        /** S_ROOM_LIST cmd. */
         public cmd: number;
 
-        /** S_PLAYER_READY scmd. */
+        /** S_ROOM_LIST scmd. */
         public scmd: number;
 
-        /** S_PLAYER_READY index. */
+        /** S_ROOM_LIST list. */
+        public list: HallPto.IRoomInfo[];
+
+        /**
+         * Encodes the specified S_ROOM_LIST message. Does not implicitly {@link HallPto.S_ROOM_LIST.verify|verify} messages.
+         * @param message S_ROOM_LIST message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: HallPto.IS_ROOM_LIST, writer?: protobuf.Writer): protobuf.Writer;
+
+        /**
+         * Decodes a S_ROOM_LIST message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns S_ROOM_LIST
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): HallPto.S_ROOM_LIST;
+    }
+
+    /** Properties of a S_BROADCAST_JOIN_ROOM. */
+    interface IS_BROADCAST_JOIN_ROOM {
+
+        /** S_BROADCAST_JOIN_ROOM cmd */
+        cmd?: (number|null);
+
+        /** S_BROADCAST_JOIN_ROOM scmd */
+        scmd?: (number|null);
+
+        /** S_BROADCAST_JOIN_ROOM player */
+        player?: (HallPto.IPlayer|null);
+    }
+
+    /** Represents a S_BROADCAST_JOIN_ROOM. */
+    class S_BROADCAST_JOIN_ROOM implements IS_BROADCAST_JOIN_ROOM {
+
+        /**
+         * Constructs a new S_BROADCAST_JOIN_ROOM.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: HallPto.IS_BROADCAST_JOIN_ROOM);
+
+        /** S_BROADCAST_JOIN_ROOM cmd. */
+        public cmd: number;
+
+        /** S_BROADCAST_JOIN_ROOM scmd. */
+        public scmd: number;
+
+        /** S_BROADCAST_JOIN_ROOM player. */
+        public player?: (HallPto.IPlayer|null);
+
+        /**
+         * Encodes the specified S_BROADCAST_JOIN_ROOM message. Does not implicitly {@link HallPto.S_BROADCAST_JOIN_ROOM.verify|verify} messages.
+         * @param message S_BROADCAST_JOIN_ROOM message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: HallPto.IS_BROADCAST_JOIN_ROOM, writer?: protobuf.Writer): protobuf.Writer;
+
+        /**
+         * Decodes a S_BROADCAST_JOIN_ROOM message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns S_BROADCAST_JOIN_ROOM
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): HallPto.S_BROADCAST_JOIN_ROOM;
+    }
+
+    /** Properties of a S_BROADCAST_LEAVE_ROOM. */
+    interface IS_BROADCAST_LEAVE_ROOM {
+
+        /** S_BROADCAST_LEAVE_ROOM cmd */
+        cmd?: (number|null);
+
+        /** S_BROADCAST_LEAVE_ROOM scmd */
+        scmd?: (number|null);
+
+        /** S_BROADCAST_LEAVE_ROOM index */
+        index?: (number|null);
+    }
+
+    /** Represents a S_BROADCAST_LEAVE_ROOM. */
+    class S_BROADCAST_LEAVE_ROOM implements IS_BROADCAST_LEAVE_ROOM {
+
+        /**
+         * Constructs a new S_BROADCAST_LEAVE_ROOM.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: HallPto.IS_BROADCAST_LEAVE_ROOM);
+
+        /** S_BROADCAST_LEAVE_ROOM cmd. */
+        public cmd: number;
+
+        /** S_BROADCAST_LEAVE_ROOM scmd. */
+        public scmd: number;
+
+        /** S_BROADCAST_LEAVE_ROOM index. */
         public index: number;
 
-        /** S_PLAYER_READY isReady. */
-        public isReady: boolean;
-
         /**
-         * Creates a new S_PLAYER_READY instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns S_PLAYER_READY instance
-         */
-        public static create(properties?: HallPto.IS_PLAYER_READY): HallPto.S_PLAYER_READY;
-
-        /**
-         * Encodes the specified S_PLAYER_READY message. Does not implicitly {@link HallPto.S_PLAYER_READY.verify|verify} messages.
-         * @param message S_PLAYER_READY message or plain object to encode
+         * Encodes the specified S_BROADCAST_LEAVE_ROOM message. Does not implicitly {@link HallPto.S_BROADCAST_LEAVE_ROOM.verify|verify} messages.
+         * @param message S_BROADCAST_LEAVE_ROOM message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: HallPto.IS_PLAYER_READY, writer?: protobuf.Writer): protobuf.Writer;
+        public static encode(message: HallPto.IS_BROADCAST_LEAVE_ROOM, writer?: protobuf.Writer): protobuf.Writer;
 
         /**
-         * Encodes the specified S_PLAYER_READY message, length delimited. Does not implicitly {@link HallPto.S_PLAYER_READY.verify|verify} messages.
-         * @param message S_PLAYER_READY message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: HallPto.IS_PLAYER_READY, writer?: protobuf.Writer): protobuf.Writer;
-
-        /**
-         * Decodes a S_PLAYER_READY message from the specified reader or buffer.
+         * Decodes a S_BROADCAST_LEAVE_ROOM message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns S_PLAYER_READY
+         * @returns S_BROADCAST_LEAVE_ROOM
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): HallPto.S_PLAYER_READY;
-
-        /**
-         * Decodes a S_PLAYER_READY message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns S_PLAYER_READY
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: (protobuf.Reader|Uint8Array)): HallPto.S_PLAYER_READY;
-
-        /**
-         * Verifies a S_PLAYER_READY message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
+        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): HallPto.S_BROADCAST_LEAVE_ROOM;
     }
 }
 
@@ -1127,27 +904,12 @@ declare namespace LoginPto {
         public userName: string;
 
         /**
-         * Creates a new C_LOGIN instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns C_LOGIN instance
-         */
-        public static create(properties?: LoginPto.IC_LOGIN): LoginPto.C_LOGIN;
-
-        /**
          * Encodes the specified C_LOGIN message. Does not implicitly {@link LoginPto.C_LOGIN.verify|verify} messages.
          * @param message C_LOGIN message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
         public static encode(message: LoginPto.IC_LOGIN, writer?: protobuf.Writer): protobuf.Writer;
-
-        /**
-         * Encodes the specified C_LOGIN message, length delimited. Does not implicitly {@link LoginPto.C_LOGIN.verify|verify} messages.
-         * @param message C_LOGIN message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: LoginPto.IC_LOGIN, writer?: protobuf.Writer): protobuf.Writer;
 
         /**
          * Decodes a C_LOGIN message from the specified reader or buffer.
@@ -1158,22 +920,6 @@ declare namespace LoginPto {
          * @throws {protobuf.util.ProtocolError} If required fields are missing
          */
         public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): LoginPto.C_LOGIN;
-
-        /**
-         * Decodes a C_LOGIN message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns C_LOGIN
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: (protobuf.Reader|Uint8Array)): LoginPto.C_LOGIN;
-
-        /**
-         * Verifies a C_LOGIN message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
     }
 
     /** Properties of a S_LOGIN. */
@@ -1214,27 +960,12 @@ declare namespace LoginPto {
         public userName: string;
 
         /**
-         * Creates a new S_LOGIN instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns S_LOGIN instance
-         */
-        public static create(properties?: LoginPto.IS_LOGIN): LoginPto.S_LOGIN;
-
-        /**
          * Encodes the specified S_LOGIN message. Does not implicitly {@link LoginPto.S_LOGIN.verify|verify} messages.
          * @param message S_LOGIN message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
         public static encode(message: LoginPto.IS_LOGIN, writer?: protobuf.Writer): protobuf.Writer;
-
-        /**
-         * Encodes the specified S_LOGIN message, length delimited. Does not implicitly {@link LoginPto.S_LOGIN.verify|verify} messages.
-         * @param message S_LOGIN message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: LoginPto.IS_LOGIN, writer?: protobuf.Writer): protobuf.Writer;
 
         /**
          * Decodes a S_LOGIN message from the specified reader or buffer.
@@ -1245,21 +976,5 @@ declare namespace LoginPto {
          * @throws {protobuf.util.ProtocolError} If required fields are missing
          */
         public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): LoginPto.S_LOGIN;
-
-        /**
-         * Decodes a S_LOGIN message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns S_LOGIN
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: (protobuf.Reader|Uint8Array)): LoginPto.S_LOGIN;
-
-        /**
-         * Verifies a S_LOGIN message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
     }
 }

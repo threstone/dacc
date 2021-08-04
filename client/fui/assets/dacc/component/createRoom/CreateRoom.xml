@@ -6,5 +6,7 @@
       <ComboBox visibleItemCount="10"/>
     </component>
     <component id="n7_b78j" name="create" src="b78j2f" fileName="component/createRoom/CreateBtn.xml" xy="281,495"/>
+    <graph id="n9_di7i" name="input_bg" xy="47,158" size="678,35" type="rect" fillColor="#ff66ffff"/>
+    <text id="n10_di7i" name="describe_input" xy="47,158" size="678,35" input="true" prompt="  点此房间输入描述" fontSize="22" color="#3333ff" ubb="true" autoSize="none" autoClearText="true" text=""/>
   </displayList>
 </component>

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="1280,720" overflow="hidden">
   <displayList>
-    <loader id="n2_b78j" name="n2" xy="0,0" size="1280,720" url="ui://rbhwceqzb78j1" fill="scaleMatchWidth"/>
+    <loader id="n2_b78j" name="bg" xy="0,0" size="1280,720" url="ui://rbhwceqzb78j1" fill="scaleMatchWidth"/>
+    <component id="n7_di7i" name="player0" src="di7i2o" fileName="component/userBox/UserBox.xml" pkg="sly852qp" xy="0,255" visible="false"/>
+    <component id="n8_di7i" name="player1" src="di7i2o" fileName="component/userBox/UserBox.xml" pkg="sly852qp" xy="1162,255" visible="false"/>
+    <text id="n9_di7i" name="read_text1" xy="22,407" size="71,29" visible="false" fontSize="22" color="#ff0000" text="已准备"/>
+    <text id="n10_di7i" name="read_text2" xy="1185,407" size="71,29" visible="false" fontSize="22" color="#ff0000" text="已准备"/>
   </displayList>
 </component>

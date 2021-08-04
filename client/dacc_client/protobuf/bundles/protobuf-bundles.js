@@ -66,18 +66,6 @@ $root.GamePto1001 = (function() {
         S_INIT_SCENE.prototype.tableSeq = "";
 
         /**
-         * Creates a new S_INIT_SCENE instance using the specified properties.
-         * @function create
-         * @memberof GamePto1001.S_INIT_SCENE
-         * @static
-         * @param {GamePto1001.IS_INIT_SCENE=} [properties] Properties to set
-         * @returns {GamePto1001.S_INIT_SCENE} S_INIT_SCENE instance
-         */
-        S_INIT_SCENE.create = function create(properties) {
-            return new S_INIT_SCENE(properties);
-        };
-
-        /**
          * Encodes the specified S_INIT_SCENE message. Does not implicitly {@link GamePto1001.S_INIT_SCENE.verify|verify} messages.
          * @function encode
          * @memberof GamePto1001.S_INIT_SCENE
@@ -96,19 +84,6 @@ $root.GamePto1001 = (function() {
             if (message.tableSeq != null && Object.hasOwnProperty.call(message, "tableSeq"))
                 writer.uint32(/* id 3, wireType 2 =*/26).string(message.tableSeq);
             return writer;
-        };
-
-        /**
-         * Encodes the specified S_INIT_SCENE message, length delimited. Does not implicitly {@link GamePto1001.S_INIT_SCENE.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof GamePto1001.S_INIT_SCENE
-         * @static
-         * @param {GamePto1001.IS_INIT_SCENE} message S_INIT_SCENE message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        S_INIT_SCENE.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
         };
 
         /**
@@ -144,45 +119,6 @@ $root.GamePto1001 = (function() {
                 }
             }
             return message;
-        };
-
-        /**
-         * Decodes a S_INIT_SCENE message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof GamePto1001.S_INIT_SCENE
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {GamePto1001.S_INIT_SCENE} S_INIT_SCENE
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        S_INIT_SCENE.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a S_INIT_SCENE message.
-         * @function verify
-         * @memberof GamePto1001.S_INIT_SCENE
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        S_INIT_SCENE.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.cmd != null && message.hasOwnProperty("cmd"))
-                if (!$util.isInteger(message.cmd))
-                    return "cmd: integer expected";
-            if (message.scmd != null && message.hasOwnProperty("scmd"))
-                if (!$util.isInteger(message.scmd))
-                    return "scmd: integer expected";
-            if (message.tableSeq != null && message.hasOwnProperty("tableSeq"))
-                if (!$util.isString(message.tableSeq))
-                    return "tableSeq: string expected";
-            return null;
         };
 
         return S_INIT_SCENE;
@@ -242,18 +178,6 @@ $root.HallPto = (function() {
         GameInfo.prototype.gameName = "";
 
         /**
-         * Creates a new GameInfo instance using the specified properties.
-         * @function create
-         * @memberof HallPto.GameInfo
-         * @static
-         * @param {HallPto.IGameInfo=} [properties] Properties to set
-         * @returns {HallPto.GameInfo} GameInfo instance
-         */
-        GameInfo.create = function create(properties) {
-            return new GameInfo(properties);
-        };
-
-        /**
          * Encodes the specified GameInfo message. Does not implicitly {@link HallPto.GameInfo.verify|verify} messages.
          * @function encode
          * @memberof HallPto.GameInfo
@@ -270,19 +194,6 @@ $root.HallPto = (function() {
             if (message.gameName != null && Object.hasOwnProperty.call(message, "gameName"))
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.gameName);
             return writer;
-        };
-
-        /**
-         * Encodes the specified GameInfo message, length delimited. Does not implicitly {@link HallPto.GameInfo.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof HallPto.GameInfo
-         * @static
-         * @param {HallPto.IGameInfo} message GameInfo message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        GameInfo.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
         };
 
         /**
@@ -315,42 +226,6 @@ $root.HallPto = (function() {
                 }
             }
             return message;
-        };
-
-        /**
-         * Decodes a GameInfo message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof HallPto.GameInfo
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {HallPto.GameInfo} GameInfo
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        GameInfo.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a GameInfo message.
-         * @function verify
-         * @memberof HallPto.GameInfo
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        GameInfo.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.gameId != null && message.hasOwnProperty("gameId"))
-                if (!$util.isInteger(message.gameId))
-                    return "gameId: integer expected";
-            if (message.gameName != null && message.hasOwnProperty("gameName"))
-                if (!$util.isString(message.gameName))
-                    return "gameName: string expected";
-            return null;
         };
 
         return GameInfo;
@@ -416,18 +291,6 @@ $root.HallPto = (function() {
         Player.prototype.isReady = false;
 
         /**
-         * Creates a new Player instance using the specified properties.
-         * @function create
-         * @memberof HallPto.Player
-         * @static
-         * @param {HallPto.IPlayer=} [properties] Properties to set
-         * @returns {HallPto.Player} Player instance
-         */
-        Player.create = function create(properties) {
-            return new Player(properties);
-        };
-
-        /**
          * Encodes the specified Player message. Does not implicitly {@link HallPto.Player.verify|verify} messages.
          * @function encode
          * @memberof HallPto.Player
@@ -448,19 +311,6 @@ $root.HallPto = (function() {
             if (message.isReady != null && Object.hasOwnProperty.call(message, "isReady"))
                 writer.uint32(/* id 4, wireType 0 =*/32).bool(message.isReady);
             return writer;
-        };
-
-        /**
-         * Encodes the specified Player message, length delimited. Does not implicitly {@link HallPto.Player.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof HallPto.Player
-         * @static
-         * @param {HallPto.IPlayer} message Player message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Player.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
         };
 
         /**
@@ -501,49 +351,158 @@ $root.HallPto = (function() {
             return message;
         };
 
+        return Player;
+    })();
+
+    HallPto.RoomInfo = (function() {
+
         /**
-         * Decodes a Player message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof HallPto.Player
+         * Properties of a RoomInfo.
+         * @memberof HallPto
+         * @interface IRoomInfo
+         * @property {number|null} [gameId] RoomInfo gameId
+         * @property {boolean|null} [isStart] RoomInfo isStart
+         * @property {string|null} [describe] RoomInfo describe
+         * @property {number|null} [roomId] RoomInfo roomId
+         * @property {number|null} [curPlayer] RoomInfo curPlayer
+         * @property {number|null} [maxPlayer] RoomInfo maxPlayer
+         */
+
+        /**
+         * Constructs a new RoomInfo.
+         * @memberof HallPto
+         * @classdesc Represents a RoomInfo.
+         * @implements IRoomInfo
+         * @constructor
+         * @param {HallPto.IRoomInfo=} [properties] Properties to set
+         */
+        function RoomInfo(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * RoomInfo gameId.
+         * @member {number} gameId
+         * @memberof HallPto.RoomInfo
+         * @instance
+         */
+        RoomInfo.prototype.gameId = 0;
+
+        /**
+         * RoomInfo isStart.
+         * @member {boolean} isStart
+         * @memberof HallPto.RoomInfo
+         * @instance
+         */
+        RoomInfo.prototype.isStart = false;
+
+        /**
+         * RoomInfo describe.
+         * @member {string} describe
+         * @memberof HallPto.RoomInfo
+         * @instance
+         */
+        RoomInfo.prototype.describe = "";
+
+        /**
+         * RoomInfo roomId.
+         * @member {number} roomId
+         * @memberof HallPto.RoomInfo
+         * @instance
+         */
+        RoomInfo.prototype.roomId = 0;
+
+        /**
+         * RoomInfo curPlayer.
+         * @member {number} curPlayer
+         * @memberof HallPto.RoomInfo
+         * @instance
+         */
+        RoomInfo.prototype.curPlayer = 0;
+
+        /**
+         * RoomInfo maxPlayer.
+         * @member {number} maxPlayer
+         * @memberof HallPto.RoomInfo
+         * @instance
+         */
+        RoomInfo.prototype.maxPlayer = 0;
+
+        /**
+         * Encodes the specified RoomInfo message. Does not implicitly {@link HallPto.RoomInfo.verify|verify} messages.
+         * @function encode
+         * @memberof HallPto.RoomInfo
+         * @static
+         * @param {HallPto.IRoomInfo} message RoomInfo message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        RoomInfo.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.gameId != null && Object.hasOwnProperty.call(message, "gameId"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.gameId);
+            if (message.isStart != null && Object.hasOwnProperty.call(message, "isStart"))
+                writer.uint32(/* id 2, wireType 0 =*/16).bool(message.isStart);
+            if (message.describe != null && Object.hasOwnProperty.call(message, "describe"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.describe);
+            if (message.roomId != null && Object.hasOwnProperty.call(message, "roomId"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.roomId);
+            if (message.curPlayer != null && Object.hasOwnProperty.call(message, "curPlayer"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int32(message.curPlayer);
+            if (message.maxPlayer != null && Object.hasOwnProperty.call(message, "maxPlayer"))
+                writer.uint32(/* id 6, wireType 0 =*/48).int32(message.maxPlayer);
+            return writer;
+        };
+
+        /**
+         * Decodes a RoomInfo message from the specified reader or buffer.
+         * @function decode
+         * @memberof HallPto.RoomInfo
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {HallPto.Player} Player
+         * @param {number} [length] Message length if known beforehand
+         * @returns {HallPto.RoomInfo} RoomInfo
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Player.decodeDelimited = function decodeDelimited(reader) {
+        RoomInfo.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.HallPto.RoomInfo();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.gameId = reader.int32();
+                    break;
+                case 2:
+                    message.isStart = reader.bool();
+                    break;
+                case 3:
+                    message.describe = reader.string();
+                    break;
+                case 4:
+                    message.roomId = reader.int32();
+                    break;
+                case 5:
+                    message.curPlayer = reader.int32();
+                    break;
+                case 6:
+                    message.maxPlayer = reader.int32();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
         };
 
-        /**
-         * Verifies a Player message.
-         * @function verify
-         * @memberof HallPto.Player
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        Player.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.index != null && message.hasOwnProperty("index"))
-                if (!$util.isInteger(message.index))
-                    return "index: integer expected";
-            if (message.headIndex != null && message.hasOwnProperty("headIndex"))
-                if (!$util.isInteger(message.headIndex))
-                    return "headIndex: integer expected";
-            if (message.userName != null && message.hasOwnProperty("userName"))
-                if (!$util.isString(message.userName))
-                    return "userName: string expected";
-            if (message.isReady != null && message.hasOwnProperty("isReady"))
-                if (typeof message.isReady !== "boolean")
-                    return "isReady: boolean expected";
-            return null;
-        };
-
-        return Player;
+        return RoomInfo;
     })();
 
     HallPto.C_SEND_CHAT_MSG = (function() {
@@ -597,18 +556,6 @@ $root.HallPto = (function() {
         C_SEND_CHAT_MSG.prototype.msg = "";
 
         /**
-         * Creates a new C_SEND_CHAT_MSG instance using the specified properties.
-         * @function create
-         * @memberof HallPto.C_SEND_CHAT_MSG
-         * @static
-         * @param {HallPto.IC_SEND_CHAT_MSG=} [properties] Properties to set
-         * @returns {HallPto.C_SEND_CHAT_MSG} C_SEND_CHAT_MSG instance
-         */
-        C_SEND_CHAT_MSG.create = function create(properties) {
-            return new C_SEND_CHAT_MSG(properties);
-        };
-
-        /**
          * Encodes the specified C_SEND_CHAT_MSG message. Does not implicitly {@link HallPto.C_SEND_CHAT_MSG.verify|verify} messages.
          * @function encode
          * @memberof HallPto.C_SEND_CHAT_MSG
@@ -627,19 +574,6 @@ $root.HallPto = (function() {
             if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
                 writer.uint32(/* id 3, wireType 2 =*/26).string(message.msg);
             return writer;
-        };
-
-        /**
-         * Encodes the specified C_SEND_CHAT_MSG message, length delimited. Does not implicitly {@link HallPto.C_SEND_CHAT_MSG.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof HallPto.C_SEND_CHAT_MSG
-         * @static
-         * @param {HallPto.IC_SEND_CHAT_MSG} message C_SEND_CHAT_MSG message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        C_SEND_CHAT_MSG.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
         };
 
         /**
@@ -675,45 +609,6 @@ $root.HallPto = (function() {
                 }
             }
             return message;
-        };
-
-        /**
-         * Decodes a C_SEND_CHAT_MSG message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof HallPto.C_SEND_CHAT_MSG
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {HallPto.C_SEND_CHAT_MSG} C_SEND_CHAT_MSG
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        C_SEND_CHAT_MSG.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a C_SEND_CHAT_MSG message.
-         * @function verify
-         * @memberof HallPto.C_SEND_CHAT_MSG
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        C_SEND_CHAT_MSG.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.cmd != null && message.hasOwnProperty("cmd"))
-                if (!$util.isInteger(message.cmd))
-                    return "cmd: integer expected";
-            if (message.scmd != null && message.hasOwnProperty("scmd"))
-                if (!$util.isInteger(message.scmd))
-                    return "scmd: integer expected";
-            if (message.msg != null && message.hasOwnProperty("msg"))
-                if (!$util.isString(message.msg))
-                    return "msg: string expected";
-            return null;
         };
 
         return C_SEND_CHAT_MSG;
@@ -779,18 +674,6 @@ $root.HallPto = (function() {
         S_CHAT_MSG.prototype.msg = "";
 
         /**
-         * Creates a new S_CHAT_MSG instance using the specified properties.
-         * @function create
-         * @memberof HallPto.S_CHAT_MSG
-         * @static
-         * @param {HallPto.IS_CHAT_MSG=} [properties] Properties to set
-         * @returns {HallPto.S_CHAT_MSG} S_CHAT_MSG instance
-         */
-        S_CHAT_MSG.create = function create(properties) {
-            return new S_CHAT_MSG(properties);
-        };
-
-        /**
          * Encodes the specified S_CHAT_MSG message. Does not implicitly {@link HallPto.S_CHAT_MSG.verify|verify} messages.
          * @function encode
          * @memberof HallPto.S_CHAT_MSG
@@ -811,19 +694,6 @@ $root.HallPto = (function() {
             if (message.msg != null && Object.hasOwnProperty.call(message, "msg"))
                 writer.uint32(/* id 4, wireType 2 =*/34).string(message.msg);
             return writer;
-        };
-
-        /**
-         * Encodes the specified S_CHAT_MSG message, length delimited. Does not implicitly {@link HallPto.S_CHAT_MSG.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof HallPto.S_CHAT_MSG
-         * @static
-         * @param {HallPto.IS_CHAT_MSG} message S_CHAT_MSG message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        S_CHAT_MSG.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
         };
 
         /**
@@ -862,48 +732,6 @@ $root.HallPto = (function() {
                 }
             }
             return message;
-        };
-
-        /**
-         * Decodes a S_CHAT_MSG message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof HallPto.S_CHAT_MSG
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {HallPto.S_CHAT_MSG} S_CHAT_MSG
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        S_CHAT_MSG.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a S_CHAT_MSG message.
-         * @function verify
-         * @memberof HallPto.S_CHAT_MSG
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        S_CHAT_MSG.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.cmd != null && message.hasOwnProperty("cmd"))
-                if (!$util.isInteger(message.cmd))
-                    return "cmd: integer expected";
-            if (message.scmd != null && message.hasOwnProperty("scmd"))
-                if (!$util.isInteger(message.scmd))
-                    return "scmd: integer expected";
-            if (message.userName != null && message.hasOwnProperty("userName"))
-                if (!$util.isString(message.userName))
-                    return "userName: string expected";
-            if (message.msg != null && message.hasOwnProperty("msg"))
-                if (!$util.isString(message.msg))
-                    return "msg: string expected";
-            return null;
         };
 
         return S_CHAT_MSG;
@@ -961,18 +789,6 @@ $root.HallPto = (function() {
         S_GAME_LIST.prototype.list = $util.emptyArray;
 
         /**
-         * Creates a new S_GAME_LIST instance using the specified properties.
-         * @function create
-         * @memberof HallPto.S_GAME_LIST
-         * @static
-         * @param {HallPto.IS_GAME_LIST=} [properties] Properties to set
-         * @returns {HallPto.S_GAME_LIST} S_GAME_LIST instance
-         */
-        S_GAME_LIST.create = function create(properties) {
-            return new S_GAME_LIST(properties);
-        };
-
-        /**
          * Encodes the specified S_GAME_LIST message. Does not implicitly {@link HallPto.S_GAME_LIST.verify|verify} messages.
          * @function encode
          * @memberof HallPto.S_GAME_LIST
@@ -992,19 +808,6 @@ $root.HallPto = (function() {
                 for (var i = 0; i < message.list.length; ++i)
                     $root.HallPto.GameInfo.encode(message.list[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             return writer;
-        };
-
-        /**
-         * Encodes the specified S_GAME_LIST message, length delimited. Does not implicitly {@link HallPto.S_GAME_LIST.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof HallPto.S_GAME_LIST
-         * @static
-         * @param {HallPto.IS_GAME_LIST} message S_GAME_LIST message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        S_GAME_LIST.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
         };
 
         /**
@@ -1042,51 +845,6 @@ $root.HallPto = (function() {
                 }
             }
             return message;
-        };
-
-        /**
-         * Decodes a S_GAME_LIST message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof HallPto.S_GAME_LIST
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {HallPto.S_GAME_LIST} S_GAME_LIST
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        S_GAME_LIST.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a S_GAME_LIST message.
-         * @function verify
-         * @memberof HallPto.S_GAME_LIST
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        S_GAME_LIST.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.cmd != null && message.hasOwnProperty("cmd"))
-                if (!$util.isInteger(message.cmd))
-                    return "cmd: integer expected";
-            if (message.scmd != null && message.hasOwnProperty("scmd"))
-                if (!$util.isInteger(message.scmd))
-                    return "scmd: integer expected";
-            if (message.list != null && message.hasOwnProperty("list")) {
-                if (!Array.isArray(message.list))
-                    return "list: array expected";
-                for (var i = 0; i < message.list.length; ++i) {
-                    var error = $root.HallPto.GameInfo.verify(message.list[i]);
-                    if (error)
-                        return "list." + error;
-                }
-            }
-            return null;
         };
 
         return S_GAME_LIST;
@@ -1143,18 +901,6 @@ $root.HallPto = (function() {
         C_CHANGE_HEAD.prototype.headIndex = 0;
 
         /**
-         * Creates a new C_CHANGE_HEAD instance using the specified properties.
-         * @function create
-         * @memberof HallPto.C_CHANGE_HEAD
-         * @static
-         * @param {HallPto.IC_CHANGE_HEAD=} [properties] Properties to set
-         * @returns {HallPto.C_CHANGE_HEAD} C_CHANGE_HEAD instance
-         */
-        C_CHANGE_HEAD.create = function create(properties) {
-            return new C_CHANGE_HEAD(properties);
-        };
-
-        /**
          * Encodes the specified C_CHANGE_HEAD message. Does not implicitly {@link HallPto.C_CHANGE_HEAD.verify|verify} messages.
          * @function encode
          * @memberof HallPto.C_CHANGE_HEAD
@@ -1173,19 +919,6 @@ $root.HallPto = (function() {
             if (message.headIndex != null && Object.hasOwnProperty.call(message, "headIndex"))
                 writer.uint32(/* id 3, wireType 0 =*/24).int32(message.headIndex);
             return writer;
-        };
-
-        /**
-         * Encodes the specified C_CHANGE_HEAD message, length delimited. Does not implicitly {@link HallPto.C_CHANGE_HEAD.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof HallPto.C_CHANGE_HEAD
-         * @static
-         * @param {HallPto.IC_CHANGE_HEAD} message C_CHANGE_HEAD message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        C_CHANGE_HEAD.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
         };
 
         /**
@@ -1223,45 +956,6 @@ $root.HallPto = (function() {
             return message;
         };
 
-        /**
-         * Decodes a C_CHANGE_HEAD message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof HallPto.C_CHANGE_HEAD
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {HallPto.C_CHANGE_HEAD} C_CHANGE_HEAD
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        C_CHANGE_HEAD.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a C_CHANGE_HEAD message.
-         * @function verify
-         * @memberof HallPto.C_CHANGE_HEAD
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        C_CHANGE_HEAD.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.cmd != null && message.hasOwnProperty("cmd"))
-                if (!$util.isInteger(message.cmd))
-                    return "cmd: integer expected";
-            if (message.scmd != null && message.hasOwnProperty("scmd"))
-                if (!$util.isInteger(message.scmd))
-                    return "scmd: integer expected";
-            if (message.headIndex != null && message.hasOwnProperty("headIndex"))
-                if (!$util.isInteger(message.headIndex))
-                    return "headIndex: integer expected";
-            return null;
-        };
-
         return C_CHANGE_HEAD;
     })();
 
@@ -1274,6 +968,7 @@ $root.HallPto = (function() {
          * @property {number|null} [cmd] C_CREATE_ROOM cmd
          * @property {number|null} [scmd] C_CREATE_ROOM scmd
          * @property {number|null} [gameId] C_CREATE_ROOM gameId
+         * @property {string|null} [describe] C_CREATE_ROOM describe
          */
 
         /**
@@ -1316,16 +1011,12 @@ $root.HallPto = (function() {
         C_CREATE_ROOM.prototype.gameId = 0;
 
         /**
-         * Creates a new C_CREATE_ROOM instance using the specified properties.
-         * @function create
+         * C_CREATE_ROOM describe.
+         * @member {string} describe
          * @memberof HallPto.C_CREATE_ROOM
-         * @static
-         * @param {HallPto.IC_CREATE_ROOM=} [properties] Properties to set
-         * @returns {HallPto.C_CREATE_ROOM} C_CREATE_ROOM instance
+         * @instance
          */
-        C_CREATE_ROOM.create = function create(properties) {
-            return new C_CREATE_ROOM(properties);
-        };
+        C_CREATE_ROOM.prototype.describe = "";
 
         /**
          * Encodes the specified C_CREATE_ROOM message. Does not implicitly {@link HallPto.C_CREATE_ROOM.verify|verify} messages.
@@ -1345,20 +1036,9 @@ $root.HallPto = (function() {
                 writer.uint32(/* id 2, wireType 0 =*/16).int32(message.scmd);
             if (message.gameId != null && Object.hasOwnProperty.call(message, "gameId"))
                 writer.uint32(/* id 3, wireType 0 =*/24).int32(message.gameId);
+            if (message.describe != null && Object.hasOwnProperty.call(message, "describe"))
+                writer.uint32(/* id 4, wireType 2 =*/34).string(message.describe);
             return writer;
-        };
-
-        /**
-         * Encodes the specified C_CREATE_ROOM message, length delimited. Does not implicitly {@link HallPto.C_CREATE_ROOM.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof HallPto.C_CREATE_ROOM
-         * @static
-         * @param {HallPto.IC_CREATE_ROOM} message C_CREATE_ROOM message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        C_CREATE_ROOM.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
         };
 
         /**
@@ -1388,51 +1068,15 @@ $root.HallPto = (function() {
                 case 3:
                     message.gameId = reader.int32();
                     break;
+                case 4:
+                    message.describe = reader.string();
+                    break;
                 default:
                     reader.skipType(tag & 7);
                     break;
                 }
             }
             return message;
-        };
-
-        /**
-         * Decodes a C_CREATE_ROOM message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof HallPto.C_CREATE_ROOM
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {HallPto.C_CREATE_ROOM} C_CREATE_ROOM
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        C_CREATE_ROOM.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a C_CREATE_ROOM message.
-         * @function verify
-         * @memberof HallPto.C_CREATE_ROOM
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        C_CREATE_ROOM.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.cmd != null && message.hasOwnProperty("cmd"))
-                if (!$util.isInteger(message.cmd))
-                    return "cmd: integer expected";
-            if (message.scmd != null && message.hasOwnProperty("scmd"))
-                if (!$util.isInteger(message.scmd))
-                    return "scmd: integer expected";
-            if (message.gameId != null && message.hasOwnProperty("gameId"))
-                if (!$util.isInteger(message.gameId))
-                    return "gameId: integer expected";
-            return null;
         };
 
         return C_CREATE_ROOM;
@@ -1447,7 +1091,7 @@ $root.HallPto = (function() {
          * @property {number|null} [cmd] S_CREATE_ROOM cmd
          * @property {number|null} [scmd] S_CREATE_ROOM scmd
          * @property {boolean|null} [isSuccess] S_CREATE_ROOM isSuccess
-         * @property {string|null} [tableSeq] S_CREATE_ROOM tableSeq
+         * @property {number|null} [roomId] S_CREATE_ROOM roomId
          */
 
         /**
@@ -1490,24 +1134,12 @@ $root.HallPto = (function() {
         S_CREATE_ROOM.prototype.isSuccess = false;
 
         /**
-         * S_CREATE_ROOM tableSeq.
-         * @member {string} tableSeq
+         * S_CREATE_ROOM roomId.
+         * @member {number} roomId
          * @memberof HallPto.S_CREATE_ROOM
          * @instance
          */
-        S_CREATE_ROOM.prototype.tableSeq = "";
-
-        /**
-         * Creates a new S_CREATE_ROOM instance using the specified properties.
-         * @function create
-         * @memberof HallPto.S_CREATE_ROOM
-         * @static
-         * @param {HallPto.IS_CREATE_ROOM=} [properties] Properties to set
-         * @returns {HallPto.S_CREATE_ROOM} S_CREATE_ROOM instance
-         */
-        S_CREATE_ROOM.create = function create(properties) {
-            return new S_CREATE_ROOM(properties);
-        };
+        S_CREATE_ROOM.prototype.roomId = 0;
 
         /**
          * Encodes the specified S_CREATE_ROOM message. Does not implicitly {@link HallPto.S_CREATE_ROOM.verify|verify} messages.
@@ -1527,22 +1159,9 @@ $root.HallPto = (function() {
                 writer.uint32(/* id 2, wireType 0 =*/16).int32(message.scmd);
             if (message.isSuccess != null && Object.hasOwnProperty.call(message, "isSuccess"))
                 writer.uint32(/* id 3, wireType 0 =*/24).bool(message.isSuccess);
-            if (message.tableSeq != null && Object.hasOwnProperty.call(message, "tableSeq"))
-                writer.uint32(/* id 4, wireType 2 =*/34).string(message.tableSeq);
+            if (message.roomId != null && Object.hasOwnProperty.call(message, "roomId"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.roomId);
             return writer;
-        };
-
-        /**
-         * Encodes the specified S_CREATE_ROOM message, length delimited. Does not implicitly {@link HallPto.S_CREATE_ROOM.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof HallPto.S_CREATE_ROOM
-         * @static
-         * @param {HallPto.IS_CREATE_ROOM} message S_CREATE_ROOM message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        S_CREATE_ROOM.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
         };
 
         /**
@@ -1573,7 +1192,7 @@ $root.HallPto = (function() {
                     message.isSuccess = reader.bool();
                     break;
                 case 4:
-                    message.tableSeq = reader.string();
+                    message.roomId = reader.int32();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -1581,48 +1200,6 @@ $root.HallPto = (function() {
                 }
             }
             return message;
-        };
-
-        /**
-         * Decodes a S_CREATE_ROOM message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof HallPto.S_CREATE_ROOM
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {HallPto.S_CREATE_ROOM} S_CREATE_ROOM
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        S_CREATE_ROOM.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a S_CREATE_ROOM message.
-         * @function verify
-         * @memberof HallPto.S_CREATE_ROOM
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        S_CREATE_ROOM.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.cmd != null && message.hasOwnProperty("cmd"))
-                if (!$util.isInteger(message.cmd))
-                    return "cmd: integer expected";
-            if (message.scmd != null && message.hasOwnProperty("scmd"))
-                if (!$util.isInteger(message.scmd))
-                    return "scmd: integer expected";
-            if (message.isSuccess != null && message.hasOwnProperty("isSuccess"))
-                if (typeof message.isSuccess !== "boolean")
-                    return "isSuccess: boolean expected";
-            if (message.tableSeq != null && message.hasOwnProperty("tableSeq"))
-                if (!$util.isString(message.tableSeq))
-                    return "tableSeq: string expected";
-            return null;
         };
 
         return S_CREATE_ROOM;
@@ -1636,7 +1213,7 @@ $root.HallPto = (function() {
          * @interface IC_JOIN_ROOM
          * @property {number|null} [cmd] C_JOIN_ROOM cmd
          * @property {number|null} [scmd] C_JOIN_ROOM scmd
-         * @property {string|null} [tableSeq] C_JOIN_ROOM tableSeq
+         * @property {number|null} [roomId] C_JOIN_ROOM roomId
          */
 
         /**
@@ -1671,24 +1248,12 @@ $root.HallPto = (function() {
         C_JOIN_ROOM.prototype.scmd = 7;
 
         /**
-         * C_JOIN_ROOM tableSeq.
-         * @member {string} tableSeq
+         * C_JOIN_ROOM roomId.
+         * @member {number} roomId
          * @memberof HallPto.C_JOIN_ROOM
          * @instance
          */
-        C_JOIN_ROOM.prototype.tableSeq = "";
-
-        /**
-         * Creates a new C_JOIN_ROOM instance using the specified properties.
-         * @function create
-         * @memberof HallPto.C_JOIN_ROOM
-         * @static
-         * @param {HallPto.IC_JOIN_ROOM=} [properties] Properties to set
-         * @returns {HallPto.C_JOIN_ROOM} C_JOIN_ROOM instance
-         */
-        C_JOIN_ROOM.create = function create(properties) {
-            return new C_JOIN_ROOM(properties);
-        };
+        C_JOIN_ROOM.prototype.roomId = 0;
 
         /**
          * Encodes the specified C_JOIN_ROOM message. Does not implicitly {@link HallPto.C_JOIN_ROOM.verify|verify} messages.
@@ -1706,22 +1271,9 @@ $root.HallPto = (function() {
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.cmd);
             if (message.scmd != null && Object.hasOwnProperty.call(message, "scmd"))
                 writer.uint32(/* id 2, wireType 0 =*/16).int32(message.scmd);
-            if (message.tableSeq != null && Object.hasOwnProperty.call(message, "tableSeq"))
-                writer.uint32(/* id 3, wireType 2 =*/26).string(message.tableSeq);
+            if (message.roomId != null && Object.hasOwnProperty.call(message, "roomId"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.roomId);
             return writer;
-        };
-
-        /**
-         * Encodes the specified C_JOIN_ROOM message, length delimited. Does not implicitly {@link HallPto.C_JOIN_ROOM.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof HallPto.C_JOIN_ROOM
-         * @static
-         * @param {HallPto.IC_JOIN_ROOM} message C_JOIN_ROOM message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        C_JOIN_ROOM.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
         };
 
         /**
@@ -1749,7 +1301,7 @@ $root.HallPto = (function() {
                     message.scmd = reader.int32();
                     break;
                 case 3:
-                    message.tableSeq = reader.string();
+                    message.roomId = reader.int32();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -1757,45 +1309,6 @@ $root.HallPto = (function() {
                 }
             }
             return message;
-        };
-
-        /**
-         * Decodes a C_JOIN_ROOM message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof HallPto.C_JOIN_ROOM
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {HallPto.C_JOIN_ROOM} C_JOIN_ROOM
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        C_JOIN_ROOM.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a C_JOIN_ROOM message.
-         * @function verify
-         * @memberof HallPto.C_JOIN_ROOM
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        C_JOIN_ROOM.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.cmd != null && message.hasOwnProperty("cmd"))
-                if (!$util.isInteger(message.cmd))
-                    return "cmd: integer expected";
-            if (message.scmd != null && message.hasOwnProperty("scmd"))
-                if (!$util.isInteger(message.scmd))
-                    return "scmd: integer expected";
-            if (message.tableSeq != null && message.hasOwnProperty("tableSeq"))
-                if (!$util.isString(message.tableSeq))
-                    return "tableSeq: string expected";
-            return null;
         };
 
         return C_JOIN_ROOM;
@@ -1810,7 +1323,7 @@ $root.HallPto = (function() {
          * @property {number|null} [cmd] S_JOIN_ROOM cmd
          * @property {number|null} [scmd] S_JOIN_ROOM scmd
          * @property {boolean|null} [isSuccess] S_JOIN_ROOM isSuccess
-         * @property {string|null} [tableSeq] S_JOIN_ROOM tableSeq
+         * @property {number|null} [roomId] S_JOIN_ROOM roomId
          * @property {Array.<HallPto.IPlayer>|null} [players] S_JOIN_ROOM players
          * @property {number|null} [gameId] S_JOIN_ROOM gameId
          */
@@ -1856,12 +1369,12 @@ $root.HallPto = (function() {
         S_JOIN_ROOM.prototype.isSuccess = false;
 
         /**
-         * S_JOIN_ROOM tableSeq.
-         * @member {string} tableSeq
+         * S_JOIN_ROOM roomId.
+         * @member {number} roomId
          * @memberof HallPto.S_JOIN_ROOM
          * @instance
          */
-        S_JOIN_ROOM.prototype.tableSeq = "";
+        S_JOIN_ROOM.prototype.roomId = 0;
 
         /**
          * S_JOIN_ROOM players.
@@ -1878,18 +1391,6 @@ $root.HallPto = (function() {
          * @instance
          */
         S_JOIN_ROOM.prototype.gameId = 0;
-
-        /**
-         * Creates a new S_JOIN_ROOM instance using the specified properties.
-         * @function create
-         * @memberof HallPto.S_JOIN_ROOM
-         * @static
-         * @param {HallPto.IS_JOIN_ROOM=} [properties] Properties to set
-         * @returns {HallPto.S_JOIN_ROOM} S_JOIN_ROOM instance
-         */
-        S_JOIN_ROOM.create = function create(properties) {
-            return new S_JOIN_ROOM(properties);
-        };
 
         /**
          * Encodes the specified S_JOIN_ROOM message. Does not implicitly {@link HallPto.S_JOIN_ROOM.verify|verify} messages.
@@ -1909,27 +1410,14 @@ $root.HallPto = (function() {
                 writer.uint32(/* id 2, wireType 0 =*/16).int32(message.scmd);
             if (message.isSuccess != null && Object.hasOwnProperty.call(message, "isSuccess"))
                 writer.uint32(/* id 3, wireType 0 =*/24).bool(message.isSuccess);
-            if (message.tableSeq != null && Object.hasOwnProperty.call(message, "tableSeq"))
-                writer.uint32(/* id 4, wireType 2 =*/34).string(message.tableSeq);
+            if (message.roomId != null && Object.hasOwnProperty.call(message, "roomId"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.roomId);
             if (message.players != null && message.players.length)
                 for (var i = 0; i < message.players.length; ++i)
                     $root.HallPto.Player.encode(message.players[i], writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
             if (message.gameId != null && Object.hasOwnProperty.call(message, "gameId"))
                 writer.uint32(/* id 6, wireType 0 =*/48).int32(message.gameId);
             return writer;
-        };
-
-        /**
-         * Encodes the specified S_JOIN_ROOM message, length delimited. Does not implicitly {@link HallPto.S_JOIN_ROOM.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof HallPto.S_JOIN_ROOM
-         * @static
-         * @param {HallPto.IS_JOIN_ROOM} message S_JOIN_ROOM message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        S_JOIN_ROOM.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
         };
 
         /**
@@ -1960,7 +1448,7 @@ $root.HallPto = (function() {
                     message.isSuccess = reader.bool();
                     break;
                 case 4:
-                    message.tableSeq = reader.string();
+                    message.roomId = reader.int32();
                     break;
                 case 5:
                     if (!(message.players && message.players.length))
@@ -1978,82 +1466,30 @@ $root.HallPto = (function() {
             return message;
         };
 
-        /**
-         * Decodes a S_JOIN_ROOM message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof HallPto.S_JOIN_ROOM
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {HallPto.S_JOIN_ROOM} S_JOIN_ROOM
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        S_JOIN_ROOM.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a S_JOIN_ROOM message.
-         * @function verify
-         * @memberof HallPto.S_JOIN_ROOM
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        S_JOIN_ROOM.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.cmd != null && message.hasOwnProperty("cmd"))
-                if (!$util.isInteger(message.cmd))
-                    return "cmd: integer expected";
-            if (message.scmd != null && message.hasOwnProperty("scmd"))
-                if (!$util.isInteger(message.scmd))
-                    return "scmd: integer expected";
-            if (message.isSuccess != null && message.hasOwnProperty("isSuccess"))
-                if (typeof message.isSuccess !== "boolean")
-                    return "isSuccess: boolean expected";
-            if (message.tableSeq != null && message.hasOwnProperty("tableSeq"))
-                if (!$util.isString(message.tableSeq))
-                    return "tableSeq: string expected";
-            if (message.players != null && message.hasOwnProperty("players")) {
-                if (!Array.isArray(message.players))
-                    return "players: array expected";
-                for (var i = 0; i < message.players.length; ++i) {
-                    var error = $root.HallPto.Player.verify(message.players[i]);
-                    if (error)
-                        return "players." + error;
-                }
-            }
-            if (message.gameId != null && message.hasOwnProperty("gameId"))
-                if (!$util.isInteger(message.gameId))
-                    return "gameId: integer expected";
-            return null;
-        };
-
         return S_JOIN_ROOM;
     })();
 
-    HallPto.C_READY = (function() {
+    HallPto.C_ROOM_LIST = (function() {
 
         /**
-         * Properties of a C_READY.
+         * Properties of a C_ROOM_LIST.
          * @memberof HallPto
-         * @interface IC_READY
-         * @property {number|null} [cmd] C_READY cmd
-         * @property {number|null} [scmd] C_READY scmd
+         * @interface IC_ROOM_LIST
+         * @property {number|null} [cmd] C_ROOM_LIST cmd
+         * @property {number|null} [scmd] C_ROOM_LIST scmd
+         * @property {number|null} [gameId] C_ROOM_LIST gameId
+         * @property {number|null} [status] C_ROOM_LIST status
          */
 
         /**
-         * Constructs a new C_READY.
+         * Constructs a new C_ROOM_LIST.
          * @memberof HallPto
-         * @classdesc Represents a C_READY.
-         * @implements IC_READY
+         * @classdesc Represents a C_ROOM_LIST.
+         * @implements IC_ROOM_LIST
          * @constructor
-         * @param {HallPto.IC_READY=} [properties] Properties to set
+         * @param {HallPto.IC_ROOM_LIST=} [properties] Properties to set
          */
-        function C_READY(properties) {
+        function C_ROOM_LIST(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -2061,80 +1497,75 @@ $root.HallPto = (function() {
         }
 
         /**
-         * C_READY cmd.
+         * C_ROOM_LIST cmd.
          * @member {number} cmd
-         * @memberof HallPto.C_READY
+         * @memberof HallPto.C_ROOM_LIST
          * @instance
          */
-        C_READY.prototype.cmd = 1;
+        C_ROOM_LIST.prototype.cmd = 1;
 
         /**
-         * C_READY scmd.
+         * C_ROOM_LIST scmd.
          * @member {number} scmd
-         * @memberof HallPto.C_READY
+         * @memberof HallPto.C_ROOM_LIST
          * @instance
          */
-        C_READY.prototype.scmd = 9;
+        C_ROOM_LIST.prototype.scmd = 9;
 
         /**
-         * Creates a new C_READY instance using the specified properties.
-         * @function create
-         * @memberof HallPto.C_READY
-         * @static
-         * @param {HallPto.IC_READY=} [properties] Properties to set
-         * @returns {HallPto.C_READY} C_READY instance
+         * C_ROOM_LIST gameId.
+         * @member {number} gameId
+         * @memberof HallPto.C_ROOM_LIST
+         * @instance
          */
-        C_READY.create = function create(properties) {
-            return new C_READY(properties);
-        };
+        C_ROOM_LIST.prototype.gameId = 0;
 
         /**
-         * Encodes the specified C_READY message. Does not implicitly {@link HallPto.C_READY.verify|verify} messages.
+         * C_ROOM_LIST status.
+         * @member {number} status
+         * @memberof HallPto.C_ROOM_LIST
+         * @instance
+         */
+        C_ROOM_LIST.prototype.status = 0;
+
+        /**
+         * Encodes the specified C_ROOM_LIST message. Does not implicitly {@link HallPto.C_ROOM_LIST.verify|verify} messages.
          * @function encode
-         * @memberof HallPto.C_READY
+         * @memberof HallPto.C_ROOM_LIST
          * @static
-         * @param {HallPto.IC_READY} message C_READY message or plain object to encode
+         * @param {HallPto.IC_ROOM_LIST} message C_ROOM_LIST message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        C_READY.encode = function encode(message, writer) {
+        C_ROOM_LIST.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
             if (message.cmd != null && Object.hasOwnProperty.call(message, "cmd"))
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.cmd);
             if (message.scmd != null && Object.hasOwnProperty.call(message, "scmd"))
                 writer.uint32(/* id 2, wireType 0 =*/16).int32(message.scmd);
+            if (message.gameId != null && Object.hasOwnProperty.call(message, "gameId"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.gameId);
+            if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.status);
             return writer;
         };
 
         /**
-         * Encodes the specified C_READY message, length delimited. Does not implicitly {@link HallPto.C_READY.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof HallPto.C_READY
-         * @static
-         * @param {HallPto.IC_READY} message C_READY message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        C_READY.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a C_READY message from the specified reader or buffer.
+         * Decodes a C_ROOM_LIST message from the specified reader or buffer.
          * @function decode
-         * @memberof HallPto.C_READY
+         * @memberof HallPto.C_ROOM_LIST
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {HallPto.C_READY} C_READY
+         * @returns {HallPto.C_ROOM_LIST} C_ROOM_LIST
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        C_READY.decode = function decode(reader, length) {
+        C_ROOM_LIST.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.HallPto.C_READY();
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.HallPto.C_ROOM_LIST();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 switch (tag >>> 3) {
@@ -2144,6 +1575,12 @@ $root.HallPto = (function() {
                 case 2:
                     message.scmd = reader.int32();
                     break;
+                case 3:
+                    message.gameId = reader.int32();
+                    break;
+                case 4:
+                    message.status = reader.int32();
+                    break;
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -2152,66 +1589,30 @@ $root.HallPto = (function() {
             return message;
         };
 
-        /**
-         * Decodes a C_READY message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof HallPto.C_READY
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {HallPto.C_READY} C_READY
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        C_READY.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a C_READY message.
-         * @function verify
-         * @memberof HallPto.C_READY
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        C_READY.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.cmd != null && message.hasOwnProperty("cmd"))
-                if (!$util.isInteger(message.cmd))
-                    return "cmd: integer expected";
-            if (message.scmd != null && message.hasOwnProperty("scmd"))
-                if (!$util.isInteger(message.scmd))
-                    return "scmd: integer expected";
-            return null;
-        };
-
-        return C_READY;
+        return C_ROOM_LIST;
     })();
 
-    HallPto.S_PLAYER_READY = (function() {
+    HallPto.S_ROOM_LIST = (function() {
 
         /**
-         * Properties of a S_PLAYER_READY.
+         * Properties of a S_ROOM_LIST.
          * @memberof HallPto
-         * @interface IS_PLAYER_READY
-         * @property {number|null} [cmd] S_PLAYER_READY cmd
-         * @property {number|null} [scmd] S_PLAYER_READY scmd
-         * @property {number|null} [index] S_PLAYER_READY index
-         * @property {boolean|null} [isReady] S_PLAYER_READY isReady
+         * @interface IS_ROOM_LIST
+         * @property {number|null} [cmd] S_ROOM_LIST cmd
+         * @property {number|null} [scmd] S_ROOM_LIST scmd
+         * @property {Array.<HallPto.IRoomInfo>|null} [list] S_ROOM_LIST list
          */
 
         /**
-         * Constructs a new S_PLAYER_READY.
+         * Constructs a new S_ROOM_LIST.
          * @memberof HallPto
-         * @classdesc Represents a S_PLAYER_READY.
-         * @implements IS_PLAYER_READY
+         * @classdesc Represents a S_ROOM_LIST.
+         * @implements IS_ROOM_LIST
          * @constructor
-         * @param {HallPto.IS_PLAYER_READY=} [properties] Properties to set
+         * @param {HallPto.IS_ROOM_LIST=} [properties] Properties to set
          */
-        function S_PLAYER_READY(properties) {
+        function S_ROOM_LIST(properties) {
+            this.list = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -2219,59 +1620,260 @@ $root.HallPto = (function() {
         }
 
         /**
-         * S_PLAYER_READY cmd.
+         * S_ROOM_LIST cmd.
          * @member {number} cmd
-         * @memberof HallPto.S_PLAYER_READY
+         * @memberof HallPto.S_ROOM_LIST
          * @instance
          */
-        S_PLAYER_READY.prototype.cmd = 1;
+        S_ROOM_LIST.prototype.cmd = 1;
 
         /**
-         * S_PLAYER_READY scmd.
+         * S_ROOM_LIST scmd.
          * @member {number} scmd
-         * @memberof HallPto.S_PLAYER_READY
+         * @memberof HallPto.S_ROOM_LIST
          * @instance
          */
-        S_PLAYER_READY.prototype.scmd = 9;
+        S_ROOM_LIST.prototype.scmd = 10;
 
         /**
-         * S_PLAYER_READY index.
-         * @member {number} index
-         * @memberof HallPto.S_PLAYER_READY
+         * S_ROOM_LIST list.
+         * @member {Array.<HallPto.IRoomInfo>} list
+         * @memberof HallPto.S_ROOM_LIST
          * @instance
          */
-        S_PLAYER_READY.prototype.index = 0;
+        S_ROOM_LIST.prototype.list = $util.emptyArray;
 
         /**
-         * S_PLAYER_READY isReady.
-         * @member {boolean} isReady
-         * @memberof HallPto.S_PLAYER_READY
-         * @instance
-         */
-        S_PLAYER_READY.prototype.isReady = false;
-
-        /**
-         * Creates a new S_PLAYER_READY instance using the specified properties.
-         * @function create
-         * @memberof HallPto.S_PLAYER_READY
-         * @static
-         * @param {HallPto.IS_PLAYER_READY=} [properties] Properties to set
-         * @returns {HallPto.S_PLAYER_READY} S_PLAYER_READY instance
-         */
-        S_PLAYER_READY.create = function create(properties) {
-            return new S_PLAYER_READY(properties);
-        };
-
-        /**
-         * Encodes the specified S_PLAYER_READY message. Does not implicitly {@link HallPto.S_PLAYER_READY.verify|verify} messages.
+         * Encodes the specified S_ROOM_LIST message. Does not implicitly {@link HallPto.S_ROOM_LIST.verify|verify} messages.
          * @function encode
-         * @memberof HallPto.S_PLAYER_READY
+         * @memberof HallPto.S_ROOM_LIST
          * @static
-         * @param {HallPto.IS_PLAYER_READY} message S_PLAYER_READY message or plain object to encode
+         * @param {HallPto.IS_ROOM_LIST} message S_ROOM_LIST message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        S_PLAYER_READY.encode = function encode(message, writer) {
+        S_ROOM_LIST.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.cmd != null && Object.hasOwnProperty.call(message, "cmd"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.cmd);
+            if (message.scmd != null && Object.hasOwnProperty.call(message, "scmd"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.scmd);
+            if (message.list != null && message.list.length)
+                for (var i = 0; i < message.list.length; ++i)
+                    $root.HallPto.RoomInfo.encode(message.list[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Decodes a S_ROOM_LIST message from the specified reader or buffer.
+         * @function decode
+         * @memberof HallPto.S_ROOM_LIST
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {HallPto.S_ROOM_LIST} S_ROOM_LIST
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        S_ROOM_LIST.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.HallPto.S_ROOM_LIST();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.cmd = reader.int32();
+                    break;
+                case 2:
+                    message.scmd = reader.int32();
+                    break;
+                case 3:
+                    if (!(message.list && message.list.length))
+                        message.list = [];
+                    message.list.push($root.HallPto.RoomInfo.decode(reader, reader.uint32()));
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        return S_ROOM_LIST;
+    })();
+
+    HallPto.S_BROADCAST_JOIN_ROOM = (function() {
+
+        /**
+         * Properties of a S_BROADCAST_JOIN_ROOM.
+         * @memberof HallPto
+         * @interface IS_BROADCAST_JOIN_ROOM
+         * @property {number|null} [cmd] S_BROADCAST_JOIN_ROOM cmd
+         * @property {number|null} [scmd] S_BROADCAST_JOIN_ROOM scmd
+         * @property {HallPto.IPlayer|null} [player] S_BROADCAST_JOIN_ROOM player
+         */
+
+        /**
+         * Constructs a new S_BROADCAST_JOIN_ROOM.
+         * @memberof HallPto
+         * @classdesc Represents a S_BROADCAST_JOIN_ROOM.
+         * @implements IS_BROADCAST_JOIN_ROOM
+         * @constructor
+         * @param {HallPto.IS_BROADCAST_JOIN_ROOM=} [properties] Properties to set
+         */
+        function S_BROADCAST_JOIN_ROOM(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * S_BROADCAST_JOIN_ROOM cmd.
+         * @member {number} cmd
+         * @memberof HallPto.S_BROADCAST_JOIN_ROOM
+         * @instance
+         */
+        S_BROADCAST_JOIN_ROOM.prototype.cmd = 1;
+
+        /**
+         * S_BROADCAST_JOIN_ROOM scmd.
+         * @member {number} scmd
+         * @memberof HallPto.S_BROADCAST_JOIN_ROOM
+         * @instance
+         */
+        S_BROADCAST_JOIN_ROOM.prototype.scmd = 11;
+
+        /**
+         * S_BROADCAST_JOIN_ROOM player.
+         * @member {HallPto.IPlayer|null|undefined} player
+         * @memberof HallPto.S_BROADCAST_JOIN_ROOM
+         * @instance
+         */
+        S_BROADCAST_JOIN_ROOM.prototype.player = null;
+
+        /**
+         * Encodes the specified S_BROADCAST_JOIN_ROOM message. Does not implicitly {@link HallPto.S_BROADCAST_JOIN_ROOM.verify|verify} messages.
+         * @function encode
+         * @memberof HallPto.S_BROADCAST_JOIN_ROOM
+         * @static
+         * @param {HallPto.IS_BROADCAST_JOIN_ROOM} message S_BROADCAST_JOIN_ROOM message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        S_BROADCAST_JOIN_ROOM.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.cmd != null && Object.hasOwnProperty.call(message, "cmd"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.cmd);
+            if (message.scmd != null && Object.hasOwnProperty.call(message, "scmd"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.scmd);
+            if (message.player != null && Object.hasOwnProperty.call(message, "player"))
+                $root.HallPto.Player.encode(message.player, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Decodes a S_BROADCAST_JOIN_ROOM message from the specified reader or buffer.
+         * @function decode
+         * @memberof HallPto.S_BROADCAST_JOIN_ROOM
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {HallPto.S_BROADCAST_JOIN_ROOM} S_BROADCAST_JOIN_ROOM
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        S_BROADCAST_JOIN_ROOM.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.HallPto.S_BROADCAST_JOIN_ROOM();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.cmd = reader.int32();
+                    break;
+                case 2:
+                    message.scmd = reader.int32();
+                    break;
+                case 3:
+                    message.player = $root.HallPto.Player.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        return S_BROADCAST_JOIN_ROOM;
+    })();
+
+    HallPto.S_BROADCAST_LEAVE_ROOM = (function() {
+
+        /**
+         * Properties of a S_BROADCAST_LEAVE_ROOM.
+         * @memberof HallPto
+         * @interface IS_BROADCAST_LEAVE_ROOM
+         * @property {number|null} [cmd] S_BROADCAST_LEAVE_ROOM cmd
+         * @property {number|null} [scmd] S_BROADCAST_LEAVE_ROOM scmd
+         * @property {number|null} [index] S_BROADCAST_LEAVE_ROOM index
+         */
+
+        /**
+         * Constructs a new S_BROADCAST_LEAVE_ROOM.
+         * @memberof HallPto
+         * @classdesc Represents a S_BROADCAST_LEAVE_ROOM.
+         * @implements IS_BROADCAST_LEAVE_ROOM
+         * @constructor
+         * @param {HallPto.IS_BROADCAST_LEAVE_ROOM=} [properties] Properties to set
+         */
+        function S_BROADCAST_LEAVE_ROOM(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * S_BROADCAST_LEAVE_ROOM cmd.
+         * @member {number} cmd
+         * @memberof HallPto.S_BROADCAST_LEAVE_ROOM
+         * @instance
+         */
+        S_BROADCAST_LEAVE_ROOM.prototype.cmd = 1;
+
+        /**
+         * S_BROADCAST_LEAVE_ROOM scmd.
+         * @member {number} scmd
+         * @memberof HallPto.S_BROADCAST_LEAVE_ROOM
+         * @instance
+         */
+        S_BROADCAST_LEAVE_ROOM.prototype.scmd = 12;
+
+        /**
+         * S_BROADCAST_LEAVE_ROOM index.
+         * @member {number} index
+         * @memberof HallPto.S_BROADCAST_LEAVE_ROOM
+         * @instance
+         */
+        S_BROADCAST_LEAVE_ROOM.prototype.index = 0;
+
+        /**
+         * Encodes the specified S_BROADCAST_LEAVE_ROOM message. Does not implicitly {@link HallPto.S_BROADCAST_LEAVE_ROOM.verify|verify} messages.
+         * @function encode
+         * @memberof HallPto.S_BROADCAST_LEAVE_ROOM
+         * @static
+         * @param {HallPto.IS_BROADCAST_LEAVE_ROOM} message S_BROADCAST_LEAVE_ROOM message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        S_BROADCAST_LEAVE_ROOM.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
             if (message.cmd != null && Object.hasOwnProperty.call(message, "cmd"))
@@ -2280,39 +1882,24 @@ $root.HallPto = (function() {
                 writer.uint32(/* id 2, wireType 0 =*/16).int32(message.scmd);
             if (message.index != null && Object.hasOwnProperty.call(message, "index"))
                 writer.uint32(/* id 3, wireType 0 =*/24).int32(message.index);
-            if (message.isReady != null && Object.hasOwnProperty.call(message, "isReady"))
-                writer.uint32(/* id 4, wireType 0 =*/32).bool(message.isReady);
             return writer;
         };
 
         /**
-         * Encodes the specified S_PLAYER_READY message, length delimited. Does not implicitly {@link HallPto.S_PLAYER_READY.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof HallPto.S_PLAYER_READY
-         * @static
-         * @param {HallPto.IS_PLAYER_READY} message S_PLAYER_READY message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        S_PLAYER_READY.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a S_PLAYER_READY message from the specified reader or buffer.
+         * Decodes a S_BROADCAST_LEAVE_ROOM message from the specified reader or buffer.
          * @function decode
-         * @memberof HallPto.S_PLAYER_READY
+         * @memberof HallPto.S_BROADCAST_LEAVE_ROOM
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {HallPto.S_PLAYER_READY} S_PLAYER_READY
+         * @returns {HallPto.S_BROADCAST_LEAVE_ROOM} S_BROADCAST_LEAVE_ROOM
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        S_PLAYER_READY.decode = function decode(reader, length) {
+        S_BROADCAST_LEAVE_ROOM.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.HallPto.S_PLAYER_READY();
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.HallPto.S_BROADCAST_LEAVE_ROOM();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 switch (tag >>> 3) {
@@ -2325,9 +1912,6 @@ $root.HallPto = (function() {
                 case 3:
                     message.index = reader.int32();
                     break;
-                case 4:
-                    message.isReady = reader.bool();
-                    break;
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -2336,49 +1920,7 @@ $root.HallPto = (function() {
             return message;
         };
 
-        /**
-         * Decodes a S_PLAYER_READY message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof HallPto.S_PLAYER_READY
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {HallPto.S_PLAYER_READY} S_PLAYER_READY
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        S_PLAYER_READY.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a S_PLAYER_READY message.
-         * @function verify
-         * @memberof HallPto.S_PLAYER_READY
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        S_PLAYER_READY.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.cmd != null && message.hasOwnProperty("cmd"))
-                if (!$util.isInteger(message.cmd))
-                    return "cmd: integer expected";
-            if (message.scmd != null && message.hasOwnProperty("scmd"))
-                if (!$util.isInteger(message.scmd))
-                    return "scmd: integer expected";
-            if (message.index != null && message.hasOwnProperty("index"))
-                if (!$util.isInteger(message.index))
-                    return "index: integer expected";
-            if (message.isReady != null && message.hasOwnProperty("isReady"))
-                if (typeof message.isReady !== "boolean")
-                    return "isReady: boolean expected";
-            return null;
-        };
-
-        return S_PLAYER_READY;
+        return S_BROADCAST_LEAVE_ROOM;
     })();
 
     return HallPto;
@@ -2444,18 +1986,6 @@ $root.LoginPto = (function() {
         C_LOGIN.prototype.userName = "";
 
         /**
-         * Creates a new C_LOGIN instance using the specified properties.
-         * @function create
-         * @memberof LoginPto.C_LOGIN
-         * @static
-         * @param {LoginPto.IC_LOGIN=} [properties] Properties to set
-         * @returns {LoginPto.C_LOGIN} C_LOGIN instance
-         */
-        C_LOGIN.create = function create(properties) {
-            return new C_LOGIN(properties);
-        };
-
-        /**
          * Encodes the specified C_LOGIN message. Does not implicitly {@link LoginPto.C_LOGIN.verify|verify} messages.
          * @function encode
          * @memberof LoginPto.C_LOGIN
@@ -2474,19 +2004,6 @@ $root.LoginPto = (function() {
             if (message.userName != null && Object.hasOwnProperty.call(message, "userName"))
                 writer.uint32(/* id 3, wireType 2 =*/26).string(message.userName);
             return writer;
-        };
-
-        /**
-         * Encodes the specified C_LOGIN message, length delimited. Does not implicitly {@link LoginPto.C_LOGIN.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof LoginPto.C_LOGIN
-         * @static
-         * @param {LoginPto.IC_LOGIN} message C_LOGIN message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        C_LOGIN.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
         };
 
         /**
@@ -2522,45 +2039,6 @@ $root.LoginPto = (function() {
                 }
             }
             return message;
-        };
-
-        /**
-         * Decodes a C_LOGIN message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof LoginPto.C_LOGIN
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {LoginPto.C_LOGIN} C_LOGIN
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        C_LOGIN.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a C_LOGIN message.
-         * @function verify
-         * @memberof LoginPto.C_LOGIN
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        C_LOGIN.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.cmd != null && message.hasOwnProperty("cmd"))
-                if (!$util.isInteger(message.cmd))
-                    return "cmd: integer expected";
-            if (message.scmd != null && message.hasOwnProperty("scmd"))
-                if (!$util.isInteger(message.scmd))
-                    return "scmd: integer expected";
-            if (message.userName != null && message.hasOwnProperty("userName"))
-                if (!$util.isString(message.userName))
-                    return "userName: string expected";
-            return null;
         };
 
         return C_LOGIN;
@@ -2626,18 +2104,6 @@ $root.LoginPto = (function() {
         S_LOGIN.prototype.userName = "";
 
         /**
-         * Creates a new S_LOGIN instance using the specified properties.
-         * @function create
-         * @memberof LoginPto.S_LOGIN
-         * @static
-         * @param {LoginPto.IS_LOGIN=} [properties] Properties to set
-         * @returns {LoginPto.S_LOGIN} S_LOGIN instance
-         */
-        S_LOGIN.create = function create(properties) {
-            return new S_LOGIN(properties);
-        };
-
-        /**
          * Encodes the specified S_LOGIN message. Does not implicitly {@link LoginPto.S_LOGIN.verify|verify} messages.
          * @function encode
          * @memberof LoginPto.S_LOGIN
@@ -2658,19 +2124,6 @@ $root.LoginPto = (function() {
             if (message.userName != null && Object.hasOwnProperty.call(message, "userName"))
                 writer.uint32(/* id 4, wireType 2 =*/34).string(message.userName);
             return writer;
-        };
-
-        /**
-         * Encodes the specified S_LOGIN message, length delimited. Does not implicitly {@link LoginPto.S_LOGIN.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof LoginPto.S_LOGIN
-         * @static
-         * @param {LoginPto.IS_LOGIN} message S_LOGIN message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        S_LOGIN.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
         };
 
         /**
@@ -2709,48 +2162,6 @@ $root.LoginPto = (function() {
                 }
             }
             return message;
-        };
-
-        /**
-         * Decodes a S_LOGIN message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof LoginPto.S_LOGIN
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {LoginPto.S_LOGIN} S_LOGIN
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        S_LOGIN.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a S_LOGIN message.
-         * @function verify
-         * @memberof LoginPto.S_LOGIN
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        S_LOGIN.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.cmd != null && message.hasOwnProperty("cmd"))
-                if (!$util.isInteger(message.cmd))
-                    return "cmd: integer expected";
-            if (message.scmd != null && message.hasOwnProperty("scmd"))
-                if (!$util.isInteger(message.scmd))
-                    return "scmd: integer expected";
-            if (message.isSuccess != null && message.hasOwnProperty("isSuccess"))
-                if (typeof message.isSuccess !== "boolean")
-                    return "isSuccess: boolean expected";
-            if (message.userName != null && message.hasOwnProperty("userName"))
-                if (!$util.isString(message.userName))
-                    return "userName: string expected";
-            return null;
         };
 
         return S_LOGIN;

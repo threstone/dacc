@@ -5,9 +5,10 @@ module dacc {
 	export class UI_RoomItem extends fairygui.GComponent {
 
 		public m_bg:fairygui.GGraph;
-		public m_title:fairygui.GTextField;
-		public m_n3:UI_BtnLong;
-		public m_title_2:fairygui.GTextField;
+		public m_game_name:fairygui.GTextField;
+		public m_join_btn:UI_BtnLong;
+		public m_game_status:fairygui.GTextField;
+		public m_describe:fairygui.GTextField;
 
 		public static URL:string = "ui://sly852qpb78j2h";
 
@@ -23,9 +24,10 @@ module dacc {
 			super.constructFromXML(xml);
 
 			this.m_bg = <fairygui.GGraph><any>(this.getChild("bg"));
-			this.m_title = <fairygui.GTextField><any>(this.getChild("title"));
-			this.m_n3 = <UI_BtnLong><any>(this.getChild("n3"));
-			this.m_title_2 = <fairygui.GTextField><any>(this.getChild("title"));
+			this.m_game_name = <fairygui.GTextField><any>(this.getChild("game_name"));
+			this.m_join_btn = <UI_BtnLong><any>(this.getChild("join_btn"));
+			this.m_game_status = <fairygui.GTextField><any>(this.getChild("game_status"));
+			this.m_describe = <fairygui.GTextField><any>(this.getChild("describe"));
 		}
 	}
 }

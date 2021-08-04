@@ -7,10 +7,10 @@
       <item url="ui://sly852qpb78j2h"/>
       <item url="ui://sly852qpb78j2h"/>
     </list>
-    <text id="n6_b78j" name="title" xy="42,86" size="51,30" fontSize="22" color="#663333" vAlign="middle" bold="true" singleLine="true" text="游戏">
+    <text id="n6_b78j" name="title" xy="17,86" size="51,30" fontSize="22" color="#663333" vAlign="middle" bold="true" singleLine="true" text="游戏">
       <relation target="" sidePair="width-width,height-height"/>
     </text>
-    <text id="n7_b78j" name="title" xy="201,86" size="51,30" fontSize="22" color="#663333" vAlign="middle" bold="true" singleLine="true" text="状态">
+    <text id="n7_b78j" name="title" xy="177,86" size="51,30" fontSize="22" color="#663333" vAlign="middle" bold="true" singleLine="true" text="状态">
       <relation target="" sidePair="width-width,height-height"/>
     </text>
     <component id="n9_b78j" name="game_choose" src="lzpa2d" fileName="component/createRoom/GameChoose.xml" xy="42,19">
@@ -19,5 +19,9 @@
     <component id="n10_b78j" name="status_choose" src="lzpa2d" fileName="component/createRoom/GameChoose.xml" xy="282,19">
       <ComboBox visibleItemCount="10"/>
     </component>
+    <text id="n11_di7i" name="title" xy="263,86" size="51,30" fontSize="22" color="#663333" vAlign="middle" bold="true" singleLine="true" text="描述">
+      <relation target="" sidePair="width-width,height-height"/>
+    </text>
+    <component id="n13_di7i" name="refresh_btn" src="ikts1n" fileName="component/common/BtnLong.xml" xy="505,25" size="80,26"/>
   </displayList>
 </component>

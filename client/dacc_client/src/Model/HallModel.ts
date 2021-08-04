@@ -43,7 +43,7 @@ class HallModel extends BaseModel {
         if (msg.isSuccess) {
             //请求进入房间
             let requestMsg = new HallPto.C_JOIN_ROOM()
-            requestMsg.tableSeq = msg.tableSeq
+            requestMsg.roomId = msg.roomId
             this.sendMsg(requestMsg)
         } else {
             GlobalController.showTips("创建房间失败...", 5000)
@@ -52,25 +52,54 @@ class HallModel extends BaseModel {
 
     S_JOIN_ROOM(msg: HallPto.S_JOIN_ROOM) {
         if (msg.isSuccess) {
-            GlobalController.JoinGameSuccess(msg)
+            GlobalController.joinGameSuccess(msg)
         } else {
             GlobalController.showTips("加入房间失败...", 5000)
         }
     }
 
+    S_BROADCAST_JOIN_ROOM(msg: HallPto.S_BROADCAST_JOIN_ROOM) {
+        this.emit('UserJoinInRoom', msg)
+    }
+
+    S_BROADCAST_LEAVE_ROOM(msg: HallPto.S_BROADCAST_LEAVE_ROOM) {
+        this.emit('UserLeaveRoom', msg)
+    }
+
+    S_ROOM_LIST(msg: HallPto.S_ROOM_LIST) {
+        this.emit('RoomListInfo', msg)
+    }
+
     initCreateRoomEvent() {
         this.addEventListener('CreateRoomClick', (evt: EventData) => {
-            let gameId = evt.data as number
+            let gameId: number = evt.data.gameId
+            let describe: string = evt.data.describe
             let msg = new HallPto.C_CREATE_ROOM()
             msg.gameId = gameId
+            msg.describe = describe
             this.sendMsg(msg)
         })
     }
 
     initRoomListEvent() {
-        this.addEventListener('RoomListGameChooseChange', (evt: EventData) => {
-            let gameId = evt.data as number
+        this.addEventListener('RoomListConditionChange', (evt: EventData) => {
+            let gameId: number = evt.data.gameId
+            if (gameId == undefined) {
+                return
+            }
+            let status: number = evt.data.status
+            let msg = new HallPto.C_ROOM_LIST()
+            msg.gameId = gameId
+            msg.status = status == -1 ? 0 : status
+            this.sendMsg(msg)
+        })
 
+        this.addEventListener('JoinInRoomClick', (evt: EventData) => {
+            let roomId: number = evt.data
+            //请求进入房间
+            let requestMsg = new HallPto.C_JOIN_ROOM()
+            requestMsg.roomId = roomId
+            this.sendMsg(requestMsg)
         })
     }
 }

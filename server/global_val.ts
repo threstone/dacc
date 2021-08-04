@@ -5,25 +5,25 @@ import { ProtoBufEncoder } from "./protobuf_encoder"
 import * as fs from "fs"
 import * as path from "path"
 import * as allProto from "./common_proto"
-import { TableMgr } from "./table_mgr"
+import { RoomMgr } from "./room_mgr"
 let logger = getLogger()
 export class GlobalVal {
 
     private static _server: SocketServer
-    private static _tableMgr: TableMgr
+    private static _roomMgr: RoomMgr
 
     static get server() {
         return this._server
     }
 
-    static get tableMgr() {
-        return this._tableMgr
+    static get roomMgr() {
+        return this._roomMgr
     }
 
     static init() {
         configure(loggerConfig)
 
-        this._tableMgr = new TableMgr()
+        this._roomMgr = new RoomMgr()
 
         this.initMsgHandle()
         this._server = new SocketServer()
@@ -66,13 +66,18 @@ export class GlobalVal {
                     if (key.startsWith('S_')) {
                         continue
                     }
+                    let isFind = false
                     for (const handleName in handleObj) {
                         let handle = handleObj[handleName]
                         if (handle[key]) {
-                            ProtoBufEncoder.setHandle(temp.prototype.cmd, temp.prototype.scmd, handle[key].bind(handle[key]))
+                            ProtoBufEncoder.setHandle(temp.prototype.cmd, temp.prototype.scmd, handle[key].bind(handle))
                             console.log(`注册函数 ${key}`);
+                            isFind = true
                             break
                         }
+                    }
+                    if (!isFind) {
+                        logger.error(`${key} 未找到注册函数`)
                     }
                 }
             }

@@ -78,7 +78,6 @@ class Socket {
     }
 
     private onRcvMsg() {
-
         let byteArray = new egret.ByteArray();
         this._webSocket.readBytes(byteArray);
 
@@ -88,20 +87,15 @@ class Socket {
         byteArray.readBytes(msg);
 
         MessageManager.rcvMsgHandler(sysId, cmdId, msg);
-
     }
 
     private onClose() {
-
         console.error("主动输出:" + "连接断开");
-
     }
 
     private onError(err) {
-
         console.error("主动输出:" + err);
         console.error(err);
-
     }
 
 }

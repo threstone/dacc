@@ -10,6 +10,8 @@ module dacc {
 		public m_title_2:fairygui.GTextField;
 		public m_game_choose:UI_GameChoose;
 		public m_status_choose:UI_GameChoose;
+		public m_title_3:fairygui.GTextField;
+		public m_refresh_btn:UI_BtnLong;
 
 		public static URL:string = "ui://sly852qpb78j2g";
 
@@ -30,6 +32,8 @@ module dacc {
 			this.m_title_2 = <fairygui.GTextField><any>(this.getChild("title"));
 			this.m_game_choose = <UI_GameChoose><any>(this.getChild("game_choose"));
 			this.m_status_choose = <UI_GameChoose><any>(this.getChild("status_choose"));
+			this.m_title_3 = <fairygui.GTextField><any>(this.getChild("title"));
+			this.m_refresh_btn = <UI_BtnLong><any>(this.getChild("refresh_btn"));
 		}
 	}
 }
