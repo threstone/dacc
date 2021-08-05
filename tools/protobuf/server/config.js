@@ -18,6 +18,8 @@ let config = {
     commonFiles: [
         'login.proto',
 		'hall.proto',
+		'room.proto',
+		'system.proto',
     ],
 
 

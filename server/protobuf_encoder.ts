@@ -49,7 +49,7 @@ export class ProtoBufEncoder {
 
         //客户端的代码需要注册一下
         if (key.startsWith("C_")) {
-          console.log("添加协议:", protoClass.name, protoClass.prototype.cmd, protoClass.prototype.scmd)
+          console.log("添加协议:", protoClass.name)
           if (handle && handle[protoClass.name]) {
             this.messagehandles_.set(protoIndex, handle[protoClass.name])
           } else {
@@ -67,10 +67,10 @@ export class ProtoBufEncoder {
     const protoBufAny: any = protobuf
     protoBufAny.Writer.prototype.finishWithSysCmd = function (sysid: number, cmdid: number) {
       let head = this.head.next
-      const buf = this.constructor.alloc(this.len + 2)
-      buf.writeUInt8(sysid, 0)
-      buf.writeUInt8(cmdid, 1)
-      let pos = 2
+      const buf = this.constructor.alloc(this.len + 8)
+      buf.writeInt32BE(sysid, 0)
+      buf.writeInt32BE(cmdid, 4)
+      let pos = 8
       while (head) {
         head.fn(head.val, buf, pos)
         pos += head.len
@@ -107,12 +107,12 @@ export class ProtoBufEncoder {
   }
 
   public static decode(buffer: Buffer, offset: number): IGameMessage {
-    if (buffer.length < 2) {
-      logger.error("protobuf decode err! buffer长度小于2")
+    if (buffer.length < 8) {
+      logger.error("protobuf decode err! buffer长度小于8")
       return
     }
-    const cmd = buffer.readUInt8(offset)
-    const scmd = buffer.readUInt8(offset + 1)
+    const cmd = buffer.readInt32BE(offset)
+    const scmd = buffer.readInt32BE(offset + 4)
     const messageIndex = cmd + "_" + scmd
     const messageClass = ProtoBufEncoder.protoBufClass.get(messageIndex)
 
@@ -122,7 +122,7 @@ export class ProtoBufEncoder {
     }
 
     ProtoBufEncoder.protoBufReader.buf = buffer
-    ProtoBufEncoder.protoBufReader.pos = offset + 2
+    ProtoBufEncoder.protoBufReader.pos = offset + 8
     ProtoBufEncoder.protoBufReader.len = buffer.length
     let result = null
     try {

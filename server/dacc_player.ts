@@ -1,10 +1,15 @@
 import { getLogger } from "log4js"
-import { GlobalVal } from "./global_val"
+import { GlobalVar } from "./global_var"
 import { IGameMessage } from "./protobuf_encoder"
 let logger = getLogger()
 export class DaccPlayer {
     clientId: number
+    /**
+     * 在player中的索引
+     */
+    index: number
     isReady: boolean = false
+    isWatcher: boolean = false
 
     constructor(clientId: number) {
         this.clientId = clientId
@@ -15,7 +20,7 @@ export class DaccPlayer {
             logger.error("error DaccPlayer clientId = -1")
             return
         }
-        GlobalVal.server.sendMsg(this.clientId, msg)
+        GlobalVar.server.sendMsg(this.clientId, msg)
     }
 
     sendBuf(buf: Buffer) {
@@ -23,7 +28,7 @@ export class DaccPlayer {
             logger.error("error DaccPlayer clientId = -1")
             return
         }
-        GlobalVal.server.sendBuf(this.clientId, buf)
+        GlobalVar.server.sendBuf(this.clientId, buf)
     }
 
 
@@ -31,11 +36,18 @@ export class DaccPlayer {
      * 获取DaccSession
      */
     getSession() {
-        return GlobalVal.server.getDaccSession(this.clientId)
+        return GlobalVar.server.getDaccSession(this.clientId)
     }
 
     destroy() {
+        let session = this.getSession()
+        if (session) {
+            session.room = null
+            session.player = null
+        }
         this.clientId = -1
+        this.index = -1
         this.isReady = false
+        this.isWatcher = false
     }
 }

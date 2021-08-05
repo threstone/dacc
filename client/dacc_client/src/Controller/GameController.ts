@@ -6,9 +6,7 @@ class GameController extends BaseController {
         this.model = new GameModel()
     }
 
-
-
-    async onJoinRoomSuccess(data: HallPto.S_JOIN_ROOM) {
+    async onJoinRoomSuccess(data: RoomPto.S_JOIN_ROOM) {
         let firstLoad = false
         //不存在就加载
         if (!this.loadedGameObj[data.gameId]) {
@@ -25,5 +23,12 @@ class GameController extends BaseController {
         view.show(data.gameId, data)
         let model = this.model as GameModel
         model.alive(data.gameId)
+    }
+
+    closeGame() {
+        let view = this.view as GameView
+        let model = this.model as GameModel
+        view.close(model.curGameID)
+        model.dead(model.curGameID)
     }
 }

@@ -2,7 +2,7 @@ import { getLogger } from "log4js"
 import { LoginPto } from "./common_proto"
 import { DaccPlayer } from "./dacc_player"
 import { DaccRoom } from "./dacc_room"
-import { GlobalVal } from "./global_val"
+import { GlobalVar } from "./global_var"
 import { IGameMessage } from "./protobuf_encoder"
 const logger = getLogger()
 export class DaccUser {
@@ -44,7 +44,7 @@ export class DaccUser {
             logger.error("error DaccUser clientId = -1")
             return
         }
-        GlobalVal.server.sendMsg(this.clientId, msg)
+        GlobalVar.server.sendMsg(this.clientId, msg)
     }
 
     sendBuf(buf: Buffer) {
@@ -52,10 +52,10 @@ export class DaccUser {
             logger.error("error DaccUser clientId = -1")
             return
         }
-        GlobalVal.server.sendBuf(this.clientId, buf)
+        GlobalVar.server.sendBuf(this.clientId, buf)
     }
 
     broadcast(msg: IGameMessage) {
-        GlobalVal.server.broadcast(msg)
+        GlobalVar.server.broadcast(msg)
     }
 }

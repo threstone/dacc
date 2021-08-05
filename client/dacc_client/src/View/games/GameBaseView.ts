@@ -6,12 +6,17 @@ abstract class GameBaseView extends BaseView {
         this.addEventListener(`UserJoinInRoom${gameId}`, (evt: EventData) => {
             this.onUserJoinInRoom(evt.data)
         })
-        this.addEventListener(`UserLeaveRoom${gameId}`, (evt: EventData) => {
-            this.onUserLeaveRoom(evt.data)
+        this.addEventListener(`OtherUserLeaveRoom${gameId}`, (evt: EventData) => {
+            this.onOtherUserLeaveRoom(evt.data)
+        })
+        this.addEventListener(`UserReadyStatusChange${gameId}`, (evt: EventData) => {
+            this.onUserReadyStatusChange(evt.data)
         })
     }
 
-    abstract show(data: HallPto.S_JOIN_ROOM)
-    abstract onUserJoinInRoom(data: HallPto.S_BROADCAST_JOIN_ROOM)
-    abstract onUserLeaveRoom(data: HallPto.S_BROADCAST_LEAVE_ROOM)
+    abstract show(data: RoomPto.S_JOIN_ROOM)
+    abstract close();
+    abstract onUserJoinInRoom(data: RoomPto.S_BROADCAST_JOIN_ROOM)
+    abstract onOtherUserLeaveRoom(data: RoomPto.S_BROADCAST_LEAVE_ROOM)
+    abstract onUserReadyStatusChange(data: RoomPto.S_PLAYER_READY_STATUS_CHANGE)
 }

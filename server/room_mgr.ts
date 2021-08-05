@@ -2,6 +2,9 @@ import { getLogger } from "log4js";
 import { DaccRoom } from "./dacc_room";
 import * as fs from "fs"
 import * as path from "path"
+import { GlobalVar } from "./global_var";
+import { ProtoBufEncoder } from "./protobuf_encoder";
+
 export declare type GameRoomClasses = typeof DaccRoom
 let logger = getLogger()
 export class RoomMgr {
@@ -10,10 +13,14 @@ export class RoomMgr {
     private _roomClassMap: Map<number, GameRoomClasses>
     constructor() {
         this._roomMap = new Map<number, DaccRoom>()
-        this.initRoomClass()
+        this.initGame()
     }
 
-    initRoomClass() {
+    /**
+     * 初始化支持的游戏
+     * 包括记录游戏room类、注册游戏handle
+     */
+    private initGame() {
         this._roomClassMap = new Map<number, GameRoomClasses>()
         let basePath = path.join(__dirname, "./games")
         let files = fs.readdirSync(basePath)
@@ -21,14 +28,32 @@ export class RoomMgr {
             let foldName = files[i]
             if (foldName.startsWith("G")) {
                 let gameId = parseInt(foldName.substr(1))
+                //不支持该游戏的话就跳到下一个
+                if (!GlobalVar.isSupportGame(gameId)) {
+                    continue
+                }
                 if (Number.isNaN(gameId) || this._roomClassMap.has(gameId)) {
                     logger.error(`${foldName} 注册游戏出现错误`)
                     continue
                 }
+                //记录游戏room类
                 let roomPath = path.join(basePath, `${foldName}/room_${gameId}`)
                 let roomClass = require(roomPath)
-                this._roomClassMap.set(gameId, roomClass[`Room${gameId}`])
-                console.log(`gameId:${gameId}注册成功`)
+                let room = roomClass[`Room${gameId}`]
+                if (room) {
+                    this._roomClassMap.set(gameId, room)
+
+                    //注册游戏handle
+                    let protoPath = path.join(basePath, `${foldName}/proto_${gameId}`)
+                    let protoClass = require(protoPath)
+                    let protoHandlePath = path.join(basePath, `${foldName}/game_handle_${gameId}`)
+                    let protoHandleClass = require(protoHandlePath)
+                    ProtoBufEncoder.addProtoModule(protoClass[`GamePto${gameId}`], protoHandleClass[`GameHandle${gameId}`])
+                    console.log(`gameId:${gameId}注册成功`)
+                } else {
+                    logger.error('roomClass中获取导出的room失败!')
+                    continue
+                }
             }
         }
     }

@@ -312,234 +312,6 @@ export namespace HallPto {
         public toJSON(): { [k: string]: any };
     }
 
-    /** Properties of a Player. */
-    interface IPlayer {
-
-        /** Player index */
-        index?: (number|null);
-
-        /** Player headIndex */
-        headIndex?: (number|null);
-
-        /** Player userName */
-        userName?: (string|null);
-
-        /** Player isReady */
-        isReady?: (boolean|null);
-    }
-
-    /** Represents a Player. */
-    class Player implements IPlayer {
-
-        /**
-         * Constructs a new Player.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: HallPto.IPlayer);
-
-        /** Player index. */
-        public index: number;
-
-        /** Player headIndex. */
-        public headIndex: number;
-
-        /** Player userName. */
-        public userName: string;
-
-        /** Player isReady. */
-        public isReady: boolean;
-
-        /**
-         * Creates a new Player instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns Player instance
-         */
-        public static create(properties?: HallPto.IPlayer): HallPto.Player;
-
-        /**
-         * Encodes the specified Player message. Does not implicitly {@link HallPto.Player.verify|verify} messages.
-         * @param message Player message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: HallPto.IPlayer, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified Player message, length delimited. Does not implicitly {@link HallPto.Player.verify|verify} messages.
-         * @param message Player message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: HallPto.IPlayer, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a Player message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns Player
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): HallPto.Player;
-
-        /**
-         * Decodes a Player message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns Player
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): HallPto.Player;
-
-        /**
-         * Verifies a Player message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a Player message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns Player
-         */
-        public static fromObject(object: { [k: string]: any }): HallPto.Player;
-
-        /**
-         * Creates a plain object from a Player message. Also converts values to other types if specified.
-         * @param message Player
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: HallPto.Player, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this Player to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-    }
-
-    /** Properties of a RoomInfo. */
-    interface IRoomInfo {
-
-        /** RoomInfo gameId */
-        gameId?: (number|null);
-
-        /** RoomInfo isStart */
-        isStart?: (boolean|null);
-
-        /** RoomInfo describe */
-        describe?: (string|null);
-
-        /** RoomInfo roomId */
-        roomId?: (number|null);
-
-        /** RoomInfo curPlayer */
-        curPlayer?: (number|null);
-
-        /** RoomInfo maxPlayer */
-        maxPlayer?: (number|null);
-    }
-
-    /** Represents a RoomInfo. */
-    class RoomInfo implements IRoomInfo {
-
-        /**
-         * Constructs a new RoomInfo.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: HallPto.IRoomInfo);
-
-        /** RoomInfo gameId. */
-        public gameId: number;
-
-        /** RoomInfo isStart. */
-        public isStart: boolean;
-
-        /** RoomInfo describe. */
-        public describe: string;
-
-        /** RoomInfo roomId. */
-        public roomId: number;
-
-        /** RoomInfo curPlayer. */
-        public curPlayer: number;
-
-        /** RoomInfo maxPlayer. */
-        public maxPlayer: number;
-
-        /**
-         * Creates a new RoomInfo instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns RoomInfo instance
-         */
-        public static create(properties?: HallPto.IRoomInfo): HallPto.RoomInfo;
-
-        /**
-         * Encodes the specified RoomInfo message. Does not implicitly {@link HallPto.RoomInfo.verify|verify} messages.
-         * @param message RoomInfo message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: HallPto.IRoomInfo, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified RoomInfo message, length delimited. Does not implicitly {@link HallPto.RoomInfo.verify|verify} messages.
-         * @param message RoomInfo message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: HallPto.IRoomInfo, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a RoomInfo message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns RoomInfo
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): HallPto.RoomInfo;
-
-        /**
-         * Decodes a RoomInfo message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns RoomInfo
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): HallPto.RoomInfo;
-
-        /**
-         * Verifies a RoomInfo message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a RoomInfo message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns RoomInfo
-         */
-        public static fromObject(object: { [k: string]: any }): HallPto.RoomInfo;
-
-        /**
-         * Creates a plain object from a RoomInfo message. Also converts values to other types if specified.
-         * @param message RoomInfo
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: HallPto.RoomInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this RoomInfo to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-    }
-
     /** Properties of a C_SEND_CHAT_MSG. */
     interface IC_SEND_CHAT_MSG {
 
@@ -953,6 +725,238 @@ export namespace HallPto {
          */
         public toJSON(): { [k: string]: any };
     }
+}
+
+/** Namespace RoomPto. */
+export namespace RoomPto {
+
+    /** Properties of a Player. */
+    interface IPlayer {
+
+        /** Player index */
+        index?: (number|null);
+
+        /** Player headIndex */
+        headIndex?: (number|null);
+
+        /** Player userName */
+        userName?: (string|null);
+
+        /** Player isReady */
+        isReady?: (boolean|null);
+    }
+
+    /** Represents a Player. */
+    class Player implements IPlayer {
+
+        /**
+         * Constructs a new Player.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: RoomPto.IPlayer);
+
+        /** Player index. */
+        public index: number;
+
+        /** Player headIndex. */
+        public headIndex: number;
+
+        /** Player userName. */
+        public userName: string;
+
+        /** Player isReady. */
+        public isReady: boolean;
+
+        /**
+         * Creates a new Player instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns Player instance
+         */
+        public static create(properties?: RoomPto.IPlayer): RoomPto.Player;
+
+        /**
+         * Encodes the specified Player message. Does not implicitly {@link RoomPto.Player.verify|verify} messages.
+         * @param message Player message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: RoomPto.IPlayer, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified Player message, length delimited. Does not implicitly {@link RoomPto.Player.verify|verify} messages.
+         * @param message Player message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: RoomPto.IPlayer, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a Player message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns Player
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): RoomPto.Player;
+
+        /**
+         * Decodes a Player message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns Player
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): RoomPto.Player;
+
+        /**
+         * Verifies a Player message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a Player message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns Player
+         */
+        public static fromObject(object: { [k: string]: any }): RoomPto.Player;
+
+        /**
+         * Creates a plain object from a Player message. Also converts values to other types if specified.
+         * @param message Player
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: RoomPto.Player, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this Player to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a RoomInfo. */
+    interface IRoomInfo {
+
+        /** RoomInfo gameId */
+        gameId?: (number|null);
+
+        /** RoomInfo isStart */
+        isStart?: (boolean|null);
+
+        /** RoomInfo describe */
+        describe?: (string|null);
+
+        /** RoomInfo roomId */
+        roomId?: (number|null);
+
+        /** RoomInfo curPlayer */
+        curPlayer?: (number|null);
+
+        /** RoomInfo maxPlayer */
+        maxPlayer?: (number|null);
+    }
+
+    /** Represents a RoomInfo. */
+    class RoomInfo implements IRoomInfo {
+
+        /**
+         * Constructs a new RoomInfo.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: RoomPto.IRoomInfo);
+
+        /** RoomInfo gameId. */
+        public gameId: number;
+
+        /** RoomInfo isStart. */
+        public isStart: boolean;
+
+        /** RoomInfo describe. */
+        public describe: string;
+
+        /** RoomInfo roomId. */
+        public roomId: number;
+
+        /** RoomInfo curPlayer. */
+        public curPlayer: number;
+
+        /** RoomInfo maxPlayer. */
+        public maxPlayer: number;
+
+        /**
+         * Creates a new RoomInfo instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns RoomInfo instance
+         */
+        public static create(properties?: RoomPto.IRoomInfo): RoomPto.RoomInfo;
+
+        /**
+         * Encodes the specified RoomInfo message. Does not implicitly {@link RoomPto.RoomInfo.verify|verify} messages.
+         * @param message RoomInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: RoomPto.IRoomInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified RoomInfo message, length delimited. Does not implicitly {@link RoomPto.RoomInfo.verify|verify} messages.
+         * @param message RoomInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: RoomPto.IRoomInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a RoomInfo message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns RoomInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): RoomPto.RoomInfo;
+
+        /**
+         * Decodes a RoomInfo message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns RoomInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): RoomPto.RoomInfo;
+
+        /**
+         * Verifies a RoomInfo message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a RoomInfo message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns RoomInfo
+         */
+        public static fromObject(object: { [k: string]: any }): RoomPto.RoomInfo;
+
+        /**
+         * Creates a plain object from a RoomInfo message. Also converts values to other types if specified.
+         * @param message RoomInfo
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: RoomPto.RoomInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this RoomInfo to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
 
     /** Properties of a C_CREATE_ROOM. */
     interface IC_CREATE_ROOM {
@@ -977,7 +981,7 @@ export namespace HallPto {
          * Constructs a new C_CREATE_ROOM.
          * @param [properties] Properties to set
          */
-        constructor(properties?: HallPto.IC_CREATE_ROOM);
+        constructor(properties?: RoomPto.IC_CREATE_ROOM);
 
         /** C_CREATE_ROOM cmd. */
         public cmd: number;
@@ -996,23 +1000,23 @@ export namespace HallPto {
          * @param [properties] Properties to set
          * @returns C_CREATE_ROOM instance
          */
-        public static create(properties?: HallPto.IC_CREATE_ROOM): HallPto.C_CREATE_ROOM;
+        public static create(properties?: RoomPto.IC_CREATE_ROOM): RoomPto.C_CREATE_ROOM;
 
         /**
-         * Encodes the specified C_CREATE_ROOM message. Does not implicitly {@link HallPto.C_CREATE_ROOM.verify|verify} messages.
+         * Encodes the specified C_CREATE_ROOM message. Does not implicitly {@link RoomPto.C_CREATE_ROOM.verify|verify} messages.
          * @param message C_CREATE_ROOM message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: HallPto.IC_CREATE_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: RoomPto.IC_CREATE_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified C_CREATE_ROOM message, length delimited. Does not implicitly {@link HallPto.C_CREATE_ROOM.verify|verify} messages.
+         * Encodes the specified C_CREATE_ROOM message, length delimited. Does not implicitly {@link RoomPto.C_CREATE_ROOM.verify|verify} messages.
          * @param message C_CREATE_ROOM message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: HallPto.IC_CREATE_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: RoomPto.IC_CREATE_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a C_CREATE_ROOM message from the specified reader or buffer.
@@ -1022,7 +1026,7 @@ export namespace HallPto {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): HallPto.C_CREATE_ROOM;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): RoomPto.C_CREATE_ROOM;
 
         /**
          * Decodes a C_CREATE_ROOM message from the specified reader or buffer, length delimited.
@@ -1031,7 +1035,7 @@ export namespace HallPto {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): HallPto.C_CREATE_ROOM;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): RoomPto.C_CREATE_ROOM;
 
         /**
          * Verifies a C_CREATE_ROOM message.
@@ -1045,7 +1049,7 @@ export namespace HallPto {
          * @param object Plain object
          * @returns C_CREATE_ROOM
          */
-        public static fromObject(object: { [k: string]: any }): HallPto.C_CREATE_ROOM;
+        public static fromObject(object: { [k: string]: any }): RoomPto.C_CREATE_ROOM;
 
         /**
          * Creates a plain object from a C_CREATE_ROOM message. Also converts values to other types if specified.
@@ -1053,7 +1057,7 @@ export namespace HallPto {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: HallPto.C_CREATE_ROOM, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: RoomPto.C_CREATE_ROOM, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this C_CREATE_ROOM to JSON.
@@ -1085,7 +1089,7 @@ export namespace HallPto {
          * Constructs a new S_CREATE_ROOM.
          * @param [properties] Properties to set
          */
-        constructor(properties?: HallPto.IS_CREATE_ROOM);
+        constructor(properties?: RoomPto.IS_CREATE_ROOM);
 
         /** S_CREATE_ROOM cmd. */
         public cmd: number;
@@ -1104,23 +1108,23 @@ export namespace HallPto {
          * @param [properties] Properties to set
          * @returns S_CREATE_ROOM instance
          */
-        public static create(properties?: HallPto.IS_CREATE_ROOM): HallPto.S_CREATE_ROOM;
+        public static create(properties?: RoomPto.IS_CREATE_ROOM): RoomPto.S_CREATE_ROOM;
 
         /**
-         * Encodes the specified S_CREATE_ROOM message. Does not implicitly {@link HallPto.S_CREATE_ROOM.verify|verify} messages.
+         * Encodes the specified S_CREATE_ROOM message. Does not implicitly {@link RoomPto.S_CREATE_ROOM.verify|verify} messages.
          * @param message S_CREATE_ROOM message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: HallPto.IS_CREATE_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: RoomPto.IS_CREATE_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified S_CREATE_ROOM message, length delimited. Does not implicitly {@link HallPto.S_CREATE_ROOM.verify|verify} messages.
+         * Encodes the specified S_CREATE_ROOM message, length delimited. Does not implicitly {@link RoomPto.S_CREATE_ROOM.verify|verify} messages.
          * @param message S_CREATE_ROOM message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: HallPto.IS_CREATE_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: RoomPto.IS_CREATE_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a S_CREATE_ROOM message from the specified reader or buffer.
@@ -1130,7 +1134,7 @@ export namespace HallPto {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): HallPto.S_CREATE_ROOM;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): RoomPto.S_CREATE_ROOM;
 
         /**
          * Decodes a S_CREATE_ROOM message from the specified reader or buffer, length delimited.
@@ -1139,7 +1143,7 @@ export namespace HallPto {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): HallPto.S_CREATE_ROOM;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): RoomPto.S_CREATE_ROOM;
 
         /**
          * Verifies a S_CREATE_ROOM message.
@@ -1153,7 +1157,7 @@ export namespace HallPto {
          * @param object Plain object
          * @returns S_CREATE_ROOM
          */
-        public static fromObject(object: { [k: string]: any }): HallPto.S_CREATE_ROOM;
+        public static fromObject(object: { [k: string]: any }): RoomPto.S_CREATE_ROOM;
 
         /**
          * Creates a plain object from a S_CREATE_ROOM message. Also converts values to other types if specified.
@@ -1161,7 +1165,7 @@ export namespace HallPto {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: HallPto.S_CREATE_ROOM, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: RoomPto.S_CREATE_ROOM, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this S_CREATE_ROOM to JSON.
@@ -1190,7 +1194,7 @@ export namespace HallPto {
          * Constructs a new C_JOIN_ROOM.
          * @param [properties] Properties to set
          */
-        constructor(properties?: HallPto.IC_JOIN_ROOM);
+        constructor(properties?: RoomPto.IC_JOIN_ROOM);
 
         /** C_JOIN_ROOM cmd. */
         public cmd: number;
@@ -1206,23 +1210,23 @@ export namespace HallPto {
          * @param [properties] Properties to set
          * @returns C_JOIN_ROOM instance
          */
-        public static create(properties?: HallPto.IC_JOIN_ROOM): HallPto.C_JOIN_ROOM;
+        public static create(properties?: RoomPto.IC_JOIN_ROOM): RoomPto.C_JOIN_ROOM;
 
         /**
-         * Encodes the specified C_JOIN_ROOM message. Does not implicitly {@link HallPto.C_JOIN_ROOM.verify|verify} messages.
+         * Encodes the specified C_JOIN_ROOM message. Does not implicitly {@link RoomPto.C_JOIN_ROOM.verify|verify} messages.
          * @param message C_JOIN_ROOM message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: HallPto.IC_JOIN_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: RoomPto.IC_JOIN_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified C_JOIN_ROOM message, length delimited. Does not implicitly {@link HallPto.C_JOIN_ROOM.verify|verify} messages.
+         * Encodes the specified C_JOIN_ROOM message, length delimited. Does not implicitly {@link RoomPto.C_JOIN_ROOM.verify|verify} messages.
          * @param message C_JOIN_ROOM message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: HallPto.IC_JOIN_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: RoomPto.IC_JOIN_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a C_JOIN_ROOM message from the specified reader or buffer.
@@ -1232,7 +1236,7 @@ export namespace HallPto {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): HallPto.C_JOIN_ROOM;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): RoomPto.C_JOIN_ROOM;
 
         /**
          * Decodes a C_JOIN_ROOM message from the specified reader or buffer, length delimited.
@@ -1241,7 +1245,7 @@ export namespace HallPto {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): HallPto.C_JOIN_ROOM;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): RoomPto.C_JOIN_ROOM;
 
         /**
          * Verifies a C_JOIN_ROOM message.
@@ -1255,7 +1259,7 @@ export namespace HallPto {
          * @param object Plain object
          * @returns C_JOIN_ROOM
          */
-        public static fromObject(object: { [k: string]: any }): HallPto.C_JOIN_ROOM;
+        public static fromObject(object: { [k: string]: any }): RoomPto.C_JOIN_ROOM;
 
         /**
          * Creates a plain object from a C_JOIN_ROOM message. Also converts values to other types if specified.
@@ -1263,7 +1267,7 @@ export namespace HallPto {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: HallPto.C_JOIN_ROOM, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: RoomPto.C_JOIN_ROOM, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this C_JOIN_ROOM to JSON.
@@ -1288,10 +1292,16 @@ export namespace HallPto {
         roomId?: (number|null);
 
         /** S_JOIN_ROOM players */
-        players?: (HallPto.IPlayer[]|null);
+        players?: (RoomPto.IPlayer[]|null);
 
         /** S_JOIN_ROOM gameId */
         gameId?: (number|null);
+
+        /** S_JOIN_ROOM selfIndex */
+        selfIndex?: (number|null);
+
+        /** S_JOIN_ROOM roomSeq */
+        roomSeq?: (string|null);
     }
 
     /** Represents a S_JOIN_ROOM. */
@@ -1301,7 +1311,7 @@ export namespace HallPto {
          * Constructs a new S_JOIN_ROOM.
          * @param [properties] Properties to set
          */
-        constructor(properties?: HallPto.IS_JOIN_ROOM);
+        constructor(properties?: RoomPto.IS_JOIN_ROOM);
 
         /** S_JOIN_ROOM cmd. */
         public cmd: number;
@@ -1316,33 +1326,39 @@ export namespace HallPto {
         public roomId: number;
 
         /** S_JOIN_ROOM players. */
-        public players: HallPto.IPlayer[];
+        public players: RoomPto.IPlayer[];
 
         /** S_JOIN_ROOM gameId. */
         public gameId: number;
+
+        /** S_JOIN_ROOM selfIndex. */
+        public selfIndex: number;
+
+        /** S_JOIN_ROOM roomSeq. */
+        public roomSeq: string;
 
         /**
          * Creates a new S_JOIN_ROOM instance using the specified properties.
          * @param [properties] Properties to set
          * @returns S_JOIN_ROOM instance
          */
-        public static create(properties?: HallPto.IS_JOIN_ROOM): HallPto.S_JOIN_ROOM;
+        public static create(properties?: RoomPto.IS_JOIN_ROOM): RoomPto.S_JOIN_ROOM;
 
         /**
-         * Encodes the specified S_JOIN_ROOM message. Does not implicitly {@link HallPto.S_JOIN_ROOM.verify|verify} messages.
+         * Encodes the specified S_JOIN_ROOM message. Does not implicitly {@link RoomPto.S_JOIN_ROOM.verify|verify} messages.
          * @param message S_JOIN_ROOM message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: HallPto.IS_JOIN_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: RoomPto.IS_JOIN_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified S_JOIN_ROOM message, length delimited. Does not implicitly {@link HallPto.S_JOIN_ROOM.verify|verify} messages.
+         * Encodes the specified S_JOIN_ROOM message, length delimited. Does not implicitly {@link RoomPto.S_JOIN_ROOM.verify|verify} messages.
          * @param message S_JOIN_ROOM message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: HallPto.IS_JOIN_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: RoomPto.IS_JOIN_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a S_JOIN_ROOM message from the specified reader or buffer.
@@ -1352,7 +1368,7 @@ export namespace HallPto {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): HallPto.S_JOIN_ROOM;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): RoomPto.S_JOIN_ROOM;
 
         /**
          * Decodes a S_JOIN_ROOM message from the specified reader or buffer, length delimited.
@@ -1361,7 +1377,7 @@ export namespace HallPto {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): HallPto.S_JOIN_ROOM;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): RoomPto.S_JOIN_ROOM;
 
         /**
          * Verifies a S_JOIN_ROOM message.
@@ -1375,7 +1391,7 @@ export namespace HallPto {
          * @param object Plain object
          * @returns S_JOIN_ROOM
          */
-        public static fromObject(object: { [k: string]: any }): HallPto.S_JOIN_ROOM;
+        public static fromObject(object: { [k: string]: any }): RoomPto.S_JOIN_ROOM;
 
         /**
          * Creates a plain object from a S_JOIN_ROOM message. Also converts values to other types if specified.
@@ -1383,7 +1399,7 @@ export namespace HallPto {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: HallPto.S_JOIN_ROOM, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: RoomPto.S_JOIN_ROOM, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this S_JOIN_ROOM to JSON.
@@ -1415,7 +1431,7 @@ export namespace HallPto {
          * Constructs a new C_ROOM_LIST.
          * @param [properties] Properties to set
          */
-        constructor(properties?: HallPto.IC_ROOM_LIST);
+        constructor(properties?: RoomPto.IC_ROOM_LIST);
 
         /** C_ROOM_LIST cmd. */
         public cmd: number;
@@ -1434,23 +1450,23 @@ export namespace HallPto {
          * @param [properties] Properties to set
          * @returns C_ROOM_LIST instance
          */
-        public static create(properties?: HallPto.IC_ROOM_LIST): HallPto.C_ROOM_LIST;
+        public static create(properties?: RoomPto.IC_ROOM_LIST): RoomPto.C_ROOM_LIST;
 
         /**
-         * Encodes the specified C_ROOM_LIST message. Does not implicitly {@link HallPto.C_ROOM_LIST.verify|verify} messages.
+         * Encodes the specified C_ROOM_LIST message. Does not implicitly {@link RoomPto.C_ROOM_LIST.verify|verify} messages.
          * @param message C_ROOM_LIST message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: HallPto.IC_ROOM_LIST, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: RoomPto.IC_ROOM_LIST, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified C_ROOM_LIST message, length delimited. Does not implicitly {@link HallPto.C_ROOM_LIST.verify|verify} messages.
+         * Encodes the specified C_ROOM_LIST message, length delimited. Does not implicitly {@link RoomPto.C_ROOM_LIST.verify|verify} messages.
          * @param message C_ROOM_LIST message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: HallPto.IC_ROOM_LIST, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: RoomPto.IC_ROOM_LIST, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a C_ROOM_LIST message from the specified reader or buffer.
@@ -1460,7 +1476,7 @@ export namespace HallPto {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): HallPto.C_ROOM_LIST;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): RoomPto.C_ROOM_LIST;
 
         /**
          * Decodes a C_ROOM_LIST message from the specified reader or buffer, length delimited.
@@ -1469,7 +1485,7 @@ export namespace HallPto {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): HallPto.C_ROOM_LIST;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): RoomPto.C_ROOM_LIST;
 
         /**
          * Verifies a C_ROOM_LIST message.
@@ -1483,7 +1499,7 @@ export namespace HallPto {
          * @param object Plain object
          * @returns C_ROOM_LIST
          */
-        public static fromObject(object: { [k: string]: any }): HallPto.C_ROOM_LIST;
+        public static fromObject(object: { [k: string]: any }): RoomPto.C_ROOM_LIST;
 
         /**
          * Creates a plain object from a C_ROOM_LIST message. Also converts values to other types if specified.
@@ -1491,7 +1507,7 @@ export namespace HallPto {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: HallPto.C_ROOM_LIST, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: RoomPto.C_ROOM_LIST, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this C_ROOM_LIST to JSON.
@@ -1510,7 +1526,7 @@ export namespace HallPto {
         scmd?: (number|null);
 
         /** S_ROOM_LIST list */
-        list?: (HallPto.IRoomInfo[]|null);
+        list?: (RoomPto.IRoomInfo[]|null);
     }
 
     /** Represents a S_ROOM_LIST. */
@@ -1520,7 +1536,7 @@ export namespace HallPto {
          * Constructs a new S_ROOM_LIST.
          * @param [properties] Properties to set
          */
-        constructor(properties?: HallPto.IS_ROOM_LIST);
+        constructor(properties?: RoomPto.IS_ROOM_LIST);
 
         /** S_ROOM_LIST cmd. */
         public cmd: number;
@@ -1529,30 +1545,30 @@ export namespace HallPto {
         public scmd: number;
 
         /** S_ROOM_LIST list. */
-        public list: HallPto.IRoomInfo[];
+        public list: RoomPto.IRoomInfo[];
 
         /**
          * Creates a new S_ROOM_LIST instance using the specified properties.
          * @param [properties] Properties to set
          * @returns S_ROOM_LIST instance
          */
-        public static create(properties?: HallPto.IS_ROOM_LIST): HallPto.S_ROOM_LIST;
+        public static create(properties?: RoomPto.IS_ROOM_LIST): RoomPto.S_ROOM_LIST;
 
         /**
-         * Encodes the specified S_ROOM_LIST message. Does not implicitly {@link HallPto.S_ROOM_LIST.verify|verify} messages.
+         * Encodes the specified S_ROOM_LIST message. Does not implicitly {@link RoomPto.S_ROOM_LIST.verify|verify} messages.
          * @param message S_ROOM_LIST message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: HallPto.IS_ROOM_LIST, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: RoomPto.IS_ROOM_LIST, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified S_ROOM_LIST message, length delimited. Does not implicitly {@link HallPto.S_ROOM_LIST.verify|verify} messages.
+         * Encodes the specified S_ROOM_LIST message, length delimited. Does not implicitly {@link RoomPto.S_ROOM_LIST.verify|verify} messages.
          * @param message S_ROOM_LIST message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: HallPto.IS_ROOM_LIST, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: RoomPto.IS_ROOM_LIST, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a S_ROOM_LIST message from the specified reader or buffer.
@@ -1562,7 +1578,7 @@ export namespace HallPto {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): HallPto.S_ROOM_LIST;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): RoomPto.S_ROOM_LIST;
 
         /**
          * Decodes a S_ROOM_LIST message from the specified reader or buffer, length delimited.
@@ -1571,7 +1587,7 @@ export namespace HallPto {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): HallPto.S_ROOM_LIST;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): RoomPto.S_ROOM_LIST;
 
         /**
          * Verifies a S_ROOM_LIST message.
@@ -1585,7 +1601,7 @@ export namespace HallPto {
          * @param object Plain object
          * @returns S_ROOM_LIST
          */
-        public static fromObject(object: { [k: string]: any }): HallPto.S_ROOM_LIST;
+        public static fromObject(object: { [k: string]: any }): RoomPto.S_ROOM_LIST;
 
         /**
          * Creates a plain object from a S_ROOM_LIST message. Also converts values to other types if specified.
@@ -1593,7 +1609,7 @@ export namespace HallPto {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: HallPto.S_ROOM_LIST, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: RoomPto.S_ROOM_LIST, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this S_ROOM_LIST to JSON.
@@ -1612,7 +1628,7 @@ export namespace HallPto {
         scmd?: (number|null);
 
         /** S_BROADCAST_JOIN_ROOM player */
-        player?: (HallPto.IPlayer|null);
+        player?: (RoomPto.IPlayer|null);
     }
 
     /** Represents a S_BROADCAST_JOIN_ROOM. */
@@ -1622,7 +1638,7 @@ export namespace HallPto {
          * Constructs a new S_BROADCAST_JOIN_ROOM.
          * @param [properties] Properties to set
          */
-        constructor(properties?: HallPto.IS_BROADCAST_JOIN_ROOM);
+        constructor(properties?: RoomPto.IS_BROADCAST_JOIN_ROOM);
 
         /** S_BROADCAST_JOIN_ROOM cmd. */
         public cmd: number;
@@ -1631,30 +1647,30 @@ export namespace HallPto {
         public scmd: number;
 
         /** S_BROADCAST_JOIN_ROOM player. */
-        public player?: (HallPto.IPlayer|null);
+        public player?: (RoomPto.IPlayer|null);
 
         /**
          * Creates a new S_BROADCAST_JOIN_ROOM instance using the specified properties.
          * @param [properties] Properties to set
          * @returns S_BROADCAST_JOIN_ROOM instance
          */
-        public static create(properties?: HallPto.IS_BROADCAST_JOIN_ROOM): HallPto.S_BROADCAST_JOIN_ROOM;
+        public static create(properties?: RoomPto.IS_BROADCAST_JOIN_ROOM): RoomPto.S_BROADCAST_JOIN_ROOM;
 
         /**
-         * Encodes the specified S_BROADCAST_JOIN_ROOM message. Does not implicitly {@link HallPto.S_BROADCAST_JOIN_ROOM.verify|verify} messages.
+         * Encodes the specified S_BROADCAST_JOIN_ROOM message. Does not implicitly {@link RoomPto.S_BROADCAST_JOIN_ROOM.verify|verify} messages.
          * @param message S_BROADCAST_JOIN_ROOM message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: HallPto.IS_BROADCAST_JOIN_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: RoomPto.IS_BROADCAST_JOIN_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified S_BROADCAST_JOIN_ROOM message, length delimited. Does not implicitly {@link HallPto.S_BROADCAST_JOIN_ROOM.verify|verify} messages.
+         * Encodes the specified S_BROADCAST_JOIN_ROOM message, length delimited. Does not implicitly {@link RoomPto.S_BROADCAST_JOIN_ROOM.verify|verify} messages.
          * @param message S_BROADCAST_JOIN_ROOM message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: HallPto.IS_BROADCAST_JOIN_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: RoomPto.IS_BROADCAST_JOIN_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a S_BROADCAST_JOIN_ROOM message from the specified reader or buffer.
@@ -1664,7 +1680,7 @@ export namespace HallPto {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): HallPto.S_BROADCAST_JOIN_ROOM;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): RoomPto.S_BROADCAST_JOIN_ROOM;
 
         /**
          * Decodes a S_BROADCAST_JOIN_ROOM message from the specified reader or buffer, length delimited.
@@ -1673,7 +1689,7 @@ export namespace HallPto {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): HallPto.S_BROADCAST_JOIN_ROOM;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): RoomPto.S_BROADCAST_JOIN_ROOM;
 
         /**
          * Verifies a S_BROADCAST_JOIN_ROOM message.
@@ -1687,7 +1703,7 @@ export namespace HallPto {
          * @param object Plain object
          * @returns S_BROADCAST_JOIN_ROOM
          */
-        public static fromObject(object: { [k: string]: any }): HallPto.S_BROADCAST_JOIN_ROOM;
+        public static fromObject(object: { [k: string]: any }): RoomPto.S_BROADCAST_JOIN_ROOM;
 
         /**
          * Creates a plain object from a S_BROADCAST_JOIN_ROOM message. Also converts values to other types if specified.
@@ -1695,7 +1711,7 @@ export namespace HallPto {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: HallPto.S_BROADCAST_JOIN_ROOM, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: RoomPto.S_BROADCAST_JOIN_ROOM, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this S_BROADCAST_JOIN_ROOM to JSON.
@@ -1724,7 +1740,7 @@ export namespace HallPto {
          * Constructs a new S_BROADCAST_LEAVE_ROOM.
          * @param [properties] Properties to set
          */
-        constructor(properties?: HallPto.IS_BROADCAST_LEAVE_ROOM);
+        constructor(properties?: RoomPto.IS_BROADCAST_LEAVE_ROOM);
 
         /** S_BROADCAST_LEAVE_ROOM cmd. */
         public cmd: number;
@@ -1740,23 +1756,23 @@ export namespace HallPto {
          * @param [properties] Properties to set
          * @returns S_BROADCAST_LEAVE_ROOM instance
          */
-        public static create(properties?: HallPto.IS_BROADCAST_LEAVE_ROOM): HallPto.S_BROADCAST_LEAVE_ROOM;
+        public static create(properties?: RoomPto.IS_BROADCAST_LEAVE_ROOM): RoomPto.S_BROADCAST_LEAVE_ROOM;
 
         /**
-         * Encodes the specified S_BROADCAST_LEAVE_ROOM message. Does not implicitly {@link HallPto.S_BROADCAST_LEAVE_ROOM.verify|verify} messages.
+         * Encodes the specified S_BROADCAST_LEAVE_ROOM message. Does not implicitly {@link RoomPto.S_BROADCAST_LEAVE_ROOM.verify|verify} messages.
          * @param message S_BROADCAST_LEAVE_ROOM message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: HallPto.IS_BROADCAST_LEAVE_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: RoomPto.IS_BROADCAST_LEAVE_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified S_BROADCAST_LEAVE_ROOM message, length delimited. Does not implicitly {@link HallPto.S_BROADCAST_LEAVE_ROOM.verify|verify} messages.
+         * Encodes the specified S_BROADCAST_LEAVE_ROOM message, length delimited. Does not implicitly {@link RoomPto.S_BROADCAST_LEAVE_ROOM.verify|verify} messages.
          * @param message S_BROADCAST_LEAVE_ROOM message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: HallPto.IS_BROADCAST_LEAVE_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: RoomPto.IS_BROADCAST_LEAVE_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a S_BROADCAST_LEAVE_ROOM message from the specified reader or buffer.
@@ -1766,7 +1782,7 @@ export namespace HallPto {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): HallPto.S_BROADCAST_LEAVE_ROOM;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): RoomPto.S_BROADCAST_LEAVE_ROOM;
 
         /**
          * Decodes a S_BROADCAST_LEAVE_ROOM message from the specified reader or buffer, length delimited.
@@ -1775,7 +1791,7 @@ export namespace HallPto {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): HallPto.S_BROADCAST_LEAVE_ROOM;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): RoomPto.S_BROADCAST_LEAVE_ROOM;
 
         /**
          * Verifies a S_BROADCAST_LEAVE_ROOM message.
@@ -1789,7 +1805,7 @@ export namespace HallPto {
          * @param object Plain object
          * @returns S_BROADCAST_LEAVE_ROOM
          */
-        public static fromObject(object: { [k: string]: any }): HallPto.S_BROADCAST_LEAVE_ROOM;
+        public static fromObject(object: { [k: string]: any }): RoomPto.S_BROADCAST_LEAVE_ROOM;
 
         /**
          * Creates a plain object from a S_BROADCAST_LEAVE_ROOM message. Also converts values to other types if specified.
@@ -1797,10 +1813,422 @@ export namespace HallPto {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: HallPto.S_BROADCAST_LEAVE_ROOM, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: RoomPto.S_BROADCAST_LEAVE_ROOM, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this S_BROADCAST_LEAVE_ROOM to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a C_READY. */
+    interface IC_READY {
+
+        /** C_READY cmd */
+        cmd?: (number|null);
+
+        /** C_READY scmd */
+        scmd?: (number|null);
+    }
+
+    /** Represents a C_READY. */
+    class C_READY implements IC_READY {
+
+        /**
+         * Constructs a new C_READY.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: RoomPto.IC_READY);
+
+        /** C_READY cmd. */
+        public cmd: number;
+
+        /** C_READY scmd. */
+        public scmd: number;
+
+        /**
+         * Creates a new C_READY instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns C_READY instance
+         */
+        public static create(properties?: RoomPto.IC_READY): RoomPto.C_READY;
+
+        /**
+         * Encodes the specified C_READY message. Does not implicitly {@link RoomPto.C_READY.verify|verify} messages.
+         * @param message C_READY message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: RoomPto.IC_READY, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified C_READY message, length delimited. Does not implicitly {@link RoomPto.C_READY.verify|verify} messages.
+         * @param message C_READY message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: RoomPto.IC_READY, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a C_READY message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns C_READY
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): RoomPto.C_READY;
+
+        /**
+         * Decodes a C_READY message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns C_READY
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): RoomPto.C_READY;
+
+        /**
+         * Verifies a C_READY message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a C_READY message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns C_READY
+         */
+        public static fromObject(object: { [k: string]: any }): RoomPto.C_READY;
+
+        /**
+         * Creates a plain object from a C_READY message. Also converts values to other types if specified.
+         * @param message C_READY
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: RoomPto.C_READY, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this C_READY to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a S_PLAYER_READY_STATUS_CHANGE. */
+    interface IS_PLAYER_READY_STATUS_CHANGE {
+
+        /** S_PLAYER_READY_STATUS_CHANGE cmd */
+        cmd?: (number|null);
+
+        /** S_PLAYER_READY_STATUS_CHANGE scmd */
+        scmd?: (number|null);
+
+        /** S_PLAYER_READY_STATUS_CHANGE index */
+        index?: (number|null);
+
+        /** S_PLAYER_READY_STATUS_CHANGE isReady */
+        isReady?: (boolean|null);
+    }
+
+    /** Represents a S_PLAYER_READY_STATUS_CHANGE. */
+    class S_PLAYER_READY_STATUS_CHANGE implements IS_PLAYER_READY_STATUS_CHANGE {
+
+        /**
+         * Constructs a new S_PLAYER_READY_STATUS_CHANGE.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: RoomPto.IS_PLAYER_READY_STATUS_CHANGE);
+
+        /** S_PLAYER_READY_STATUS_CHANGE cmd. */
+        public cmd: number;
+
+        /** S_PLAYER_READY_STATUS_CHANGE scmd. */
+        public scmd: number;
+
+        /** S_PLAYER_READY_STATUS_CHANGE index. */
+        public index: number;
+
+        /** S_PLAYER_READY_STATUS_CHANGE isReady. */
+        public isReady: boolean;
+
+        /**
+         * Creates a new S_PLAYER_READY_STATUS_CHANGE instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns S_PLAYER_READY_STATUS_CHANGE instance
+         */
+        public static create(properties?: RoomPto.IS_PLAYER_READY_STATUS_CHANGE): RoomPto.S_PLAYER_READY_STATUS_CHANGE;
+
+        /**
+         * Encodes the specified S_PLAYER_READY_STATUS_CHANGE message. Does not implicitly {@link RoomPto.S_PLAYER_READY_STATUS_CHANGE.verify|verify} messages.
+         * @param message S_PLAYER_READY_STATUS_CHANGE message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: RoomPto.IS_PLAYER_READY_STATUS_CHANGE, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified S_PLAYER_READY_STATUS_CHANGE message, length delimited. Does not implicitly {@link RoomPto.S_PLAYER_READY_STATUS_CHANGE.verify|verify} messages.
+         * @param message S_PLAYER_READY_STATUS_CHANGE message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: RoomPto.IS_PLAYER_READY_STATUS_CHANGE, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a S_PLAYER_READY_STATUS_CHANGE message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns S_PLAYER_READY_STATUS_CHANGE
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): RoomPto.S_PLAYER_READY_STATUS_CHANGE;
+
+        /**
+         * Decodes a S_PLAYER_READY_STATUS_CHANGE message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns S_PLAYER_READY_STATUS_CHANGE
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): RoomPto.S_PLAYER_READY_STATUS_CHANGE;
+
+        /**
+         * Verifies a S_PLAYER_READY_STATUS_CHANGE message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a S_PLAYER_READY_STATUS_CHANGE message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns S_PLAYER_READY_STATUS_CHANGE
+         */
+        public static fromObject(object: { [k: string]: any }): RoomPto.S_PLAYER_READY_STATUS_CHANGE;
+
+        /**
+         * Creates a plain object from a S_PLAYER_READY_STATUS_CHANGE message. Also converts values to other types if specified.
+         * @param message S_PLAYER_READY_STATUS_CHANGE
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: RoomPto.S_PLAYER_READY_STATUS_CHANGE, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this S_PLAYER_READY_STATUS_CHANGE to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a C_LEAVE_ROOM. */
+    interface IC_LEAVE_ROOM {
+
+        /** C_LEAVE_ROOM cmd */
+        cmd?: (number|null);
+
+        /** C_LEAVE_ROOM scmd */
+        scmd?: (number|null);
+    }
+
+    /** Represents a C_LEAVE_ROOM. */
+    class C_LEAVE_ROOM implements IC_LEAVE_ROOM {
+
+        /**
+         * Constructs a new C_LEAVE_ROOM.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: RoomPto.IC_LEAVE_ROOM);
+
+        /** C_LEAVE_ROOM cmd. */
+        public cmd: number;
+
+        /** C_LEAVE_ROOM scmd. */
+        public scmd: number;
+
+        /**
+         * Creates a new C_LEAVE_ROOM instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns C_LEAVE_ROOM instance
+         */
+        public static create(properties?: RoomPto.IC_LEAVE_ROOM): RoomPto.C_LEAVE_ROOM;
+
+        /**
+         * Encodes the specified C_LEAVE_ROOM message. Does not implicitly {@link RoomPto.C_LEAVE_ROOM.verify|verify} messages.
+         * @param message C_LEAVE_ROOM message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: RoomPto.IC_LEAVE_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified C_LEAVE_ROOM message, length delimited. Does not implicitly {@link RoomPto.C_LEAVE_ROOM.verify|verify} messages.
+         * @param message C_LEAVE_ROOM message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: RoomPto.IC_LEAVE_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a C_LEAVE_ROOM message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns C_LEAVE_ROOM
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): RoomPto.C_LEAVE_ROOM;
+
+        /**
+         * Decodes a C_LEAVE_ROOM message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns C_LEAVE_ROOM
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): RoomPto.C_LEAVE_ROOM;
+
+        /**
+         * Verifies a C_LEAVE_ROOM message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a C_LEAVE_ROOM message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns C_LEAVE_ROOM
+         */
+        public static fromObject(object: { [k: string]: any }): RoomPto.C_LEAVE_ROOM;
+
+        /**
+         * Creates a plain object from a C_LEAVE_ROOM message. Also converts values to other types if specified.
+         * @param message C_LEAVE_ROOM
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: RoomPto.C_LEAVE_ROOM, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this C_LEAVE_ROOM to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+}
+
+/** Namespace SystemPto. */
+export namespace SystemPto {
+
+    /** Properties of a S_TIPS. */
+    interface IS_TIPS {
+
+        /** S_TIPS cmd */
+        cmd?: (number|null);
+
+        /** S_TIPS scmd */
+        scmd?: (number|null);
+
+        /** S_TIPS msg */
+        msg?: (string|null);
+
+        /** S_TIPS hoverTime */
+        hoverTime?: (number|null);
+    }
+
+    /** Represents a S_TIPS. */
+    class S_TIPS implements IS_TIPS {
+
+        /**
+         * Constructs a new S_TIPS.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: SystemPto.IS_TIPS);
+
+        /** S_TIPS cmd. */
+        public cmd: number;
+
+        /** S_TIPS scmd. */
+        public scmd: number;
+
+        /** S_TIPS msg. */
+        public msg: string;
+
+        /** S_TIPS hoverTime. */
+        public hoverTime: number;
+
+        /**
+         * Creates a new S_TIPS instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns S_TIPS instance
+         */
+        public static create(properties?: SystemPto.IS_TIPS): SystemPto.S_TIPS;
+
+        /**
+         * Encodes the specified S_TIPS message. Does not implicitly {@link SystemPto.S_TIPS.verify|verify} messages.
+         * @param message S_TIPS message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: SystemPto.IS_TIPS, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified S_TIPS message, length delimited. Does not implicitly {@link SystemPto.S_TIPS.verify|verify} messages.
+         * @param message S_TIPS message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: SystemPto.IS_TIPS, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a S_TIPS message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns S_TIPS
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SystemPto.S_TIPS;
+
+        /**
+         * Decodes a S_TIPS message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns S_TIPS
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SystemPto.S_TIPS;
+
+        /**
+         * Verifies a S_TIPS message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a S_TIPS message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns S_TIPS
+         */
+        public static fromObject(object: { [k: string]: any }): SystemPto.S_TIPS;
+
+        /**
+         * Creates a plain object from a S_TIPS message. Also converts values to other types if specified.
+         * @param message S_TIPS
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: SystemPto.S_TIPS, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this S_TIPS to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };

@@ -7,15 +7,20 @@ class GameModel extends BaseModel {
         this.modelObj = {}
         this.curGameID = -1
         this.addEventListener('UserJoinInRoom', this.onUserJoinInRoom)
-        this.addEventListener('UserLeaveRoom', this.onUserLeaveRoom)
+        this.addEventListener('OtherUserLeaveRoom', this.onOtherUserLeaveRoom)
+        this.addEventListener('UserReadyStatusChange', this.onUserReadyStatusChange)
     }
 
     onUserJoinInRoom(evt: EventData) {
         this.emit(`UserJoinInRoom${this.curGameID}`, evt.data)
     }
 
-    onUserLeaveRoom(evt: EventData) {
-        this.emit(`UserLeaveRoom${this.curGameID}`, evt.data)
+    onOtherUserLeaveRoom(evt: EventData) {
+        this.emit(`OtherUserLeaveRoom${this.curGameID}`, evt.data)
+    }
+
+    onUserReadyStatusChange(evt: EventData) {
+        this.emit(`UserReadyStatusChange${this.curGameID}`, evt.data)
     }
 
     /**

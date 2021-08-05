@@ -5,16 +5,24 @@ class GlobalController {
     static loginController: LoginController
     static hallController: HallController
     static gameController: GameController
+    static roomController: RoomController
+    static systemController: SystemController
+
+    static unknowHeadPicUrl: string
 
     static init(stage: egret.Stage) {
-        fairygui.UIPackage.addPackage("hall");
+        fairygui.UIPackage.addPackage("dacc");
         dacc.daccBinder.bindAll()
+
+        this.unknowHeadPicUrl = fairygui.UIPackage.createObject("dacc", "touxiang").resourceURL
 
         this.globalView = new GlobalView(stage)
 
         this.loginController = new LoginController()
         this.hallController = new HallController()
         this.gameController = new GameController()
+        this.roomController = new RoomController()
+        this.systemController = new SystemController()
     }
 
     static showHall() {
@@ -25,7 +33,16 @@ class GlobalController {
         this.globalView.showTips(msg, hoverTime)
     }
 
-    static joinGameSuccess(data: HallPto.S_JOIN_ROOM) {
+    static joinGameSuccess(data: RoomPto.S_JOIN_ROOM) {
         this.gameController.onJoinRoomSuccess(data)
     }
+
+    static getUserInfo() {
+        return this.hallController.getUserInfo()
+    }
+
+    static closeGame() {
+        this.gameController.closeGame()
+    }
+
 }

@@ -7,4 +7,8 @@ class HallController extends BaseController {
     showHall() {
         fairygui.GRoot.inst.addChild((this.view as HallView).hallCom)
     }
+
+    getUserInfo() {
+        return (this.model as HallModel).userData
+    }
 }

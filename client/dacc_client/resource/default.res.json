@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "hall,hall_atlas0,server_json",
+			"keys": "server_json,dacc_atlas0,dacc",
 			"name": "preload"
 		},
 		{
@@ -10,16 +10,6 @@
 		}
 	],
 	"resources": [
-		{
-			"url": "fui/hall.fui",
-			"type": "bin",
-			"name": "hall"
-		},
-		{
-			"url": "fui/hall_atlas0.png",
-			"type": "image",
-			"name": "hall_atlas0"
-		},
 		{
 			"url": "server.json",
 			"type": "json",
@@ -34,6 +24,16 @@
 			"url": "fui/game1001_atlas0.jpg",
 			"type": "image",
 			"name": "game1001_atlas0"
+		},
+		{
+			"url": "fui/dacc_atlas0.png",
+			"type": "image",
+			"name": "dacc_atlas0"
+		},
+		{
+			"url": "fui/dacc.fui",
+			"type": "bin",
+			"name": "dacc"
 		}
 	]
 }

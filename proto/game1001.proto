@@ -1,10 +1,38 @@
 syntax = "proto3";
 package GamePto1001;
 
-message S_INIT_SCENE{
+//广播游戏开始
+message S_GAME_START_1001{
 	int32 cmd = 1[default = 1001]; 
 	int32 scmd = 2[default = 1]; 
-	string tableSeq = 3;
-
 }
 
+//玩家请求出拳
+message C_REQUEST_SWORD_1001{
+	int32 cmd = 1[default = 1001]; 
+	int32 scmd = 2[default = 2]; 
+	int32 sword = 3;
+}
+
+//广播玩家出拳
+message S_BROADCAST_SWORD_1001{
+	int32 cmd = 1[default = 1001]; 
+	int32 scmd = 2[default = 3]; 
+	int32 index = 3;
+	int32 sword = 4;
+}
+
+//通知玩家出拳
+message S_START_OUT_SWORD_1001{
+	int32 cmd = 1[default = 1001]; 
+	int32 scmd = 2[default = 4]; 
+	bool isStartGame = 3;//有可能是平局,有可能是刚开始
+}
+
+//广播游戏结果
+message S_GAME_RESULT_1001{
+	int32 cmd = 1[default = 1001]; 
+	int32 scmd = 2[default = 5]; 
+	int32 winIndex = 3; // 如果是-1则说明是平局
+	repeated int32 swords = 4;
+}

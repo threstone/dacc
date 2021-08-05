@@ -4,7 +4,7 @@
     <component id="i7mx0" name="Hall.xml" path="/" exported="true"/>
     <image id="i7mx2" name="test.jpg" path="/picture/"/>
     <component id="inlo3" name="Login.xml" path="/" exported="true"/>
-    <component id="inlo4" name="BtnClick.xml" path="/component/"/>
+    <component id="inlo4" name="BtnClick.xml" path="/component/" exported="true"/>
     <image id="k72m5" name="hall_bg.jpg" path="/picture/"/>
     <component id="iktsa" name="Chat.xml" path="/component/chat/"/>
     <image id="ikts1c" name="chatBg.png" path="/picture/chat/" scale="9grid" scale9grid="13,13,153,133"/>
@@ -18,7 +18,7 @@
     <image id="ikts1k" name="downArrowSelect1.png" path="/picture/common/btn/arrow/"/>
     <image id="ikts1l" name="downArrowOver1.png" path="/picture/common/btn/arrow/"/>
     <image id="ikts1m" name="chatArea1.png" path="/picture/chat/mark/" exported="true"/>
-    <component id="ikts1n" name="BtnLong.xml" path="/component/common/"/>
+    <component id="ikts1n" name="BtnLong.xml" path="/component/common/" exported="true"/>
     <image id="ikts1o" name="longBtnUnselect.png" path="/picture/common/btn/"/>
     <image id="ikts1p" name="longBtnSelect.png" path="/picture/common/btn/"/>
     <image id="ikts1q" name="longBtnOver.png" path="/picture/common/btn/"/>
@@ -42,9 +42,9 @@
     <component id="b78j2g" name="RoomList.xml" path="/component/roomList/"/>
     <component id="b78j2h" name="RoomItem.xml" path="/component/roomList/"/>
     <component id="b78j2k" name="GameItem.xml" path="/component/gameList/"/>
-    <image id="b78j2l" name="touxiang.png" path="/picture/"/>
+    <image id="b78j2l" name="touxiang.png" path="/picture/" exported="true"/>
     <component id="b78j2m" name="ChangeHeadCom.xml" path="/component/changeHead/"/>
     <component id="di7i2o" name="UserBox.xml" path="/component/userBox/" exported="true"/>
   </resources>
-  <publish name="hall" genCode="true" npot="true"/>
+  <publish name="dacc" genCode="true" npot="true"/>
 </packageDescription>

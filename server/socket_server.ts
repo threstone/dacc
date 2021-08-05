@@ -66,7 +66,7 @@ export class SocketServer {
     }
 
     private onMessage(session: DaccSession, buf: Buffer) {
-        if (buf.length < 2) {
+        if (buf.length < 8) {
             logger.error(`消息长度不足,未知消息!   buf:${buf}`)
             return
         }

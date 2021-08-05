@@ -69,8 +69,8 @@ class Socket {
         byteArray.endian = egret.Endian.LITTLE_ENDIAN;
 
         let sendByteArray = new egret.ByteArray();
-        sendByteArray.writeByte(msgAny.__proto__.cmd);
-        sendByteArray.writeByte(msgAny.__proto__.scmd);
+        sendByteArray.writeInt(msgAny.__proto__.cmd);
+        sendByteArray.writeInt(msgAny.__proto__.scmd);
         sendByteArray.writeBytes(byteArray);
 
         Socket.getInstance().sendMsg(sendByteArray);
@@ -81,8 +81,8 @@ class Socket {
         let byteArray = new egret.ByteArray();
         this._webSocket.readBytes(byteArray);
 
-        let sysId = byteArray.readUnsignedByte();
-        let cmdId = byteArray.readUnsignedByte();
+        let sysId = byteArray.readInt();
+        let cmdId = byteArray.readInt();
         let msg: egret.ByteArray = new egret.ByteArray();;
         byteArray.readBytes(msg);
 

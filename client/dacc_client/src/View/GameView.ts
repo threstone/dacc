@@ -4,9 +4,10 @@ class GameView extends BaseView {
 
     protected init() {
         this.viewObj = {}
+
     }
 
-    show(gameId: number, data: HallPto.S_JOIN_ROOM) {
+    show(gameId: number, data: RoomPto.S_JOIN_ROOM) {
         if (!this.viewObj[gameId]) {
             if (!window[`GameView${gameId}`]) {
                 throw new Error(`gameId:${gameId},未找到游戏view!`)
@@ -15,5 +16,14 @@ class GameView extends BaseView {
         }
         let gameView: GameBaseView = this.viewObj[gameId]
         gameView.show(data)
+    }
+
+    close(gameId: number) {
+        if (!this.viewObj[gameId]) {
+            console.error(`关闭view失败,viewObj中不存在此view,gameId:${gameId}`)
+            return
+        }
+        let gameView: GameBaseView = this.viewObj[gameId]
+        gameView.close()
     }
 }

@@ -23,11 +23,10 @@ class MessageManager {
 
                 let protoIndex = protoClass.prototype.cmd + "_" + protoClass.prototype.scmd
                 MessageManager._protoObj[protoIndex] = protoClass
-
                 //服务器的代码需要注册一下
                 if (key.startsWith("S_")) {
                     if (handle && handle[key]) {
-                        MessageManager._recMsgHandlerObj[protoIndex] = handle[key]
+                        MessageManager._recMsgHandlerObj[protoIndex] = handle[key].bind(handle)
                     } else {
                         console.error("服务端协议:", `cmd:${protoClass.prototype.cmd}    scmd:${protoClass.prototype.scmd}`, "  ", key, "未找到处理函数")
                     }

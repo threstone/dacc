@@ -119,7 +119,8 @@ class HallView extends BaseView {
         }
         this.addEventListener('GameListInfo', (evt: EventData) => {
             //再次收到有可能是重连了，需要先清理原来的
-            for (let i = 0; i < gameListCom.m_list.numChildren; i++) {
+            let childNum = gameListCom.m_list.numChildren
+            for (let i = 0; i < childNum; i++) {
                 let com = gameListCom.m_list.removeChildAt(0)
                 com.removeEventListener(egret.TouchEvent.TOUCH_TAP, (com as any).saveFun, this)
             }
@@ -238,12 +239,13 @@ class HallView extends BaseView {
             roomItemPool.push(item)
         }
         this.addEventListener('RoomListInfo', (evt: EventData) => {
-            for (let i = 0; i < list.numChildren; i++) {
+            let childNum = list.numChildren
+            for (let i = 0; i < childNum; i++) {
                 let item = list.removeChildAt(0) as dacc.UI_RoomItem;
                 item.m_join_btn.removeEventListener(egret.TouchEvent.TOUCH_TAP, (item as any).saveFun, this)
                 roomItemPool.push(item)
             }
-            let msg: HallPto.S_ROOM_LIST = evt.data
+            let msg: RoomPto.S_ROOM_LIST = evt.data
             if (msg.list.length > roomItemPool.length) {
                 let addLen = msg.list.length - roomItemPool.length
                 for (let i = 0; i < addLen; i++) {

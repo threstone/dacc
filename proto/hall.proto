@@ -6,22 +6,6 @@ message GameInfo{
 	string gameName = 2;
 }
 
-message Player{
-	int32 index = 1;
-	int32 headIndex = 2;
-	string userName = 3;
-	bool isReady = 4;
-}
-
-message RoomInfo{
-	int32 gameId = 1;
-	bool isStart = 2;
-	string describe = 3;
-	int32 roomId = 4;
-	int32 curPlayer = 5;
-	int32 maxPlayer = 6;
-}
-
 //客户端发送
 message C_SEND_CHAT_MSG{
 	int32 cmd = 1[default = 1]; 
@@ -50,81 +34,3 @@ message C_CHANGE_HEAD{
 	int32 scmd = 2[default = 4];
 	int32 headIndex = 3;
 }
-
-//客户端请求创建房间
-message C_CREATE_ROOM{
-	int32 cmd = 1[default = 1]; 
-	int32 scmd = 2[default = 5];
-	int32 gameId = 3;
-	string describe = 4;
-}
-
-//请求创建房间返回
-message S_CREATE_ROOM{
-	int32 cmd = 1[default = 1]; 
-	int32 scmd = 2[default = 6];
-	bool isSuccess = 3;
-	int32 roomId = 4;
-}
-
-//客户端请求加入房间
-message C_JOIN_ROOM{
-	int32 cmd = 1[default = 1]; 
-	int32 scmd = 2[default = 7];
-	int32 roomId = 3;
-}
-
-//客户端请求加入房间返回
-message S_JOIN_ROOM{
-	int32 cmd = 1[default = 1]; 
-	int32 scmd = 2[default = 8];
-	bool isSuccess = 3;
-	int32 roomId = 4;
-	repeated Player players = 5;
-	int32 gameId = 6;
-}
-
-//客户端请求房间列表
-message C_ROOM_LIST{
-	int32 cmd = 1[default = 1];
-	int32 scmd = 2[default = 9];
-	int32 gameId = 3;
-	int32 status = 4;
-}
-
-//服务端返回房间列表
-message S_ROOM_LIST{
-	int32 cmd = 1[default = 1];
-	int32 scmd = 2[default = 10];
-	repeated RoomInfo list = 3;
-}
-
-//服务器广播其他玩家加入房间
-message S_BROADCAST_JOIN_ROOM{
-	int32 cmd = 1[default = 1];
-	int32 scmd = 2[default = 11];
-	Player player = 3;
-}
-
-//服务器广播其他玩家离开房间
-message S_BROADCAST_LEAVE_ROOM{
-	int32 cmd = 1[default = 1];
-	int32 scmd = 2[default = 12];
-	int32 index = 3;
-}
-
-// //客户端请求准备
-// message C_READY{
-// 	int32 cmd = 1[default = 1]; 
-// 	int32 scmd = 2[default = 9];
-// }
-
-// //服务端广播玩家准备状态改变
-// message S_PLAYER_READY{
-// 	int32 cmd = 1[default = 1]; 
-// 	int32 scmd = 2[default = 9];
-// 	int32 index = 3;
-// 	bool isReady = 4;
-// }
-
-

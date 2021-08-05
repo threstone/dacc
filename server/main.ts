@@ -1,3 +1,3 @@
-import { GlobalVal } from "./global_val"
+import { GlobalVar } from "./global_var"
 
-GlobalVal.init()
+GlobalVar.init()

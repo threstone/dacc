@@ -3,9 +3,9 @@
   <resources>
     <component id="di7i2" name="Game1001.xml" path="/" exported="true"/>
     <image id="b78j1" name="game_bg.jpg" path="/" exported="true"/>
-    <image id="di7i3" name="jiandao.jpg" path="/"/>
-    <image id="di7i4" name="shitou.jpg" path="/"/>
-    <image id="di7i5" name="bu.jpg" path="/"/>
+    <image id="di7i3" name="jiandao.jpg" path="/" exported="true"/>
+    <image id="di7i4" name="shitou.jpg" path="/" exported="true"/>
+    <image id="di7i5" name="bu.jpg" path="/" exported="true"/>
   </resources>
   <publish name="game1001" genCode="true"/>
 </packageDescription>

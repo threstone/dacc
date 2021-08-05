@@ -1,16 +1,34 @@
 abstract class GameBaseModel extends BaseModel {
-    private _saveArr = []
-    private _isAlive = false
+    private _saveArr: any[]
+    private _isAlive: boolean
     protected gameId: number
     constructor(gameId: number) {
         super()
         this.gameId = gameId
+        this._isAlive = false
+        //父类监听准备按钮按下
+        this.addEventListener('ReadyBtnClick', this.onReadyBtnClick)
+        this.addEventListener('RequestExitRoom', this.onRequestExitRoom)
+        MessageManager.addProtoModule(window[`GamePto${this.gameId}`], this)
     }
+
+    onReadyBtnClick(evt: EventData) {
+        let msg = new RoomPto.C_READY()
+        this.sendMsg(msg)
+    }
+
+    onRequestExitRoom(evt: EventData) {
+
+    }
+
 
     /**
      * 重写addEventListener
      */
     protected addEventListener(evemtName: string, func: Function, thisObj: any = this) {
+        if (!this._saveArr) {
+            this._saveArr = []
+        }
         this._saveArr.push([evemtName, func, thisObj])
     }
 
