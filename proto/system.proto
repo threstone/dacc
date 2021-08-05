@@ -1,0 +1,12 @@
+syntax = "proto3";
+package SystemPto;
+
+//服务端通知客户端弹出提示
+message S_TIPS{
+	int32 cmd = 1[default = 3]; 
+	int32 scmd = 2[default = 1];
+	string msg = 3;
+	int32 hoverTime = 4;
+}
+
+

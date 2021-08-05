@@ -9,5 +9,8 @@ class HallHandle {
         broadcastMsg.msg = msg.msg;
         user.broadcast(broadcastMsg);
     }
+    static C_CHANGE_HEAD(user, msg) {
+        user.headIndex = msg.headIndex;
+    }
 }
 exports.HallHandle = HallHandle;

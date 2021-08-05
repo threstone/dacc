@@ -6,6 +6,22 @@ const log4js_1 = require("log4js");
 const protobuf = require("protobufjs");
 let logger = log4js_1.getLogger();
 class ProtoBufEncoder {
+    static setHandle(cmd, scmd, fun) {
+        let protoIndex = cmd + "_" + scmd;
+        if (this.messagehandles_[protoIndex]) {
+            logger.error(`该位置已有注册函数 cmd:${cmd} scmd:${scmd}`);
+            return;
+        }
+        this.messagehandles_.set(protoIndex, fun);
+    }
+    static setProtoClass(cmd, scmd, protoClass) {
+        let protoIndex = cmd + "_" + scmd;
+        if (this.messagehandles_[protoIndex]) {
+            logger.error(`该位置已有protoClass cmd:${cmd} scmd:${scmd}`);
+            return;
+        }
+        ProtoBufEncoder.protoBufClass.set(protoIndex, protoClass);
+    }
     //添加一个协议模块 prefix 为匹配消息前缀
     static addProtoModule(protoModule, handle) {
         for (let key in protoModule) {
@@ -14,17 +30,11 @@ class ProtoBufEncoder {
                 if (isNaN(protoClass.prototype.cmd) || isNaN(protoClass.prototype.scmd)) {
                     throw new Error("协议头cmd , scmd 值错误," + key);
                 }
-                if (protoClass.prototype.cmd < 0 || protoClass.prototype.cmd > 255) {
-                    throw new Error("协议头cmd ,范围错误," + key + "," + protoClass.prototype.cmd);
-                }
-                if (protoClass.prototype.scmd < 0 || protoClass.prototype.scmd > 255) {
-                    throw new Error("协议头cmdid ,范围错误," + key + "," + protoClass.prototype.scmd);
-                }
-                let protoIndex = protoClass.prototype.cmd * 255 + protoClass.prototype.scmd;
+                let protoIndex = protoClass.prototype.cmd + "_" + protoClass.prototype.scmd;
                 ProtoBufEncoder.protoBufClass.set(protoIndex, protoClass);
                 //客户端的代码需要注册一下
                 if (key.startsWith("C_")) {
-                    console.log("添加协议:", protoClass.name, protoClass.prototype.cmd, protoClass.prototype.scmd);
+                    console.log("添加协议:", protoClass.name);
                     if (handle && handle[protoClass.name]) {
                         this.messagehandles_.set(protoIndex, handle[protoClass.name]);
                     }
@@ -40,10 +50,10 @@ class ProtoBufEncoder {
         const protoBufAny = protobuf;
         protoBufAny.Writer.prototype.finishWithSysCmd = function (sysid, cmdid) {
             let head = this.head.next;
-            const buf = this.constructor.alloc(this.len + 2);
-            buf.writeUInt8(sysid, 0);
-            buf.writeUInt8(cmdid, 1);
-            let pos = 2;
+            const buf = this.constructor.alloc(this.len + 8);
+            buf.writeInt32BE(sysid, 0);
+            buf.writeInt32BE(cmdid, 4);
+            let pos = 8;
             while (head) {
                 head.fn(head.val, buf, pos);
                 pos += head.len;
@@ -66,7 +76,7 @@ class ProtoBufEncoder {
         if (!message) {
             return;
         }
-        let index = message.cmd * 255 + message.scmd;
+        let index = message.cmd + "_" + message.scmd;
         let messageClass = ProtoBufEncoder.protoBufClass.get(index);
         if (!messageClass) {
             throw new Error("未找到注册的协议编码类:" + index);
@@ -76,20 +86,20 @@ class ProtoBufEncoder {
         return writer.finishWithSysCmd(message.cmd, message.scmd);
     }
     static decode(buffer, offset) {
-        if (buffer.length < 2) {
-            logger.error("protobuf decode err! buffer长度小于2");
+        if (buffer.length < 8) {
+            logger.error("protobuf decode err! buffer长度小于8");
             return;
         }
-        const cmd = buffer.readUInt8(offset);
-        const scmd = buffer.readUInt8(offset + 1);
-        const messageIndex = cmd * 255 + scmd;
+        const cmd = buffer.readInt32BE(offset);
+        const scmd = buffer.readInt32BE(offset + 4);
+        const messageIndex = cmd + "_" + scmd;
         const messageClass = ProtoBufEncoder.protoBufClass.get(messageIndex);
         if (!messageClass) {
             console.error("无法获取协议:", cmd, scmd);
             return null;
         }
         ProtoBufEncoder.protoBufReader.buf = buffer;
-        ProtoBufEncoder.protoBufReader.pos = offset + 2;
+        ProtoBufEncoder.protoBufReader.pos = offset + 8;
         ProtoBufEncoder.protoBufReader.len = buffer.length;
         let result = null;
         try {
@@ -102,13 +112,11 @@ class ProtoBufEncoder {
     }
     //获取注册执行的HandleFunction
     static getHandleFunction(cmd, scmd) {
-        const messageIndex = cmd * 255 + scmd;
+        const messageIndex = cmd + "_" + scmd;
         return ProtoBufEncoder.messagehandles_.get(messageIndex);
     }
 }
 exports.ProtoBufEncoder = ProtoBufEncoder;
-// private static messageClasses_C: Map<string, any> = new Map<string, any>()
-// private static messageClasses_S: Map<string, any> = new Map<string, any>()
 ProtoBufEncoder.messagehandles_ = new Map();
 ProtoBufEncoder.protoBufWriter = protobuf.Writer.create();
 ProtoBufEncoder.protoBufReader = protobuf.Reader.create(Buffer.alloc(1));
