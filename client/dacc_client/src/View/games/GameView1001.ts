@@ -55,7 +55,6 @@ class GameView1001 extends GameBaseView {
      */
     private onGameResult(evt: EventData) {
         let data: GamePto1001.S_GAME_RESULT_1001 = evt.data
-        console.log('当服务器广播游戏结果', data);
         if (data.winIndex == -1) {
             GlobalController.showTips('平局了...', 5000)
             this.nextHideHand = true
@@ -83,7 +82,6 @@ class GameView1001 extends GameBaseView {
     private onStartOutSword(evt: EventData) {
 
         let data: GamePto1001.S_START_OUT_SWORD_1001 = evt.data
-        console.log('通知玩家开始出拳', data);
         this.changeChooseBtnVisible(true)
         this.view.m_out_tips0.visible = false
         this.view.m_out_tips1.visible = false
@@ -97,7 +95,6 @@ class GameView1001 extends GameBaseView {
      * 
      */
     private onGameStart(evt: EventData) {
-        console.log('游戏开始事件');
         this.view.m_ready_btn.visible = false
         this.view.m_read_text0.visible = false
         this.view.m_read_text1.visible = false
@@ -113,7 +110,6 @@ class GameView1001 extends GameBaseView {
             this.view.m_sword1.visible = false
         }
         let data: GamePto1001.S_BROADCAST_SWORD_1001 = evt.data
-        console.log('当玩家出拳', data);
         let tips: fairygui.GTextField = this.view[`m_out_tips${data.index}`]
         let loader: fairygui.GLoader = this.view[`m_sword${data.index}`]
         if (data.sword == -1) {
@@ -176,6 +172,15 @@ class GameView1001 extends GameBaseView {
     }
 
     close() {
+        this.changeChooseBtnVisible(false)
+        this.view.m_sword0.visible = false
+        this.view.m_sword1.visible = false
+        this.view.m_out_tips0.visible = false
+        this.view.m_out_tips1.visible = false
+        this.view.m_read_text0.visible = false
+        this.view.m_read_text1.visible = false
+        this.view.m_player0.visible = false
+        this.view.m_player1.visible = false
         fairygui.GRoot.inst.removeChild(this.view)
     }
 

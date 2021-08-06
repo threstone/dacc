@@ -7,6 +7,7 @@ module dacc {
 		public m_input_bg:fairygui.GGraph;
 		public m_input_text:fairygui.GTextInput;
 		public m_login_btn:UI_BtnClick;
+		public m_acknowledge:fairygui.GTextField;
 
 		public static URL:string = "ui://sly852qpinlo3";
 
@@ -24,6 +25,7 @@ module dacc {
 			this.m_input_bg = <fairygui.GGraph><any>(this.getChild("input_bg"));
 			this.m_input_text = <fairygui.GTextInput><any>(this.getChild("input_text"));
 			this.m_login_btn = <UI_BtnClick><any>(this.getChild("login_btn"));
+			this.m_acknowledge = <fairygui.GTextField><any>(this.getChild("acknowledge"));
 		}
 	}
 }

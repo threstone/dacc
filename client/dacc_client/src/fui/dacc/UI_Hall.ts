@@ -14,6 +14,7 @@ module dacc {
 		public m_room_list:UI_RoomList;
 		public m_head_choose_com:UI_ChangeHeadCom;
 		public m_user_box:UI_UserBox;
+		public m_acknowledge:fairygui.GTextField;
 
 		public static URL:string = "ui://sly852qpi7mx0";
 
@@ -38,6 +39,7 @@ module dacc {
 			this.m_room_list = <UI_RoomList><any>(this.getChild("room_list"));
 			this.m_head_choose_com = <UI_ChangeHeadCom><any>(this.getChild("head_choose_com"));
 			this.m_user_box = <UI_UserBox><any>(this.getChild("user_box"));
+			this.m_acknowledge = <fairygui.GTextField><any>(this.getChild("acknowledge"));
 		}
 	}
 }

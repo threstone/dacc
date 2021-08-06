@@ -9,14 +9,15 @@
     <component id="n11_di7i" name="ready_btn" src="inlo4" fileName="component/BtnClick.xml" pkg="sly852qp" xy="640,679" pivot="0.5,0.5" anchor="true" visible="false"/>
     <loader id="n14_di7i" name="sword0" xy="336,348" pivot="0.5,0.5" anchor="true" size="248,319" visible="false" url="ui://rbhwceqzdi7i4" fill="scaleFree"/>
     <loader id="n15_di7i" name="sword1" xy="962,348" pivot="0.5,0.5" anchor="true" size="248,319" skew="0,180" visible="false" url="ui://rbhwceqzdi7i4" fill="scaleFree"/>
-    <text id="n16_di7i" name="title" xy="558,11" size="169,38" font="STHupo" fontSize="33" color="#ff0000" text="石头剪刀布"/>
+    <text id="n16_di7i" name="title" xy="558,11" size="170,38" font="STHupo" fontSize="33" color="#ff0000" text="石头剪刀布"/>
     <text id="n17_di7i" name="room_seq" xy="50,11" size="159,39" font="STXingkai" fontSize="33" color="#ff0000" autoClearText="true" text="123-123-123"/>
     <component id="n18_di7i" name="shitou_btn" src="inlo4" fileName="component/BtnClick.xml" pkg="sly852qp" xy="381,606" pivot="0.5,0.5" anchor="true" group="n21_di7i" visible="false"/>
     <component id="n19_di7i" name="jiandao_btn" src="inlo4" fileName="component/BtnClick.xml" pkg="sly852qp" xy="640,606" pivot="0.5,0.5" anchor="true" group="n21_di7i" visible="false"/>
     <component id="n20_di7i" name="bu_btn" src="inlo4" fileName="component/BtnClick.xml" pkg="sly852qp" xy="896,606" pivot="0.5,0.5" anchor="true" group="n21_di7i" visible="false"/>
     <group id="n21_di7i" name="choose_sword_group" xy="292,575" size="693,62"/>
-    <text id="n22_di7i" name="out_tips0" xy="336,348" pivot="0.5,0.5" anchor="true" size="50,29" visible="false" fontSize="22" color="#ff0000" text="已出"/>
-    <text id="n23_di7i" name="out_tips1" xy="962,348" pivot="0.5,0.5" anchor="true" size="50,29" visible="false" fontSize="22" color="#ff0000" text="已出"/>
+    <text id="n22_di7i" name="out_tips0" xy="336,348" pivot="0.5,0.5" anchor="true" size="52,27" visible="false" font="STCaiyun" fontSize="22" color="#ff0000" bold="true" text="已出"/>
+    <text id="n23_di7i" name="out_tips1" xy="962,348" pivot="0.5,0.5" anchor="true" size="52,27" visible="false" font="STCaiyun" fontSize="22" color="#ff0000" bold="true" text="已出"/>
     <component id="n24_di7i" name="exit" src="ikts1n" fileName="component/common/BtnLong.xml" pkg="sly852qp" xy="1192,7" size="82,30"/>
+    <text id="n25_idp7" name="acknowledge" xy="770,10" size="399,39" font="STXingkai" fontSize="33" color="#ff0000" text="在此鸣谢菜菜子提供的素材"/>
   </displayList>
 </component>
