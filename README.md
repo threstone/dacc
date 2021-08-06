@@ -11,6 +11,11 @@ npm install
 ```sh
 tsc
 ```
+如果tsc命令执行报错，可能是没有安装typescript模块,执行以下命令安装后再重新执行tsc:
+```sh
+npm install -g typescript
+```
+
 最后执行以下命令启动:
 ```sh
 node ./dist/main.js
@@ -32,4 +37,4 @@ node ./dist/main.js
 https://blog.csdn.net/weixin_42253615/article/details/111877137
 ```
 ##### 3.2发布
-使用Egret Launcher发布
+使用Egret Launcher发布,注意事项请查看dacc/client/dacc_client/README.md
