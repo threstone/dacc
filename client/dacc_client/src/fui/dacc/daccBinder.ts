@@ -10,6 +10,7 @@ module dacc {
 			fairygui.UIObjectFactory.setPackageItemExtension(UI_GameItem.URL, UI_GameItem);
 			fairygui.UIObjectFactory.setPackageItemExtension(UI_ChangeHeadCom.URL, UI_ChangeHeadCom);
 			fairygui.UIObjectFactory.setPackageItemExtension(UI_UserBox.URL, UI_UserBox);
+			fairygui.UIObjectFactory.setPackageItemExtension(UI_Register.URL, UI_Register);
 			fairygui.UIObjectFactory.setPackageItemExtension(UI_Hall.URL, UI_Hall);
 			fairygui.UIObjectFactory.setPackageItemExtension(UI_BtnLong.URL, UI_BtnLong);
 			fairygui.UIObjectFactory.setPackageItemExtension(UI_AreaSelect.URL, UI_AreaSelect);

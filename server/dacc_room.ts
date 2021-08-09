@@ -166,7 +166,7 @@ export abstract class DaccRoom {
             msg.player.headIndex = user.headIndex
             msg.player.index = index
             msg.player.isReady = false
-            msg.player.userName = user.userName
+            msg.player.nick = user.nick
             this.broadcast(msg, true, player)
 
             if (this.onUserJoinSuccess(player)) {

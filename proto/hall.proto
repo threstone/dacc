@@ -17,7 +17,7 @@ message C_SEND_CHAT_MSG{
 message S_CHAT_MSG{
 	int32 cmd = 1[default = 1]; 
 	int32 scmd = 2[default = 2];
-	string userName = 3;
+	string nick = 3;
 	string msg = 4;
 }
 

@@ -45,6 +45,7 @@
     <image id="b78j2l" name="touxiang.png" path="/picture/" exported="true"/>
     <component id="b78j2m" name="ChangeHeadCom.xml" path="/component/changeHead/"/>
     <component id="di7i2o" name="UserBox.xml" path="/component/userBox/" exported="true"/>
+    <component id="ggbm2p" name="Register.xml" path="/component/register/"/>
   </resources>
   <publish name="dacc" genCode="true" npot="true"/>
 </packageDescription>

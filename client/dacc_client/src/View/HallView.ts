@@ -17,7 +17,6 @@ class HallView extends BaseView {
         this.initUserBox()
 
         this.addEventListener('GameListInfo', this.initGameListMap)
-
     }
 
     /**
@@ -37,7 +36,13 @@ class HallView extends BaseView {
      */
     onLoginResult(evt: EventData) {
         let data: LoginPto.S_LOGIN = evt.data
-        this.hallCom.m_user_box.m_user_name.text = data.userName
+        this.hallCom.m_user_box.m_user_name.text = data.nick
+        RES.getResByUrl(`./resource/head/tx_${data.headIndex}.png`, (data) => {
+            if (!data) {
+                return
+            }
+            this.hallCom.m_user_box.m_head_pic.texture = data
+        })
     }
 
     /**
@@ -54,7 +59,7 @@ class HallView extends BaseView {
         textField.width = 390
         textField.fontSize = 14
         textField.color = 0xFFFFFF
-        textField.text = `[B][color=#000000]${data.userName}[/color][/B] : ${data.msg}`
+        textField.text = `[B][color=#000000]${data.nick}[/color][/B] : ${data.msg}`
         textField.autoSize = 2
         textField.ubbEnabled = true
         list.addChild(textField)

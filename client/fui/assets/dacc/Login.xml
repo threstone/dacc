@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="1280,720" designImageLayer="1" bgColorEnabled="true" bgColor="#6699cc">
   <displayList>
-    <graph id="n3_inlo" name="input_bg" xy="504,300" size="252,35" type="rect" fillColor="#ff33ff00"/>
-    <text id="n2_inlo" name="input_text" xy="504,300" size="252,35" input="true" prompt="  点此请输入用户名" fontSize="26" color="#3333ff" ubb="true" autoSize="none" text=""/>
-    <component id="n4_inlo" name="login_btn" src="inlo4" fileName="component/BtnClick.xml" xy="536,384"/>
-    <text id="n7_idp7" name="acknowledge" xy="142,34" pivot="0.5,0.5" anchor="true" size="252,43" font="STXinwei" fontSize="18" text="qq:790325011&#xA;有什么好玩的功能想加请联系我"/>
+    <graph id="n3_inlo" name="account_input_bg" xy="504,248" size="252,35" type="rect" fillColor="#ff33ff00"/>
+    <text id="n2_inlo" name="account_input" xy="504,248" size="252,35" input="true" prompt="  点此输入用户名" fontSize="26" color="#3333ff" ubb="true" autoSize="none" text=""/>
+    <graph id="n8_ggbm" name="password_input_bg" xy="504,315" size="252,35" type="rect" fillColor="#ff33ff00"/>
+    <text id="n9_ggbm" name="password_input" xy="504,315" size="252,35" input="true" prompt="  点此输入密码" password="true" fontSize="26" color="#3333ff" ubb="true" autoSize="none" text=""/>
+    <component id="n4_inlo" name="login_btn" src="inlo4" fileName="component/BtnClick.xml" xy="427,384"/>
+    <component id="n11_ggbm" name="reg_btn" src="inlo4" fileName="component/BtnClick.xml" xy="648,384"/>
+    <text id="n7_idp7" name="acknowledge" xy="142,34" pivot="0.5,0.5" anchor="true" size="257,43" font="STXinwei" fontSize="18" text="qq:790325011&#xA;有什么好玩的功能想加请联系我"/>
+    <component id="n10_ggbm" name="reg_com" src="ggbm2p" fileName="component/register/Register.xml" xy="430,139" visible="false"/>
   </displayList>
 </component>

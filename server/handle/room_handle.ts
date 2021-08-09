@@ -40,7 +40,7 @@ export class RoomHandle {
             player.index = index
             player.isReady = temp.isReady
             player.headIndex = temp.getSession().headIndex
-            player.userName = temp.getSession().userName
+            player.nick = temp.getSession().nick
             resMsg.players.push(player)
         }
         resMsg.roomId = msg.roomId

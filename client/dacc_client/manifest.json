@@ -51,6 +51,7 @@
 		"bin-debug/fui/dacc/UI_GameList.js",
 		"bin-debug/fui/dacc/UI_Hall.js",
 		"bin-debug/fui/dacc/UI_Login.js",
+		"bin-debug/fui/dacc/UI_Register.js",
 		"bin-debug/fui/dacc/UI_RoomItem.js",
 		"bin-debug/fui/dacc/UI_RoomList.js",
 		"bin-debug/fui/dacc/UI_UserBox.js",

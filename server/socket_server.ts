@@ -77,9 +77,12 @@ export class SocketServer {
             return
         }
         try {
-            if (session.isLogin == false && (msg.cmd != LoginPto.C_LOGIN.prototype.cmd || msg.scmd != LoginPto.C_LOGIN.prototype.scmd)) {
-                logger.error('未登录状态下禁止请求除登录以外的协议。')
-                return
+            //未登录状态
+            if (session.isLogin == false) {
+                if (!(msg.cmd == LoginPto.C_LOGIN.prototype.cmd && (msg.scmd == LoginPto.C_LOGIN.prototype.scmd || msg.scmd == LoginPto.C_REGISTER.prototype.scmd))) {
+                    logger.error('未登录状态下禁止请求除登录以外的协议。')
+                    return
+                }
             }
             fun(session, msg)
         } catch (error) {

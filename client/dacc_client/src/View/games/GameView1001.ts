@@ -159,7 +159,7 @@ class GameView1001 extends GameBaseView {
             const info = data.players[index];
             let player = this.view['m_player' + index] as dacc.UI_UserBox
             player.visible = true
-            player.m_user_name.text = info.userName
+            player.m_user_name.text = info.nick
             this.view['m_read_text' + info.index].visible = info.isReady
             if (info.headIndex != -1) {
                 RES.getResByUrl(`./resource/head/tx_${info.headIndex}.png`, (data) => {
@@ -195,7 +195,7 @@ class GameView1001 extends GameBaseView {
         let info = data.player
         let player = this.view['m_player' + info.index] as dacc.UI_UserBox
         player.visible = true
-        player.m_user_name.text = info.userName
+        player.m_user_name.text = info.nick
         this.view['m_read_text' + info.index].visible = info.isReady
         if (info.headIndex != -1) {
             RES.getResByUrl(`./resource/head/tx_${info.headIndex}.png`, (data) => {

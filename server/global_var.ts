@@ -8,13 +8,30 @@ import * as path from "path"
 import * as allProto from "./common_proto"
 import { RoomMgr } from "./room_mgr"
 import { Utils } from "./utils"
+import { DBManager } from "./db_mgr"
+import * as mysqlConfig from './config/mysql.json'
+
 let logger = getLogger()
+/**
+gate:网关，多开，分发消息，对外暴露
+
+hall:游戏大厅，提供登录注册、聊天、选择游戏、修改资料等功能
+      一区一个进程，玩家所在的hall会记录在redis，对外隐藏   连接redis、mysql。
+     只有gate使用RPC连接自己
+
+game:游戏服，提供游戏服务，单个游戏一个进程（可以拓展为多进程服务一个游戏），
+          对外隐藏，连接redis。gate使用RPC连接自己
+
+record:记录服，对外隐藏，连接mysql，多开。game、gate使用RPC连接来读写记录
+*/
 export class GlobalVar {
 
     private static _server: SocketServer
     private static _roomMgr: RoomMgr
+    private static _dbMgr: DBManager
 
     private static _args: any//程序启动的参数
+
     //支持的游戏类型 用于在分布式部署过程中某一些节点只运行对应的逻辑。
     private static supportGameType_: Map<number, boolean> = new Map<number, boolean>()
 
@@ -24,6 +41,10 @@ export class GlobalVar {
 
     static get roomMgr() {
         return this._roomMgr
+    }
+
+    static get dbMgr() {
+        return this._dbMgr
     }
 
     public static set_process_args(args) {
@@ -55,6 +76,9 @@ export class GlobalVar {
         if (openMode != 'debug') {
             GlobalVar.addSupportGame(args.supportGameId || serverConfig.supportGameId)
         }
+
+        this._dbMgr = new DBManager()
+        this._dbMgr.init(mysqlConfig)
 
         this.initMsgHandle()
         this._roomMgr = new RoomMgr()

@@ -6,7 +6,7 @@ package RoomPto;
 message Player{
 	int32 index = 1;
 	int32 headIndex = 2;
-	string userName = 3;
+	string nick = 3;
 	bool isReady = 4;
 }
 

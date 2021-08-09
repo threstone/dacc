@@ -367,8 +367,8 @@ declare namespace HallPto {
         /** S_CHAT_MSG scmd */
         scmd?: (number|null);
 
-        /** S_CHAT_MSG userName */
-        userName?: (string|null);
+        /** S_CHAT_MSG nick */
+        nick?: (string|null);
 
         /** S_CHAT_MSG msg */
         msg?: (string|null);
@@ -389,8 +389,8 @@ declare namespace HallPto {
         /** S_CHAT_MSG scmd. */
         public scmd: number;
 
-        /** S_CHAT_MSG userName. */
-        public userName: string;
+        /** S_CHAT_MSG nick. */
+        public nick: string;
 
         /** S_CHAT_MSG msg. */
         public msg: string;
@@ -527,8 +527,11 @@ declare namespace LoginPto {
         /** C_LOGIN scmd */
         scmd?: (number|null);
 
-        /** C_LOGIN userName */
-        userName?: (string|null);
+        /** C_LOGIN account */
+        account?: (string|null);
+
+        /** C_LOGIN password */
+        password?: (string|null);
     }
 
     /** Represents a C_LOGIN. */
@@ -546,8 +549,11 @@ declare namespace LoginPto {
         /** C_LOGIN scmd. */
         public scmd: number;
 
-        /** C_LOGIN userName. */
-        public userName: string;
+        /** C_LOGIN account. */
+        public account: string;
+
+        /** C_LOGIN password. */
+        public password: string;
 
         /**
          * Encodes the specified C_LOGIN message. Does not implicitly {@link LoginPto.C_LOGIN.verify|verify} messages.
@@ -580,8 +586,11 @@ declare namespace LoginPto {
         /** S_LOGIN isSuccess */
         isSuccess?: (boolean|null);
 
-        /** S_LOGIN userName */
-        userName?: (string|null);
+        /** S_LOGIN nick */
+        nick?: (string|null);
+
+        /** S_LOGIN headIndex */
+        headIndex?: (number|null);
     }
 
     /** Represents a S_LOGIN. */
@@ -602,8 +611,11 @@ declare namespace LoginPto {
         /** S_LOGIN isSuccess. */
         public isSuccess: boolean;
 
-        /** S_LOGIN userName. */
-        public userName: string;
+        /** S_LOGIN nick. */
+        public nick: string;
+
+        /** S_LOGIN headIndex. */
+        public headIndex: number;
 
         /**
          * Encodes the specified S_LOGIN message. Does not implicitly {@link LoginPto.S_LOGIN.verify|verify} messages.
@@ -623,6 +635,118 @@ declare namespace LoginPto {
          */
         public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): LoginPto.S_LOGIN;
     }
+
+    /** Properties of a C_REGISTER. */
+    interface IC_REGISTER {
+
+        /** C_REGISTER cmd */
+        cmd?: (number|null);
+
+        /** C_REGISTER scmd */
+        scmd?: (number|null);
+
+        /** C_REGISTER account */
+        account?: (string|null);
+
+        /** C_REGISTER password */
+        password?: (string|null);
+
+        /** C_REGISTER nick */
+        nick?: (string|null);
+    }
+
+    /** Represents a C_REGISTER. */
+    class C_REGISTER implements IC_REGISTER {
+
+        /**
+         * Constructs a new C_REGISTER.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: LoginPto.IC_REGISTER);
+
+        /** C_REGISTER cmd. */
+        public cmd: number;
+
+        /** C_REGISTER scmd. */
+        public scmd: number;
+
+        /** C_REGISTER account. */
+        public account: string;
+
+        /** C_REGISTER password. */
+        public password: string;
+
+        /** C_REGISTER nick. */
+        public nick: string;
+
+        /**
+         * Encodes the specified C_REGISTER message. Does not implicitly {@link LoginPto.C_REGISTER.verify|verify} messages.
+         * @param message C_REGISTER message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: LoginPto.IC_REGISTER, writer?: protobuf.Writer): protobuf.Writer;
+
+        /**
+         * Decodes a C_REGISTER message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns C_REGISTER
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): LoginPto.C_REGISTER;
+    }
+
+    /** Properties of a S_REGISTER. */
+    interface IS_REGISTER {
+
+        /** S_REGISTER cmd */
+        cmd?: (number|null);
+
+        /** S_REGISTER scmd */
+        scmd?: (number|null);
+
+        /** S_REGISTER code */
+        code?: (number|null);
+    }
+
+    /** Represents a S_REGISTER. */
+    class S_REGISTER implements IS_REGISTER {
+
+        /**
+         * Constructs a new S_REGISTER.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: LoginPto.IS_REGISTER);
+
+        /** S_REGISTER cmd. */
+        public cmd: number;
+
+        /** S_REGISTER scmd. */
+        public scmd: number;
+
+        /** S_REGISTER code. */
+        public code: number;
+
+        /**
+         * Encodes the specified S_REGISTER message. Does not implicitly {@link LoginPto.S_REGISTER.verify|verify} messages.
+         * @param message S_REGISTER message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: LoginPto.IS_REGISTER, writer?: protobuf.Writer): protobuf.Writer;
+
+        /**
+         * Decodes a S_REGISTER message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns S_REGISTER
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): LoginPto.S_REGISTER;
+    }
 }
 
 /** Namespace RoomPto. */
@@ -637,8 +761,8 @@ declare namespace RoomPto {
         /** Player headIndex */
         headIndex?: (number|null);
 
-        /** Player userName */
-        userName?: (string|null);
+        /** Player nick */
+        nick?: (string|null);
 
         /** Player isReady */
         isReady?: (boolean|null);
@@ -659,8 +783,8 @@ declare namespace RoomPto {
         /** Player headIndex. */
         public headIndex: number;
 
-        /** Player userName. */
-        public userName: string;
+        /** Player nick. */
+        public nick: string;
 
         /** Player isReady. */
         public isReady: boolean;

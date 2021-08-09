@@ -1,31 +1,32 @@
 import { getLogger } from "log4js"
-import { LoginPto } from "./common_proto"
 import { DaccPlayer } from "./dacc_player"
 import { DaccRoom } from "./dacc_room"
 import { GlobalVar } from "./global_var"
 import { IGameMessage } from "./protobuf_encoder"
+import { TBL_UserModel } from "./model/tbl_user_model"
 const logger = getLogger()
 export class DaccUser {
     clientId: number = -1
     isLogin = false
-    userName: string = ""
-    headIndex: number = -1
+
+    userModel: TBL_UserModel
 
     room: DaccRoom
     player: DaccPlayer
+
 
     init(clientId: number) {
         this.clientId = clientId
     }
 
-    doLogin(data: LoginPto.C_LOGIN) {
-        this.userName = data.userName
+    doLogin(data: TBL_UserModel) {
+        this.userModel = data
         this.isLogin = true
     }
 
     onClose() {
         if (this.room) {
-            this.player._clientId = -1
+            this.player.resetClientId()
             this.room.onUserSocketClose(this.player)
             this.player = null
             this.room = null
@@ -35,8 +36,7 @@ export class DaccUser {
     reset() {
         this.clientId = -1
         this.isLogin = false
-        this.userName = ""
-        this.headIndex = -1
+        this.userModel = null
     }
 
     sendMsg(msg: IGameMessage) {
