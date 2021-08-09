@@ -41,6 +41,7 @@ message C_JOIN_ROOM{
 	int32 cmd = 1[default = 2]; 
 	int32 scmd = 2[default = 3];
 	int32 roomId = 3;
+	bool isWatch = 4;
 }
 
 //客户端请求加入房间返回
@@ -53,6 +54,7 @@ message S_JOIN_ROOM{
 	int32 gameId = 6;
 	int32 selfIndex = 7;
 	string roomSeq = 8;
+	bool isWatcher = 9;
 }
 
 //客户端请求房间列表
@@ -70,14 +72,14 @@ message S_ROOM_LIST{
 	repeated RoomInfo list = 3;
 }
 
-//服务器广播其他玩家加入房间
+//服务器广播玩家加入房间
 message S_BROADCAST_JOIN_ROOM{
 	int32 cmd = 1[default = 1];
 	int32 scmd = 2[default = 7];
 	Player player = 3;
 }
 
-//服务器广播其他玩家离开房间
+//服务器广播玩家离开房间
 message S_BROADCAST_LEAVE_ROOM{
 	int32 cmd = 1[default = 1];
 	int32 scmd = 2[default = 8];

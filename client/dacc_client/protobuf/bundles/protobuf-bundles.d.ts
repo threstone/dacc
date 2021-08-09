@@ -875,6 +875,9 @@ declare namespace RoomPto {
 
         /** C_JOIN_ROOM roomId */
         roomId?: (number|null);
+
+        /** C_JOIN_ROOM isWatch */
+        isWatch?: (boolean|null);
     }
 
     /** Represents a C_JOIN_ROOM. */
@@ -894,6 +897,9 @@ declare namespace RoomPto {
 
         /** C_JOIN_ROOM roomId. */
         public roomId: number;
+
+        /** C_JOIN_ROOM isWatch. */
+        public isWatch: boolean;
 
         /**
          * Encodes the specified C_JOIN_ROOM message. Does not implicitly {@link RoomPto.C_JOIN_ROOM.verify|verify} messages.
@@ -940,6 +946,9 @@ declare namespace RoomPto {
 
         /** S_JOIN_ROOM roomSeq */
         roomSeq?: (string|null);
+
+        /** S_JOIN_ROOM isWatcher */
+        isWatcher?: (boolean|null);
     }
 
     /** Represents a S_JOIN_ROOM. */
@@ -974,6 +983,9 @@ declare namespace RoomPto {
 
         /** S_JOIN_ROOM roomSeq. */
         public roomSeq: string;
+
+        /** S_JOIN_ROOM isWatcher. */
+        public isWatcher: boolean;
 
         /**
          * Encodes the specified S_JOIN_ROOM message. Does not implicitly {@link RoomPto.S_JOIN_ROOM.verify|verify} messages.

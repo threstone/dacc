@@ -1932,6 +1932,7 @@ $root.RoomPto = (function() {
          * @property {number|null} [cmd] C_JOIN_ROOM cmd
          * @property {number|null} [scmd] C_JOIN_ROOM scmd
          * @property {number|null} [roomId] C_JOIN_ROOM roomId
+         * @property {boolean|null} [isWatch] C_JOIN_ROOM isWatch
          */
 
         /**
@@ -1974,6 +1975,14 @@ $root.RoomPto = (function() {
         C_JOIN_ROOM.prototype.roomId = 0;
 
         /**
+         * C_JOIN_ROOM isWatch.
+         * @member {boolean} isWatch
+         * @memberof RoomPto.C_JOIN_ROOM
+         * @instance
+         */
+        C_JOIN_ROOM.prototype.isWatch = false;
+
+        /**
          * Encodes the specified C_JOIN_ROOM message. Does not implicitly {@link RoomPto.C_JOIN_ROOM.verify|verify} messages.
          * @function encode
          * @memberof RoomPto.C_JOIN_ROOM
@@ -1991,6 +2000,8 @@ $root.RoomPto = (function() {
                 writer.uint32(/* id 2, wireType 0 =*/16).int32(message.scmd);
             if (message.roomId != null && Object.hasOwnProperty.call(message, "roomId"))
                 writer.uint32(/* id 3, wireType 0 =*/24).int32(message.roomId);
+            if (message.isWatch != null && Object.hasOwnProperty.call(message, "isWatch"))
+                writer.uint32(/* id 4, wireType 0 =*/32).bool(message.isWatch);
             return writer;
         };
 
@@ -2021,6 +2032,9 @@ $root.RoomPto = (function() {
                 case 3:
                     message.roomId = reader.int32();
                     break;
+                case 4:
+                    message.isWatch = reader.bool();
+                    break;
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -2046,6 +2060,7 @@ $root.RoomPto = (function() {
          * @property {number|null} [gameId] S_JOIN_ROOM gameId
          * @property {number|null} [selfIndex] S_JOIN_ROOM selfIndex
          * @property {string|null} [roomSeq] S_JOIN_ROOM roomSeq
+         * @property {boolean|null} [isWatcher] S_JOIN_ROOM isWatcher
          */
 
         /**
@@ -2129,6 +2144,14 @@ $root.RoomPto = (function() {
         S_JOIN_ROOM.prototype.roomSeq = "";
 
         /**
+         * S_JOIN_ROOM isWatcher.
+         * @member {boolean} isWatcher
+         * @memberof RoomPto.S_JOIN_ROOM
+         * @instance
+         */
+        S_JOIN_ROOM.prototype.isWatcher = false;
+
+        /**
          * Encodes the specified S_JOIN_ROOM message. Does not implicitly {@link RoomPto.S_JOIN_ROOM.verify|verify} messages.
          * @function encode
          * @memberof RoomPto.S_JOIN_ROOM
@@ -2157,6 +2180,8 @@ $root.RoomPto = (function() {
                 writer.uint32(/* id 7, wireType 0 =*/56).int32(message.selfIndex);
             if (message.roomSeq != null && Object.hasOwnProperty.call(message, "roomSeq"))
                 writer.uint32(/* id 8, wireType 2 =*/66).string(message.roomSeq);
+            if (message.isWatcher != null && Object.hasOwnProperty.call(message, "isWatcher"))
+                writer.uint32(/* id 9, wireType 0 =*/72).bool(message.isWatcher);
             return writer;
         };
 
@@ -2203,6 +2228,9 @@ $root.RoomPto = (function() {
                     break;
                 case 8:
                     message.roomSeq = reader.string();
+                    break;
+                case 9:
+                    message.isWatcher = reader.bool();
                     break;
                 default:
                     reader.skipType(tag & 7);

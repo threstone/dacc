@@ -25,7 +25,7 @@ export class DaccUser {
 
     onClose() {
         if (this.room) {
-            this.player.clientId = -1
+            this.player._clientId = -1
             this.room.onUserSocketClose(this.player)
             this.player = null
             this.room = null

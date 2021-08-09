@@ -21,8 +21,9 @@ export class RoomHandle {
             return
         }
         let resMsg = new RoomPto.S_JOIN_ROOM()
-        let player = room.onUserJoinRoom(user)
+        let player = room.onUserJoinRoom(user, msg.isWatch)
         resMsg.isSuccess = player != undefined
+        resMsg.isWatcher = player.isWatcher
         //如果加入失败
         if (!resMsg.isSuccess) {
             user.sendMsg(resMsg)
@@ -82,5 +83,4 @@ export class RoomHandle {
             user.room.onUserRequestLeaveRoom(user.player)
         }
     }
-
 }

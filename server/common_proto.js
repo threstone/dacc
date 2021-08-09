@@ -1212,6 +1212,7 @@ $root.RoomPto = (function() {
         C_JOIN_ROOM.prototype.cmd = 2;
         C_JOIN_ROOM.prototype.scmd = 3;
         C_JOIN_ROOM.prototype.roomId = 0;
+        C_JOIN_ROOM.prototype.isWatch = false;
 
         C_JOIN_ROOM.create = function create(properties) {
             return new C_JOIN_ROOM(properties);
@@ -1226,6 +1227,8 @@ $root.RoomPto = (function() {
                 w.uint32(16).int32(m.scmd);
             if (m.roomId != null && Object.hasOwnProperty.call(m, "roomId"))
                 w.uint32(24).int32(m.roomId);
+            if (m.isWatch != null && Object.hasOwnProperty.call(m, "isWatch"))
+                w.uint32(32).bool(m.isWatch);
             return w;
         };
 
@@ -1244,6 +1247,9 @@ $root.RoomPto = (function() {
                     break;
                 case 3:
                     m.roomId = r.int32();
+                    break;
+                case 4:
+                    m.isWatch = r.bool();
                     break;
                 default:
                     r.skipType(t & 7);
@@ -1266,6 +1272,9 @@ $root.RoomPto = (function() {
             if (d.roomId != null) {
                 m.roomId = d.roomId | 0;
             }
+            if (d.isWatch != null) {
+                m.isWatch = Boolean(d.isWatch);
+            }
             return m;
         };
 
@@ -1277,6 +1286,7 @@ $root.RoomPto = (function() {
                 d.cmd = 2;
                 d.scmd = 3;
                 d.roomId = 0;
+                d.isWatch = false;
             }
             if (m.cmd != null && m.hasOwnProperty("cmd")) {
                 d.cmd = m.cmd;
@@ -1286,6 +1296,9 @@ $root.RoomPto = (function() {
             }
             if (m.roomId != null && m.hasOwnProperty("roomId")) {
                 d.roomId = m.roomId;
+            }
+            if (m.isWatch != null && m.hasOwnProperty("isWatch")) {
+                d.isWatch = m.isWatch;
             }
             return d;
         };
@@ -1315,6 +1328,7 @@ $root.RoomPto = (function() {
         S_JOIN_ROOM.prototype.gameId = 0;
         S_JOIN_ROOM.prototype.selfIndex = 0;
         S_JOIN_ROOM.prototype.roomSeq = "";
+        S_JOIN_ROOM.prototype.isWatcher = false;
 
         S_JOIN_ROOM.create = function create(properties) {
             return new S_JOIN_ROOM(properties);
@@ -1341,6 +1355,8 @@ $root.RoomPto = (function() {
                 w.uint32(56).int32(m.selfIndex);
             if (m.roomSeq != null && Object.hasOwnProperty.call(m, "roomSeq"))
                 w.uint32(66).string(m.roomSeq);
+            if (m.isWatcher != null && Object.hasOwnProperty.call(m, "isWatcher"))
+                w.uint32(72).bool(m.isWatcher);
             return w;
         };
 
@@ -1376,6 +1392,9 @@ $root.RoomPto = (function() {
                     break;
                 case 8:
                     m.roomSeq = r.string();
+                    break;
+                case 9:
+                    m.isWatcher = r.bool();
                     break;
                 default:
                     r.skipType(t & 7);
@@ -1420,6 +1439,9 @@ $root.RoomPto = (function() {
             if (d.roomSeq != null) {
                 m.roomSeq = String(d.roomSeq);
             }
+            if (d.isWatcher != null) {
+                m.isWatcher = Boolean(d.isWatcher);
+            }
             return m;
         };
 
@@ -1438,6 +1460,7 @@ $root.RoomPto = (function() {
                 d.gameId = 0;
                 d.selfIndex = 0;
                 d.roomSeq = "";
+                d.isWatcher = false;
             }
             if (m.cmd != null && m.hasOwnProperty("cmd")) {
                 d.cmd = m.cmd;
@@ -1465,6 +1488,9 @@ $root.RoomPto = (function() {
             }
             if (m.roomSeq != null && m.hasOwnProperty("roomSeq")) {
                 d.roomSeq = m.roomSeq;
+            }
+            if (m.isWatcher != null && m.hasOwnProperty("isWatcher")) {
+                d.isWatcher = m.isWatcher;
             }
             return d;
         };

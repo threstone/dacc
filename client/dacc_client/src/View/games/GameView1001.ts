@@ -6,7 +6,6 @@ enum SWORD_TYPE_1001 {
 class GameView1001 extends GameBaseView {
 
     view: game1001.UI_Game1001
-    selfIndex: number
 
     buUrl: string
     jiandaoUrl: string
@@ -55,18 +54,22 @@ class GameView1001 extends GameBaseView {
      */
     private onGameResult(evt: EventData) {
         let data: GamePto1001.S_GAME_RESULT_1001 = evt.data
-        if (data.winIndex == -1) {
-            GlobalController.showTips('平局了...', 5000)
-            this.nextHideHand = true
-        } else {
-            if (data.winIndex == this.selfIndex) {
-                GlobalController.showTips('你赢了!', 5000)
+        if (!this.isWatcher) {
+            if (data.winIndex == -1) {
+                GlobalController.showTips('平局了...', 5000)
+                this.nextHideHand = true
             } else {
-                GlobalController.showTips('你输了...', 5000)
+                if (data.winIndex == this.selfIndex) {
+                    GlobalController.showTips('你赢了!', 5000)
+                } else {
+                    GlobalController.showTips('你输了...', 5000)
+                }
+                let readyBtn = this.view.m_ready_btn as dacc.UI_BtnClick
+                readyBtn.visible = true
+                readyBtn.m_describe.text = '准备'
             }
-            let readyBtn = this.view.m_ready_btn as dacc.UI_BtnClick
-            readyBtn.visible = true
-            readyBtn.m_describe.text = '准备'
+        } else {
+            this.nextHideHand = true
         }
         this.changeLoader(this.view.m_sword0, true, data.swords[0])
         this.view.m_sword0.visible = true
@@ -104,6 +107,8 @@ class GameView1001 extends GameBaseView {
      * 当玩家出拳
      */
     private onUserOutSword(evt: EventData) {
+        console.log("aaa", this.nextHideHand);
+
         if (this.nextHideHand) {
             this.nextHideHand = false
             this.view.m_sword0.visible = false
@@ -142,8 +147,10 @@ class GameView1001 extends GameBaseView {
     }
 
     show(data: RoomPto.S_JOIN_ROOM) {
+        this.view.m_isWatch.visible = this.isWatcher
+        console.log(this.view.m_isWatch.visible);
+
         //先隐藏准备按钮
-        this.selfIndex = -1
         let btn = this.view.m_ready_btn as dacc.UI_BtnClick
         btn.visible = false
         this.view.m_room_seq.text = data.roomSeq
@@ -163,7 +170,7 @@ class GameView1001 extends GameBaseView {
                 })
             }
             //说明自己在房间里头玩
-            if (data.selfIndex == info.index) {
+            if (!this.isWatcher && data.selfIndex == info.index) {
                 btn.visible = true
                 btn.m_describe.text = info.isReady ? '取消准备' : '准备'
                 this.selfIndex = data.selfIndex

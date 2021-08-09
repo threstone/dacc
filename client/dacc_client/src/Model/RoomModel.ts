@@ -17,6 +17,7 @@ class RoomModel extends BaseModel {
             //请求进入房间
             let requestMsg = new RoomPto.C_JOIN_ROOM()
             requestMsg.roomId = msg.roomId
+            requestMsg.isWatch = false
             this.sendMsg(requestMsg)
         } else {
             GlobalController.showTips("创建房间失败...", 5000)
@@ -78,9 +79,11 @@ class RoomModel extends BaseModel {
         })
 
         this.addEventListener('JoinInRoomClick', (evt: EventData) => {
-            let roomId: number = evt.data
+            let roomId: number = evt.data.roomId
+            let isWatch: boolean = evt.data.isWatch
             //请求进入房间
             let requestMsg = new RoomPto.C_JOIN_ROOM()
+            requestMsg.isWatch = isWatch
             requestMsg.roomId = roomId
             this.sendMsg(requestMsg)
         })

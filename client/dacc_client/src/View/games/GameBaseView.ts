@@ -1,5 +1,8 @@
 abstract class GameBaseView extends BaseView {
     protected gameId
+    selfIndex: number
+    isWatcher: boolean = false
+
     constructor(gameId: number) {
         super()
         this.gameId = gameId

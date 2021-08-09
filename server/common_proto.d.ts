@@ -1185,6 +1185,9 @@ export namespace RoomPto {
 
         /** C_JOIN_ROOM roomId */
         roomId?: (number|null);
+
+        /** C_JOIN_ROOM isWatch */
+        isWatch?: (boolean|null);
     }
 
     /** Represents a C_JOIN_ROOM. */
@@ -1204,6 +1207,9 @@ export namespace RoomPto {
 
         /** C_JOIN_ROOM roomId. */
         public roomId: number;
+
+        /** C_JOIN_ROOM isWatch. */
+        public isWatch: boolean;
 
         /**
          * Creates a new C_JOIN_ROOM instance using the specified properties.
@@ -1302,6 +1308,9 @@ export namespace RoomPto {
 
         /** S_JOIN_ROOM roomSeq */
         roomSeq?: (string|null);
+
+        /** S_JOIN_ROOM isWatcher */
+        isWatcher?: (boolean|null);
     }
 
     /** Represents a S_JOIN_ROOM. */
@@ -1336,6 +1345,9 @@ export namespace RoomPto {
 
         /** S_JOIN_ROOM roomSeq. */
         public roomSeq: string;
+
+        /** S_JOIN_ROOM isWatcher. */
+        public isWatcher: boolean;
 
         /**
          * Creates a new S_JOIN_ROOM instance using the specified properties.

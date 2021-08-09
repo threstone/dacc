@@ -228,8 +228,8 @@ class HallView extends BaseView {
         }, this)
 
 
-        let itemClickFun = (roomId: number) => {
-            this.emit('JoinInRoomClick', roomId)
+        let itemClickFun = (data: { roomId: number, isWatch: boolean }) => {
+            this.emit('JoinInRoomClick', data)
         }
         let list = roomListCom.m_list
         //初始化房间item池
@@ -260,14 +260,13 @@ class HallView extends BaseView {
                 item.m_describe.text = temp.describe
                 item.m_game_name.text = this._gameMap[temp.gameId] || '未知'
                 item.m_game_status.text = temp.isStart ? '游戏中' : '未开启'
-                if (temp.isStart) {
-                    item.m_join_btn.m_describe.text = `(${temp.curPlayer}/${temp.maxPlayer})`
-                    item.m_join_btn.touchable = false
+                let isWatch = temp.curPlayer == temp.maxPlayer || temp.isStart
+                if (isWatch) {
+                    item.m_join_btn.m_describe.text = `观战(${temp.curPlayer}/${temp.maxPlayer})`
                 } else {
                     item.m_join_btn.m_describe.text = `加入(${temp.curPlayer}/${temp.maxPlayer})`
-                    item.m_join_btn.touchable = true
                 }
-                let fun = itemClickFun.bind(this, temp.roomId);
+                let fun = itemClickFun.bind(this, { roomId: temp.roomId, isWatch: isWatch });
                 (item as any).saveFun = fun
                 item.m_join_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, fun, this)
                 list.addChild(item)

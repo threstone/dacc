@@ -14,10 +14,10 @@ export class Room1001 extends DaccRoom {
         this.playerSword = [-1, -1]
         //派发游戏开始协议
         let msg = new GamePto1001.S_GAME_START_1001()
-        this.broadcast(msg)
+        this.broadcast(msg, true)
         let startOutMsg = new GamePto1001.S_START_OUT_SWORD_1001()
         startOutMsg.isStartGame = true
-        this.broadcast(startOutMsg)
+        this.broadcast(startOutMsg, false)
 
     }
 
@@ -34,7 +34,6 @@ export class Room1001 extends DaccRoom {
     }
 
     onUserDisConnect(player: DaccPlayer) {
-        player.clientId = -1
         let curNum = this.getCurPlayerNum()
         let disConnectNum = 0
         for (let i = 0; i < this.players.length; i++) {
@@ -57,7 +56,7 @@ export class Room1001 extends DaccRoom {
         msg.index = player.index
         msg.sword = -1
         //通知其他玩家此玩家出牌了
-        this.broadcast(msg, player)
+        this.broadcast(msg, true, player)
         //通知自己出了什么
         msg.sword = sword
         player.sendMsg(msg)
@@ -77,12 +76,12 @@ export class Room1001 extends DaccRoom {
         resMsg.swords.push(this.playerSword[0], this.playerSword[1])
         if (this.playerSword[0] == this.playerSword[1]) {
             resMsg.winIndex = -1
-            this.broadcast(resMsg)
+            this.broadcast(resMsg, true)
             //重新开始出拳
             this.playerSword = [-1, -1]
             let startOutMsg = new GamePto1001.S_START_OUT_SWORD_1001()
             startOutMsg.isStartGame = false
-            this.broadcast(startOutMsg)
+            this.broadcast(startOutMsg, false)
         } else {
             let isZeroWin = false
             switch (this.playerSword[0]) {
@@ -103,15 +102,9 @@ export class Room1001 extends DaccRoom {
                     break
             }
             resMsg.winIndex = isZeroWin ? 0 : 1
-            this.broadcast(resMsg)
-            this.doEnd()
+            this.broadcast(resMsg, true)
+            this.doGameOver()
         }
-    }
-
-    doEnd() {
-        this.isStart = false
-        this.players[0].isReady = false
-        this.players[1].isReady = false
     }
 
 }

@@ -15,6 +15,8 @@ class GameView extends BaseView {
             this.viewObj[gameId] = new window[`GameView${gameId}`](gameId)
         }
         let gameView: GameBaseView = this.viewObj[gameId]
+        gameView.isWatcher = data.isWatcher
+        gameView.selfIndex = data.selfIndex
         gameView.show(data)
     }
 

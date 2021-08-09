@@ -21,6 +21,7 @@ module game1001 {
 		public m_out_tips1:fairygui.GTextField;
 		public m_exit:fairygui.GButton;
 		public m_acknowledge:fairygui.GTextField;
+		public m_isWatch:fairygui.GTextField;
 
 		public static URL:string = "ui://rbhwceqzdi7i2";
 
@@ -52,6 +53,7 @@ module game1001 {
 			this.m_out_tips1 = <fairygui.GTextField><any>(this.getChild("out_tips1"));
 			this.m_exit = <fairygui.GButton><any>(this.getChild("exit"));
 			this.m_acknowledge = <fairygui.GTextField><any>(this.getChild("acknowledge"));
+			this.m_isWatch = <fairygui.GTextField><any>(this.getChild("isWatch"));
 		}
 	}
 }

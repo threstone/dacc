@@ -15,9 +15,10 @@
     <component id="n19_di7i" name="jiandao_btn" src="inlo4" fileName="component/BtnClick.xml" pkg="sly852qp" xy="640,606" pivot="0.5,0.5" anchor="true" group="n21_di7i" visible="false"/>
     <component id="n20_di7i" name="bu_btn" src="inlo4" fileName="component/BtnClick.xml" pkg="sly852qp" xy="896,606" pivot="0.5,0.5" anchor="true" group="n21_di7i" visible="false"/>
     <group id="n21_di7i" name="choose_sword_group" xy="292,575" size="693,62"/>
-    <text id="n22_di7i" name="out_tips0" xy="336,348" pivot="0.5,0.5" anchor="true" size="52,27" visible="false" font="STCaiyun" fontSize="22" color="#ff0000" bold="true" text="已出"/>
-    <text id="n23_di7i" name="out_tips1" xy="962,348" pivot="0.5,0.5" anchor="true" size="52,27" visible="false" font="STCaiyun" fontSize="22" color="#ff0000" bold="true" text="已出"/>
+    <text id="n22_di7i" name="out_tips0" xy="336,348" pivot="0.5,0.5" anchor="true" size="51,27" visible="false" font="STCaiyun" fontSize="22" color="#ff0000" bold="true" text="已出"/>
+    <text id="n23_di7i" name="out_tips1" xy="962,348" pivot="0.5,0.5" anchor="true" size="51,27" visible="false" font="STCaiyun" fontSize="22" color="#ff0000" bold="true" text="已出"/>
     <component id="n24_di7i" name="exit" src="ikts1n" fileName="component/common/BtnLong.xml" pkg="sly852qp" xy="1192,7" size="82,30"/>
-    <text id="n25_idp7" name="acknowledge" xy="770,10" size="399,39" font="STXingkai" fontSize="33" color="#ff0000" text="在此鸣谢菜菜子提供的素材"/>
+    <text id="n25_idp7" name="acknowledge" xy="770,10" size="401,39" font="STXingkai" fontSize="33" color="#ff0000" text="在此鸣谢菜菜子提供的素材"/>
+    <text id="n26_ggbm" name="isWatch" xy="593,55" size="99,36" font="STHupo" fontSize="31" color="#ff0000" text="观战中"/>
   </displayList>
 </component>

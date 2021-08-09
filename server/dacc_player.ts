@@ -3,7 +3,7 @@ import { GlobalVar } from "./global_var"
 import { IGameMessage } from "./protobuf_encoder"
 let logger = getLogger()
 export class DaccPlayer {
-    clientId: number
+    private _clientId: number
     /**
      * 在player中的索引
      */
@@ -12,23 +12,31 @@ export class DaccPlayer {
     isWatcher: boolean = false
 
     constructor(clientId: number) {
-        this.clientId = clientId
+        this._clientId = clientId
+    }
+
+    get clientId() {
+        return this._clientId
+    }
+
+    resetClientId() {
+        this._clientId = -1
     }
 
     sendMsg(msg: IGameMessage) {
-        if (this.clientId == -1) {
-            logger.error("error DaccPlayer clientId = -1")
+        if (this._clientId == -1) {
+            logger.error("sendMsg error DaccPlayer clientId = -1")
             return
         }
-        GlobalVar.server.sendMsg(this.clientId, msg)
+        GlobalVar.server.sendMsg(this._clientId, msg)
     }
 
     sendBuf(buf: Buffer) {
-        if (this.clientId == -1) {
-            logger.error("error DaccPlayer clientId = -1")
+        if (this._clientId == -1) {
+            logger.error("sendBuf error DaccPlayer clientId = -1")
             return
         }
-        GlobalVar.server.sendBuf(this.clientId, buf)
+        GlobalVar.server.sendBuf(this._clientId, buf)
     }
 
 
@@ -36,7 +44,7 @@ export class DaccPlayer {
      * 获取DaccSession
      */
     getSession() {
-        return GlobalVar.server.getDaccSession(this.clientId)
+        return GlobalVar.server.getDaccSession(this._clientId)
     }
 
     destroy() {
@@ -45,7 +53,7 @@ export class DaccPlayer {
             session.room = null
             session.player = null
         }
-        this.clientId = -1
+        this._clientId = -1
         this.index = -1
         this.isReady = false
         this.isWatcher = false
