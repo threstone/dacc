@@ -2,6 +2,120 @@ import * as $protobuf from "protobufjs";
 /** Namespace GamePto1001. */
 export namespace GamePto1001 {
 
+    /** Properties of a Player_1001. */
+    interface IPlayer_1001 {
+
+        /** Player_1001 index */
+        index?: (number|null);
+
+        /** Player_1001 headIndex */
+        headIndex?: (number|null);
+
+        /** Player_1001 nick */
+        nick?: (string|null);
+
+        /** Player_1001 isOutSword */
+        isOutSword?: (boolean|null);
+
+        /** Player_1001 outSword */
+        outSword?: (number|null);
+    }
+
+    /** Represents a Player_1001. */
+    class Player_1001 implements IPlayer_1001 {
+
+        /**
+         * Constructs a new Player_1001.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: GamePto1001.IPlayer_1001);
+
+        /** Player_1001 index. */
+        public index: number;
+
+        /** Player_1001 headIndex. */
+        public headIndex: number;
+
+        /** Player_1001 nick. */
+        public nick: string;
+
+        /** Player_1001 isOutSword. */
+        public isOutSword: boolean;
+
+        /** Player_1001 outSword. */
+        public outSword: number;
+
+        /**
+         * Creates a new Player_1001 instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns Player_1001 instance
+         */
+        public static create(properties?: GamePto1001.IPlayer_1001): GamePto1001.Player_1001;
+
+        /**
+         * Encodes the specified Player_1001 message. Does not implicitly {@link GamePto1001.Player_1001.verify|verify} messages.
+         * @param message Player_1001 message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: GamePto1001.IPlayer_1001, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified Player_1001 message, length delimited. Does not implicitly {@link GamePto1001.Player_1001.verify|verify} messages.
+         * @param message Player_1001 message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: GamePto1001.IPlayer_1001, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a Player_1001 message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns Player_1001
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): GamePto1001.Player_1001;
+
+        /**
+         * Decodes a Player_1001 message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns Player_1001
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): GamePto1001.Player_1001;
+
+        /**
+         * Verifies a Player_1001 message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a Player_1001 message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns Player_1001
+         */
+        public static fromObject(object: { [k: string]: any }): GamePto1001.Player_1001;
+
+        /**
+         * Creates a plain object from a Player_1001 message. Also converts values to other types if specified.
+         * @param message Player_1001
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: GamePto1001.Player_1001, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this Player_1001 to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
     /** Properties of a S_GAME_START_1001. */
     interface IS_GAME_START_1001 {
 
@@ -513,6 +627,126 @@ export namespace GamePto1001 {
 
         /**
          * Converts this S_GAME_RESULT_1001 to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a S_RECONNECT_1001. */
+    interface IS_RECONNECT_1001 {
+
+        /** S_RECONNECT_1001 cmd */
+        cmd?: (number|null);
+
+        /** S_RECONNECT_1001 scmd */
+        scmd?: (number|null);
+
+        /** S_RECONNECT_1001 gameId */
+        gameId?: (number|null);
+
+        /** S_RECONNECT_1001 selfIndex */
+        selfIndex?: (number|null);
+
+        /** S_RECONNECT_1001 players */
+        players?: (GamePto1001.IPlayer_1001[]|null);
+
+        /** S_RECONNECT_1001 roomSeq */
+        roomSeq?: (string|null);
+    }
+
+    /** Represents a S_RECONNECT_1001. */
+    class S_RECONNECT_1001 implements IS_RECONNECT_1001 {
+
+        /**
+         * Constructs a new S_RECONNECT_1001.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: GamePto1001.IS_RECONNECT_1001);
+
+        /** S_RECONNECT_1001 cmd. */
+        public cmd: number;
+
+        /** S_RECONNECT_1001 scmd. */
+        public scmd: number;
+
+        /** S_RECONNECT_1001 gameId. */
+        public gameId: number;
+
+        /** S_RECONNECT_1001 selfIndex. */
+        public selfIndex: number;
+
+        /** S_RECONNECT_1001 players. */
+        public players: GamePto1001.IPlayer_1001[];
+
+        /** S_RECONNECT_1001 roomSeq. */
+        public roomSeq: string;
+
+        /**
+         * Creates a new S_RECONNECT_1001 instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns S_RECONNECT_1001 instance
+         */
+        public static create(properties?: GamePto1001.IS_RECONNECT_1001): GamePto1001.S_RECONNECT_1001;
+
+        /**
+         * Encodes the specified S_RECONNECT_1001 message. Does not implicitly {@link GamePto1001.S_RECONNECT_1001.verify|verify} messages.
+         * @param message S_RECONNECT_1001 message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: GamePto1001.IS_RECONNECT_1001, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified S_RECONNECT_1001 message, length delimited. Does not implicitly {@link GamePto1001.S_RECONNECT_1001.verify|verify} messages.
+         * @param message S_RECONNECT_1001 message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: GamePto1001.IS_RECONNECT_1001, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a S_RECONNECT_1001 message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns S_RECONNECT_1001
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): GamePto1001.S_RECONNECT_1001;
+
+        /**
+         * Decodes a S_RECONNECT_1001 message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns S_RECONNECT_1001
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): GamePto1001.S_RECONNECT_1001;
+
+        /**
+         * Verifies a S_RECONNECT_1001 message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a S_RECONNECT_1001 message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns S_RECONNECT_1001
+         */
+        public static fromObject(object: { [k: string]: any }): GamePto1001.S_RECONNECT_1001;
+
+        /**
+         * Creates a plain object from a S_RECONNECT_1001 message. Also converts values to other types if specified.
+         * @param message S_RECONNECT_1001
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: GamePto1001.S_RECONNECT_1001, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this S_RECONNECT_1001 to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };

@@ -47,6 +47,7 @@ class GameView1001 extends GameBaseView {
         this.addEventListener('StartOutSword1001', this.onStartOutSword)
         this.addEventListener('BroadcastSword1001', this.onUserOutSword)
         this.addEventListener('GameResult1001', this.onGameResult)
+        this.addEventListener('GameReconnect1001', this.reconnect)
     }
 
     /**
@@ -107,8 +108,6 @@ class GameView1001 extends GameBaseView {
      * 当玩家出拳
      */
     private onUserOutSword(evt: EventData) {
-        console.log("aaa", this.nextHideHand);
-
         if (this.nextHideHand) {
             this.nextHideHand = false
             this.view.m_sword0.visible = false
@@ -146,9 +145,53 @@ class GameView1001 extends GameBaseView {
         this.view.m_bu_btn.visible = visible
     }
 
+    reconnect(evt: EventData) {
+        let data: GamePto1001.S_RECONNECT_1001 = evt.data
+        console.log(data);
+        this.isWatcher = false
+        this.selfIndex = data.selfIndex
+        this.view.m_isWatch.visible = this.isWatcher
+        this.view.m_ready_btn.visible = false
+        this.view.m_room_seq.text = data.roomSeq
+        fairygui.GRoot.inst.addChild(this.view)
+        for (let index = 0; index < data.players.length; index++) {
+            const info = data.players[index];
+            let player = this.view['m_player' + index] as dacc.UI_UserBox
+            player.visible = true
+            player.m_user_name.text = info.nick
+
+            this.view['m_read_text' + info.index].visible = false
+            if (info.headIndex != -1) {
+                RES.getResByUrl(`./resource/head/tx_${info.headIndex}.png`, (data) => {
+                    if (!data) {
+                        return
+                    }
+                    player.m_head_pic.texture = data
+                })
+            }
+
+            let tips: fairygui.GTextField = this.view[`m_out_tips${info.index}`]
+            let loader: fairygui.GLoader = this.view[`m_sword${info.index}`]
+            loader.visible = false
+            tips.visible = false
+            //这个数据是自己
+            if (data.selfIndex == info.index) {
+                this.changeChooseBtnVisible(!info.isOutSword)
+                if (info.outSword != -1) {
+                    //没出
+                    this.changeLoader(loader, info.index == 0, info.outSword)
+                    loader.visible = true
+                }
+            } else {
+                if (info.isOutSword) {
+                    tips.visible = true
+                }
+            }
+        }
+    }
+
     show(data: RoomPto.S_JOIN_ROOM) {
         this.view.m_isWatch.visible = this.isWatcher
-        console.log(this.view.m_isWatch.visible);
 
         //先隐藏准备按钮
         let btn = this.view.m_ready_btn as dacc.UI_BtnClick
@@ -160,6 +203,8 @@ class GameView1001 extends GameBaseView {
             let player = this.view['m_player' + index] as dacc.UI_UserBox
             player.visible = true
             player.m_user_name.text = info.nick
+            console.log(info.nick);
+
             this.view['m_read_text' + info.index].visible = info.isReady
             if (info.headIndex != -1) {
                 RES.getResByUrl(`./resource/head/tx_${info.headIndex}.png`, (data) => {

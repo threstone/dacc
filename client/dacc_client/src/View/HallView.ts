@@ -229,7 +229,8 @@ class HallView extends BaseView {
                     break
                 }
             }
-            this.emit('RoomListGameChooseChange', gameChoose.values[gameChoose.selectedIndex])
+            let data = { gameId: gameChoose.values[gameChoose.selectedIndex], status: statusChoose.selectedIndex }
+            this.emit('RoomListConditionChange', data)
         }, this)
 
 

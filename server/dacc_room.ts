@@ -1,11 +1,14 @@
 import { getLogger } from "log4js"
 import { DaccPlayer } from "./dacc_player"
-import { DaccUser } from "./dacc_session"
+import { DaccSession } from "./dacc_session"
 import { GlobalVar } from "./global_var"
 import { IGameMessage, ProtoBufEncoder } from "./protobuf_encoder"
 import { RoomPto, SystemPto } from "./common_proto"
 
 let logger = getLogger()
+/**
+ * 游戏结束必须调用doGameOver
+ */
 export abstract class DaccRoom {
     gameId: number
     roomId: number
@@ -20,6 +23,11 @@ export abstract class DaccRoom {
      */
     players: DaccPlayer[]
     watchers: DaccPlayer[]
+
+    /**
+     * 桌局开始时记录在redis中的玩家uid
+     */
+    private _redisMarkIds: number[]
 
     get roomSeq() {
         return this._roomSeq
@@ -65,6 +73,28 @@ export abstract class DaccRoom {
      * 在游戏中玩家断线回调
      */
     abstract onUserDisConnect(player: DaccPlayer)
+    /**
+     * 当玩家尝试重连
+     */
+    abstract onUserReconnect(player: DaccPlayer)
+
+
+    /**
+     * 当玩家请求重连
+     */
+    onUserRequestReconnect(user: DaccSession) {
+        //找到player
+        for (let index = 0; index < this.players.length; index++) {
+            const player = this.players[index];
+            if (player && player.id == user.userModel.id) {
+                player.reconnect(user.clientId)
+                user.room = this
+                user.player = player
+                this.onUserReconnect(player)
+                break
+            }
+        }
+    }
 
     /**
      * 当玩家请求离开房间
@@ -85,11 +115,45 @@ export abstract class DaccRoom {
     }
 
     /**
+     * 检查游戏是否可以开启
+     */
+    checkStartGame() {
+        let readNum = 0
+        for (let i = 0; i < this.players.length; i++) {
+            if (this.players[i] && this.players[i].isReady) {
+                readNum++
+            }
+        }
+        if (readNum >= this.getMinStartPlayerNum()) {
+            this.doGameStart()
+        }
+    }
+
+    /**
+     * 游戏开始时的执行函数
+     */
+    private doGameStart() {
+        this.isStart = true
+        this._redisMarkIds = []
+        //redis中插入玩家在游戏中的数据
+        for (let index = 0; index < this.players.length; index++) {
+            const player = this.players[index];
+            if (player && player.id != -1) {
+                this._redisMarkIds.push(player.id)
+                GlobalVar.redis.setData(`userInRoom-${player.id}`, this.roomId, 1800)
+                GlobalVar.redis.setData(`userInGame-${player.id}`, this.gameId, 1800)
+            }
+        }
+        this.startGame()
+    }
+
+    /**
      * 执行游戏结束,房间中的人和数据依然保留允许新开局
      */
     doGameOver() {
         this.isStart = false
-        for (let index = 0; index < this.players.length; index++) {
+        let length = this.players.length
+        for (let index = 0; index < length; index++) {
             const player = this.players[index];
             if (player) {
                 player.isReady = false
@@ -98,6 +162,13 @@ export abstract class DaccRoom {
                     this.doleaveRoom(player)
                 }
             }
+        }
+
+        //redis中删除玩家在游戏中的数据
+        for (let index = 0; index < this._redisMarkIds.length; index++) {
+            const uid = this._redisMarkIds[index];
+            GlobalVar.redis.delete(`userInRoom-${uid}`)
+            GlobalVar.redis.delete(`userInGame-${uid}`)
 
         }
     }
@@ -110,7 +181,7 @@ export abstract class DaccRoom {
         if (!this.isStart || player.isWatcher) {
             this.doleaveRoom(player)
         } else {
-            player.resetClientId()
+            player.disconnect()
             this.onUserDisConnect(player)
         }
     }
@@ -151,7 +222,7 @@ export abstract class DaccRoom {
     /**
      * 玩家加入房间
      */
-    onUserJoinRoom(user: DaccUser, isWatch: boolean) {
+    onUserJoinRoom(user: DaccSession, isWatch: boolean) {
         //非观战者进入房间
         if (!isWatch) {
             if (!this.allowJoin()) {
@@ -163,10 +234,10 @@ export abstract class DaccRoom {
             player.index = index
             let msg = new RoomPto.S_BROADCAST_JOIN_ROOM()
             msg.player = new RoomPto.Player()
-            msg.player.headIndex = user.headIndex
+            msg.player.headIndex = user.userModel.headIndex
             msg.player.index = index
             msg.player.isReady = false
-            msg.player.nick = user.nick
+            msg.player.nick = user.userModel.nick
             this.broadcast(msg, true, player)
 
             if (this.onUserJoinSuccess(player)) {
@@ -205,25 +276,9 @@ export abstract class DaccRoom {
     }
 
     /**
-     * 检查游戏是否可以开启
-     */
-    checkStartGame() {
-        let readNum = 0
-        for (let i = 0; i < this.players.length; i++) {
-            if (this.players[i] && this.players[i].isReady) {
-                readNum++
-            }
-        }
-        if (readNum >= this.getMinStartPlayerNum()) {
-            this.isStart = true
-            this.startGame()
-        }
-    }
-
-    /**
      * 方便子游戏重写，有可能子游戏需要写属于自己的player去继承daccPlayer
      */
-    protected createNewPlayer(user: DaccUser): DaccPlayer {
+    protected createNewPlayer(user: DaccSession): DaccPlayer {
         return new DaccPlayer(user.clientId)
     }
 

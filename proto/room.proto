@@ -49,12 +49,11 @@ message S_JOIN_ROOM{
 	int32 cmd = 1[default = 2]; 
 	int32 scmd = 2[default = 4];
 	bool isSuccess = 3;
-	int32 roomId = 4;
-	repeated Player players = 5;
-	int32 gameId = 6;
-	int32 selfIndex = 7;
-	string roomSeq = 8;
-	bool isWatcher = 9;
+	repeated Player players = 4;
+	int32 gameId = 5;
+	int32 selfIndex = 6;
+	string roomSeq = 7;
+	bool isWatcher = 8;
 }
 
 //客户端请求房间列表
@@ -104,4 +103,11 @@ message S_PLAYER_READY_STATUS_CHANGE{
 message C_LEAVE_ROOM{
 	int32 cmd = 1[default = 2]; 
  	int32 scmd = 2[default = 11];
+}
+
+//重连进入房间
+message C_RECONNECTION_ROOM {
+	int32 cmd = 1[default = 2]; 
+ 	int32 scmd = 2[default = 12];
+	int32 roomId = 3;
 }

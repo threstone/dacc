@@ -127,6 +127,12 @@ export namespace LoginPto {
 
         /** S_LOGIN headIndex */
         headIndex?: (number|null);
+
+        /** S_LOGIN roomId */
+        roomId?: (number|null);
+
+        /** S_LOGIN gameId */
+        gameId?: (number|null);
     }
 
     /** Represents a S_LOGIN. */
@@ -152,6 +158,12 @@ export namespace LoginPto {
 
         /** S_LOGIN headIndex. */
         public headIndex: number;
+
+        /** S_LOGIN roomId. */
+        public roomId: number;
+
+        /** S_LOGIN gameId. */
+        public gameId: number;
 
         /**
          * Creates a new S_LOGIN instance using the specified properties.
@@ -1522,9 +1534,6 @@ export namespace RoomPto {
         /** S_JOIN_ROOM isSuccess */
         isSuccess?: (boolean|null);
 
-        /** S_JOIN_ROOM roomId */
-        roomId?: (number|null);
-
         /** S_JOIN_ROOM players */
         players?: (RoomPto.IPlayer[]|null);
 
@@ -1558,9 +1567,6 @@ export namespace RoomPto {
 
         /** S_JOIN_ROOM isSuccess. */
         public isSuccess: boolean;
-
-        /** S_JOIN_ROOM roomId. */
-        public roomId: number;
 
         /** S_JOIN_ROOM players. */
         public players: RoomPto.IPlayer[];
@@ -2357,6 +2363,108 @@ export namespace RoomPto {
 
         /**
          * Converts this C_LEAVE_ROOM to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a C_RECONNECTION_ROOM. */
+    interface IC_RECONNECTION_ROOM {
+
+        /** C_RECONNECTION_ROOM cmd */
+        cmd?: (number|null);
+
+        /** C_RECONNECTION_ROOM scmd */
+        scmd?: (number|null);
+
+        /** C_RECONNECTION_ROOM roomId */
+        roomId?: (number|null);
+    }
+
+    /** Represents a C_RECONNECTION_ROOM. */
+    class C_RECONNECTION_ROOM implements IC_RECONNECTION_ROOM {
+
+        /**
+         * Constructs a new C_RECONNECTION_ROOM.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: RoomPto.IC_RECONNECTION_ROOM);
+
+        /** C_RECONNECTION_ROOM cmd. */
+        public cmd: number;
+
+        /** C_RECONNECTION_ROOM scmd. */
+        public scmd: number;
+
+        /** C_RECONNECTION_ROOM roomId. */
+        public roomId: number;
+
+        /**
+         * Creates a new C_RECONNECTION_ROOM instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns C_RECONNECTION_ROOM instance
+         */
+        public static create(properties?: RoomPto.IC_RECONNECTION_ROOM): RoomPto.C_RECONNECTION_ROOM;
+
+        /**
+         * Encodes the specified C_RECONNECTION_ROOM message. Does not implicitly {@link RoomPto.C_RECONNECTION_ROOM.verify|verify} messages.
+         * @param message C_RECONNECTION_ROOM message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: RoomPto.IC_RECONNECTION_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified C_RECONNECTION_ROOM message, length delimited. Does not implicitly {@link RoomPto.C_RECONNECTION_ROOM.verify|verify} messages.
+         * @param message C_RECONNECTION_ROOM message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: RoomPto.IC_RECONNECTION_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a C_RECONNECTION_ROOM message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns C_RECONNECTION_ROOM
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): RoomPto.C_RECONNECTION_ROOM;
+
+        /**
+         * Decodes a C_RECONNECTION_ROOM message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns C_RECONNECTION_ROOM
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): RoomPto.C_RECONNECTION_ROOM;
+
+        /**
+         * Verifies a C_RECONNECTION_ROOM message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a C_RECONNECTION_ROOM message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns C_RECONNECTION_ROOM
+         */
+        public static fromObject(object: { [k: string]: any }): RoomPto.C_RECONNECTION_ROOM;
+
+        /**
+         * Creates a plain object from a C_RECONNECTION_ROOM message. Also converts values to other types if specified.
+         * @param message C_RECONNECTION_ROOM
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: RoomPto.C_RECONNECTION_ROOM, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this C_RECONNECTION_ROOM to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };

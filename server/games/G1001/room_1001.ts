@@ -33,6 +33,29 @@ export class Room1001 extends DaccRoom {
         return 2
     }
 
+    onUserReconnect(player: DaccPlayer) {
+        let msg = new GamePto1001.S_RECONNECT_1001()
+        msg.gameId = this.gameId
+        msg.roomSeq = this.roomSeq
+        msg.selfIndex = player.index
+        for (let index = 0; index < this.players.length; index++) {
+            const tempPlayer = this.players[index];
+            if (tempPlayer) {
+                let playerInfo = new GamePto1001.Player_1001()
+                playerInfo.index = index
+                playerInfo.headIndex = tempPlayer.headIndex
+                playerInfo.nick = tempPlayer.nick
+                playerInfo.isOutSword = this.playerSword[index] != -1
+                if (player.index == index) {
+                    playerInfo.outSword = this.playerSword[index]
+                }
+                msg.players.push(playerInfo)
+            }
+
+        }
+        player.sendMsg(msg)
+    }
+
     onUserDisConnect(player: DaccPlayer) {
         let curNum = this.getCurPlayerNum()
         let disConnectNum = 0
@@ -43,7 +66,7 @@ export class Room1001 extends DaccRoom {
         }
         //全掉了
         if (curNum == disConnectNum) {
-            this.destoryRoom()
+            this.doGameOver()
         }
     }
 

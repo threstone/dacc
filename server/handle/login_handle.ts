@@ -1,10 +1,10 @@
 import { HallPto } from "../common_proto"
 import { LoginPto } from "../common_proto"
-import { DaccUser } from "../dacc_session"
+import { DaccSession } from "../dacc_session"
 import { GlobalVar } from "../global_var"
 
 export class LoginHandle {
-    static async C_LOGIN(user: DaccUser, msg: LoginPto.C_LOGIN) {
+    static async C_LOGIN(user: DaccSession, msg: LoginPto.C_LOGIN) {
         let replyMsg = new LoginPto.S_LOGIN()
         let info = await GlobalVar.dbMgr.userDao.getUserInfo(msg.account, msg.password)
         if (!info) {
@@ -13,6 +13,10 @@ export class LoginHandle {
             return
         }
 
+        let isInRoom = await GlobalVar.redis.getData(`userInRoom-${info.id}`)
+        let isInGame = await GlobalVar.redis.getData(`userInGame-${info.id}`)
+        replyMsg.roomId = isInRoom ? isInRoom : -1
+        replyMsg.gameId = isInGame
         replyMsg.isSuccess = true
         replyMsg.nick = info.nick
         replyMsg.headIndex = info.headIndex
@@ -28,7 +32,7 @@ export class LoginHandle {
         user.sendMsg(gameList)
     }
 
-    static async C_REGISTER(user: DaccUser, msg: LoginPto.C_REGISTER) {
+    static async C_REGISTER(user: DaccSession, msg: LoginPto.C_REGISTER) {
         let isExist = await GlobalVar.dbMgr.userDao.isExist(msg.account)
         let res = new LoginPto.S_REGISTER()
         if (isExist) {

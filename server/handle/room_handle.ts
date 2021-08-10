@@ -1,10 +1,10 @@
-import { DaccUser } from "../dacc_session"
+import { DaccSession } from "../dacc_session"
 import { RoomPto } from "../common_proto"
 import { GlobalVar } from "../global_var"
 import { DaccRoom } from "../dacc_room"
 
 export class RoomHandle {
-    static C_CREATE_ROOM(user: DaccUser, msg: RoomPto.C_CREATE_ROOM) {
+    static C_CREATE_ROOM(user: DaccSession, msg: RoomPto.C_CREATE_ROOM) {
         let room = GlobalVar.roomMgr.createRoom(msg.gameId)
         let resMsg = new RoomPto.S_CREATE_ROOM()
         resMsg.isSuccess = (room != undefined)
@@ -15,7 +15,15 @@ export class RoomHandle {
         user.sendMsg(resMsg)
     }
 
-    static C_JOIN_ROOM(user: DaccUser, msg: RoomPto.C_JOIN_ROOM) {
+    static C_RECONNECTION_ROOM(user: DaccSession, msg: RoomPto.C_RECONNECTION_ROOM) {
+        let room = GlobalVar.roomMgr.getRoomByRoomId(msg.roomId)
+        if (!room) {
+            return
+        }
+        room.onUserRequestReconnect(user)
+    }
+
+    static C_JOIN_ROOM(user: DaccSession, msg: RoomPto.C_JOIN_ROOM) {
         let room = GlobalVar.roomMgr.getRoomByRoomId(msg.roomId)
         if (!room) {
             return
@@ -39,16 +47,15 @@ export class RoomHandle {
             let player = new RoomPto.Player()
             player.index = index
             player.isReady = temp.isReady
-            player.headIndex = temp.getSession().headIndex
-            player.nick = temp.getSession().nick
+            player.headIndex = temp.headIndex
+            player.nick = temp.nick
             resMsg.players.push(player)
         }
-        resMsg.roomId = msg.roomId
         resMsg.gameId = room.gameId
         user.sendMsg(resMsg)
     }
 
-    static C_ROOM_LIST(user: DaccUser, msg: RoomPto.C_ROOM_LIST) {
+    static C_ROOM_LIST(user: DaccSession, msg: RoomPto.C_ROOM_LIST) {
         let arr: DaccRoom[]
         if (msg.status == 0) {
             arr = GlobalVar.roomMgr.getRoomsByGameId(msg.gameId)
@@ -72,13 +79,13 @@ export class RoomHandle {
         }
     }
 
-    static C_READY(user: DaccUser, msg: RoomPto.C_READY) {
+    static C_READY(user: DaccSession, msg: RoomPto.C_READY) {
         if (user.room && user.player) {
             user.room.onUserReadyStatusChange(user.player)
         }
     }
 
-    static C_LEAVE_ROOM(user: DaccUser, msg: RoomPto.C_READY) {
+    static C_LEAVE_ROOM(user: DaccSession, msg: RoomPto.C_READY) {
         if (user.room && user.player) {
             user.room.onUserRequestLeaveRoom(user.player)
         }

@@ -4,6 +4,68 @@ type Long = protobuf.Long;
 /** Namespace GamePto1001. */
 declare namespace GamePto1001 {
 
+    /** Properties of a Player_1001. */
+    interface IPlayer_1001 {
+
+        /** Player_1001 index */
+        index?: (number|null);
+
+        /** Player_1001 headIndex */
+        headIndex?: (number|null);
+
+        /** Player_1001 nick */
+        nick?: (string|null);
+
+        /** Player_1001 isOutSword */
+        isOutSword?: (boolean|null);
+
+        /** Player_1001 outSword */
+        outSword?: (number|null);
+    }
+
+    /** Represents a Player_1001. */
+    class Player_1001 implements IPlayer_1001 {
+
+        /**
+         * Constructs a new Player_1001.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: GamePto1001.IPlayer_1001);
+
+        /** Player_1001 index. */
+        public index: number;
+
+        /** Player_1001 headIndex. */
+        public headIndex: number;
+
+        /** Player_1001 nick. */
+        public nick: string;
+
+        /** Player_1001 isOutSword. */
+        public isOutSword: boolean;
+
+        /** Player_1001 outSword. */
+        public outSword: number;
+
+        /**
+         * Encodes the specified Player_1001 message. Does not implicitly {@link GamePto1001.Player_1001.verify|verify} messages.
+         * @param message Player_1001 message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: GamePto1001.IPlayer_1001, writer?: protobuf.Writer): protobuf.Writer;
+
+        /**
+         * Decodes a Player_1001 message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns Player_1001
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): GamePto1001.Player_1001;
+    }
+
     /** Properties of a S_GAME_START_1001. */
     interface IS_GAME_START_1001 {
 
@@ -258,6 +320,74 @@ declare namespace GamePto1001 {
          * @throws {protobuf.util.ProtocolError} If required fields are missing
          */
         public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): GamePto1001.S_GAME_RESULT_1001;
+    }
+
+    /** Properties of a S_RECONNECT_1001. */
+    interface IS_RECONNECT_1001 {
+
+        /** S_RECONNECT_1001 cmd */
+        cmd?: (number|null);
+
+        /** S_RECONNECT_1001 scmd */
+        scmd?: (number|null);
+
+        /** S_RECONNECT_1001 gameId */
+        gameId?: (number|null);
+
+        /** S_RECONNECT_1001 selfIndex */
+        selfIndex?: (number|null);
+
+        /** S_RECONNECT_1001 players */
+        players?: (GamePto1001.IPlayer_1001[]|null);
+
+        /** S_RECONNECT_1001 roomSeq */
+        roomSeq?: (string|null);
+    }
+
+    /** Represents a S_RECONNECT_1001. */
+    class S_RECONNECT_1001 implements IS_RECONNECT_1001 {
+
+        /**
+         * Constructs a new S_RECONNECT_1001.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: GamePto1001.IS_RECONNECT_1001);
+
+        /** S_RECONNECT_1001 cmd. */
+        public cmd: number;
+
+        /** S_RECONNECT_1001 scmd. */
+        public scmd: number;
+
+        /** S_RECONNECT_1001 gameId. */
+        public gameId: number;
+
+        /** S_RECONNECT_1001 selfIndex. */
+        public selfIndex: number;
+
+        /** S_RECONNECT_1001 players. */
+        public players: GamePto1001.IPlayer_1001[];
+
+        /** S_RECONNECT_1001 roomSeq. */
+        public roomSeq: string;
+
+        /**
+         * Encodes the specified S_RECONNECT_1001 message. Does not implicitly {@link GamePto1001.S_RECONNECT_1001.verify|verify} messages.
+         * @param message S_RECONNECT_1001 message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: GamePto1001.IS_RECONNECT_1001, writer?: protobuf.Writer): protobuf.Writer;
+
+        /**
+         * Decodes a S_RECONNECT_1001 message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns S_RECONNECT_1001
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): GamePto1001.S_RECONNECT_1001;
     }
 }
 
@@ -591,6 +721,12 @@ declare namespace LoginPto {
 
         /** S_LOGIN headIndex */
         headIndex?: (number|null);
+
+        /** S_LOGIN roomId */
+        roomId?: (number|null);
+
+        /** S_LOGIN gameId */
+        gameId?: (number|null);
     }
 
     /** Represents a S_LOGIN. */
@@ -616,6 +752,12 @@ declare namespace LoginPto {
 
         /** S_LOGIN headIndex. */
         public headIndex: number;
+
+        /** S_LOGIN roomId. */
+        public roomId: number;
+
+        /** S_LOGIN gameId. */
+        public gameId: number;
 
         /**
          * Encodes the specified S_LOGIN message. Does not implicitly {@link LoginPto.S_LOGIN.verify|verify} messages.
@@ -1056,9 +1198,6 @@ declare namespace RoomPto {
         /** S_JOIN_ROOM isSuccess */
         isSuccess?: (boolean|null);
 
-        /** S_JOIN_ROOM roomId */
-        roomId?: (number|null);
-
         /** S_JOIN_ROOM players */
         players?: (RoomPto.IPlayer[]|null);
 
@@ -1092,9 +1231,6 @@ declare namespace RoomPto {
 
         /** S_JOIN_ROOM isSuccess. */
         public isSuccess: boolean;
-
-        /** S_JOIN_ROOM roomId. */
-        public roomId: number;
 
         /** S_JOIN_ROOM players. */
         public players: RoomPto.IPlayer[];
@@ -1478,6 +1614,56 @@ declare namespace RoomPto {
          * @throws {protobuf.util.ProtocolError} If required fields are missing
          */
         public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): RoomPto.C_LEAVE_ROOM;
+    }
+
+    /** Properties of a C_RECONNECTION_ROOM. */
+    interface IC_RECONNECTION_ROOM {
+
+        /** C_RECONNECTION_ROOM cmd */
+        cmd?: (number|null);
+
+        /** C_RECONNECTION_ROOM scmd */
+        scmd?: (number|null);
+
+        /** C_RECONNECTION_ROOM roomId */
+        roomId?: (number|null);
+    }
+
+    /** Represents a C_RECONNECTION_ROOM. */
+    class C_RECONNECTION_ROOM implements IC_RECONNECTION_ROOM {
+
+        /**
+         * Constructs a new C_RECONNECTION_ROOM.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: RoomPto.IC_RECONNECTION_ROOM);
+
+        /** C_RECONNECTION_ROOM cmd. */
+        public cmd: number;
+
+        /** C_RECONNECTION_ROOM scmd. */
+        public scmd: number;
+
+        /** C_RECONNECTION_ROOM roomId. */
+        public roomId: number;
+
+        /**
+         * Encodes the specified C_RECONNECTION_ROOM message. Does not implicitly {@link RoomPto.C_RECONNECTION_ROOM.verify|verify} messages.
+         * @param message C_RECONNECTION_ROOM message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: RoomPto.IC_RECONNECTION_ROOM, writer?: protobuf.Writer): protobuf.Writer;
+
+        /**
+         * Decodes a C_RECONNECTION_ROOM message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns C_RECONNECTION_ROOM
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): RoomPto.C_RECONNECTION_ROOM;
     }
 }
 

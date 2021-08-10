@@ -16,6 +16,8 @@ message S_LOGIN{
 	bool isSuccess = 3;
 	string nick = 4;
 	int32 headIndex = 5;
+	int32 roomId = 6;
+	int32 gameId = 7;
 }
 
 //请求注册

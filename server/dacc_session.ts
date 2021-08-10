@@ -5,7 +5,7 @@ import { GlobalVar } from "./global_var"
 import { IGameMessage } from "./protobuf_encoder"
 import { TBL_UserModel } from "./model/tbl_user_model"
 const logger = getLogger()
-export class DaccUser {
+export class DaccSession {
     clientId: number = -1
     isLogin = false
 
@@ -13,7 +13,6 @@ export class DaccUser {
 
     room: DaccRoom
     player: DaccPlayer
-
 
     init(clientId: number) {
         this.clientId = clientId
@@ -26,7 +25,7 @@ export class DaccUser {
 
     onClose() {
         if (this.room) {
-            this.player.resetClientId()
+            this.player.disconnect()
             this.room.onUserSocketClose(this.player)
             this.player = null
             this.room = null

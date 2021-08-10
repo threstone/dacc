@@ -1,6 +1,14 @@
 syntax = "proto3";
 package GamePto1001;
 
+message Player_1001 {
+	int32 index = 1;
+	int32 headIndex = 2;
+	string nick = 3;
+	bool isOutSword = 4;
+	int32 outSword = 5;
+}
+
 //广播游戏开始
 message S_GAME_START_1001{
 	int32 cmd = 1[default = 1001]; 
@@ -35,4 +43,13 @@ message S_GAME_RESULT_1001{
 	int32 scmd = 2[default = 5]; 
 	int32 winIndex = 3; // 如果是-1则说明是平局
 	repeated int32 swords = 4;
+}
+
+message S_RECONNECT_1001 {
+	int32 cmd = 1[default = 1001]; 
+	int32 scmd = 2[default = 6]; 
+	int32 gameId = 3;
+	int32 selfIndex = 4;
+	repeated Player_1001 players = 5;
+	string roomSeq = 6;
 }

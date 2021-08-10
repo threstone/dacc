@@ -1,7 +1,7 @@
 import { getLogger } from "log4js"
 import * as WS from "ws"
 import { IGameMessage, ProtoBufEncoder } from "./protobuf_encoder"
-import { DaccUser as DaccSession } from "./dacc_session"
+import { DaccSession as DaccSession } from "./dacc_session"
 import { LoginPto } from "./common_proto"
 const logger = getLogger()
 export class SocketServer {

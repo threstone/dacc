@@ -26,4 +26,8 @@ class GameModel1001 extends GameBaseModel {
         this.emit('GameResult1001', msg)
     }
 
+    S_RECONNECT_1001(msg: GamePto1001.S_RECONNECT_1001) {
+        this.emit('GameReconnect1001', msg)
+    }
+
 }

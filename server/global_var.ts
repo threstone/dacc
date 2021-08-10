@@ -10,6 +10,8 @@ import { RoomMgr } from "./room_mgr"
 import { Utils } from "./utils"
 import { DBManager } from "./db_mgr"
 import * as mysqlConfig from './config/mysql.json'
+import { RedisClientSelf } from "./redis"
+import * as redisConfig from './config/redis.json'
 
 let logger = getLogger()
 /**
@@ -29,6 +31,7 @@ export class GlobalVar {
     private static _server: SocketServer
     private static _roomMgr: RoomMgr
     private static _dbMgr: DBManager
+    private static _redisClient: RedisClientSelf
 
     private static _args: any//程序启动的参数
 
@@ -45,6 +48,10 @@ export class GlobalVar {
 
     static get dbMgr() {
         return this._dbMgr
+    }
+
+    static get redis() {
+        return this._redisClient
     }
 
     public static set_process_args(args) {
@@ -79,6 +86,8 @@ export class GlobalVar {
 
         this._dbMgr = new DBManager()
         this._dbMgr.init(mysqlConfig)
+
+        this._redisClient = new RedisClientSelf(redisConfig)
 
         this.initMsgHandle()
         this._roomMgr = new RoomMgr()

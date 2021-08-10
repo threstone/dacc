@@ -15,6 +15,143 @@ $root.GamePto1001 = (function() {
      */
     var GamePto1001 = {};
 
+    GamePto1001.Player_1001 = (function() {
+
+        /**
+         * Properties of a Player_1001.
+         * @memberof GamePto1001
+         * @interface IPlayer_1001
+         * @property {number|null} [index] Player_1001 index
+         * @property {number|null} [headIndex] Player_1001 headIndex
+         * @property {string|null} [nick] Player_1001 nick
+         * @property {boolean|null} [isOutSword] Player_1001 isOutSword
+         * @property {number|null} [outSword] Player_1001 outSword
+         */
+
+        /**
+         * Constructs a new Player_1001.
+         * @memberof GamePto1001
+         * @classdesc Represents a Player_1001.
+         * @implements IPlayer_1001
+         * @constructor
+         * @param {GamePto1001.IPlayer_1001=} [properties] Properties to set
+         */
+        function Player_1001(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Player_1001 index.
+         * @member {number} index
+         * @memberof GamePto1001.Player_1001
+         * @instance
+         */
+        Player_1001.prototype.index = 0;
+
+        /**
+         * Player_1001 headIndex.
+         * @member {number} headIndex
+         * @memberof GamePto1001.Player_1001
+         * @instance
+         */
+        Player_1001.prototype.headIndex = 0;
+
+        /**
+         * Player_1001 nick.
+         * @member {string} nick
+         * @memberof GamePto1001.Player_1001
+         * @instance
+         */
+        Player_1001.prototype.nick = "";
+
+        /**
+         * Player_1001 isOutSword.
+         * @member {boolean} isOutSword
+         * @memberof GamePto1001.Player_1001
+         * @instance
+         */
+        Player_1001.prototype.isOutSword = false;
+
+        /**
+         * Player_1001 outSword.
+         * @member {number} outSword
+         * @memberof GamePto1001.Player_1001
+         * @instance
+         */
+        Player_1001.prototype.outSword = 0;
+
+        /**
+         * Encodes the specified Player_1001 message. Does not implicitly {@link GamePto1001.Player_1001.verify|verify} messages.
+         * @function encode
+         * @memberof GamePto1001.Player_1001
+         * @static
+         * @param {GamePto1001.IPlayer_1001} message Player_1001 message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Player_1001.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.index != null && Object.hasOwnProperty.call(message, "index"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.index);
+            if (message.headIndex != null && Object.hasOwnProperty.call(message, "headIndex"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.headIndex);
+            if (message.nick != null && Object.hasOwnProperty.call(message, "nick"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.nick);
+            if (message.isOutSword != null && Object.hasOwnProperty.call(message, "isOutSword"))
+                writer.uint32(/* id 4, wireType 0 =*/32).bool(message.isOutSword);
+            if (message.outSword != null && Object.hasOwnProperty.call(message, "outSword"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int32(message.outSword);
+            return writer;
+        };
+
+        /**
+         * Decodes a Player_1001 message from the specified reader or buffer.
+         * @function decode
+         * @memberof GamePto1001.Player_1001
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {GamePto1001.Player_1001} Player_1001
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Player_1001.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.GamePto1001.Player_1001();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.index = reader.int32();
+                    break;
+                case 2:
+                    message.headIndex = reader.int32();
+                    break;
+                case 3:
+                    message.nick = reader.string();
+                    break;
+                case 4:
+                    message.isOutSword = reader.bool();
+                    break;
+                case 5:
+                    message.outSword = reader.int32();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        return Player_1001;
+    })();
+
     GamePto1001.S_GAME_START_1001 = (function() {
 
         /**
@@ -584,6 +721,161 @@ $root.GamePto1001 = (function() {
         };
 
         return S_GAME_RESULT_1001;
+    })();
+
+    GamePto1001.S_RECONNECT_1001 = (function() {
+
+        /**
+         * Properties of a S_RECONNECT_1001.
+         * @memberof GamePto1001
+         * @interface IS_RECONNECT_1001
+         * @property {number|null} [cmd] S_RECONNECT_1001 cmd
+         * @property {number|null} [scmd] S_RECONNECT_1001 scmd
+         * @property {number|null} [gameId] S_RECONNECT_1001 gameId
+         * @property {number|null} [selfIndex] S_RECONNECT_1001 selfIndex
+         * @property {Array.<GamePto1001.IPlayer_1001>|null} [players] S_RECONNECT_1001 players
+         * @property {string|null} [roomSeq] S_RECONNECT_1001 roomSeq
+         */
+
+        /**
+         * Constructs a new S_RECONNECT_1001.
+         * @memberof GamePto1001
+         * @classdesc Represents a S_RECONNECT_1001.
+         * @implements IS_RECONNECT_1001
+         * @constructor
+         * @param {GamePto1001.IS_RECONNECT_1001=} [properties] Properties to set
+         */
+        function S_RECONNECT_1001(properties) {
+            this.players = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * S_RECONNECT_1001 cmd.
+         * @member {number} cmd
+         * @memberof GamePto1001.S_RECONNECT_1001
+         * @instance
+         */
+        S_RECONNECT_1001.prototype.cmd = 1001;
+
+        /**
+         * S_RECONNECT_1001 scmd.
+         * @member {number} scmd
+         * @memberof GamePto1001.S_RECONNECT_1001
+         * @instance
+         */
+        S_RECONNECT_1001.prototype.scmd = 6;
+
+        /**
+         * S_RECONNECT_1001 gameId.
+         * @member {number} gameId
+         * @memberof GamePto1001.S_RECONNECT_1001
+         * @instance
+         */
+        S_RECONNECT_1001.prototype.gameId = 0;
+
+        /**
+         * S_RECONNECT_1001 selfIndex.
+         * @member {number} selfIndex
+         * @memberof GamePto1001.S_RECONNECT_1001
+         * @instance
+         */
+        S_RECONNECT_1001.prototype.selfIndex = 0;
+
+        /**
+         * S_RECONNECT_1001 players.
+         * @member {Array.<GamePto1001.IPlayer_1001>} players
+         * @memberof GamePto1001.S_RECONNECT_1001
+         * @instance
+         */
+        S_RECONNECT_1001.prototype.players = $util.emptyArray;
+
+        /**
+         * S_RECONNECT_1001 roomSeq.
+         * @member {string} roomSeq
+         * @memberof GamePto1001.S_RECONNECT_1001
+         * @instance
+         */
+        S_RECONNECT_1001.prototype.roomSeq = "";
+
+        /**
+         * Encodes the specified S_RECONNECT_1001 message. Does not implicitly {@link GamePto1001.S_RECONNECT_1001.verify|verify} messages.
+         * @function encode
+         * @memberof GamePto1001.S_RECONNECT_1001
+         * @static
+         * @param {GamePto1001.IS_RECONNECT_1001} message S_RECONNECT_1001 message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        S_RECONNECT_1001.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.cmd != null && Object.hasOwnProperty.call(message, "cmd"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.cmd);
+            if (message.scmd != null && Object.hasOwnProperty.call(message, "scmd"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.scmd);
+            if (message.gameId != null && Object.hasOwnProperty.call(message, "gameId"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.gameId);
+            if (message.selfIndex != null && Object.hasOwnProperty.call(message, "selfIndex"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.selfIndex);
+            if (message.players != null && message.players.length)
+                for (var i = 0; i < message.players.length; ++i)
+                    $root.GamePto1001.Player_1001.encode(message.players[i], writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+            if (message.roomSeq != null && Object.hasOwnProperty.call(message, "roomSeq"))
+                writer.uint32(/* id 6, wireType 2 =*/50).string(message.roomSeq);
+            return writer;
+        };
+
+        /**
+         * Decodes a S_RECONNECT_1001 message from the specified reader or buffer.
+         * @function decode
+         * @memberof GamePto1001.S_RECONNECT_1001
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {GamePto1001.S_RECONNECT_1001} S_RECONNECT_1001
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        S_RECONNECT_1001.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.GamePto1001.S_RECONNECT_1001();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.cmd = reader.int32();
+                    break;
+                case 2:
+                    message.scmd = reader.int32();
+                    break;
+                case 3:
+                    message.gameId = reader.int32();
+                    break;
+                case 4:
+                    message.selfIndex = reader.int32();
+                    break;
+                case 5:
+                    if (!(message.players && message.players.length))
+                        message.players = [];
+                    message.players.push($root.GamePto1001.Player_1001.decode(reader, reader.uint32()));
+                    break;
+                case 6:
+                    message.roomSeq = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        return S_RECONNECT_1001;
     })();
 
     return GamePto1001;
@@ -1293,6 +1585,8 @@ $root.LoginPto = (function() {
          * @property {boolean|null} [isSuccess] S_LOGIN isSuccess
          * @property {string|null} [nick] S_LOGIN nick
          * @property {number|null} [headIndex] S_LOGIN headIndex
+         * @property {number|null} [roomId] S_LOGIN roomId
+         * @property {number|null} [gameId] S_LOGIN gameId
          */
 
         /**
@@ -1351,6 +1645,22 @@ $root.LoginPto = (function() {
         S_LOGIN.prototype.headIndex = 0;
 
         /**
+         * S_LOGIN roomId.
+         * @member {number} roomId
+         * @memberof LoginPto.S_LOGIN
+         * @instance
+         */
+        S_LOGIN.prototype.roomId = 0;
+
+        /**
+         * S_LOGIN gameId.
+         * @member {number} gameId
+         * @memberof LoginPto.S_LOGIN
+         * @instance
+         */
+        S_LOGIN.prototype.gameId = 0;
+
+        /**
          * Encodes the specified S_LOGIN message. Does not implicitly {@link LoginPto.S_LOGIN.verify|verify} messages.
          * @function encode
          * @memberof LoginPto.S_LOGIN
@@ -1372,6 +1682,10 @@ $root.LoginPto = (function() {
                 writer.uint32(/* id 4, wireType 2 =*/34).string(message.nick);
             if (message.headIndex != null && Object.hasOwnProperty.call(message, "headIndex"))
                 writer.uint32(/* id 5, wireType 0 =*/40).int32(message.headIndex);
+            if (message.roomId != null && Object.hasOwnProperty.call(message, "roomId"))
+                writer.uint32(/* id 6, wireType 0 =*/48).int32(message.roomId);
+            if (message.gameId != null && Object.hasOwnProperty.call(message, "gameId"))
+                writer.uint32(/* id 7, wireType 0 =*/56).int32(message.gameId);
             return writer;
         };
 
@@ -1407,6 +1721,12 @@ $root.LoginPto = (function() {
                     break;
                 case 5:
                     message.headIndex = reader.int32();
+                    break;
+                case 6:
+                    message.roomId = reader.int32();
+                    break;
+                case 7:
+                    message.gameId = reader.int32();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -2329,7 +2649,6 @@ $root.RoomPto = (function() {
          * @property {number|null} [cmd] S_JOIN_ROOM cmd
          * @property {number|null} [scmd] S_JOIN_ROOM scmd
          * @property {boolean|null} [isSuccess] S_JOIN_ROOM isSuccess
-         * @property {number|null} [roomId] S_JOIN_ROOM roomId
          * @property {Array.<RoomPto.IPlayer>|null} [players] S_JOIN_ROOM players
          * @property {number|null} [gameId] S_JOIN_ROOM gameId
          * @property {number|null} [selfIndex] S_JOIN_ROOM selfIndex
@@ -2376,14 +2695,6 @@ $root.RoomPto = (function() {
          * @instance
          */
         S_JOIN_ROOM.prototype.isSuccess = false;
-
-        /**
-         * S_JOIN_ROOM roomId.
-         * @member {number} roomId
-         * @memberof RoomPto.S_JOIN_ROOM
-         * @instance
-         */
-        S_JOIN_ROOM.prototype.roomId = 0;
 
         /**
          * S_JOIN_ROOM players.
@@ -2443,19 +2754,17 @@ $root.RoomPto = (function() {
                 writer.uint32(/* id 2, wireType 0 =*/16).int32(message.scmd);
             if (message.isSuccess != null && Object.hasOwnProperty.call(message, "isSuccess"))
                 writer.uint32(/* id 3, wireType 0 =*/24).bool(message.isSuccess);
-            if (message.roomId != null && Object.hasOwnProperty.call(message, "roomId"))
-                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.roomId);
             if (message.players != null && message.players.length)
                 for (var i = 0; i < message.players.length; ++i)
-                    $root.RoomPto.Player.encode(message.players[i], writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+                    $root.RoomPto.Player.encode(message.players[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
             if (message.gameId != null && Object.hasOwnProperty.call(message, "gameId"))
-                writer.uint32(/* id 6, wireType 0 =*/48).int32(message.gameId);
+                writer.uint32(/* id 5, wireType 0 =*/40).int32(message.gameId);
             if (message.selfIndex != null && Object.hasOwnProperty.call(message, "selfIndex"))
-                writer.uint32(/* id 7, wireType 0 =*/56).int32(message.selfIndex);
+                writer.uint32(/* id 6, wireType 0 =*/48).int32(message.selfIndex);
             if (message.roomSeq != null && Object.hasOwnProperty.call(message, "roomSeq"))
-                writer.uint32(/* id 8, wireType 2 =*/66).string(message.roomSeq);
+                writer.uint32(/* id 7, wireType 2 =*/58).string(message.roomSeq);
             if (message.isWatcher != null && Object.hasOwnProperty.call(message, "isWatcher"))
-                writer.uint32(/* id 9, wireType 0 =*/72).bool(message.isWatcher);
+                writer.uint32(/* id 8, wireType 0 =*/64).bool(message.isWatcher);
             return writer;
         };
 
@@ -2487,23 +2796,20 @@ $root.RoomPto = (function() {
                     message.isSuccess = reader.bool();
                     break;
                 case 4:
-                    message.roomId = reader.int32();
-                    break;
-                case 5:
                     if (!(message.players && message.players.length))
                         message.players = [];
                     message.players.push($root.RoomPto.Player.decode(reader, reader.uint32()));
                     break;
-                case 6:
+                case 5:
                     message.gameId = reader.int32();
                     break;
-                case 7:
+                case 6:
                     message.selfIndex = reader.int32();
                     break;
-                case 8:
+                case 7:
                     message.roomSeq = reader.string();
                     break;
-                case 9:
+                case 8:
                     message.isWatcher = reader.bool();
                     break;
                 default:
@@ -3282,6 +3588,115 @@ $root.RoomPto = (function() {
         };
 
         return C_LEAVE_ROOM;
+    })();
+
+    RoomPto.C_RECONNECTION_ROOM = (function() {
+
+        /**
+         * Properties of a C_RECONNECTION_ROOM.
+         * @memberof RoomPto
+         * @interface IC_RECONNECTION_ROOM
+         * @property {number|null} [cmd] C_RECONNECTION_ROOM cmd
+         * @property {number|null} [scmd] C_RECONNECTION_ROOM scmd
+         * @property {number|null} [roomId] C_RECONNECTION_ROOM roomId
+         */
+
+        /**
+         * Constructs a new C_RECONNECTION_ROOM.
+         * @memberof RoomPto
+         * @classdesc Represents a C_RECONNECTION_ROOM.
+         * @implements IC_RECONNECTION_ROOM
+         * @constructor
+         * @param {RoomPto.IC_RECONNECTION_ROOM=} [properties] Properties to set
+         */
+        function C_RECONNECTION_ROOM(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * C_RECONNECTION_ROOM cmd.
+         * @member {number} cmd
+         * @memberof RoomPto.C_RECONNECTION_ROOM
+         * @instance
+         */
+        C_RECONNECTION_ROOM.prototype.cmd = 2;
+
+        /**
+         * C_RECONNECTION_ROOM scmd.
+         * @member {number} scmd
+         * @memberof RoomPto.C_RECONNECTION_ROOM
+         * @instance
+         */
+        C_RECONNECTION_ROOM.prototype.scmd = 12;
+
+        /**
+         * C_RECONNECTION_ROOM roomId.
+         * @member {number} roomId
+         * @memberof RoomPto.C_RECONNECTION_ROOM
+         * @instance
+         */
+        C_RECONNECTION_ROOM.prototype.roomId = 0;
+
+        /**
+         * Encodes the specified C_RECONNECTION_ROOM message. Does not implicitly {@link RoomPto.C_RECONNECTION_ROOM.verify|verify} messages.
+         * @function encode
+         * @memberof RoomPto.C_RECONNECTION_ROOM
+         * @static
+         * @param {RoomPto.IC_RECONNECTION_ROOM} message C_RECONNECTION_ROOM message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        C_RECONNECTION_ROOM.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.cmd != null && Object.hasOwnProperty.call(message, "cmd"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.cmd);
+            if (message.scmd != null && Object.hasOwnProperty.call(message, "scmd"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.scmd);
+            if (message.roomId != null && Object.hasOwnProperty.call(message, "roomId"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.roomId);
+            return writer;
+        };
+
+        /**
+         * Decodes a C_RECONNECTION_ROOM message from the specified reader or buffer.
+         * @function decode
+         * @memberof RoomPto.C_RECONNECTION_ROOM
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {RoomPto.C_RECONNECTION_ROOM} C_RECONNECTION_ROOM
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        C_RECONNECTION_ROOM.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.RoomPto.C_RECONNECTION_ROOM();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.cmd = reader.int32();
+                    break;
+                case 2:
+                    message.scmd = reader.int32();
+                    break;
+                case 3:
+                    message.roomId = reader.int32();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        return C_RECONNECTION_ROOM;
     })();
 
     return RoomPto;

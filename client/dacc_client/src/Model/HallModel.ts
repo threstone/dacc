@@ -15,10 +15,19 @@ class HallModel extends BaseModel {
         this.sendMsg(msg)
     }
 
-    onLoginResult(evt: EventData) {
+    async onLoginResult(evt: EventData) {
         let data: LoginPto.S_LOGIN = evt.data
         if (data.isSuccess) {
             this.userData = data
+            //需要重连
+            if (data.roomId != -1) {
+                //激活游戏重连所需的model view
+                await GlobalController.gameController.onReconnect(data.gameId)
+                //请求重连
+                let msg = new RoomPto.C_RECONNECTION_ROOM()
+                msg.roomId = data.roomId
+                this.sendMsg(msg)
+            }
         }
     }
 
