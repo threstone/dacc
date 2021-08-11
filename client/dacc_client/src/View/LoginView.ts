@@ -30,6 +30,7 @@ class LoginView extends BaseView {
             GlobalController.showHall()
         } else {
             GlobalController.showTips('登录失败了,可能是密码错误,也可能是没有注册', 5000)
+            this.loginCom.touchable = true
         }
     }
 

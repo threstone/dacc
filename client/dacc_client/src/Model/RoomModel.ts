@@ -4,7 +4,13 @@ class RoomModel extends BaseModel {
         this.selfIndex = -1
         this.initCreateRoomEvent()
         this.initRoomListEvent()
+        this.addEventListener('ReadyBtnClick', this.onReadyBtnClick)
         this.addEventListener('RequestExitRoom', this.onRequestExitRoom)
+    }
+
+    onReadyBtnClick(evt: EventData) {
+        let msg = new RoomPto.C_READY()
+        this.sendMsg(msg)
     }
 
     onRequestExitRoom(evt: EventData) {
@@ -78,9 +84,14 @@ class RoomModel extends BaseModel {
             this.sendMsg(msg)
         })
 
-        this.addEventListener('JoinInRoomClick', (evt: EventData) => {
+        this.addEventListener('JoinInRoomClick', async (evt: EventData) => {
             let roomId: number = evt.data.roomId
             let isWatch: boolean = evt.data.isWatch
+            let gameId: number = evt.data.gameId
+            if (isWatch == true) {
+                //有可能时中途进入房间观战，先激活对应子游戏
+                await GlobalController.gameController.initGame(gameId)
+            }
             //请求进入房间
             let requestMsg = new RoomPto.C_JOIN_ROOM()
             requestMsg.isWatch = isWatch

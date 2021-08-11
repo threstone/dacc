@@ -1,26 +1,24 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DaccUser = void 0;
+exports.DaccSession = void 0;
 const log4js_1 = require("log4js");
 const global_var_1 = require("./global_var");
 const logger = log4js_1.getLogger();
-class DaccUser {
+class DaccSession {
     constructor() {
         this.clientId = -1;
         this.isLogin = false;
-        this.userName = "";
-        this.headIndex = -1;
     }
     init(clientId) {
         this.clientId = clientId;
     }
     doLogin(data) {
-        this.userName = data.userName;
+        this.userModel = data;
         this.isLogin = true;
     }
     onClose() {
         if (this.room) {
-            this.player.clientId = -1;
+            this.player.disconnect();
             this.room.onUserSocketClose(this.player);
             this.player = null;
             this.room = null;
@@ -29,8 +27,7 @@ class DaccUser {
     reset() {
         this.clientId = -1;
         this.isLogin = false;
-        this.userName = "";
-        this.headIndex = -1;
+        this.userModel = null;
     }
     sendMsg(msg) {
         if (this.clientId == -1) {
@@ -50,4 +47,4 @@ class DaccUser {
         global_var_1.GlobalVar.server.broadcast(msg);
     }
 }
-exports.DaccUser = DaccUser;
+exports.DaccSession = DaccSession;

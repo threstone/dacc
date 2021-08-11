@@ -11,13 +11,35 @@ const path = require("path");
 const allProto = require("./common_proto");
 const room_mgr_1 = require("./room_mgr");
 const utils_1 = require("./utils");
+const db_mgr_1 = require("./db_mgr");
+const mysqlConfig = require("./config/mysql.json");
+const redis_1 = require("./redis");
+const redisConfig = require("./config/redis.json");
 let logger = log4js_1.getLogger();
+/**
+gate:网关，多开，分发消息，对外暴露
+
+hall:游戏大厅，提供登录注册、聊天、选择游戏、修改资料等功能
+      一区一个进程，玩家所在的hall会记录在redis，对外隐藏   连接redis、mysql。
+     只有gate使用RPC连接自己
+
+game:游戏服，提供游戏服务，单个游戏一个进程（可以拓展为多进程服务一个游戏），
+          对外隐藏，连接redis。gate使用RPC连接自己
+
+record:记录服，对外隐藏，连接mysql，多开。game、gate使用RPC连接来读写记录
+*/
 class GlobalVar {
     static get server() {
         return this._server;
     }
     static get roomMgr() {
         return this._roomMgr;
+    }
+    static get dbMgr() {
+        return this._dbMgr;
+    }
+    static get redis() {
+        return this._redisClient;
     }
     static set_process_args(args) {
         GlobalVar._args = args;
@@ -41,6 +63,9 @@ class GlobalVar {
         if (openMode != 'debug') {
             GlobalVar.addSupportGame(args.supportGameId || serverConfig.supportGameId);
         }
+        this._dbMgr = new db_mgr_1.DBManager();
+        this._dbMgr.init(mysqlConfig);
+        this._redisClient = new redis_1.RedisClientSelf(redisConfig);
         this.initMsgHandle();
         this._roomMgr = new room_mgr_1.RoomMgr();
         this._server = new socket_server_1.SocketServer();

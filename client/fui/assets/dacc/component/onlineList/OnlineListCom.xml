@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="400,320">
+  <displayList>
+    <graph id="n2_ggbm" name="bg" xy="0,0" size="400,320" type="rect" fillColor="#ffffff66"/>
+    <list id="n0_ggbm" name="online_list" xy="0,40" size="400,280" layout="flow_hz" overflow="scroll" margin="0,0,15,15" lineGap="8" colGap="8" autoClearItems="true">
+      <item url="ui://sly852qpggbm2r"/>
+      <item url="ui://sly852qpggbm2r"/>
+      <item url="ui://sly852qpggbm2r"/>
+      <item url="ui://sly852qpggbm2r"/>
+      <item url="ui://sly852qpggbm2r"/>
+    </list>
+    <text id="n1_ggbm" name="title" xy="117,6" size="137,27" font="STXingkai" fontSize="22" text="当前在线玩家"/>
+  </displayList>
+</component>

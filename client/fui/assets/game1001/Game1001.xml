@@ -20,5 +20,7 @@
     <component id="n24_di7i" name="exit" src="ikts1n" fileName="component/common/BtnLong.xml" pkg="sly852qp" xy="1192,7" size="82,30"/>
     <text id="n25_idp7" name="acknowledge" xy="770,10" size="401,39" font="STXingkai" fontSize="33" color="#ff0000" text="在此鸣谢菜菜子提供的素材"/>
     <text id="n26_ggbm" name="isWatch" xy="593,55" size="99,36" font="STHupo" fontSize="31" color="#ff0000" text="观战中"/>
+    <text id="n28_ggbm" name="win_rate_info0" xy="0,440" size="159,84" fontSize="22" color="#ccff00" autoClearText="true" text="当前胜利次数:1&#xA;总局数:2&#xA;胜率:50%"/>
+    <text id="n29_ggbm" name="win_rate_info1" xy="1121,440" size="159,84" fontSize="22" color="#ccff00" align="right" autoClearText="true" text="当前胜利次数:1&#xA;总局数:2&#xA;胜率:50%"/>
   </displayList>
 </component>

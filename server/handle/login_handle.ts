@@ -1,4 +1,4 @@
-import { HallPto } from "../common_proto"
+import { HallPto, SystemPto } from "../common_proto"
 import { LoginPto } from "../common_proto"
 import { DaccSession } from "../dacc_session"
 import { GlobalVar } from "../global_var"
@@ -13,8 +13,21 @@ export class LoginHandle {
             return
         }
 
-        let isInRoom = await GlobalVar.redis.getData(`userInRoom-${info.id}`)
-        let isInGame = await GlobalVar.redis.getData(`userInGame-${info.id}`)
+        //说明有在线的，把在线的踢掉
+        let clientId = parseInt(await GlobalVar.redis.getData(`userClientId-${info.id}`))
+        if (!Number.isNaN(clientId)) {
+            //提醒并且把原来的踢掉
+            let tips = new SystemPto.S_TIPS()
+            tips.msg = '您的账号在别处登录了!'
+            tips.hoverTime = 20000
+            // let session = GlobalVar.server.getDaccSession()
+            GlobalVar.server.sendMsg(clientId, tips)
+            GlobalVar.server.closeWs(clientId)
+        }
+
+        let isInRoom = parseInt(await GlobalVar.redis.getData(`userInRoom-${info.id}`))
+        let isInGame = parseInt(await GlobalVar.redis.getData(`userInGame-${info.id}`))
+
         replyMsg.roomId = isInRoom ? isInRoom : -1
         replyMsg.gameId = isInGame
         replyMsg.isSuccess = true
@@ -22,6 +35,8 @@ export class LoginHandle {
         replyMsg.headIndex = info.headIndex
         user.doLogin(info)
         user.sendMsg(replyMsg)
+        //记录uid=>clientId
+        GlobalVar.redis.setData(`userClientId-${info.id}`, user.clientId, -1)
 
         //下发游戏列表
         let gameList = new HallPto.S_GAME_LIST()

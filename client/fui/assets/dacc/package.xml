@@ -46,6 +46,8 @@
     <component id="b78j2m" name="ChangeHeadCom.xml" path="/component/changeHead/"/>
     <component id="di7i2o" name="UserBox.xml" path="/component/userBox/" exported="true"/>
     <component id="ggbm2p" name="Register.xml" path="/component/register/"/>
+    <component id="ggbm2q" name="OnlineListCom.xml" path="/component/onlineList/"/>
+    <component id="ggbm2r" name="OnlineItem.xml" path="/component/onlineList/" exported="true"/>
   </resources>
   <publish name="dacc" genCode="true" npot="true"/>
 </packageDescription>

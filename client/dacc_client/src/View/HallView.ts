@@ -15,6 +15,7 @@ class HallView extends BaseView {
         this.initCreateRoomCom()
         this.initRoomListCom()
         this.initUserBox()
+        this.initOnlineListCom()
 
         this.addEventListener('GameListInfo', this.initGameListMap)
     }
@@ -37,12 +38,14 @@ class HallView extends BaseView {
     onLoginResult(evt: EventData) {
         let data: LoginPto.S_LOGIN = evt.data
         this.hallCom.m_user_box.m_user_name.text = data.nick
-        RES.getResByUrl(`./resource/head/tx_${data.headIndex}.png`, (data) => {
-            if (!data) {
-                return
-            }
-            this.hallCom.m_user_box.m_head_pic.texture = data
-        })
+        if (data.headIndex != -1) {
+            RES.getResByUrl(`./resource/head/tx_${data.headIndex}.png`, (data) => {
+                if (!data) {
+                    return
+                }
+                this.hallCom.m_user_box.m_head_pic.texture = data
+            })
+        }
     }
 
     /**
@@ -67,6 +70,37 @@ class HallView extends BaseView {
             list.scrollToView(list.numChildren - 1);
             this._isAddChange = true
         }
+    }
+
+    onlineListInfo(itemPool: dacc.UI_OnlineItem[], evt: EventData) {
+        let data: HallPto.S_ONLINE_LIST = evt.data
+        let list = this.hallCom.m_online_com.m_online_list
+        //把list里头的item拿出来
+        let length = list.numChildren
+        for (let i = 0; i < length; i++) {
+            let item = list.removeChildAt(0) as dacc.UI_OnlineItem
+            itemPool.push(item)
+        }
+
+        //防止不够用
+        for (let i = 0; i < data.nikeArr.length - length; i++) {
+            itemPool.push(dacc.UI_OnlineItem.createInstance())
+        }
+
+        //把数据显示出来
+        for (let i = 0; i < data.nikeArr.length; i++) {
+            let item = itemPool.pop()
+            item.m_name.text = data.nikeArr[i]
+            list.addChild(item)
+        }
+    }
+
+    /**
+     * 初始化在线玩家列表
+     */
+    initOnlineListCom() {
+        let itemPool = []
+        this.addEventListener('OnlineListInfo', this.onlineListInfo.bind(this, itemPool))
     }
 
     /**
@@ -234,7 +268,7 @@ class HallView extends BaseView {
         }, this)
 
 
-        let itemClickFun = (data: { roomId: number, isWatch: boolean }) => {
+        let itemClickFun = (data: { roomId: number, isWatch: boolean, gameId: number }) => {
             this.emit('JoinInRoomClick', data)
         }
         let list = roomListCom.m_list
@@ -272,7 +306,7 @@ class HallView extends BaseView {
                 } else {
                     item.m_join_btn.m_describe.text = `加入(${temp.curPlayer}/${temp.maxPlayer})`
                 }
-                let fun = itemClickFun.bind(this, { roomId: temp.roomId, isWatch: isWatch });
+                let fun = itemClickFun.bind(this, { roomId: temp.roomId, isWatch: isWatch, gameId: temp.gameId });
                 (item as any).saveFun = fun
                 item.m_join_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, fun, this)
                 list.addChild(item)

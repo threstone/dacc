@@ -32,12 +32,16 @@ export class RedisClientSelf {
         this.redis_client.on("error", (err) => {
             logger.error("redis error: ", err)
         })
+        
         this.redis_client.on("ready", (err) => {
             if (this.onReady) {
                 this.onReady()
             }
+            this.redis_client.flushdb(function () {
+                console.log('threstone:');
+                console.log('现在没有分布式架构,暂时先在redis ready时清空所有key,防止开发出现一些奇怪的问题。');
+            })
         })
-
 
         this.redis_client.on("connect", async () => {
             logger.info("connect to redis success!!")

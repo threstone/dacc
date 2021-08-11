@@ -22,6 +22,8 @@ module game1001 {
 		public m_exit:fairygui.GButton;
 		public m_acknowledge:fairygui.GTextField;
 		public m_isWatch:fairygui.GTextField;
+		public m_win_rate_info0:fairygui.GTextField;
+		public m_win_rate_info1:fairygui.GTextField;
 
 		public static URL:string = "ui://rbhwceqzdi7i2";
 
@@ -54,6 +56,8 @@ module game1001 {
 			this.m_exit = <fairygui.GButton><any>(this.getChild("exit"));
 			this.m_acknowledge = <fairygui.GTextField><any>(this.getChild("acknowledge"));
 			this.m_isWatch = <fairygui.GTextField><any>(this.getChild("isWatch"));
+			this.m_win_rate_info0 = <fairygui.GTextField><any>(this.getChild("win_rate_info0"));
+			this.m_win_rate_info1 = <fairygui.GTextField><any>(this.getChild("win_rate_info1"));
 		}
 	}
 }

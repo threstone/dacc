@@ -6,21 +6,8 @@ abstract class GameBaseModel extends BaseModel {
         super()
         this.gameId = gameId
         this._isAlive = false
-        //父类监听准备按钮按下
-        this.addEventListener('ReadyBtnClick', this.onReadyBtnClick)
-        this.addEventListener('RequestExitRoom', this.onRequestExitRoom)
         MessageManager.addProtoModule(window[`GamePto${this.gameId}`], this)
     }
-
-    onReadyBtnClick(evt: EventData) {
-        let msg = new RoomPto.C_READY()
-        this.sendMsg(msg)
-    }
-
-    onRequestExitRoom(evt: EventData) {
-
-    }
-
 
     /**
      * 重写addEventListener

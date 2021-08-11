@@ -538,6 +538,12 @@ export namespace GamePto1001 {
 
         /** S_GAME_RESULT_1001 swords */
         swords?: (number[]|null);
+
+        /** S_GAME_RESULT_1001 leftWinTimes */
+        leftWinTimes?: (number|null);
+
+        /** S_GAME_RESULT_1001 gameTimes */
+        gameTimes?: (number|null);
     }
 
     /** Represents a S_GAME_RESULT_1001. */
@@ -560,6 +566,12 @@ export namespace GamePto1001 {
 
         /** S_GAME_RESULT_1001 swords. */
         public swords: number[];
+
+        /** S_GAME_RESULT_1001 leftWinTimes. */
+        public leftWinTimes: number;
+
+        /** S_GAME_RESULT_1001 gameTimes. */
+        public gameTimes: number;
 
         /**
          * Creates a new S_GAME_RESULT_1001 instance using the specified properties.
@@ -632,121 +644,133 @@ export namespace GamePto1001 {
         public toJSON(): { [k: string]: any };
     }
 
-    /** Properties of a S_RECONNECT_1001. */
-    interface IS_RECONNECT_1001 {
+    /** Properties of a S_SCENE_INIT_1001. */
+    interface IS_SCENE_INIT_1001 {
 
-        /** S_RECONNECT_1001 cmd */
+        /** S_SCENE_INIT_1001 cmd */
         cmd?: (number|null);
 
-        /** S_RECONNECT_1001 scmd */
+        /** S_SCENE_INIT_1001 scmd */
         scmd?: (number|null);
 
-        /** S_RECONNECT_1001 gameId */
+        /** S_SCENE_INIT_1001 gameId */
         gameId?: (number|null);
 
-        /** S_RECONNECT_1001 selfIndex */
+        /** S_SCENE_INIT_1001 selfIndex */
         selfIndex?: (number|null);
 
-        /** S_RECONNECT_1001 players */
+        /** S_SCENE_INIT_1001 players */
         players?: (GamePto1001.IPlayer_1001[]|null);
 
-        /** S_RECONNECT_1001 roomSeq */
+        /** S_SCENE_INIT_1001 roomSeq */
         roomSeq?: (string|null);
+
+        /** S_SCENE_INIT_1001 leftWinTimes */
+        leftWinTimes?: (number|null);
+
+        /** S_SCENE_INIT_1001 gameTimes */
+        gameTimes?: (number|null);
     }
 
-    /** Represents a S_RECONNECT_1001. */
-    class S_RECONNECT_1001 implements IS_RECONNECT_1001 {
+    /** Represents a S_SCENE_INIT_1001. */
+    class S_SCENE_INIT_1001 implements IS_SCENE_INIT_1001 {
 
         /**
-         * Constructs a new S_RECONNECT_1001.
+         * Constructs a new S_SCENE_INIT_1001.
          * @param [properties] Properties to set
          */
-        constructor(properties?: GamePto1001.IS_RECONNECT_1001);
+        constructor(properties?: GamePto1001.IS_SCENE_INIT_1001);
 
-        /** S_RECONNECT_1001 cmd. */
+        /** S_SCENE_INIT_1001 cmd. */
         public cmd: number;
 
-        /** S_RECONNECT_1001 scmd. */
+        /** S_SCENE_INIT_1001 scmd. */
         public scmd: number;
 
-        /** S_RECONNECT_1001 gameId. */
+        /** S_SCENE_INIT_1001 gameId. */
         public gameId: number;
 
-        /** S_RECONNECT_1001 selfIndex. */
+        /** S_SCENE_INIT_1001 selfIndex. */
         public selfIndex: number;
 
-        /** S_RECONNECT_1001 players. */
+        /** S_SCENE_INIT_1001 players. */
         public players: GamePto1001.IPlayer_1001[];
 
-        /** S_RECONNECT_1001 roomSeq. */
+        /** S_SCENE_INIT_1001 roomSeq. */
         public roomSeq: string;
 
+        /** S_SCENE_INIT_1001 leftWinTimes. */
+        public leftWinTimes: number;
+
+        /** S_SCENE_INIT_1001 gameTimes. */
+        public gameTimes: number;
+
         /**
-         * Creates a new S_RECONNECT_1001 instance using the specified properties.
+         * Creates a new S_SCENE_INIT_1001 instance using the specified properties.
          * @param [properties] Properties to set
-         * @returns S_RECONNECT_1001 instance
+         * @returns S_SCENE_INIT_1001 instance
          */
-        public static create(properties?: GamePto1001.IS_RECONNECT_1001): GamePto1001.S_RECONNECT_1001;
+        public static create(properties?: GamePto1001.IS_SCENE_INIT_1001): GamePto1001.S_SCENE_INIT_1001;
 
         /**
-         * Encodes the specified S_RECONNECT_1001 message. Does not implicitly {@link GamePto1001.S_RECONNECT_1001.verify|verify} messages.
-         * @param message S_RECONNECT_1001 message or plain object to encode
+         * Encodes the specified S_SCENE_INIT_1001 message. Does not implicitly {@link GamePto1001.S_SCENE_INIT_1001.verify|verify} messages.
+         * @param message S_SCENE_INIT_1001 message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: GamePto1001.IS_RECONNECT_1001, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: GamePto1001.IS_SCENE_INIT_1001, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified S_RECONNECT_1001 message, length delimited. Does not implicitly {@link GamePto1001.S_RECONNECT_1001.verify|verify} messages.
-         * @param message S_RECONNECT_1001 message or plain object to encode
+         * Encodes the specified S_SCENE_INIT_1001 message, length delimited. Does not implicitly {@link GamePto1001.S_SCENE_INIT_1001.verify|verify} messages.
+         * @param message S_SCENE_INIT_1001 message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: GamePto1001.IS_RECONNECT_1001, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: GamePto1001.IS_SCENE_INIT_1001, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Decodes a S_RECONNECT_1001 message from the specified reader or buffer.
+         * Decodes a S_SCENE_INIT_1001 message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns S_RECONNECT_1001
+         * @returns S_SCENE_INIT_1001
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): GamePto1001.S_RECONNECT_1001;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): GamePto1001.S_SCENE_INIT_1001;
 
         /**
-         * Decodes a S_RECONNECT_1001 message from the specified reader or buffer, length delimited.
+         * Decodes a S_SCENE_INIT_1001 message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns S_RECONNECT_1001
+         * @returns S_SCENE_INIT_1001
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): GamePto1001.S_RECONNECT_1001;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): GamePto1001.S_SCENE_INIT_1001;
 
         /**
-         * Verifies a S_RECONNECT_1001 message.
+         * Verifies a S_SCENE_INIT_1001 message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
         public static verify(message: { [k: string]: any }): (string|null);
 
         /**
-         * Creates a S_RECONNECT_1001 message from a plain object. Also converts values to their respective internal types.
+         * Creates a S_SCENE_INIT_1001 message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
-         * @returns S_RECONNECT_1001
+         * @returns S_SCENE_INIT_1001
          */
-        public static fromObject(object: { [k: string]: any }): GamePto1001.S_RECONNECT_1001;
+        public static fromObject(object: { [k: string]: any }): GamePto1001.S_SCENE_INIT_1001;
 
         /**
-         * Creates a plain object from a S_RECONNECT_1001 message. Also converts values to other types if specified.
-         * @param message S_RECONNECT_1001
+         * Creates a plain object from a S_SCENE_INIT_1001 message. Also converts values to other types if specified.
+         * @param message S_SCENE_INIT_1001
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: GamePto1001.S_RECONNECT_1001, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: GamePto1001.S_SCENE_INIT_1001, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
-         * Converts this S_RECONNECT_1001 to JSON.
+         * Converts this S_SCENE_INIT_1001 to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };

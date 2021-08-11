@@ -999,6 +999,202 @@ $root.HallPto = (function() {
         return C_CHANGE_HEAD;
     })();
 
+    HallPto.C_ONLINE_LIST = (function() {
+
+        function C_ONLINE_LIST(p) {
+            if (p)
+                for (var ks = Object.keys(p), i = 0; i < ks.length; ++i)
+                    if (p[ks[i]] != null)
+                        this[ks[i]] = p[ks[i]];
+        }
+
+        C_ONLINE_LIST.prototype.cmd = 1;
+        C_ONLINE_LIST.prototype.scmd = 5;
+
+        C_ONLINE_LIST.create = function create(properties) {
+            return new C_ONLINE_LIST(properties);
+        };
+
+        C_ONLINE_LIST.encode = function encode(m, w) {
+            if (!w)
+                w = $Writer.create();
+            if (m.cmd != null && Object.hasOwnProperty.call(m, "cmd"))
+                w.uint32(8).int32(m.cmd);
+            if (m.scmd != null && Object.hasOwnProperty.call(m, "scmd"))
+                w.uint32(16).int32(m.scmd);
+            return w;
+        };
+
+        C_ONLINE_LIST.decode = function decode(r, l) {
+            if (!(r instanceof $Reader))
+                r = $Reader.create(r);
+            var c = l === undefined ? r.len : r.pos + l, m = new $root.HallPto.C_ONLINE_LIST();
+            while (r.pos < c) {
+                var t = r.uint32();
+                switch (t >>> 3) {
+                case 1:
+                    m.cmd = r.int32();
+                    break;
+                case 2:
+                    m.scmd = r.int32();
+                    break;
+                default:
+                    r.skipType(t & 7);
+                    break;
+                }
+            }
+            return m;
+        };
+
+        C_ONLINE_LIST.fromObject = function fromObject(d) {
+            if (d instanceof $root.HallPto.C_ONLINE_LIST)
+                return d;
+            var m = new $root.HallPto.C_ONLINE_LIST();
+            if (d.cmd != null) {
+                m.cmd = d.cmd | 0;
+            }
+            if (d.scmd != null) {
+                m.scmd = d.scmd | 0;
+            }
+            return m;
+        };
+
+        C_ONLINE_LIST.toObject = function toObject(m, o) {
+            if (!o)
+                o = {};
+            var d = {};
+            if (o.defaults) {
+                d.cmd = 1;
+                d.scmd = 5;
+            }
+            if (m.cmd != null && m.hasOwnProperty("cmd")) {
+                d.cmd = m.cmd;
+            }
+            if (m.scmd != null && m.hasOwnProperty("scmd")) {
+                d.scmd = m.scmd;
+            }
+            return d;
+        };
+
+        C_ONLINE_LIST.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return C_ONLINE_LIST;
+    })();
+
+    HallPto.S_ONLINE_LIST = (function() {
+
+        function S_ONLINE_LIST(p) {
+            this.nikeArr = [];
+            if (p)
+                for (var ks = Object.keys(p), i = 0; i < ks.length; ++i)
+                    if (p[ks[i]] != null)
+                        this[ks[i]] = p[ks[i]];
+        }
+
+        S_ONLINE_LIST.prototype.cmd = 1;
+        S_ONLINE_LIST.prototype.scmd = 6;
+        S_ONLINE_LIST.prototype.nikeArr = $util.emptyArray;
+
+        S_ONLINE_LIST.create = function create(properties) {
+            return new S_ONLINE_LIST(properties);
+        };
+
+        S_ONLINE_LIST.encode = function encode(m, w) {
+            if (!w)
+                w = $Writer.create();
+            if (m.cmd != null && Object.hasOwnProperty.call(m, "cmd"))
+                w.uint32(8).int32(m.cmd);
+            if (m.scmd != null && Object.hasOwnProperty.call(m, "scmd"))
+                w.uint32(16).int32(m.scmd);
+            if (m.nikeArr != null && m.nikeArr.length) {
+                for (var i = 0; i < m.nikeArr.length; ++i)
+                    w.uint32(26).string(m.nikeArr[i]);
+            }
+            return w;
+        };
+
+        S_ONLINE_LIST.decode = function decode(r, l) {
+            if (!(r instanceof $Reader))
+                r = $Reader.create(r);
+            var c = l === undefined ? r.len : r.pos + l, m = new $root.HallPto.S_ONLINE_LIST();
+            while (r.pos < c) {
+                var t = r.uint32();
+                switch (t >>> 3) {
+                case 1:
+                    m.cmd = r.int32();
+                    break;
+                case 2:
+                    m.scmd = r.int32();
+                    break;
+                case 3:
+                    if (!(m.nikeArr && m.nikeArr.length))
+                        m.nikeArr = [];
+                    m.nikeArr.push(r.string());
+                    break;
+                default:
+                    r.skipType(t & 7);
+                    break;
+                }
+            }
+            return m;
+        };
+
+        S_ONLINE_LIST.fromObject = function fromObject(d) {
+            if (d instanceof $root.HallPto.S_ONLINE_LIST)
+                return d;
+            var m = new $root.HallPto.S_ONLINE_LIST();
+            if (d.cmd != null) {
+                m.cmd = d.cmd | 0;
+            }
+            if (d.scmd != null) {
+                m.scmd = d.scmd | 0;
+            }
+            if (d.nikeArr) {
+                if (!Array.isArray(d.nikeArr))
+                    throw TypeError(".HallPto.S_ONLINE_LIST.nikeArr: array expected");
+                m.nikeArr = [];
+                for (var i = 0; i < d.nikeArr.length; ++i) {
+                    m.nikeArr[i] = String(d.nikeArr[i]);
+                }
+            }
+            return m;
+        };
+
+        S_ONLINE_LIST.toObject = function toObject(m, o) {
+            if (!o)
+                o = {};
+            var d = {};
+            if (o.arrays || o.defaults) {
+                d.nikeArr = [];
+            }
+            if (o.defaults) {
+                d.cmd = 1;
+                d.scmd = 6;
+            }
+            if (m.cmd != null && m.hasOwnProperty("cmd")) {
+                d.cmd = m.cmd;
+            }
+            if (m.scmd != null && m.hasOwnProperty("scmd")) {
+                d.scmd = m.scmd;
+            }
+            if (m.nikeArr && m.nikeArr.length) {
+                d.nikeArr = [];
+                for (var j = 0; j < m.nikeArr.length; ++j) {
+                    d.nikeArr[j] = m.nikeArr[j];
+                }
+            }
+            return d;
+        };
+
+        S_ONLINE_LIST.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return S_ONLINE_LIST;
+    })();
+
     return HallPto;
 })();
 
@@ -1770,7 +1966,7 @@ $root.RoomPto = (function() {
                         this[ks[i]] = p[ks[i]];
         }
 
-        C_ROOM_LIST.prototype.cmd = 1;
+        C_ROOM_LIST.prototype.cmd = 2;
         C_ROOM_LIST.prototype.scmd = 5;
         C_ROOM_LIST.prototype.gameId = 0;
         C_ROOM_LIST.prototype.status = 0;
@@ -1844,7 +2040,7 @@ $root.RoomPto = (function() {
                 o = {};
             var d = {};
             if (o.defaults) {
-                d.cmd = 1;
+                d.cmd = 2;
                 d.scmd = 5;
                 d.gameId = 0;
                 d.status = 0;
@@ -1881,7 +2077,7 @@ $root.RoomPto = (function() {
                         this[ks[i]] = p[ks[i]];
         }
 
-        S_ROOM_LIST.prototype.cmd = 1;
+        S_ROOM_LIST.prototype.cmd = 2;
         S_ROOM_LIST.prototype.scmd = 6;
         S_ROOM_LIST.prototype.list = $util.emptyArray;
 
@@ -1960,7 +2156,7 @@ $root.RoomPto = (function() {
                 d.list = [];
             }
             if (o.defaults) {
-                d.cmd = 1;
+                d.cmd = 2;
                 d.scmd = 6;
             }
             if (m.cmd != null && m.hasOwnProperty("cmd")) {
@@ -1994,7 +2190,7 @@ $root.RoomPto = (function() {
                         this[ks[i]] = p[ks[i]];
         }
 
-        S_BROADCAST_JOIN_ROOM.prototype.cmd = 1;
+        S_BROADCAST_JOIN_ROOM.prototype.cmd = 2;
         S_BROADCAST_JOIN_ROOM.prototype.scmd = 7;
         S_BROADCAST_JOIN_ROOM.prototype.player = null;
 
@@ -2061,7 +2257,7 @@ $root.RoomPto = (function() {
                 o = {};
             var d = {};
             if (o.defaults) {
-                d.cmd = 1;
+                d.cmd = 2;
                 d.scmd = 7;
                 d.player = null;
             }
@@ -2093,7 +2289,7 @@ $root.RoomPto = (function() {
                         this[ks[i]] = p[ks[i]];
         }
 
-        S_BROADCAST_LEAVE_ROOM.prototype.cmd = 1;
+        S_BROADCAST_LEAVE_ROOM.prototype.cmd = 2;
         S_BROADCAST_LEAVE_ROOM.prototype.scmd = 8;
         S_BROADCAST_LEAVE_ROOM.prototype.index = 0;
 
@@ -2158,7 +2354,7 @@ $root.RoomPto = (function() {
                 o = {};
             var d = {};
             if (o.defaults) {
-                d.cmd = 1;
+                d.cmd = 2;
                 d.scmd = 8;
                 d.index = 0;
             }
@@ -2457,103 +2653,6 @@ $root.RoomPto = (function() {
         };
 
         return C_LEAVE_ROOM;
-    })();
-
-    RoomPto.C_RECONNECTION_ROOM = (function() {
-
-        function C_RECONNECTION_ROOM(p) {
-            if (p)
-                for (var ks = Object.keys(p), i = 0; i < ks.length; ++i)
-                    if (p[ks[i]] != null)
-                        this[ks[i]] = p[ks[i]];
-        }
-
-        C_RECONNECTION_ROOM.prototype.cmd = 2;
-        C_RECONNECTION_ROOM.prototype.scmd = 12;
-        C_RECONNECTION_ROOM.prototype.roomId = 0;
-
-        C_RECONNECTION_ROOM.create = function create(properties) {
-            return new C_RECONNECTION_ROOM(properties);
-        };
-
-        C_RECONNECTION_ROOM.encode = function encode(m, w) {
-            if (!w)
-                w = $Writer.create();
-            if (m.cmd != null && Object.hasOwnProperty.call(m, "cmd"))
-                w.uint32(8).int32(m.cmd);
-            if (m.scmd != null && Object.hasOwnProperty.call(m, "scmd"))
-                w.uint32(16).int32(m.scmd);
-            if (m.roomId != null && Object.hasOwnProperty.call(m, "roomId"))
-                w.uint32(24).int32(m.roomId);
-            return w;
-        };
-
-        C_RECONNECTION_ROOM.decode = function decode(r, l) {
-            if (!(r instanceof $Reader))
-                r = $Reader.create(r);
-            var c = l === undefined ? r.len : r.pos + l, m = new $root.RoomPto.C_RECONNECTION_ROOM();
-            while (r.pos < c) {
-                var t = r.uint32();
-                switch (t >>> 3) {
-                case 1:
-                    m.cmd = r.int32();
-                    break;
-                case 2:
-                    m.scmd = r.int32();
-                    break;
-                case 3:
-                    m.roomId = r.int32();
-                    break;
-                default:
-                    r.skipType(t & 7);
-                    break;
-                }
-            }
-            return m;
-        };
-
-        C_RECONNECTION_ROOM.fromObject = function fromObject(d) {
-            if (d instanceof $root.RoomPto.C_RECONNECTION_ROOM)
-                return d;
-            var m = new $root.RoomPto.C_RECONNECTION_ROOM();
-            if (d.cmd != null) {
-                m.cmd = d.cmd | 0;
-            }
-            if (d.scmd != null) {
-                m.scmd = d.scmd | 0;
-            }
-            if (d.roomId != null) {
-                m.roomId = d.roomId | 0;
-            }
-            return m;
-        };
-
-        C_RECONNECTION_ROOM.toObject = function toObject(m, o) {
-            if (!o)
-                o = {};
-            var d = {};
-            if (o.defaults) {
-                d.cmd = 2;
-                d.scmd = 12;
-                d.roomId = 0;
-            }
-            if (m.cmd != null && m.hasOwnProperty("cmd")) {
-                d.cmd = m.cmd;
-            }
-            if (m.scmd != null && m.hasOwnProperty("scmd")) {
-                d.scmd = m.scmd;
-            }
-            if (m.roomId != null && m.hasOwnProperty("roomId")) {
-                d.roomId = m.roomId;
-            }
-            return d;
-        };
-
-        C_RECONNECTION_ROOM.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        return C_RECONNECTION_ROOM;
     })();
 
     return RoomPto;

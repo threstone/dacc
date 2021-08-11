@@ -58,7 +58,7 @@ message S_JOIN_ROOM{
 
 //客户端请求房间列表
 message C_ROOM_LIST{
-	int32 cmd = 1[default = 1];
+	int32 cmd = 1[default = 2];
 	int32 scmd = 2[default = 5];
 	int32 gameId = 3;
 	int32 status = 4;
@@ -66,21 +66,21 @@ message C_ROOM_LIST{
 
 //服务端返回房间列表
 message S_ROOM_LIST{
-	int32 cmd = 1[default = 1];
+	int32 cmd = 1[default = 2];
 	int32 scmd = 2[default = 6];
 	repeated RoomInfo list = 3;
 }
 
 //服务器广播玩家加入房间
 message S_BROADCAST_JOIN_ROOM{
-	int32 cmd = 1[default = 1];
+	int32 cmd = 1[default = 2];
 	int32 scmd = 2[default = 7];
 	Player player = 3;
 }
 
 //服务器广播玩家离开房间
 message S_BROADCAST_LEAVE_ROOM{
-	int32 cmd = 1[default = 1];
+	int32 cmd = 1[default = 2];
 	int32 scmd = 2[default = 8];
 	int32 index = 3;
 }
@@ -103,11 +103,4 @@ message S_PLAYER_READY_STATUS_CHANGE{
 message C_LEAVE_ROOM{
 	int32 cmd = 1[default = 2]; 
  	int32 scmd = 2[default = 11];
-}
-
-//重连进入房间
-message C_RECONNECTION_ROOM {
-	int32 cmd = 1[default = 2]; 
- 	int32 scmd = 2[default = 12];
-	int32 roomId = 3;
 }

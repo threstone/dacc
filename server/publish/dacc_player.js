@@ -1,34 +1,46 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DaccPlayer = void 0;
-const log4js_1 = require("log4js");
 const global_var_1 = require("./global_var");
-let logger = log4js_1.getLogger();
 class DaccPlayer {
     constructor(clientId) {
         this.isReady = false;
         this.isWatcher = false;
-        this.clientId = clientId;
+        this._clientId = clientId;
+        let userModel = global_var_1.GlobalVar.server.getDaccSession(this._clientId).userModel;
+        this._id = userModel.id || -1;
+        this.nick = userModel.nick || '';
+        this.headIndex = userModel.headIndex || -1;
+    }
+    get clientId() {
+        return this._clientId;
+    }
+    get id() {
+        return this._id;
+    }
+    reconnect(clientId) {
+        this._clientId = clientId;
+    }
+    disconnect() {
+        this._clientId = -1;
     }
     sendMsg(msg) {
-        if (this.clientId == -1) {
-            logger.error("error DaccPlayer clientId = -1");
+        if (this._clientId == -1) {
             return;
         }
-        global_var_1.GlobalVar.server.sendMsg(this.clientId, msg);
+        global_var_1.GlobalVar.server.sendMsg(this._clientId, msg);
     }
     sendBuf(buf) {
-        if (this.clientId == -1) {
-            logger.error("error DaccPlayer clientId = -1");
+        if (this._clientId == -1) {
             return;
         }
-        global_var_1.GlobalVar.server.sendBuf(this.clientId, buf);
+        global_var_1.GlobalVar.server.sendBuf(this._clientId, buf);
     }
     /**
      * 获取DaccSession
      */
     getSession() {
-        return global_var_1.GlobalVar.server.getDaccSession(this.clientId);
+        return global_var_1.GlobalVar.server.getDaccSession(this._clientId);
     }
     destroy() {
         let session = this.getSession();
@@ -36,7 +48,8 @@ class DaccPlayer {
             session.room = null;
             session.player = null;
         }
-        this.clientId = -1;
+        this._clientId = -1;
+        this._id = -1;
         this.index = -1;
         this.isReady = false;
         this.isWatcher = false;

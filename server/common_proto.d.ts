@@ -965,6 +965,204 @@ export namespace HallPto {
          */
         public toJSON(): { [k: string]: any };
     }
+
+    /** Properties of a C_ONLINE_LIST. */
+    interface IC_ONLINE_LIST {
+
+        /** C_ONLINE_LIST cmd */
+        cmd?: (number|null);
+
+        /** C_ONLINE_LIST scmd */
+        scmd?: (number|null);
+    }
+
+    /** Represents a C_ONLINE_LIST. */
+    class C_ONLINE_LIST implements IC_ONLINE_LIST {
+
+        /**
+         * Constructs a new C_ONLINE_LIST.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: HallPto.IC_ONLINE_LIST);
+
+        /** C_ONLINE_LIST cmd. */
+        public cmd: number;
+
+        /** C_ONLINE_LIST scmd. */
+        public scmd: number;
+
+        /**
+         * Creates a new C_ONLINE_LIST instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns C_ONLINE_LIST instance
+         */
+        public static create(properties?: HallPto.IC_ONLINE_LIST): HallPto.C_ONLINE_LIST;
+
+        /**
+         * Encodes the specified C_ONLINE_LIST message. Does not implicitly {@link HallPto.C_ONLINE_LIST.verify|verify} messages.
+         * @param message C_ONLINE_LIST message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: HallPto.IC_ONLINE_LIST, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified C_ONLINE_LIST message, length delimited. Does not implicitly {@link HallPto.C_ONLINE_LIST.verify|verify} messages.
+         * @param message C_ONLINE_LIST message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: HallPto.IC_ONLINE_LIST, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a C_ONLINE_LIST message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns C_ONLINE_LIST
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): HallPto.C_ONLINE_LIST;
+
+        /**
+         * Decodes a C_ONLINE_LIST message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns C_ONLINE_LIST
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): HallPto.C_ONLINE_LIST;
+
+        /**
+         * Verifies a C_ONLINE_LIST message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a C_ONLINE_LIST message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns C_ONLINE_LIST
+         */
+        public static fromObject(object: { [k: string]: any }): HallPto.C_ONLINE_LIST;
+
+        /**
+         * Creates a plain object from a C_ONLINE_LIST message. Also converts values to other types if specified.
+         * @param message C_ONLINE_LIST
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: HallPto.C_ONLINE_LIST, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this C_ONLINE_LIST to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a S_ONLINE_LIST. */
+    interface IS_ONLINE_LIST {
+
+        /** S_ONLINE_LIST cmd */
+        cmd?: (number|null);
+
+        /** S_ONLINE_LIST scmd */
+        scmd?: (number|null);
+
+        /** S_ONLINE_LIST nikeArr */
+        nikeArr?: (string[]|null);
+    }
+
+    /** Represents a S_ONLINE_LIST. */
+    class S_ONLINE_LIST implements IS_ONLINE_LIST {
+
+        /**
+         * Constructs a new S_ONLINE_LIST.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: HallPto.IS_ONLINE_LIST);
+
+        /** S_ONLINE_LIST cmd. */
+        public cmd: number;
+
+        /** S_ONLINE_LIST scmd. */
+        public scmd: number;
+
+        /** S_ONLINE_LIST nikeArr. */
+        public nikeArr: string[];
+
+        /**
+         * Creates a new S_ONLINE_LIST instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns S_ONLINE_LIST instance
+         */
+        public static create(properties?: HallPto.IS_ONLINE_LIST): HallPto.S_ONLINE_LIST;
+
+        /**
+         * Encodes the specified S_ONLINE_LIST message. Does not implicitly {@link HallPto.S_ONLINE_LIST.verify|verify} messages.
+         * @param message S_ONLINE_LIST message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: HallPto.IS_ONLINE_LIST, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified S_ONLINE_LIST message, length delimited. Does not implicitly {@link HallPto.S_ONLINE_LIST.verify|verify} messages.
+         * @param message S_ONLINE_LIST message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: HallPto.IS_ONLINE_LIST, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a S_ONLINE_LIST message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns S_ONLINE_LIST
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): HallPto.S_ONLINE_LIST;
+
+        /**
+         * Decodes a S_ONLINE_LIST message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns S_ONLINE_LIST
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): HallPto.S_ONLINE_LIST;
+
+        /**
+         * Verifies a S_ONLINE_LIST message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a S_ONLINE_LIST message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns S_ONLINE_LIST
+         */
+        public static fromObject(object: { [k: string]: any }): HallPto.S_ONLINE_LIST;
+
+        /**
+         * Creates a plain object from a S_ONLINE_LIST message. Also converts values to other types if specified.
+         * @param message S_ONLINE_LIST
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: HallPto.S_ONLINE_LIST, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this S_ONLINE_LIST to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
 }
 
 /** Namespace RoomPto. */
@@ -2363,108 +2561,6 @@ export namespace RoomPto {
 
         /**
          * Converts this C_LEAVE_ROOM to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-    }
-
-    /** Properties of a C_RECONNECTION_ROOM. */
-    interface IC_RECONNECTION_ROOM {
-
-        /** C_RECONNECTION_ROOM cmd */
-        cmd?: (number|null);
-
-        /** C_RECONNECTION_ROOM scmd */
-        scmd?: (number|null);
-
-        /** C_RECONNECTION_ROOM roomId */
-        roomId?: (number|null);
-    }
-
-    /** Represents a C_RECONNECTION_ROOM. */
-    class C_RECONNECTION_ROOM implements IC_RECONNECTION_ROOM {
-
-        /**
-         * Constructs a new C_RECONNECTION_ROOM.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: RoomPto.IC_RECONNECTION_ROOM);
-
-        /** C_RECONNECTION_ROOM cmd. */
-        public cmd: number;
-
-        /** C_RECONNECTION_ROOM scmd. */
-        public scmd: number;
-
-        /** C_RECONNECTION_ROOM roomId. */
-        public roomId: number;
-
-        /**
-         * Creates a new C_RECONNECTION_ROOM instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns C_RECONNECTION_ROOM instance
-         */
-        public static create(properties?: RoomPto.IC_RECONNECTION_ROOM): RoomPto.C_RECONNECTION_ROOM;
-
-        /**
-         * Encodes the specified C_RECONNECTION_ROOM message. Does not implicitly {@link RoomPto.C_RECONNECTION_ROOM.verify|verify} messages.
-         * @param message C_RECONNECTION_ROOM message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: RoomPto.IC_RECONNECTION_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified C_RECONNECTION_ROOM message, length delimited. Does not implicitly {@link RoomPto.C_RECONNECTION_ROOM.verify|verify} messages.
-         * @param message C_RECONNECTION_ROOM message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: RoomPto.IC_RECONNECTION_ROOM, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a C_RECONNECTION_ROOM message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns C_RECONNECTION_ROOM
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): RoomPto.C_RECONNECTION_ROOM;
-
-        /**
-         * Decodes a C_RECONNECTION_ROOM message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns C_RECONNECTION_ROOM
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): RoomPto.C_RECONNECTION_ROOM;
-
-        /**
-         * Verifies a C_RECONNECTION_ROOM message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a C_RECONNECTION_ROOM message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns C_RECONNECTION_ROOM
-         */
-        public static fromObject(object: { [k: string]: any }): RoomPto.C_RECONNECTION_ROOM;
-
-        /**
-         * Creates a plain object from a C_RECONNECTION_ROOM message. Also converts values to other types if specified.
-         * @param message C_RECONNECTION_ROOM
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: RoomPto.C_RECONNECTION_ROOM, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this C_RECONNECTION_ROOM to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };

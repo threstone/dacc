@@ -34,3 +34,16 @@ message C_CHANGE_HEAD{
 	int32 scmd = 2[default = 4];
 	int32 headIndex = 3;
 }
+
+//请求在线列表
+message C_ONLINE_LIST {
+	int32 cmd = 1[default = 1]; 
+	int32 scmd = 2[default = 5];
+}
+
+//返回在线列表
+message S_ONLINE_LIST {
+	int32 cmd = 1[default = 1]; 
+	int32 scmd = 2[default = 6];
+	repeated string nikeArr = 3;
+}

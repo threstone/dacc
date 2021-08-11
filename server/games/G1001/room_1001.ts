@@ -1,6 +1,7 @@
 import { DaccPlayer } from '../../dacc_player'
 import { DaccRoom } from '../../dacc_room'
 import { GamePto1001 } from './proto_1001'
+import { SystemPto } from '../../common_proto'
 enum SWORD_TYPE {
     shitou = 0,
     jiandao = 1,
@@ -9,6 +10,8 @@ enum SWORD_TYPE {
 export class Room1001 extends DaccRoom {
 
     playerSword: number[]
+    leftWinTimes: number = 0
+    gameTimes: number = 0
 
     protected startGame() {
         this.playerSword = [-1, -1]
@@ -33,11 +36,13 @@ export class Room1001 extends DaccRoom {
         return 2
     }
 
-    onUserReconnect(player: DaccPlayer) {
-        let msg = new GamePto1001.S_RECONNECT_1001()
+    onGameSceneInit(player: DaccPlayer) {
+        let msg = new GamePto1001.S_SCENE_INIT_1001()
+        msg.leftWinTimes = this.leftWinTimes
+        msg.gameTimes = this.gameTimes
         msg.gameId = this.gameId
         msg.roomSeq = this.roomSeq
-        msg.selfIndex = player.index
+        msg.selfIndex = player.isWatcher ? -1 : player.index
         for (let index = 0; index < this.players.length; index++) {
             const tempPlayer = this.players[index];
             if (tempPlayer) {
@@ -46,7 +51,7 @@ export class Room1001 extends DaccRoom {
                 playerInfo.headIndex = tempPlayer.headIndex
                 playerInfo.nick = tempPlayer.nick
                 playerInfo.isOutSword = this.playerSword[index] != -1
-                if (player.index == index) {
+                if (!player.isWatcher && player.index == index) {
                     playerInfo.outSword = this.playerSword[index]
                 }
                 msg.players.push(playerInfo)
@@ -71,10 +76,19 @@ export class Room1001 extends DaccRoom {
     }
 
     protected onUserJoinSuccess(player: DaccPlayer) {
+        this.leftWinTimes = 0
+        this.gameTimes = 0
         return true
     }
 
     onUserSword(player: DaccPlayer, sword: number) {
+        if (this.playerSword[player.index] != -1) {
+            let msg = new SystemPto.S_TIPS()
+            msg.hoverTime = 3000
+            msg.msg = '已经出过了'
+            player.sendMsg(msg)
+            return
+        }
         let msg = new GamePto1001.S_BROADCAST_SWORD_1001()
         msg.index = player.index
         msg.sword = -1
@@ -125,6 +139,12 @@ export class Room1001 extends DaccRoom {
                     break
             }
             resMsg.winIndex = isZeroWin ? 0 : 1
+            //记录游戏结果
+            this.leftWinTimes += (isZeroWin ? 1 : 0)
+            this.gameTimes++
+            resMsg.leftWinTimes = this.leftWinTimes
+            resMsg.gameTimes = this.gameTimes
+
             this.broadcast(resMsg, true)
             this.doGameOver()
         }

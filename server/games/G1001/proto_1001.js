@@ -536,6 +536,8 @@ $root.GamePto1001 = (function() {
         S_GAME_RESULT_1001.prototype.scmd = 5;
         S_GAME_RESULT_1001.prototype.winIndex = 0;
         S_GAME_RESULT_1001.prototype.swords = $util.emptyArray;
+        S_GAME_RESULT_1001.prototype.leftWinTimes = 0;
+        S_GAME_RESULT_1001.prototype.gameTimes = 0;
 
         S_GAME_RESULT_1001.create = function create(properties) {
             return new S_GAME_RESULT_1001(properties);
@@ -556,6 +558,10 @@ $root.GamePto1001 = (function() {
                     w.int32(m.swords[i]);
                 w.ldelim();
             }
+            if (m.leftWinTimes != null && Object.hasOwnProperty.call(m, "leftWinTimes"))
+                w.uint32(40).int32(m.leftWinTimes);
+            if (m.gameTimes != null && Object.hasOwnProperty.call(m, "gameTimes"))
+                w.uint32(48).int32(m.gameTimes);
             return w;
         };
 
@@ -584,6 +590,12 @@ $root.GamePto1001 = (function() {
                             m.swords.push(r.int32());
                     } else
                         m.swords.push(r.int32());
+                    break;
+                case 5:
+                    m.leftWinTimes = r.int32();
+                    break;
+                case 6:
+                    m.gameTimes = r.int32();
                     break;
                 default:
                     r.skipType(t & 7);
@@ -614,6 +626,12 @@ $root.GamePto1001 = (function() {
                     m.swords[i] = d.swords[i] | 0;
                 }
             }
+            if (d.leftWinTimes != null) {
+                m.leftWinTimes = d.leftWinTimes | 0;
+            }
+            if (d.gameTimes != null) {
+                m.gameTimes = d.gameTimes | 0;
+            }
             return m;
         };
 
@@ -628,6 +646,8 @@ $root.GamePto1001 = (function() {
                 d.cmd = 1001;
                 d.scmd = 5;
                 d.winIndex = 0;
+                d.leftWinTimes = 0;
+                d.gameTimes = 0;
             }
             if (m.cmd != null && m.hasOwnProperty("cmd")) {
                 d.cmd = m.cmd;
@@ -644,6 +664,12 @@ $root.GamePto1001 = (function() {
                     d.swords[j] = m.swords[j];
                 }
             }
+            if (m.leftWinTimes != null && m.hasOwnProperty("leftWinTimes")) {
+                d.leftWinTimes = m.leftWinTimes;
+            }
+            if (m.gameTimes != null && m.hasOwnProperty("gameTimes")) {
+                d.gameTimes = m.gameTimes;
+            }
             return d;
         };
 
@@ -654,9 +680,9 @@ $root.GamePto1001 = (function() {
         return S_GAME_RESULT_1001;
     })();
 
-    GamePto1001.S_RECONNECT_1001 = (function() {
+    GamePto1001.S_SCENE_INIT_1001 = (function() {
 
-        function S_RECONNECT_1001(p) {
+        function S_SCENE_INIT_1001(p) {
             this.players = [];
             if (p)
                 for (var ks = Object.keys(p), i = 0; i < ks.length; ++i)
@@ -664,18 +690,20 @@ $root.GamePto1001 = (function() {
                         this[ks[i]] = p[ks[i]];
         }
 
-        S_RECONNECT_1001.prototype.cmd = 1001;
-        S_RECONNECT_1001.prototype.scmd = 6;
-        S_RECONNECT_1001.prototype.gameId = 0;
-        S_RECONNECT_1001.prototype.selfIndex = 0;
-        S_RECONNECT_1001.prototype.players = $util.emptyArray;
-        S_RECONNECT_1001.prototype.roomSeq = "";
+        S_SCENE_INIT_1001.prototype.cmd = 1001;
+        S_SCENE_INIT_1001.prototype.scmd = 6;
+        S_SCENE_INIT_1001.prototype.gameId = 0;
+        S_SCENE_INIT_1001.prototype.selfIndex = 0;
+        S_SCENE_INIT_1001.prototype.players = $util.emptyArray;
+        S_SCENE_INIT_1001.prototype.roomSeq = "";
+        S_SCENE_INIT_1001.prototype.leftWinTimes = 0;
+        S_SCENE_INIT_1001.prototype.gameTimes = 0;
 
-        S_RECONNECT_1001.create = function create(properties) {
-            return new S_RECONNECT_1001(properties);
+        S_SCENE_INIT_1001.create = function create(properties) {
+            return new S_SCENE_INIT_1001(properties);
         };
 
-        S_RECONNECT_1001.encode = function encode(m, w) {
+        S_SCENE_INIT_1001.encode = function encode(m, w) {
             if (!w)
                 w = $Writer.create();
             if (m.cmd != null && Object.hasOwnProperty.call(m, "cmd"))
@@ -692,13 +720,17 @@ $root.GamePto1001 = (function() {
             }
             if (m.roomSeq != null && Object.hasOwnProperty.call(m, "roomSeq"))
                 w.uint32(50).string(m.roomSeq);
+            if (m.leftWinTimes != null && Object.hasOwnProperty.call(m, "leftWinTimes"))
+                w.uint32(56).int32(m.leftWinTimes);
+            if (m.gameTimes != null && Object.hasOwnProperty.call(m, "gameTimes"))
+                w.uint32(64).int32(m.gameTimes);
             return w;
         };
 
-        S_RECONNECT_1001.decode = function decode(r, l) {
+        S_SCENE_INIT_1001.decode = function decode(r, l) {
             if (!(r instanceof $Reader))
                 r = $Reader.create(r);
-            var c = l === undefined ? r.len : r.pos + l, m = new $root.GamePto1001.S_RECONNECT_1001();
+            var c = l === undefined ? r.len : r.pos + l, m = new $root.GamePto1001.S_SCENE_INIT_1001();
             while (r.pos < c) {
                 var t = r.uint32();
                 switch (t >>> 3) {
@@ -722,6 +754,12 @@ $root.GamePto1001 = (function() {
                 case 6:
                     m.roomSeq = r.string();
                     break;
+                case 7:
+                    m.leftWinTimes = r.int32();
+                    break;
+                case 8:
+                    m.gameTimes = r.int32();
+                    break;
                 default:
                     r.skipType(t & 7);
                     break;
@@ -730,10 +768,10 @@ $root.GamePto1001 = (function() {
             return m;
         };
 
-        S_RECONNECT_1001.fromObject = function fromObject(d) {
-            if (d instanceof $root.GamePto1001.S_RECONNECT_1001)
+        S_SCENE_INIT_1001.fromObject = function fromObject(d) {
+            if (d instanceof $root.GamePto1001.S_SCENE_INIT_1001)
                 return d;
-            var m = new $root.GamePto1001.S_RECONNECT_1001();
+            var m = new $root.GamePto1001.S_SCENE_INIT_1001();
             if (d.cmd != null) {
                 m.cmd = d.cmd | 0;
             }
@@ -748,21 +786,27 @@ $root.GamePto1001 = (function() {
             }
             if (d.players) {
                 if (!Array.isArray(d.players))
-                    throw TypeError(".GamePto1001.S_RECONNECT_1001.players: array expected");
+                    throw TypeError(".GamePto1001.S_SCENE_INIT_1001.players: array expected");
                 m.players = [];
                 for (var i = 0; i < d.players.length; ++i) {
                     if (typeof d.players[i] !== "object")
-                        throw TypeError(".GamePto1001.S_RECONNECT_1001.players: object expected");
+                        throw TypeError(".GamePto1001.S_SCENE_INIT_1001.players: object expected");
                     m.players[i] = $root.GamePto1001.Player_1001.fromObject(d.players[i]);
                 }
             }
             if (d.roomSeq != null) {
                 m.roomSeq = String(d.roomSeq);
             }
+            if (d.leftWinTimes != null) {
+                m.leftWinTimes = d.leftWinTimes | 0;
+            }
+            if (d.gameTimes != null) {
+                m.gameTimes = d.gameTimes | 0;
+            }
             return m;
         };
 
-        S_RECONNECT_1001.toObject = function toObject(m, o) {
+        S_SCENE_INIT_1001.toObject = function toObject(m, o) {
             if (!o)
                 o = {};
             var d = {};
@@ -775,6 +819,8 @@ $root.GamePto1001 = (function() {
                 d.gameId = 0;
                 d.selfIndex = 0;
                 d.roomSeq = "";
+                d.leftWinTimes = 0;
+                d.gameTimes = 0;
             }
             if (m.cmd != null && m.hasOwnProperty("cmd")) {
                 d.cmd = m.cmd;
@@ -797,14 +843,20 @@ $root.GamePto1001 = (function() {
             if (m.roomSeq != null && m.hasOwnProperty("roomSeq")) {
                 d.roomSeq = m.roomSeq;
             }
+            if (m.leftWinTimes != null && m.hasOwnProperty("leftWinTimes")) {
+                d.leftWinTimes = m.leftWinTimes;
+            }
+            if (m.gameTimes != null && m.hasOwnProperty("gameTimes")) {
+                d.gameTimes = m.gameTimes;
+            }
             return d;
         };
 
-        S_RECONNECT_1001.prototype.toJSON = function toJSON() {
+        S_SCENE_INIT_1001.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
-        return S_RECONNECT_1001;
+        return S_SCENE_INIT_1001;
     })();
 
     return GamePto1001;

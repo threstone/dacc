@@ -14,7 +14,8 @@ $root.LoginPto = (function () {
         }
         C_LOGIN.prototype.cmd = 0;
         C_LOGIN.prototype.scmd = 1;
-        C_LOGIN.prototype.userName = "";
+        C_LOGIN.prototype.account = "";
+        C_LOGIN.prototype.password = "";
         C_LOGIN.create = function create(properties) {
             return new C_LOGIN(properties);
         };
@@ -25,8 +26,10 @@ $root.LoginPto = (function () {
                 w.uint32(8).int32(m.cmd);
             if (m.scmd != null && Object.hasOwnProperty.call(m, "scmd"))
                 w.uint32(16).int32(m.scmd);
-            if (m.userName != null && Object.hasOwnProperty.call(m, "userName"))
-                w.uint32(26).string(m.userName);
+            if (m.account != null && Object.hasOwnProperty.call(m, "account"))
+                w.uint32(26).string(m.account);
+            if (m.password != null && Object.hasOwnProperty.call(m, "password"))
+                w.uint32(34).string(m.password);
             return w;
         };
         C_LOGIN.decode = function decode(r, l) {
@@ -43,7 +46,10 @@ $root.LoginPto = (function () {
                         m.scmd = r.int32();
                         break;
                     case 3:
-                        m.userName = r.string();
+                        m.account = r.string();
+                        break;
+                    case 4:
+                        m.password = r.string();
                         break;
                     default:
                         r.skipType(t & 7);
@@ -62,8 +68,11 @@ $root.LoginPto = (function () {
             if (d.scmd != null) {
                 m.scmd = d.scmd | 0;
             }
-            if (d.userName != null) {
-                m.userName = String(d.userName);
+            if (d.account != null) {
+                m.account = String(d.account);
+            }
+            if (d.password != null) {
+                m.password = String(d.password);
             }
             return m;
         };
@@ -74,7 +83,8 @@ $root.LoginPto = (function () {
             if (o.defaults) {
                 d.cmd = 0;
                 d.scmd = 1;
-                d.userName = "";
+                d.account = "";
+                d.password = "";
             }
             if (m.cmd != null && m.hasOwnProperty("cmd")) {
                 d.cmd = m.cmd;
@@ -82,8 +92,11 @@ $root.LoginPto = (function () {
             if (m.scmd != null && m.hasOwnProperty("scmd")) {
                 d.scmd = m.scmd;
             }
-            if (m.userName != null && m.hasOwnProperty("userName")) {
-                d.userName = m.userName;
+            if (m.account != null && m.hasOwnProperty("account")) {
+                d.account = m.account;
+            }
+            if (m.password != null && m.hasOwnProperty("password")) {
+                d.password = m.password;
             }
             return d;
         };
@@ -102,7 +115,10 @@ $root.LoginPto = (function () {
         S_LOGIN.prototype.cmd = 0;
         S_LOGIN.prototype.scmd = 2;
         S_LOGIN.prototype.isSuccess = false;
-        S_LOGIN.prototype.userName = "";
+        S_LOGIN.prototype.nick = "";
+        S_LOGIN.prototype.headIndex = 0;
+        S_LOGIN.prototype.roomId = 0;
+        S_LOGIN.prototype.gameId = 0;
         S_LOGIN.create = function create(properties) {
             return new S_LOGIN(properties);
         };
@@ -115,8 +131,14 @@ $root.LoginPto = (function () {
                 w.uint32(16).int32(m.scmd);
             if (m.isSuccess != null && Object.hasOwnProperty.call(m, "isSuccess"))
                 w.uint32(24).bool(m.isSuccess);
-            if (m.userName != null && Object.hasOwnProperty.call(m, "userName"))
-                w.uint32(34).string(m.userName);
+            if (m.nick != null && Object.hasOwnProperty.call(m, "nick"))
+                w.uint32(34).string(m.nick);
+            if (m.headIndex != null && Object.hasOwnProperty.call(m, "headIndex"))
+                w.uint32(40).int32(m.headIndex);
+            if (m.roomId != null && Object.hasOwnProperty.call(m, "roomId"))
+                w.uint32(48).int32(m.roomId);
+            if (m.gameId != null && Object.hasOwnProperty.call(m, "gameId"))
+                w.uint32(56).int32(m.gameId);
             return w;
         };
         S_LOGIN.decode = function decode(r, l) {
@@ -136,7 +158,16 @@ $root.LoginPto = (function () {
                         m.isSuccess = r.bool();
                         break;
                     case 4:
-                        m.userName = r.string();
+                        m.nick = r.string();
+                        break;
+                    case 5:
+                        m.headIndex = r.int32();
+                        break;
+                    case 6:
+                        m.roomId = r.int32();
+                        break;
+                    case 7:
+                        m.gameId = r.int32();
                         break;
                     default:
                         r.skipType(t & 7);
@@ -158,8 +189,17 @@ $root.LoginPto = (function () {
             if (d.isSuccess != null) {
                 m.isSuccess = Boolean(d.isSuccess);
             }
-            if (d.userName != null) {
-                m.userName = String(d.userName);
+            if (d.nick != null) {
+                m.nick = String(d.nick);
+            }
+            if (d.headIndex != null) {
+                m.headIndex = d.headIndex | 0;
+            }
+            if (d.roomId != null) {
+                m.roomId = d.roomId | 0;
+            }
+            if (d.gameId != null) {
+                m.gameId = d.gameId | 0;
             }
             return m;
         };
@@ -171,7 +211,10 @@ $root.LoginPto = (function () {
                 d.cmd = 0;
                 d.scmd = 2;
                 d.isSuccess = false;
-                d.userName = "";
+                d.nick = "";
+                d.headIndex = 0;
+                d.roomId = 0;
+                d.gameId = 0;
             }
             if (m.cmd != null && m.hasOwnProperty("cmd")) {
                 d.cmd = m.cmd;
@@ -182,8 +225,17 @@ $root.LoginPto = (function () {
             if (m.isSuccess != null && m.hasOwnProperty("isSuccess")) {
                 d.isSuccess = m.isSuccess;
             }
-            if (m.userName != null && m.hasOwnProperty("userName")) {
-                d.userName = m.userName;
+            if (m.nick != null && m.hasOwnProperty("nick")) {
+                d.nick = m.nick;
+            }
+            if (m.headIndex != null && m.hasOwnProperty("headIndex")) {
+                d.headIndex = m.headIndex;
+            }
+            if (m.roomId != null && m.hasOwnProperty("roomId")) {
+                d.roomId = m.roomId;
+            }
+            if (m.gameId != null && m.hasOwnProperty("gameId")) {
+                d.gameId = m.gameId;
             }
             return d;
         };
@@ -191,6 +243,206 @@ $root.LoginPto = (function () {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
         return S_LOGIN;
+    })();
+    LoginPto.C_REGISTER = (function () {
+        function C_REGISTER(p) {
+            if (p)
+                for (var ks = Object.keys(p), i = 0; i < ks.length; ++i)
+                    if (p[ks[i]] != null)
+                        this[ks[i]] = p[ks[i]];
+        }
+        C_REGISTER.prototype.cmd = 0;
+        C_REGISTER.prototype.scmd = 3;
+        C_REGISTER.prototype.account = "";
+        C_REGISTER.prototype.password = "";
+        C_REGISTER.prototype.nick = "";
+        C_REGISTER.create = function create(properties) {
+            return new C_REGISTER(properties);
+        };
+        C_REGISTER.encode = function encode(m, w) {
+            if (!w)
+                w = $Writer.create();
+            if (m.cmd != null && Object.hasOwnProperty.call(m, "cmd"))
+                w.uint32(8).int32(m.cmd);
+            if (m.scmd != null && Object.hasOwnProperty.call(m, "scmd"))
+                w.uint32(16).int32(m.scmd);
+            if (m.account != null && Object.hasOwnProperty.call(m, "account"))
+                w.uint32(26).string(m.account);
+            if (m.password != null && Object.hasOwnProperty.call(m, "password"))
+                w.uint32(34).string(m.password);
+            if (m.nick != null && Object.hasOwnProperty.call(m, "nick"))
+                w.uint32(42).string(m.nick);
+            return w;
+        };
+        C_REGISTER.decode = function decode(r, l) {
+            if (!(r instanceof $Reader))
+                r = $Reader.create(r);
+            var c = l === undefined ? r.len : r.pos + l, m = new $root.LoginPto.C_REGISTER();
+            while (r.pos < c) {
+                var t = r.uint32();
+                switch (t >>> 3) {
+                    case 1:
+                        m.cmd = r.int32();
+                        break;
+                    case 2:
+                        m.scmd = r.int32();
+                        break;
+                    case 3:
+                        m.account = r.string();
+                        break;
+                    case 4:
+                        m.password = r.string();
+                        break;
+                    case 5:
+                        m.nick = r.string();
+                        break;
+                    default:
+                        r.skipType(t & 7);
+                        break;
+                }
+            }
+            return m;
+        };
+        C_REGISTER.fromObject = function fromObject(d) {
+            if (d instanceof $root.LoginPto.C_REGISTER)
+                return d;
+            var m = new $root.LoginPto.C_REGISTER();
+            if (d.cmd != null) {
+                m.cmd = d.cmd | 0;
+            }
+            if (d.scmd != null) {
+                m.scmd = d.scmd | 0;
+            }
+            if (d.account != null) {
+                m.account = String(d.account);
+            }
+            if (d.password != null) {
+                m.password = String(d.password);
+            }
+            if (d.nick != null) {
+                m.nick = String(d.nick);
+            }
+            return m;
+        };
+        C_REGISTER.toObject = function toObject(m, o) {
+            if (!o)
+                o = {};
+            var d = {};
+            if (o.defaults) {
+                d.cmd = 0;
+                d.scmd = 3;
+                d.account = "";
+                d.password = "";
+                d.nick = "";
+            }
+            if (m.cmd != null && m.hasOwnProperty("cmd")) {
+                d.cmd = m.cmd;
+            }
+            if (m.scmd != null && m.hasOwnProperty("scmd")) {
+                d.scmd = m.scmd;
+            }
+            if (m.account != null && m.hasOwnProperty("account")) {
+                d.account = m.account;
+            }
+            if (m.password != null && m.hasOwnProperty("password")) {
+                d.password = m.password;
+            }
+            if (m.nick != null && m.hasOwnProperty("nick")) {
+                d.nick = m.nick;
+            }
+            return d;
+        };
+        C_REGISTER.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+        return C_REGISTER;
+    })();
+    LoginPto.S_REGISTER = (function () {
+        function S_REGISTER(p) {
+            if (p)
+                for (var ks = Object.keys(p), i = 0; i < ks.length; ++i)
+                    if (p[ks[i]] != null)
+                        this[ks[i]] = p[ks[i]];
+        }
+        S_REGISTER.prototype.cmd = 0;
+        S_REGISTER.prototype.scmd = 4;
+        S_REGISTER.prototype.code = 0;
+        S_REGISTER.create = function create(properties) {
+            return new S_REGISTER(properties);
+        };
+        S_REGISTER.encode = function encode(m, w) {
+            if (!w)
+                w = $Writer.create();
+            if (m.cmd != null && Object.hasOwnProperty.call(m, "cmd"))
+                w.uint32(8).int32(m.cmd);
+            if (m.scmd != null && Object.hasOwnProperty.call(m, "scmd"))
+                w.uint32(16).int32(m.scmd);
+            if (m.code != null && Object.hasOwnProperty.call(m, "code"))
+                w.uint32(24).int32(m.code);
+            return w;
+        };
+        S_REGISTER.decode = function decode(r, l) {
+            if (!(r instanceof $Reader))
+                r = $Reader.create(r);
+            var c = l === undefined ? r.len : r.pos + l, m = new $root.LoginPto.S_REGISTER();
+            while (r.pos < c) {
+                var t = r.uint32();
+                switch (t >>> 3) {
+                    case 1:
+                        m.cmd = r.int32();
+                        break;
+                    case 2:
+                        m.scmd = r.int32();
+                        break;
+                    case 3:
+                        m.code = r.int32();
+                        break;
+                    default:
+                        r.skipType(t & 7);
+                        break;
+                }
+            }
+            return m;
+        };
+        S_REGISTER.fromObject = function fromObject(d) {
+            if (d instanceof $root.LoginPto.S_REGISTER)
+                return d;
+            var m = new $root.LoginPto.S_REGISTER();
+            if (d.cmd != null) {
+                m.cmd = d.cmd | 0;
+            }
+            if (d.scmd != null) {
+                m.scmd = d.scmd | 0;
+            }
+            if (d.code != null) {
+                m.code = d.code | 0;
+            }
+            return m;
+        };
+        S_REGISTER.toObject = function toObject(m, o) {
+            if (!o)
+                o = {};
+            var d = {};
+            if (o.defaults) {
+                d.cmd = 0;
+                d.scmd = 4;
+                d.code = 0;
+            }
+            if (m.cmd != null && m.hasOwnProperty("cmd")) {
+                d.cmd = m.cmd;
+            }
+            if (m.scmd != null && m.hasOwnProperty("scmd")) {
+                d.scmd = m.scmd;
+            }
+            if (m.code != null && m.hasOwnProperty("code")) {
+                d.code = m.code;
+            }
+            return d;
+        };
+        S_REGISTER.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+        return S_REGISTER;
     })();
     return LoginPto;
 })();
@@ -366,7 +618,7 @@ $root.HallPto = (function () {
         }
         S_CHAT_MSG.prototype.cmd = 1;
         S_CHAT_MSG.prototype.scmd = 2;
-        S_CHAT_MSG.prototype.userName = "";
+        S_CHAT_MSG.prototype.nick = "";
         S_CHAT_MSG.prototype.msg = "";
         S_CHAT_MSG.create = function create(properties) {
             return new S_CHAT_MSG(properties);
@@ -378,8 +630,8 @@ $root.HallPto = (function () {
                 w.uint32(8).int32(m.cmd);
             if (m.scmd != null && Object.hasOwnProperty.call(m, "scmd"))
                 w.uint32(16).int32(m.scmd);
-            if (m.userName != null && Object.hasOwnProperty.call(m, "userName"))
-                w.uint32(26).string(m.userName);
+            if (m.nick != null && Object.hasOwnProperty.call(m, "nick"))
+                w.uint32(26).string(m.nick);
             if (m.msg != null && Object.hasOwnProperty.call(m, "msg"))
                 w.uint32(34).string(m.msg);
             return w;
@@ -398,7 +650,7 @@ $root.HallPto = (function () {
                         m.scmd = r.int32();
                         break;
                     case 3:
-                        m.userName = r.string();
+                        m.nick = r.string();
                         break;
                     case 4:
                         m.msg = r.string();
@@ -420,8 +672,8 @@ $root.HallPto = (function () {
             if (d.scmd != null) {
                 m.scmd = d.scmd | 0;
             }
-            if (d.userName != null) {
-                m.userName = String(d.userName);
+            if (d.nick != null) {
+                m.nick = String(d.nick);
             }
             if (d.msg != null) {
                 m.msg = String(d.msg);
@@ -435,7 +687,7 @@ $root.HallPto = (function () {
             if (o.defaults) {
                 d.cmd = 1;
                 d.scmd = 2;
-                d.userName = "";
+                d.nick = "";
                 d.msg = "";
             }
             if (m.cmd != null && m.hasOwnProperty("cmd")) {
@@ -444,8 +696,8 @@ $root.HallPto = (function () {
             if (m.scmd != null && m.hasOwnProperty("scmd")) {
                 d.scmd = m.scmd;
             }
-            if (m.userName != null && m.hasOwnProperty("userName")) {
-                d.userName = m.userName;
+            if (m.nick != null && m.hasOwnProperty("nick")) {
+                d.nick = m.nick;
             }
             if (m.msg != null && m.hasOwnProperty("msg")) {
                 d.msg = m.msg;
@@ -648,6 +900,182 @@ $root.HallPto = (function () {
         };
         return C_CHANGE_HEAD;
     })();
+    HallPto.C_ONLINE_LIST = (function () {
+        function C_ONLINE_LIST(p) {
+            if (p)
+                for (var ks = Object.keys(p), i = 0; i < ks.length; ++i)
+                    if (p[ks[i]] != null)
+                        this[ks[i]] = p[ks[i]];
+        }
+        C_ONLINE_LIST.prototype.cmd = 1;
+        C_ONLINE_LIST.prototype.scmd = 5;
+        C_ONLINE_LIST.create = function create(properties) {
+            return new C_ONLINE_LIST(properties);
+        };
+        C_ONLINE_LIST.encode = function encode(m, w) {
+            if (!w)
+                w = $Writer.create();
+            if (m.cmd != null && Object.hasOwnProperty.call(m, "cmd"))
+                w.uint32(8).int32(m.cmd);
+            if (m.scmd != null && Object.hasOwnProperty.call(m, "scmd"))
+                w.uint32(16).int32(m.scmd);
+            return w;
+        };
+        C_ONLINE_LIST.decode = function decode(r, l) {
+            if (!(r instanceof $Reader))
+                r = $Reader.create(r);
+            var c = l === undefined ? r.len : r.pos + l, m = new $root.HallPto.C_ONLINE_LIST();
+            while (r.pos < c) {
+                var t = r.uint32();
+                switch (t >>> 3) {
+                    case 1:
+                        m.cmd = r.int32();
+                        break;
+                    case 2:
+                        m.scmd = r.int32();
+                        break;
+                    default:
+                        r.skipType(t & 7);
+                        break;
+                }
+            }
+            return m;
+        };
+        C_ONLINE_LIST.fromObject = function fromObject(d) {
+            if (d instanceof $root.HallPto.C_ONLINE_LIST)
+                return d;
+            var m = new $root.HallPto.C_ONLINE_LIST();
+            if (d.cmd != null) {
+                m.cmd = d.cmd | 0;
+            }
+            if (d.scmd != null) {
+                m.scmd = d.scmd | 0;
+            }
+            return m;
+        };
+        C_ONLINE_LIST.toObject = function toObject(m, o) {
+            if (!o)
+                o = {};
+            var d = {};
+            if (o.defaults) {
+                d.cmd = 1;
+                d.scmd = 5;
+            }
+            if (m.cmd != null && m.hasOwnProperty("cmd")) {
+                d.cmd = m.cmd;
+            }
+            if (m.scmd != null && m.hasOwnProperty("scmd")) {
+                d.scmd = m.scmd;
+            }
+            return d;
+        };
+        C_ONLINE_LIST.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+        return C_ONLINE_LIST;
+    })();
+    HallPto.S_ONLINE_LIST = (function () {
+        function S_ONLINE_LIST(p) {
+            this.nikeArr = [];
+            if (p)
+                for (var ks = Object.keys(p), i = 0; i < ks.length; ++i)
+                    if (p[ks[i]] != null)
+                        this[ks[i]] = p[ks[i]];
+        }
+        S_ONLINE_LIST.prototype.cmd = 1;
+        S_ONLINE_LIST.prototype.scmd = 6;
+        S_ONLINE_LIST.prototype.nikeArr = $util.emptyArray;
+        S_ONLINE_LIST.create = function create(properties) {
+            return new S_ONLINE_LIST(properties);
+        };
+        S_ONLINE_LIST.encode = function encode(m, w) {
+            if (!w)
+                w = $Writer.create();
+            if (m.cmd != null && Object.hasOwnProperty.call(m, "cmd"))
+                w.uint32(8).int32(m.cmd);
+            if (m.scmd != null && Object.hasOwnProperty.call(m, "scmd"))
+                w.uint32(16).int32(m.scmd);
+            if (m.nikeArr != null && m.nikeArr.length) {
+                for (var i = 0; i < m.nikeArr.length; ++i)
+                    w.uint32(26).string(m.nikeArr[i]);
+            }
+            return w;
+        };
+        S_ONLINE_LIST.decode = function decode(r, l) {
+            if (!(r instanceof $Reader))
+                r = $Reader.create(r);
+            var c = l === undefined ? r.len : r.pos + l, m = new $root.HallPto.S_ONLINE_LIST();
+            while (r.pos < c) {
+                var t = r.uint32();
+                switch (t >>> 3) {
+                    case 1:
+                        m.cmd = r.int32();
+                        break;
+                    case 2:
+                        m.scmd = r.int32();
+                        break;
+                    case 3:
+                        if (!(m.nikeArr && m.nikeArr.length))
+                            m.nikeArr = [];
+                        m.nikeArr.push(r.string());
+                        break;
+                    default:
+                        r.skipType(t & 7);
+                        break;
+                }
+            }
+            return m;
+        };
+        S_ONLINE_LIST.fromObject = function fromObject(d) {
+            if (d instanceof $root.HallPto.S_ONLINE_LIST)
+                return d;
+            var m = new $root.HallPto.S_ONLINE_LIST();
+            if (d.cmd != null) {
+                m.cmd = d.cmd | 0;
+            }
+            if (d.scmd != null) {
+                m.scmd = d.scmd | 0;
+            }
+            if (d.nikeArr) {
+                if (!Array.isArray(d.nikeArr))
+                    throw TypeError(".HallPto.S_ONLINE_LIST.nikeArr: array expected");
+                m.nikeArr = [];
+                for (var i = 0; i < d.nikeArr.length; ++i) {
+                    m.nikeArr[i] = String(d.nikeArr[i]);
+                }
+            }
+            return m;
+        };
+        S_ONLINE_LIST.toObject = function toObject(m, o) {
+            if (!o)
+                o = {};
+            var d = {};
+            if (o.arrays || o.defaults) {
+                d.nikeArr = [];
+            }
+            if (o.defaults) {
+                d.cmd = 1;
+                d.scmd = 6;
+            }
+            if (m.cmd != null && m.hasOwnProperty("cmd")) {
+                d.cmd = m.cmd;
+            }
+            if (m.scmd != null && m.hasOwnProperty("scmd")) {
+                d.scmd = m.scmd;
+            }
+            if (m.nikeArr && m.nikeArr.length) {
+                d.nikeArr = [];
+                for (var j = 0; j < m.nikeArr.length; ++j) {
+                    d.nikeArr[j] = m.nikeArr[j];
+                }
+            }
+            return d;
+        };
+        S_ONLINE_LIST.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+        return S_ONLINE_LIST;
+    })();
     return HallPto;
 })();
 $root.RoomPto = (function () {
@@ -661,7 +1089,7 @@ $root.RoomPto = (function () {
         }
         Player.prototype.index = 0;
         Player.prototype.headIndex = 0;
-        Player.prototype.userName = "";
+        Player.prototype.nick = "";
         Player.prototype.isReady = false;
         Player.create = function create(properties) {
             return new Player(properties);
@@ -673,8 +1101,8 @@ $root.RoomPto = (function () {
                 w.uint32(8).int32(m.index);
             if (m.headIndex != null && Object.hasOwnProperty.call(m, "headIndex"))
                 w.uint32(16).int32(m.headIndex);
-            if (m.userName != null && Object.hasOwnProperty.call(m, "userName"))
-                w.uint32(26).string(m.userName);
+            if (m.nick != null && Object.hasOwnProperty.call(m, "nick"))
+                w.uint32(26).string(m.nick);
             if (m.isReady != null && Object.hasOwnProperty.call(m, "isReady"))
                 w.uint32(32).bool(m.isReady);
             return w;
@@ -693,7 +1121,7 @@ $root.RoomPto = (function () {
                         m.headIndex = r.int32();
                         break;
                     case 3:
-                        m.userName = r.string();
+                        m.nick = r.string();
                         break;
                     case 4:
                         m.isReady = r.bool();
@@ -715,8 +1143,8 @@ $root.RoomPto = (function () {
             if (d.headIndex != null) {
                 m.headIndex = d.headIndex | 0;
             }
-            if (d.userName != null) {
-                m.userName = String(d.userName);
+            if (d.nick != null) {
+                m.nick = String(d.nick);
             }
             if (d.isReady != null) {
                 m.isReady = Boolean(d.isReady);
@@ -730,7 +1158,7 @@ $root.RoomPto = (function () {
             if (o.defaults) {
                 d.index = 0;
                 d.headIndex = 0;
-                d.userName = "";
+                d.nick = "";
                 d.isReady = false;
             }
             if (m.index != null && m.hasOwnProperty("index")) {
@@ -739,8 +1167,8 @@ $root.RoomPto = (function () {
             if (m.headIndex != null && m.hasOwnProperty("headIndex")) {
                 d.headIndex = m.headIndex;
             }
-            if (m.userName != null && m.hasOwnProperty("userName")) {
-                d.userName = m.userName;
+            if (m.nick != null && m.hasOwnProperty("nick")) {
+                d.nick = m.nick;
             }
             if (m.isReady != null && m.hasOwnProperty("isReady")) {
                 d.isReady = m.isReady;
@@ -1088,6 +1516,7 @@ $root.RoomPto = (function () {
         C_JOIN_ROOM.prototype.cmd = 2;
         C_JOIN_ROOM.prototype.scmd = 3;
         C_JOIN_ROOM.prototype.roomId = 0;
+        C_JOIN_ROOM.prototype.isWatch = false;
         C_JOIN_ROOM.create = function create(properties) {
             return new C_JOIN_ROOM(properties);
         };
@@ -1100,6 +1529,8 @@ $root.RoomPto = (function () {
                 w.uint32(16).int32(m.scmd);
             if (m.roomId != null && Object.hasOwnProperty.call(m, "roomId"))
                 w.uint32(24).int32(m.roomId);
+            if (m.isWatch != null && Object.hasOwnProperty.call(m, "isWatch"))
+                w.uint32(32).bool(m.isWatch);
             return w;
         };
         C_JOIN_ROOM.decode = function decode(r, l) {
@@ -1117,6 +1548,9 @@ $root.RoomPto = (function () {
                         break;
                     case 3:
                         m.roomId = r.int32();
+                        break;
+                    case 4:
+                        m.isWatch = r.bool();
                         break;
                     default:
                         r.skipType(t & 7);
@@ -1138,6 +1572,9 @@ $root.RoomPto = (function () {
             if (d.roomId != null) {
                 m.roomId = d.roomId | 0;
             }
+            if (d.isWatch != null) {
+                m.isWatch = Boolean(d.isWatch);
+            }
             return m;
         };
         C_JOIN_ROOM.toObject = function toObject(m, o) {
@@ -1148,6 +1585,7 @@ $root.RoomPto = (function () {
                 d.cmd = 2;
                 d.scmd = 3;
                 d.roomId = 0;
+                d.isWatch = false;
             }
             if (m.cmd != null && m.hasOwnProperty("cmd")) {
                 d.cmd = m.cmd;
@@ -1157,6 +1595,9 @@ $root.RoomPto = (function () {
             }
             if (m.roomId != null && m.hasOwnProperty("roomId")) {
                 d.roomId = m.roomId;
+            }
+            if (m.isWatch != null && m.hasOwnProperty("isWatch")) {
+                d.isWatch = m.isWatch;
             }
             return d;
         };
@@ -1176,11 +1617,11 @@ $root.RoomPto = (function () {
         S_JOIN_ROOM.prototype.cmd = 2;
         S_JOIN_ROOM.prototype.scmd = 4;
         S_JOIN_ROOM.prototype.isSuccess = false;
-        S_JOIN_ROOM.prototype.roomId = 0;
         S_JOIN_ROOM.prototype.players = $util.emptyArray;
         S_JOIN_ROOM.prototype.gameId = 0;
         S_JOIN_ROOM.prototype.selfIndex = 0;
         S_JOIN_ROOM.prototype.roomSeq = "";
+        S_JOIN_ROOM.prototype.isWatcher = false;
         S_JOIN_ROOM.create = function create(properties) {
             return new S_JOIN_ROOM(properties);
         };
@@ -1193,18 +1634,18 @@ $root.RoomPto = (function () {
                 w.uint32(16).int32(m.scmd);
             if (m.isSuccess != null && Object.hasOwnProperty.call(m, "isSuccess"))
                 w.uint32(24).bool(m.isSuccess);
-            if (m.roomId != null && Object.hasOwnProperty.call(m, "roomId"))
-                w.uint32(32).int32(m.roomId);
             if (m.players != null && m.players.length) {
                 for (var i = 0; i < m.players.length; ++i)
-                    $root.RoomPto.Player.encode(m.players[i], w.uint32(42).fork()).ldelim();
+                    $root.RoomPto.Player.encode(m.players[i], w.uint32(34).fork()).ldelim();
             }
             if (m.gameId != null && Object.hasOwnProperty.call(m, "gameId"))
-                w.uint32(48).int32(m.gameId);
+                w.uint32(40).int32(m.gameId);
             if (m.selfIndex != null && Object.hasOwnProperty.call(m, "selfIndex"))
-                w.uint32(56).int32(m.selfIndex);
+                w.uint32(48).int32(m.selfIndex);
             if (m.roomSeq != null && Object.hasOwnProperty.call(m, "roomSeq"))
-                w.uint32(66).string(m.roomSeq);
+                w.uint32(58).string(m.roomSeq);
+            if (m.isWatcher != null && Object.hasOwnProperty.call(m, "isWatcher"))
+                w.uint32(64).bool(m.isWatcher);
             return w;
         };
         S_JOIN_ROOM.decode = function decode(r, l) {
@@ -1224,21 +1665,21 @@ $root.RoomPto = (function () {
                         m.isSuccess = r.bool();
                         break;
                     case 4:
-                        m.roomId = r.int32();
-                        break;
-                    case 5:
                         if (!(m.players && m.players.length))
                             m.players = [];
                         m.players.push($root.RoomPto.Player.decode(r, r.uint32()));
                         break;
-                    case 6:
+                    case 5:
                         m.gameId = r.int32();
                         break;
-                    case 7:
+                    case 6:
                         m.selfIndex = r.int32();
                         break;
-                    case 8:
+                    case 7:
                         m.roomSeq = r.string();
+                        break;
+                    case 8:
+                        m.isWatcher = r.bool();
                         break;
                     default:
                         r.skipType(t & 7);
@@ -1260,9 +1701,6 @@ $root.RoomPto = (function () {
             if (d.isSuccess != null) {
                 m.isSuccess = Boolean(d.isSuccess);
             }
-            if (d.roomId != null) {
-                m.roomId = d.roomId | 0;
-            }
             if (d.players) {
                 if (!Array.isArray(d.players))
                     throw TypeError(".RoomPto.S_JOIN_ROOM.players: array expected");
@@ -1282,6 +1720,9 @@ $root.RoomPto = (function () {
             if (d.roomSeq != null) {
                 m.roomSeq = String(d.roomSeq);
             }
+            if (d.isWatcher != null) {
+                m.isWatcher = Boolean(d.isWatcher);
+            }
             return m;
         };
         S_JOIN_ROOM.toObject = function toObject(m, o) {
@@ -1295,10 +1736,10 @@ $root.RoomPto = (function () {
                 d.cmd = 2;
                 d.scmd = 4;
                 d.isSuccess = false;
-                d.roomId = 0;
                 d.gameId = 0;
                 d.selfIndex = 0;
                 d.roomSeq = "";
+                d.isWatcher = false;
             }
             if (m.cmd != null && m.hasOwnProperty("cmd")) {
                 d.cmd = m.cmd;
@@ -1308,9 +1749,6 @@ $root.RoomPto = (function () {
             }
             if (m.isSuccess != null && m.hasOwnProperty("isSuccess")) {
                 d.isSuccess = m.isSuccess;
-            }
-            if (m.roomId != null && m.hasOwnProperty("roomId")) {
-                d.roomId = m.roomId;
             }
             if (m.players && m.players.length) {
                 d.players = [];
@@ -1327,6 +1765,9 @@ $root.RoomPto = (function () {
             if (m.roomSeq != null && m.hasOwnProperty("roomSeq")) {
                 d.roomSeq = m.roomSeq;
             }
+            if (m.isWatcher != null && m.hasOwnProperty("isWatcher")) {
+                d.isWatcher = m.isWatcher;
+            }
             return d;
         };
         S_JOIN_ROOM.prototype.toJSON = function toJSON() {
@@ -1341,7 +1782,7 @@ $root.RoomPto = (function () {
                     if (p[ks[i]] != null)
                         this[ks[i]] = p[ks[i]];
         }
-        C_ROOM_LIST.prototype.cmd = 1;
+        C_ROOM_LIST.prototype.cmd = 2;
         C_ROOM_LIST.prototype.scmd = 5;
         C_ROOM_LIST.prototype.gameId = 0;
         C_ROOM_LIST.prototype.status = 0;
@@ -1410,7 +1851,7 @@ $root.RoomPto = (function () {
                 o = {};
             var d = {};
             if (o.defaults) {
-                d.cmd = 1;
+                d.cmd = 2;
                 d.scmd = 5;
                 d.gameId = 0;
                 d.status = 0;
@@ -1442,7 +1883,7 @@ $root.RoomPto = (function () {
                     if (p[ks[i]] != null)
                         this[ks[i]] = p[ks[i]];
         }
-        S_ROOM_LIST.prototype.cmd = 1;
+        S_ROOM_LIST.prototype.cmd = 2;
         S_ROOM_LIST.prototype.scmd = 6;
         S_ROOM_LIST.prototype.list = $util.emptyArray;
         S_ROOM_LIST.create = function create(properties) {
@@ -1516,7 +1957,7 @@ $root.RoomPto = (function () {
                 d.list = [];
             }
             if (o.defaults) {
-                d.cmd = 1;
+                d.cmd = 2;
                 d.scmd = 6;
             }
             if (m.cmd != null && m.hasOwnProperty("cmd")) {
@@ -1545,7 +1986,7 @@ $root.RoomPto = (function () {
                     if (p[ks[i]] != null)
                         this[ks[i]] = p[ks[i]];
         }
-        S_BROADCAST_JOIN_ROOM.prototype.cmd = 1;
+        S_BROADCAST_JOIN_ROOM.prototype.cmd = 2;
         S_BROADCAST_JOIN_ROOM.prototype.scmd = 7;
         S_BROADCAST_JOIN_ROOM.prototype.player = null;
         S_BROADCAST_JOIN_ROOM.create = function create(properties) {
@@ -1607,7 +2048,7 @@ $root.RoomPto = (function () {
                 o = {};
             var d = {};
             if (o.defaults) {
-                d.cmd = 1;
+                d.cmd = 2;
                 d.scmd = 7;
                 d.player = null;
             }
@@ -1634,7 +2075,7 @@ $root.RoomPto = (function () {
                     if (p[ks[i]] != null)
                         this[ks[i]] = p[ks[i]];
         }
-        S_BROADCAST_LEAVE_ROOM.prototype.cmd = 1;
+        S_BROADCAST_LEAVE_ROOM.prototype.cmd = 2;
         S_BROADCAST_LEAVE_ROOM.prototype.scmd = 8;
         S_BROADCAST_LEAVE_ROOM.prototype.index = 0;
         S_BROADCAST_LEAVE_ROOM.create = function create(properties) {
@@ -1694,7 +2135,7 @@ $root.RoomPto = (function () {
                 o = {};
             var d = {};
             if (o.defaults) {
-                d.cmd = 1;
+                d.cmd = 2;
                 d.scmd = 8;
                 d.index = 0;
             }

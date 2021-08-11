@@ -6,6 +6,7 @@ const WS = require("ws");
 const protobuf_encoder_1 = require("./protobuf_encoder");
 const dacc_session_1 = require("./dacc_session");
 const common_proto_1 = require("./common_proto");
+const global_var_1 = require("./global_var");
 const logger = log4js_1.getLogger();
 class SocketServer {
     constructor() {
@@ -14,7 +15,7 @@ class SocketServer {
         this._socketArr = [];
         this._sessionArr = [];
         for (let i = 0; i < 1024; i++) {
-            let session = new dacc_session_1.DaccUser();
+            let session = new dacc_session_1.DaccSession();
             this._emptySessionPool.push(session);
             this._socketArr.push(null);
             this._sessionArr.push(null);
@@ -52,7 +53,7 @@ class SocketServer {
     getEmptySession() {
         if (this._emptySessionPool.length == 0) {
             for (let i = 0; i < 64; i++) {
-                let session = new dacc_session_1.DaccUser();
+                let session = new dacc_session_1.DaccSession();
                 this._emptySessionPool.push(session);
             }
         }
@@ -70,9 +71,12 @@ class SocketServer {
             return;
         }
         try {
-            if (session.isLogin == false && (msg.cmd != common_proto_1.LoginPto.C_LOGIN.prototype.cmd || msg.scmd != common_proto_1.LoginPto.C_LOGIN.prototype.scmd)) {
-                logger.error('未登录状态下禁止请求除登录以外的协议。');
-                return;
+            //未登录状态
+            if (session.isLogin == false) {
+                if (!(msg.cmd == common_proto_1.LoginPto.C_LOGIN.prototype.cmd && (msg.scmd == common_proto_1.LoginPto.C_LOGIN.prototype.scmd || msg.scmd == common_proto_1.LoginPto.C_REGISTER.prototype.scmd))) {
+                    logger.error('未登录状态下禁止请求除登录以外的协议。');
+                    return;
+                }
             }
             fun(session, msg);
         }
@@ -104,7 +108,13 @@ class SocketServer {
         }
         this._socketArr[clientId].send(buf);
     }
-    onClose(session) {
+    async onClose(session) {
+        if (session.userModel) {
+            let clientId = await global_var_1.GlobalVar.redis.getData(`userClientId-${session.userModel.id}`);
+            if (parseInt(clientId) == session.clientId) {
+                global_var_1.GlobalVar.redis.delete(`userClientId-${session.userModel.id}`);
+            }
+        }
         session.onClose();
         this._socketArr[session.clientId] = null;
         this._sessionArr[session.clientId] = null;
@@ -113,6 +123,14 @@ class SocketServer {
     }
     getDaccSession(clientId) {
         return this._sessionArr[clientId];
+    }
+    closeWs(clientId) {
+        if (this._socketArr[clientId]) {
+            this._socketArr[clientId].close();
+        }
+    }
+    getAllSession() {
+        return this._sessionArr;
     }
 }
 exports.SocketServer = SocketServer;

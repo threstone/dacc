@@ -3,11 +3,12 @@ import * as WS from "ws"
 import { IGameMessage, ProtoBufEncoder } from "./protobuf_encoder"
 import { DaccSession as DaccSession } from "./dacc_session"
 import { LoginPto } from "./common_proto"
+import { GlobalVar } from "./global_var"
 const logger = getLogger()
 export class SocketServer {
     private _defaultListenPort = 9595
     private _emptySessionPool: DaccSession[]
-    private _socketArr: any[]
+    private _socketArr: WS[]
     private _sessionArr: DaccSession[]
 
     constructor() {
@@ -117,7 +118,13 @@ export class SocketServer {
         this._socketArr[clientId].send(buf)
     }
 
-    onClose(session: DaccSession) {
+    async onClose(session: DaccSession) {
+        if (session.userModel) {
+            let clientId = await GlobalVar.redis.getData(`userClientId-${session.userModel.id}`)
+            if (parseInt(clientId) == session.clientId) {
+                GlobalVar.redis.delete(`userClientId-${session.userModel.id}`)
+            }
+        }
         session.onClose()
         this._socketArr[session.clientId] = null
         this._sessionArr[session.clientId] = null
@@ -129,4 +136,13 @@ export class SocketServer {
         return this._sessionArr[clientId]
     }
 
+    closeWs(clientId: number) {
+        if (this._socketArr[clientId]) {
+            this._socketArr[clientId].close()
+        }
+    }
+
+    getAllSession() {
+        return this._sessionArr
+    }
 }

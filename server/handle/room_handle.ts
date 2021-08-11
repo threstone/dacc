@@ -15,40 +15,43 @@ export class RoomHandle {
         user.sendMsg(resMsg)
     }
 
-    static C_RECONNECTION_ROOM(user: DaccSession, msg: RoomPto.C_RECONNECTION_ROOM) {
-        let room = GlobalVar.roomMgr.getRoomByRoomId(msg.roomId)
-        if (!room) {
-            return
-        }
-        room.onUserRequestReconnect(user)
-    }
-
     static C_JOIN_ROOM(user: DaccSession, msg: RoomPto.C_JOIN_ROOM) {
         let room = GlobalVar.roomMgr.getRoomByRoomId(msg.roomId)
         if (!room) {
             return
         }
+        //如果游戏已经开了，走场景恢复逻辑
+        if (room.isStart) {
+            //重连
+            if (msg.isWatch == false) {
+                room.onUserRequestReconnect(user)
+            } else {//游戏开始后的观战，需要恢复场景
+                room.onWatcherJoinInRoom(user)
+            }
+            return
+        }
+
         let resMsg = new RoomPto.S_JOIN_ROOM()
         let player = room.onUserJoinRoom(user, msg.isWatch)
         resMsg.isSuccess = player != undefined
-        resMsg.isWatcher = player.isWatcher
         //如果加入失败
         if (!resMsg.isSuccess) {
             user.sendMsg(resMsg)
             return
         }
+        resMsg.isWatcher = player.isWatcher
         resMsg.selfIndex = player.index
         resMsg.roomSeq = room.roomSeq
         for (let index = 0; index < room.players.length; index++) {
             if (!room.players[index]) {
                 continue
             }
-            const temp = room.players[index];
+            const tempPlayer = room.players[index];
             let player = new RoomPto.Player()
             player.index = index
-            player.isReady = temp.isReady
-            player.headIndex = temp.headIndex
-            player.nick = temp.nick
+            player.isReady = tempPlayer.isReady
+            player.headIndex = tempPlayer.headIndex
+            player.nick = tempPlayer.nick
             resMsg.players.push(player)
         }
         resMsg.gameId = room.gameId

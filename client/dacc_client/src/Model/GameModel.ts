@@ -34,6 +34,11 @@ class GameModel extends BaseModel {
             }
             this.modelObj[gameId] = new window[`GameModel${gameId}`](gameId)
         }
+
+        if (this.curGameID != -1) {
+            this.dead(this.curGameID)
+        }
+
         let gameModel: GameBaseModel = this.modelObj[gameId]
         gameModel.alive()
         this.curGameID = gameId

@@ -43,13 +43,17 @@ message S_GAME_RESULT_1001{
 	int32 scmd = 2[default = 5]; 
 	int32 winIndex = 3; // 如果是-1则说明是平局
 	repeated int32 swords = 4;
+	int32 leftWinTimes = 5;
+	int32 gameTimes = 6;
 }
 
-message S_RECONNECT_1001 {
+message S_SCENE_INIT_1001 {
 	int32 cmd = 1[default = 1001]; 
 	int32 scmd = 2[default = 6]; 
 	int32 gameId = 3;
 	int32 selfIndex = 4;
 	repeated Player_1001 players = 5;
 	string roomSeq = 6;
+	int32 leftWinTimes = 7;
+	int32 gameTimes = 8;
 }

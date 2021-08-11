@@ -22,13 +22,23 @@ class HallModel extends BaseModel {
             //需要重连
             if (data.roomId != -1) {
                 //激活游戏重连所需的model view
-                await GlobalController.gameController.onReconnect(data.gameId)
+                await GlobalController.gameController.initGame(data.gameId)
                 //请求重连
-                let msg = new RoomPto.C_RECONNECTION_ROOM()
+                let msg = new RoomPto.C_JOIN_ROOM()
+                msg.isWatch = false
                 msg.roomId = data.roomId
                 this.sendMsg(msg)
             }
+
+            //定时请求在线玩家
+            this.requestOnlineList()
+            setInterval(this.requestOnlineList.bind(this), 5000)
         }
+    }
+
+    requestOnlineList() {
+        let onlineMsg = new HallPto.C_ONLINE_LIST()
+        this.sendMsg(onlineMsg)
     }
 
     onSendChatMsg(evt: EventData) {
@@ -44,6 +54,10 @@ class HallModel extends BaseModel {
 
     S_GAME_LIST(msg: HallPto.S_GAME_LIST) {
         this.emit('GameListInfo', msg)
+    }
+
+    S_ONLINE_LIST(msg: HallPto.S_ONLINE_LIST) {
+        this.emit('OnlineListInfo', msg)
     }
 
 }

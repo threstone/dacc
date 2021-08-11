@@ -72,11 +72,11 @@ export abstract class DaccRoom {
     /**
      * 在游戏中玩家断线回调
      */
-    abstract onUserDisConnect(player: DaccPlayer)
+    abstract onUserDisConnect(player: DaccPlayer): void
     /**
-     * 当玩家尝试重连
+     * 当玩家尝试在游戏中初始化场景。如中途重连，中途加入观战
      */
-    abstract onUserReconnect(player: DaccPlayer)
+    abstract onGameSceneInit(player: DaccPlayer): void
 
 
     /**
@@ -90,8 +90,8 @@ export abstract class DaccRoom {
                 player.reconnect(user.clientId)
                 user.room = this
                 user.player = player
-                this.onUserReconnect(player)
-                break
+                this.onGameSceneInit(player)
+                return player
             }
         }
     }
@@ -246,15 +246,25 @@ export abstract class DaccRoom {
                 return player
             }
         } else {//观战者进入房间
-            let player = this.createNewPlayer(user)
-            player.isWatcher = true
-            user.room = this
-            user.player = player
-            this.watchers.push(player)
-            player.index = this.watchers.length - 1
-            return player
+            return this.onWatcherJoinInRoom(user)
         }
         return
+    }
+
+    /**
+     * 观战者进入房间 如果游戏已经开了需要给观战者发送场景恢复协议
+     */
+    onWatcherJoinInRoom(user: DaccSession) {
+        let player = this.createNewPlayer(user)
+        player.isWatcher = true
+        user.room = this
+        user.player = player
+        this.watchers.push(player)
+        player.index = this.watchers.length - 1
+        if (this.isStart) {
+            this.onGameSceneInit(player)
+        }
+        return player
     }
 
     /**

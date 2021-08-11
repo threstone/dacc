@@ -280,6 +280,12 @@ declare namespace GamePto1001 {
 
         /** S_GAME_RESULT_1001 swords */
         swords?: (number[]|null);
+
+        /** S_GAME_RESULT_1001 leftWinTimes */
+        leftWinTimes?: (number|null);
+
+        /** S_GAME_RESULT_1001 gameTimes */
+        gameTimes?: (number|null);
     }
 
     /** Represents a S_GAME_RESULT_1001. */
@@ -303,6 +309,12 @@ declare namespace GamePto1001 {
         /** S_GAME_RESULT_1001 swords. */
         public swords: number[];
 
+        /** S_GAME_RESULT_1001 leftWinTimes. */
+        public leftWinTimes: number;
+
+        /** S_GAME_RESULT_1001 gameTimes. */
+        public gameTimes: number;
+
         /**
          * Encodes the specified S_GAME_RESULT_1001 message. Does not implicitly {@link GamePto1001.S_GAME_RESULT_1001.verify|verify} messages.
          * @param message S_GAME_RESULT_1001 message or plain object to encode
@@ -322,72 +334,84 @@ declare namespace GamePto1001 {
         public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): GamePto1001.S_GAME_RESULT_1001;
     }
 
-    /** Properties of a S_RECONNECT_1001. */
-    interface IS_RECONNECT_1001 {
+    /** Properties of a S_SCENE_INIT_1001. */
+    interface IS_SCENE_INIT_1001 {
 
-        /** S_RECONNECT_1001 cmd */
+        /** S_SCENE_INIT_1001 cmd */
         cmd?: (number|null);
 
-        /** S_RECONNECT_1001 scmd */
+        /** S_SCENE_INIT_1001 scmd */
         scmd?: (number|null);
 
-        /** S_RECONNECT_1001 gameId */
+        /** S_SCENE_INIT_1001 gameId */
         gameId?: (number|null);
 
-        /** S_RECONNECT_1001 selfIndex */
+        /** S_SCENE_INIT_1001 selfIndex */
         selfIndex?: (number|null);
 
-        /** S_RECONNECT_1001 players */
+        /** S_SCENE_INIT_1001 players */
         players?: (GamePto1001.IPlayer_1001[]|null);
 
-        /** S_RECONNECT_1001 roomSeq */
+        /** S_SCENE_INIT_1001 roomSeq */
         roomSeq?: (string|null);
+
+        /** S_SCENE_INIT_1001 leftWinTimes */
+        leftWinTimes?: (number|null);
+
+        /** S_SCENE_INIT_1001 gameTimes */
+        gameTimes?: (number|null);
     }
 
-    /** Represents a S_RECONNECT_1001. */
-    class S_RECONNECT_1001 implements IS_RECONNECT_1001 {
+    /** Represents a S_SCENE_INIT_1001. */
+    class S_SCENE_INIT_1001 implements IS_SCENE_INIT_1001 {
 
         /**
-         * Constructs a new S_RECONNECT_1001.
+         * Constructs a new S_SCENE_INIT_1001.
          * @param [properties] Properties to set
          */
-        constructor(properties?: GamePto1001.IS_RECONNECT_1001);
+        constructor(properties?: GamePto1001.IS_SCENE_INIT_1001);
 
-        /** S_RECONNECT_1001 cmd. */
+        /** S_SCENE_INIT_1001 cmd. */
         public cmd: number;
 
-        /** S_RECONNECT_1001 scmd. */
+        /** S_SCENE_INIT_1001 scmd. */
         public scmd: number;
 
-        /** S_RECONNECT_1001 gameId. */
+        /** S_SCENE_INIT_1001 gameId. */
         public gameId: number;
 
-        /** S_RECONNECT_1001 selfIndex. */
+        /** S_SCENE_INIT_1001 selfIndex. */
         public selfIndex: number;
 
-        /** S_RECONNECT_1001 players. */
+        /** S_SCENE_INIT_1001 players. */
         public players: GamePto1001.IPlayer_1001[];
 
-        /** S_RECONNECT_1001 roomSeq. */
+        /** S_SCENE_INIT_1001 roomSeq. */
         public roomSeq: string;
 
+        /** S_SCENE_INIT_1001 leftWinTimes. */
+        public leftWinTimes: number;
+
+        /** S_SCENE_INIT_1001 gameTimes. */
+        public gameTimes: number;
+
         /**
-         * Encodes the specified S_RECONNECT_1001 message. Does not implicitly {@link GamePto1001.S_RECONNECT_1001.verify|verify} messages.
-         * @param message S_RECONNECT_1001 message or plain object to encode
+         * Encodes the specified S_SCENE_INIT_1001 message. Does not implicitly {@link GamePto1001.S_SCENE_INIT_1001.verify|verify} messages.
+         * @param message S_SCENE_INIT_1001 message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: GamePto1001.IS_RECONNECT_1001, writer?: protobuf.Writer): protobuf.Writer;
+        public static encode(message: GamePto1001.IS_SCENE_INIT_1001, writer?: protobuf.Writer): protobuf.Writer;
 
         /**
-         * Decodes a S_RECONNECT_1001 message from the specified reader or buffer.
+         * Decodes a S_SCENE_INIT_1001 message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns S_RECONNECT_1001
+         * @returns S_SCENE_INIT_1001
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): GamePto1001.S_RECONNECT_1001;
+        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): GamePto1001.S_SCENE_INIT_1001;
     }
 }
 
@@ -642,6 +666,100 @@ declare namespace HallPto {
          * @throws {protobuf.util.ProtocolError} If required fields are missing
          */
         public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): HallPto.C_CHANGE_HEAD;
+    }
+
+    /** Properties of a C_ONLINE_LIST. */
+    interface IC_ONLINE_LIST {
+
+        /** C_ONLINE_LIST cmd */
+        cmd?: (number|null);
+
+        /** C_ONLINE_LIST scmd */
+        scmd?: (number|null);
+    }
+
+    /** Represents a C_ONLINE_LIST. */
+    class C_ONLINE_LIST implements IC_ONLINE_LIST {
+
+        /**
+         * Constructs a new C_ONLINE_LIST.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: HallPto.IC_ONLINE_LIST);
+
+        /** C_ONLINE_LIST cmd. */
+        public cmd: number;
+
+        /** C_ONLINE_LIST scmd. */
+        public scmd: number;
+
+        /**
+         * Encodes the specified C_ONLINE_LIST message. Does not implicitly {@link HallPto.C_ONLINE_LIST.verify|verify} messages.
+         * @param message C_ONLINE_LIST message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: HallPto.IC_ONLINE_LIST, writer?: protobuf.Writer): protobuf.Writer;
+
+        /**
+         * Decodes a C_ONLINE_LIST message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns C_ONLINE_LIST
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): HallPto.C_ONLINE_LIST;
+    }
+
+    /** Properties of a S_ONLINE_LIST. */
+    interface IS_ONLINE_LIST {
+
+        /** S_ONLINE_LIST cmd */
+        cmd?: (number|null);
+
+        /** S_ONLINE_LIST scmd */
+        scmd?: (number|null);
+
+        /** S_ONLINE_LIST nikeArr */
+        nikeArr?: (string[]|null);
+    }
+
+    /** Represents a S_ONLINE_LIST. */
+    class S_ONLINE_LIST implements IS_ONLINE_LIST {
+
+        /**
+         * Constructs a new S_ONLINE_LIST.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: HallPto.IS_ONLINE_LIST);
+
+        /** S_ONLINE_LIST cmd. */
+        public cmd: number;
+
+        /** S_ONLINE_LIST scmd. */
+        public scmd: number;
+
+        /** S_ONLINE_LIST nikeArr. */
+        public nikeArr: string[];
+
+        /**
+         * Encodes the specified S_ONLINE_LIST message. Does not implicitly {@link HallPto.S_ONLINE_LIST.verify|verify} messages.
+         * @param message S_ONLINE_LIST message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: HallPto.IS_ONLINE_LIST, writer?: protobuf.Writer): protobuf.Writer;
+
+        /**
+         * Decodes a S_ONLINE_LIST message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns S_ONLINE_LIST
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): HallPto.S_ONLINE_LIST;
     }
 }
 
@@ -1614,56 +1732,6 @@ declare namespace RoomPto {
          * @throws {protobuf.util.ProtocolError} If required fields are missing
          */
         public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): RoomPto.C_LEAVE_ROOM;
-    }
-
-    /** Properties of a C_RECONNECTION_ROOM. */
-    interface IC_RECONNECTION_ROOM {
-
-        /** C_RECONNECTION_ROOM cmd */
-        cmd?: (number|null);
-
-        /** C_RECONNECTION_ROOM scmd */
-        scmd?: (number|null);
-
-        /** C_RECONNECTION_ROOM roomId */
-        roomId?: (number|null);
-    }
-
-    /** Represents a C_RECONNECTION_ROOM. */
-    class C_RECONNECTION_ROOM implements IC_RECONNECTION_ROOM {
-
-        /**
-         * Constructs a new C_RECONNECTION_ROOM.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: RoomPto.IC_RECONNECTION_ROOM);
-
-        /** C_RECONNECTION_ROOM cmd. */
-        public cmd: number;
-
-        /** C_RECONNECTION_ROOM scmd. */
-        public scmd: number;
-
-        /** C_RECONNECTION_ROOM roomId. */
-        public roomId: number;
-
-        /**
-         * Encodes the specified C_RECONNECTION_ROOM message. Does not implicitly {@link RoomPto.C_RECONNECTION_ROOM.verify|verify} messages.
-         * @param message C_RECONNECTION_ROOM message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: RoomPto.IC_RECONNECTION_ROOM, writer?: protobuf.Writer): protobuf.Writer;
-
-        /**
-         * Decodes a C_RECONNECTION_ROOM message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns C_RECONNECTION_ROOM
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: (protobuf.Reader|Uint8Array), length?: number): RoomPto.C_RECONNECTION_ROOM;
     }
 }
 

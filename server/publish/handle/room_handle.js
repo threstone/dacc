@@ -19,29 +19,40 @@ class RoomHandle {
         if (!room) {
             return;
         }
+        //如果游戏已经开了，走场景恢复逻辑
+        if (room.isStart) {
+            //重连
+            if (msg.isWatch == false) {
+                room.onUserRequestReconnect(user);
+            }
+            else { //游戏开始后的观战，需要恢复场景
+                room.onWatcherJoinInRoom(user);
+            }
+            return;
+        }
         let resMsg = new common_proto_1.RoomPto.S_JOIN_ROOM();
-        let player = room.onUserJoinRoom(user);
+        let player = room.onUserJoinRoom(user, msg.isWatch);
         resMsg.isSuccess = player != undefined;
         //如果加入失败
         if (!resMsg.isSuccess) {
             user.sendMsg(resMsg);
             return;
         }
+        resMsg.isWatcher = player.isWatcher;
         resMsg.selfIndex = player.index;
         resMsg.roomSeq = room.roomSeq;
         for (let index = 0; index < room.players.length; index++) {
             if (!room.players[index]) {
                 continue;
             }
-            const temp = room.players[index];
+            const tempPlayer = room.players[index];
             let player = new common_proto_1.RoomPto.Player();
             player.index = index;
-            player.isReady = temp.isReady;
-            player.headIndex = temp.getSession().headIndex;
-            player.userName = temp.getSession().userName;
+            player.isReady = tempPlayer.isReady;
+            player.headIndex = tempPlayer.headIndex;
+            player.nick = tempPlayer.nick;
             resMsg.players.push(player);
         }
-        resMsg.roomId = msg.roomId;
         resMsg.gameId = room.gameId;
         user.sendMsg(resMsg);
     }

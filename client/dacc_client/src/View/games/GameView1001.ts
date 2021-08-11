@@ -47,7 +47,7 @@ class GameView1001 extends GameBaseView {
         this.addEventListener('StartOutSword1001', this.onStartOutSword)
         this.addEventListener('BroadcastSword1001', this.onUserOutSword)
         this.addEventListener('GameResult1001', this.onGameResult)
-        this.addEventListener('GameReconnect1001', this.reconnect)
+        this.addEventListener('GameSceneInit1001', this.initScene)
     }
 
     /**
@@ -68,6 +68,7 @@ class GameView1001 extends GameBaseView {
                 let readyBtn = this.view.m_ready_btn as dacc.UI_BtnClick
                 readyBtn.visible = true
                 readyBtn.m_describe.text = '准备'
+                this.changeWinRateInfo(data.leftWinTimes, data.gameTimes)
             }
         } else {
             this.nextHideHand = true
@@ -84,7 +85,6 @@ class GameView1001 extends GameBaseView {
      * 通知玩家开始出拳
      */
     private onStartOutSword(evt: EventData) {
-
         let data: GamePto1001.S_START_OUT_SWORD_1001 = evt.data
         this.changeChooseBtnVisible(true)
         this.view.m_out_tips0.visible = false
@@ -102,6 +102,14 @@ class GameView1001 extends GameBaseView {
         this.view.m_ready_btn.visible = false
         this.view.m_read_text0.visible = false
         this.view.m_read_text1.visible = false
+    }
+
+    private changeWinRateInfo(leftWinTimes: number, gameTimes: number) {
+        let tips0 = this.view.m_win_rate_info0
+        let tips1 = this.view.m_win_rate_info1
+        let leftWinRate = gameTimes == 0 ? 0 : Math.floor((leftWinTimes / gameTimes) * 100)
+        tips0.text = `当前胜利次数:${leftWinTimes}\n总局数:${gameTimes}\n胜率:${leftWinRate}%`
+        tips1.text = `当前胜利次数:${gameTimes - leftWinTimes}\n总局数:${gameTimes}\n胜率:${gameTimes == 0 ? 0 : 100 - leftWinRate}%`
     }
 
     /**
@@ -145,11 +153,10 @@ class GameView1001 extends GameBaseView {
         this.view.m_bu_btn.visible = visible
     }
 
-    reconnect(evt: EventData) {
-        let data: GamePto1001.S_RECONNECT_1001 = evt.data
-        console.log(data);
-        this.isWatcher = false
+    initScene(evt: EventData) {
+        let data: GamePto1001.S_SCENE_INIT_1001 = evt.data
         this.selfIndex = data.selfIndex
+        this.isWatcher = this.selfIndex == -1
         this.view.m_isWatch.visible = this.isWatcher
         this.view.m_ready_btn.visible = false
         this.view.m_room_seq.text = data.roomSeq
@@ -188,6 +195,7 @@ class GameView1001 extends GameBaseView {
                 }
             }
         }
+        this.changeWinRateInfo(data.leftWinTimes, data.gameTimes)
     }
 
     show(data: RoomPto.S_JOIN_ROOM) {

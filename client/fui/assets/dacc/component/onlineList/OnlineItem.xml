@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="180,40">
+  <displayList>
+    <graph id="n0_ggbm" name="bg" xy="0,0" size="180,40" type="rect" fillColor="#ffffffcc"/>
+    <text id="n1_ggbm" name="name" xy="90,20" pivot="0.5,0.5" anchor="true" size="180,27" font="STHupo" fontSize="22" color="#cc6600" align="center" vAlign="middle" autoSize="shrink" text="呜呜呜啊啊啊"/>
+  </displayList>
+</component>

@@ -11,6 +11,8 @@ module dacc {
 			fairygui.UIObjectFactory.setPackageItemExtension(UI_ChangeHeadCom.URL, UI_ChangeHeadCom);
 			fairygui.UIObjectFactory.setPackageItemExtension(UI_UserBox.URL, UI_UserBox);
 			fairygui.UIObjectFactory.setPackageItemExtension(UI_Register.URL, UI_Register);
+			fairygui.UIObjectFactory.setPackageItemExtension(UI_OnlineListCom.URL, UI_OnlineListCom);
+			fairygui.UIObjectFactory.setPackageItemExtension(UI_OnlineItem.URL, UI_OnlineItem);
 			fairygui.UIObjectFactory.setPackageItemExtension(UI_Hall.URL, UI_Hall);
 			fairygui.UIObjectFactory.setPackageItemExtension(UI_BtnLong.URL, UI_BtnLong);
 			fairygui.UIObjectFactory.setPackageItemExtension(UI_AreaSelect.URL, UI_AreaSelect);
