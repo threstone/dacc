@@ -55,7 +55,7 @@ export class LoginHandle {
             user.sendMsg(res)
             return
         }
-        let createRes = GlobalVar.dbMgr.userDao.createUser(msg.account, msg.password, msg.nick)
+        let createRes = await GlobalVar.dbMgr.userDao.createUser(msg.account, msg.password, msg.nick)
         if (createRes) {
             res.code = 0
             user.sendMsg(res)
